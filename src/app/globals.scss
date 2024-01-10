@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+body {
+  @apply text-base text-black bg-bg-color;
+
+  span {
+    font-family: 'Rubik', sans-serif;
+  }
+
+  font-family: 'Rubik',
+  sans-serif;
+  direction: rtl;
+
+  input:focus {
+    outline: none;
+  }
+
+
+  th {
+    font-weight: 400;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  opacity: 0.2 !important;
+}
+
+.myShadowCard {
+  transition: all 0.5s;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+
+  }
+}
+
+.activeShadow {
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+.editMode {
+  transition: all 0.5s;
+  background: rgba(0, 37, 54, 0.5);
+
+}
+
+.cardHover {
+  &:hover {
+    background-color: #31aef228;
+  }
+}
+
+.clickedCard {
+  background-color: #31aef228;
+}
+
+.myCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fill {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.unFill {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 100,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.header {
+  z-index: 100000;
+}
+
+.swal2-container {
+  z-index: 10000;
+}
+
+.bgCourseColor {
+  background-color: #39C7BB21;
+}
+
+.fileInput {
+  width: 100%;
+
+  input {
+    display: none;
+  }
+}
+
+textarea:focus {
+  outline: none;
+  resize: none;
+  /* Reset your desired focus styles here */
+}
+
+
+
+.authBg {
+  background: linear-gradient(137deg, #0990FF 0%, #58B4FF 100%);
+}
+
+.sideBg {
+  background: linear-gradient(227deg, #2E68F7 0%, #45C3F3 100%);
+}
+
+// table.myTable tr {
+//   margin: 0px 12px 0px 12px;
+//   padding: 0px 12px 0px 12px;
+// }
+
+.myTable {
+  border-collapse: collapse;
+  // border-spacing: 10px 5px;
+  width: 100%;
+  // border-bottom: 5px ;
+  // *border-collapse: expression('separate', cellSpacing='10px');
+}
+
+
+th {
+  // border-left: 5px solid white;
+  // border-bottom: 5px solid white;
+
+}
+
+.inOnlyTable {
+  th {
+    border-left: 5px solid white;
+    // width: 200px !important;
+    // min-width: 200px;
+  }
+
+  .disbleTh {
+    border-left: 0px solid white;
+    // width: 200px !important;
+    // min-width: 200px;
+  }
+}
+
+
+
+.onlyWordAndOrden {
+  width: 70px !important;
+  min-width: 70px !important;
+}
+
+// .tableModule {
+//   table {
+//     th {
+//       min-width: 300px;
+
+//     }
+//   }
+
+// }
+
+
+
+
+.specific-th {
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* Set the specific spacing value for the specific <th> element */
+  border-left: 5px solid white;
+  /* Add a border to the specific header cell */
+  // padding: 8px; /* Add some padding to the content inside the specific header cell */
+}
+
+.css-1nmdiq5-menu {
+  z-index: 100000000000 !important;
+  max-height: none !important;
+}
+
+
+
+.css-1n6sfyn-MenuList {
+  max-height: none !important;
+}
+
+.rdw-dropdown-optionwrapper {
+  color: black
+}
+
+.rdw-dropdown-wrapper {
+  color: black;
+  direction: ltr;
+}
+
+.rdw-editor-main {
+  color: black;
+}
+
+// [HIGH] - CUSTOM TAGS 
+// mark {
+//   position: relative;
+// }
+mark>span {
+  padding: 0 10px 0 15px;
+  // position: absolute;
+  // top: -30px;
+  // right: 40%;
+  // min-width: 100px;
+  // text-align: center;
+  // white-space: nowrap;
+  // font-size: 16px !important;
+  // border-radius: 30px ;
+  // padding: 1px 10px 1px 10px;
+  // background-color: inherit; 
+}
+
+
+.handleColor {}
+
+//REACH TEXT EDITOR
+.public-DraftStyleDefault-ltr {
+  text-align: right;
+}
+
+
+.fontSizeExercise {
+  font-size: 23px !important;
+  line-height: 55px;
+
+  span {
+    line-height: 55px;
+    font-size: 23px !important;
+  }
+
+  br {
+    line-height: 55px;
+    font-size: 23px !important;
+  }
+}
+
+.mainBtn {
+  background-color: rgba(29, 153, 255, 1);
+  border-radius: 20px;
+}
