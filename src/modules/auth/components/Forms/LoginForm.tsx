@@ -3,12 +3,11 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useAuth } from '../../store/auth.store';
 import LoginInput from '@/components/LoginInput';
-import { redirect } from 'next/navigation';
 import { onErrorAlert } from '@/utils/sweetAlert';
-
+import { useRouter } from 'next/navigation';
 const LoginForm = () => {
     const {login, loading} = useAuth()
-
+    const router = useRouter()
     const {register: formRegister, handleSubmit, formState: {errors}, reset} = useForm<LoginForm>({
        mode: 'onChange'
     })
@@ -16,7 +15,7 @@ const LoginForm = () => {
     const onSubmit :SubmitHandler<LoginForm> = async (data) => {
         const response = await login(data)
         if(response){
-            redirect('/admin/courses')
+            router.push('/admin/courses')
         } else {
             onErrorAlert('שגיאה','נתונים לא נכונים, נסה שנית')
         }

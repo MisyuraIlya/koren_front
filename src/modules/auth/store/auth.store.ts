@@ -4,6 +4,7 @@ interface useAuthState {
     loading: boolean
     login:(obj: LoginForm) => Promise<boolean>
     register:() => void
+    logout:() => void
 }
 
 export const useAuth = create<useAuthState>((set, get) => ({
@@ -26,5 +27,9 @@ export const useAuth = create<useAuthState>((set, get) => ({
     },
     register: () => {
         
+    },
+
+    logout: () => {
+
     }
 }))
