@@ -32,7 +32,7 @@ const Header: FC = () => {
 
     return (
         <>
-            <header className='bg-primary w-full py-2 px-6 grid grid-cols-2 fixed' style={{height:'70px', zIndex:1000000}}>
+        <header className='bg-primary w-full py-2 px-6 grid grid-cols-2 fixed' style={{height:'70px', zIndex:1000000}}>
             <div className='flex justify-start items-center' >
                 <Image
                 priority
@@ -47,7 +47,7 @@ const Header: FC = () => {
             </div>
             <div className='flex justify-end'>
                 <div className='flex'>
-                    <Link href={'/admin/tableOfContents'} className='flex justify-center items-center px-4'>
+                    <Link href={'/admin/courses/1'} className='flex justify-center items-center px-4'>
                         <Image
                         priority
                         width={28}
@@ -56,7 +56,7 @@ const Header: FC = () => {
                         alt='Sary'
                         />
                     </Link>  
-                    <Link href={'/admin/tableOfContents'} className='flex justify-center items-center px-4' >
+                    <Link href={'/admin/courses/1'} className='flex justify-center items-center px-4' >
                         <Image
                         priority
                         width={28}
@@ -65,7 +65,7 @@ const Header: FC = () => {
                         alt='Sary'
                         />
                     </Link>  
-                    <Link href={'/admin/tableOfContents'} className='flex justify-center items-center pr-4 relative'>
+                    <Link href={'/admin/v'} className='flex justify-center items-center pr-4 relative'>
                         <Image
                         priority
                         width={28}
@@ -83,7 +83,7 @@ const Header: FC = () => {
                     <div className="w-1/2"></div>
                 </div>
                 <div className='flex'>
-                    <Link href={'/admin/tableOfContents'} className='flex'>
+                    <Link href={'/admin/courses/1'} className='flex'>
                         <Image
                         priority
                         width={50}
@@ -148,7 +148,6 @@ const Header: FC = () => {
                                     className='cursor-pointer'
                                     onClick={() => handleSidebarToggle()}
                                 />
-                                {/* <p>{user?.email}</p> */}
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+/** @type {import('tailwindcss').Config} */
 const twColors = require('tailwindcss/colors')
 
 const colors = {
@@ -19,20 +19,15 @@ const colors = {
   mainExerciseBg: '#e5f0fe'
 }
 
-const config: Config = {
+module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     colors,
     extend: {
-      backgroundImage: {
-          'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-          'gradient-conic':
-            'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       fontSize: {
         xs: '0.82rem',
         sm: '0.98rem',
@@ -91,4 +86,3 @@ const config: Config = {
   },
   plugins: [],
 }
-export default config

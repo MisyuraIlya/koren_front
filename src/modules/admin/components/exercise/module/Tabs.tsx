@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ExercisePage = () => {
+const Tabs = () => {
     return (
         <div>
-            CoursesPage
+            
         </div>
     );
 };
 
-export default ExercisePage;
+export default Tabs;

@@ -2,6 +2,7 @@ interface IExercise extends Idefinder{
     title: string
     description1: string
     description2: string
+    courseId: number
     module: number
     youtubeLink: string
     pdf: string
@@ -17,6 +18,8 @@ interface ITab extends Idefinder {
 
 interface ITask extends Idefinder {
     orden: number
+    specialModuleType: specialModuleType
+    properties: string 
     columns: IColumnTask[]
     rows: IRowTask[] 
 }
@@ -53,4 +56,5 @@ interface IValue extends Idefinder {
     objective: string
 }
 
-type ModuleType = ''
+type specialModuleType = 'draggenDrop' | 'imageRight' | 'video' | 'pdf'
+type ModuleType = "word" | "orden" | "instruction" | "subInstruction" | "text" | "input" | "selectbox" | "explanation" | "rootInput" | "mix" | "bank" | 'mixDrag' | 'checkBox' | 'imageRight' |  'imageLeft' |'merged' | 'table' | 'questInstruction' | 'openQuestion' | 'mergedExercise' | 'textCopy' | 'headline2' | 'clearText' | 'typedInput' | 'openQuestionHamarot' | 'draftBank' | 'draft' | 'tableClear' | 'video' | 'chart' | 'textCentered' | 'properties' | 'inputCentered' | 'heightSpace' | 'wordBold' | 'ordenBold' | 'story' | 'storyInstruction' | 'storyHeadline' | 'explanationSplited' | 'origin' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'splitedScreenLeft' | 'doneSplitedScreenLeft' |'numberBold' | 'icon1' | 'icon2' | 'divider' | 'mainHead' | 'secondHead' | 'globalSettings' | 'instructionWhite' | 'border' | 'wordRegular' | 'song' | 'iconDescriptionOne' |'secondHeadWhite' | 'iconDescriptionTwo' | 'circle' | 'overflow' | 'textArea' | 'pdf' |'textModuled' | 'copy'

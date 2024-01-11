@@ -9,7 +9,7 @@ export const sideBarList = [
         id:2,
         title:'תוכן העניינים',
         icon:'/images/sidebar/summary.svg',
-        href:'/admin/tableOfContents'
+        href:'/admin/courses/1'
     },
     // {
     //     id:3,
