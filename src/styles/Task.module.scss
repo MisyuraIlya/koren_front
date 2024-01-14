@@ -1,0 +1,18 @@
+.TaskStyles{
+    font-size: 23px;
+    line-height: 55px;
+    span {
+      line-height: 55px;
+      font-size: 23px;
+    } 
+    br {
+      line-height: 55px;
+      font-size: 23px;
+    }
+
+    tr {
+        th {
+            border-left: 5px solid white;
+        }
+    } 
+}

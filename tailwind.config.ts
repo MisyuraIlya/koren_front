@@ -2,11 +2,14 @@
 const twColors = require('tailwindcss/colors')
 
 const colors = {
+  primary:'#002536',
+  secondary:'#161D25',
+  mainBlue:'#BACEE9',
+  secondBlue:'#EDF2F9',
+  
   transparent: twColors.transparent,
   black: twColors.black,
   white: twColors.white,
-  primary:'#002536',
-  secondary:'#161D25',
   'bg-color':'#F5F5F5',
   red: twColors.red[600],
   green: twColors.green[600],

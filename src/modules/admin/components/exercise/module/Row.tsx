@@ -12,18 +12,18 @@ interface RowProps {
 const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
     const {setValue} = useAdminExerciseProvider()
 
-    useEffect(() => {
-        setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].pdf`,null)
-        setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].youtubeLink`,null)
-        setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].orden`,rowIndex)
-    },[])
+    // useEffect(() => {
+    //     setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].pdf`,null)
+    //     setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].youtubeLink`,null)
+    //     setValue(`tabs[${tabIndex}]tasks[${taskIndex}]rows[${rowIndex}].orden`,rowIndex)
+    // },[])
     
     return (
-        <div>
+        <tr>
             {row?.objectives?.map((objective) => 
                 <Objectives objective={objective} />
             )}
-        </div>
+        </tr>
     );
 };
 
