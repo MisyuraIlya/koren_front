@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
-import { useAdminExerciseProvider } from '../../provider/AdminExerciseProvider';
+import { useAdminExercise } from '../../provider/AdminExerciseProvider';
 import Heading from '@/components/heading/Heading';
 
 const ExerciseTitle = () => {
-    const {exercise} = useAdminExerciseProvider()
+    const {exercise} = useAdminExercise()
     return (
         <>
         <Heading>{exercise?.title}</Heading>

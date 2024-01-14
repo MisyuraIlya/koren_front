@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import Column from './Column';
 import Row from './Row';
 import TaskStyles from '@/styles/Task.module.scss';
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 
 interface TaskProps {
     task: ITask
@@ -10,13 +11,20 @@ interface TaskProps {
 }
 
 const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
+    const {setValue} = useAdminExercise()
+
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].orden`, task.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].specialModuleType`, task.specialModuleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].properties`, task.properties)
+    },[])
     return (
     <div className='bg-secondBlue relative'>
         <table className={'TaskStyles'}>
             <tbody>
                 <tr className='w-full'>
-                    {task?.columns.map((column) => 
-                        <Column column={column}/>
+                    {task?.columns.map((column, columnIndex) => 
+                        <Column column={column} tabIndex={tabIndex} taskIndex={taskIndex} columnIndex={columnIndex}/>
                     )}
                 </tr>
                 {task?.rows.map((row, rowIndex) => 

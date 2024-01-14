@@ -1,7 +1,7 @@
 import React, {FC,useEffect} from 'react';
 import ReactSelect from 'react-select'
 import { Controller } from 'react-hook-form'
-import { useAdminExerciseProvider } from '@/modules/admin/provider/AdminExerciseProvider';
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 // import { collectionAnswers } from '@/types/ModulesTypes.ts/SecondModule.interface';
 // import ToolTip from '../ToolTip';
 
@@ -24,12 +24,28 @@ interface SelectModuleProps {
     // CustomSelectBoxWidth: number
     // tab: number | null
     objective: IObjective
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number
 }
-const SelectModule:FC<SelectModuleProps> = ({objective}) => {
+const SelectModule:FC<SelectModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+
+    const {setValue} = useAdminExercise()
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
+      }, []);
+
+
     const optionsNew = Array.isArray(objective.values)
     ? objective.values.map((item) => ({ value: item.value, label: item.value }))
     : [];
-    const {control} = useAdminExerciseProvider()
+    const {control} = useAdminExercise()
 
     // useEffect(() => {
     //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].orden`, row);

@@ -1,8 +1,23 @@
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect, useState} from 'react';
 type TextModuleProps = {
     objective: IObjective
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number
 }
-const TextModule:FC<TextModuleProps> = ({objective}) => {
+const TextModule:FC<TextModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+
+    const {setValue} = useAdminExercise()
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
+    }, []);
 
     // let formattedValue = value?.replaceAll('#', "&nbsp;&nbsp;&nbsp;&nbsp;");
     // let formattedValue = value?.replaceAll('$$$$', "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll('@', "<br/>");

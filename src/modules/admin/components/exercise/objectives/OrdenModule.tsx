@@ -1,16 +1,25 @@
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
 type OrdenModuleProps = {
-objective: IObjective
+    objective: IObjective
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number
 }
-const OrdenModule:FC<OrdenModuleProps> = ({objective}) => {
-    // useEffect(() => {
-    //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].orden`, row);
-    //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].module_type`, 'orden');
-    //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].isFullText`, false);
-    //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].collectionValues`, [{value}]);
-    //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].collectionAnswers`, []);
-    //   }, [col, row, setValue, exerciseId, dataObjectId, value, tab]);
+const OrdenModule:FC<OrdenModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+    
+    const {setValue} = useAdminExercise()
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
+    }, []);
+
     return (
         <th  style={{
                 minWidth:'70px', 

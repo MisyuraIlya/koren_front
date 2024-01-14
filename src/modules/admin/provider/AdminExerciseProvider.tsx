@@ -8,15 +8,16 @@ import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control 
 interface AdminContextType {
     exercise: IExercise
     register: UseFormRegister<IExercise>
-    handleSubmit: UseFormHandleSubmit<IExercise, undefined>
-    setValue: UseFormSetValue<IExercise>
+    setValue: UseFormSetValue<any>
     control: Control<IExercise, any>
+    uploadXl: () => void
+    setFileChoosed: (file: File) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
 
 // React hook
-const useAdminExerciseProvider = (): AdminContextType => {
+const useAdminExercise = (): AdminContextType => {
   const context = useContext(AdminContext);
   if (!context) {
     throw new Error('Can not run without "AdminExerciseProvider"');
@@ -32,11 +33,17 @@ interface AdminExerciseProviderProps {
 
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   const [exercise, setExercise] = useState<IExercise>(props.exercise)
+  const [fileChoosed, setFileChoosed] = useState<File | null>(null)
   const [isOnlineExercise, setIsOnlineExercise] = useState<boolean>(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
 
   const uploadXl = () => {
 
+  }
+
+  const createExercise = (data: any) => {
+    console.log('here')
+    console.log('data',data)
   }
 
   useEffect(() => {
@@ -50,18 +57,25 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
       setValue(`isInTheBook`, exercise.isInTheBook);
       setValue(`pdf`, exercise.pdf);
     }
-  },[exercise,])
+  },[exercise])
 
 
   const value: AdminContextType = {
     exercise,
     register,
-    handleSubmit,
     setValue,
-    control
+    control,
+    uploadXl,
+    setFileChoosed
   };
 
-  return <AdminContext.Provider value={value} {...props} />;
+  return (
+  <AdminContext.Provider value={value} > 
+    <form onSubmit={handleSubmit(createExercise)}>
+      {props.children}
+    </form>
+  </AdminContext.Provider>
+  );
 };
 
-export { useAdminExerciseProvider, AdminExerciseProvider };
+export { useAdminExercise, AdminExerciseProvider };

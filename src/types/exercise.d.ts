@@ -56,5 +56,12 @@ interface IValue extends Idefinder {
     objective: string
 }
 
+interface IObjectiveIndexes {
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number
+}
+
 type specialModuleType = 'draggenDrop' | 'imageRight' | 'video' | 'pdf'
 type ModuleType = "word" | "orden" | "instruction" | "subInstruction" | "text" | "input" | "selectbox" | "explanation" | "rootInput" | "mix" | "bank" | 'mixDrag' | 'checkBox' | 'imageRight' |  'imageLeft' |'merged' | 'table' | 'questInstruction' | 'openQuestion' | 'mergedExercise' | 'textCopy' | 'headline2' | 'clearText' | 'typedInput' | 'openQuestionHamarot' | 'draftBank' | 'draft' | 'tableClear' | 'video' | 'chart' | 'textCentered' | 'properties' | 'inputCentered' | 'heightSpace' | 'wordBold' | 'ordenBold' | 'story' | 'storyInstruction' | 'storyHeadline' | 'explanationSplited' | 'origin' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'splitedScreenLeft' | 'doneSplitedScreenLeft' |'numberBold' | 'icon1' | 'icon2' | 'divider' | 'mainHead' | 'secondHead' | 'globalSettings' | 'instructionWhite' | 'border' | 'wordRegular' | 'song' | 'iconDescriptionOne' |'secondHeadWhite' | 'iconDescriptionTwo' | 'circle' | 'overflow' | 'textArea' | 'pdf' |'textModuled' | 'copy'

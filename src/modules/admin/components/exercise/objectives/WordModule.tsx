@@ -1,11 +1,25 @@
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
 type WordModuleProps = {
     objective: IObjective
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number
 }
 
-const WordModule:FC<WordModuleProps> = ({objective}) => {
+const WordModule:FC<WordModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     
+    const {setValue} = useAdminExercise()
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
+    }, []);
     // const {choosedModule} = useExercise()
     // useEffect(() => {
     //     setValue(`${tab !== null ? `[${tab}].` : ''}exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].orden`,row)

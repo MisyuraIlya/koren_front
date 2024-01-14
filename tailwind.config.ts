@@ -3,7 +3,6 @@ const twColors = require('tailwindcss/colors')
 
 const colors = {
   primary:'#002536',
-  secondary:'#161D25',
   mainBlue:'#BACEE9',
   secondBlue:'#EDF2F9',
   

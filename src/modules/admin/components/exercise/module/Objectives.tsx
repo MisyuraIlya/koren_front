@@ -6,14 +6,15 @@ import WordModule from '../objectives/WordModule';
 
 interface ObjectivesProps {
     objective: IObjective
+    objectiveIndexes: IObjectiveIndexes
 }
-const Objectives:FC<ObjectivesProps> = ({objective}) => {
+const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
     return (
         <>
-            {objective?.moduleType === 'orden' && <OrdenModule objective={objective} />}
-            {objective?.moduleType === 'word' && <WordModule objective={objective}/>}
-            {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} />}
-            {objective?.moduleType === 'text' && <TextModule objective={objective}/>}
+            {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes}/>}
+            {objective?.moduleType === 'word' && <WordModule objective={objective} {...objectiveIndexes}/>}
+            {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
+            {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes}/>}
 
             {/* {objective?.moduleType === 'input' && <InputModule  tab={tab} CustomInputWidth={CustomInputWidth} CustomTableWidth={CustomTableWidth}isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} key={index} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText} />} */}
             {/* {objective?.moduleType === 'inputCentered' && <InputCenteredModule tab={tab} CustomInputWidth={CustomInputWidth} CustomTableWidth={CustomTableWidth}isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} key={index} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText} />} */}
