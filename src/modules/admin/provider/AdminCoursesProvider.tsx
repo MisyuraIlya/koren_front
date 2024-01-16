@@ -3,6 +3,8 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { onAsk } from '@/utils/sweetAlert';
+import { AdminService } from '../services/admin.service';
 
 interface AdminContextType {
   courses: ICourse[]
@@ -14,6 +16,7 @@ interface AdminContextType {
   lvl2IdCourses: ICourse
   lvl3IdCourses: ICourse
   lvl4IdCourses: ICourse
+  deleteCourse: (id: string) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -47,6 +50,13 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
   const lvl3IdCourses = lvl2IdCourses?.children.filter((item) => item.id === +lvl3Id)[0]
   const lvl4IdCourses = lvl3IdCourses?.children.filter((item) => item.id === +lvl4Id)[0]
 
+  const deleteCourse = async (id: string) => {
+    const ask = await onAsk('למחוק קורס זה?','')
+    if(ask) {
+      AdminService.DeleteCourse(id)
+    }
+  }
+
   const value: AdminContextType = {
     courses,
     lvl1Id,
@@ -57,6 +67,7 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
     lvl2IdCourses,
     lvl3IdCourses,
     lvl4IdCourses,
+    deleteCourse
   };
 
   return <AdminContext.Provider value={value} {...props} />;

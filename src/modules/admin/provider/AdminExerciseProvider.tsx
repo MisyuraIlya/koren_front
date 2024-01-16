@@ -1,9 +1,11 @@
 // Global
 "use client";
-import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
+import { onAsk } from '@/utils/sweetAlert';
+import { AdminService } from '../services/admin.service';
 
 interface AdminContextType {
     exercise: IExercise
@@ -11,7 +13,8 @@ interface AdminContextType {
     setValue: UseFormSetValue<any>
     control: Control<IExercise, any>
     uploadXl: () => void
-    setFileChoosed: (file: File) => void
+    deleteExercise: (id: string) => void
+    setFileChoosed: (data: File | null) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -33,12 +36,19 @@ interface AdminExerciseProviderProps {
 
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   const [exercise, setExercise] = useState<IExercise>(props.exercise)
-  const [fileChoosed, setFileChoosed] = useState<File | null>(null)
+  const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [isOnlineExercise, setIsOnlineExercise] = useState<boolean>(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
 
   const uploadXl = () => {
 
+  }
+
+  const deleteExercise = async (id: string) => {
+    const ask = await onAsk('בטוח למחוק תרגיל זה?','')
+    if(ask){
+      AdminService.DeleteExercise(id)
+    }
   }
 
   const createExercise = (data: any) => {
@@ -66,7 +76,8 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     setValue,
     control,
     uploadXl,
-    setFileChoosed
+    deleteExercise,
+    setFileChoosed,
   };
 
   return (

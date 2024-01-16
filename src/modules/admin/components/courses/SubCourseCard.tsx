@@ -17,7 +17,7 @@ type Inputs = {
 const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
     const [editMode, setEditMode] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const {lvl1Id,lvl2Id,lvl3Id, lvl4Id} = useAdminCoursesProvider()
+    const {lvl1Id,lvl2Id,lvl3Id, lvl4Id, deleteCourse} = useAdminCoursesProvider()
     const pathname = usePathname()
     const splitedPathanem = pathname?.split('/')
     const isActive = splitedPathanem?.includes(item?.id!.toString());
@@ -69,7 +69,7 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
                     </div>  
                     <div className='border border-black rounded-full flex justify-center w-12 h-12 hover:bg-white'>
                         <Image src={'/images/trash.svg'} width={25} height={25} priority alt='trash' className=' cursor-pointer rounded-lg p-1'
-                        // onClick={() => handleRemove()}
+                        onClick={() => deleteCourse(item.id!?.toString())}
                         />
                     </div>    
 
