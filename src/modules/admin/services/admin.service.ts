@@ -1,4 +1,3 @@
-import axios from "axios"
 
 export const AdminService = {
 
@@ -14,11 +13,29 @@ export const AdminService = {
 
     async DeleteCourse(id: string): Promise<void> {
         const response = await fetch(`http://localhost:4001/course/${id}`,{ method: 'DELETE' })
-        return response.json()
     },
 
     async DeleteExercise(id: string): Promise<void> {
         const response = await fetch(`http://localhost:4001/exercise/${id}`,{ method: 'DELETE' })
-        return response.json()
+    },
+
+    async CreateCourse(obj: ICreateCourseDto): Promise<void> {
+        const response = await fetch(`http://localhost:4001/course`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj),
+        });
+    },
+
+    async UpdateSortable(courses: ICourse[]): Promise<void> {
+        const response = await fetch(`http://localhost:4001/course/sortable`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(courses),
+        });
     }
 }

@@ -25,13 +25,13 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
 
     const handleChoose = () => {
         if(item.level === 2){
-            router.push(`/admin/courses/${lvl1Id}/${item.id}`, {scroll: false})
+            router.replace(`/admin/courses/${lvl1Id}/${item.id}`, {scroll: false})
         } else if (item.level === 3) {
-            router.push(`/admin/courses/${lvl1Id}/${lvl2Id}/${item.id}`, {scroll: false})
+            router.replace(`/admin/courses/${lvl1Id}/${lvl2Id}/${item.id}`, {scroll: false})
         } else if (item.level === 4) {
-            router.push(`/admin/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${item.id}`, {scroll: false})
+            router.replace(`/admin/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${item.id}`, {scroll: false})
         } else if (item.level === 5) {
-            router.push(`/admin/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${lvl4Id}/${item.id}`, {scroll: false})
+            router.replace(`/admin/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${lvl4Id}/${item.id}`, {scroll: false})
         } 
     }
     return (
@@ -61,7 +61,7 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
                     {
                         item.level === 5 &&
                         <div className=' border border-black rounded-full flex justify-center w-12 h-12 hover:bg-white'>
-                            <Image src={'/images/eye.svg'} width={30} height={30} priority alt='trash' className=' cursor-pointer rounded-lg p-1' onClick={() => router.push(`/admin/exercise/${item.id}`)}/>
+                            <Image src={'/images/eye.svg'} width={30} height={30} priority alt='trash' className=' cursor-pointer rounded-lg p-1' onClick={() => router.replace(`/admin/exercise/${item.id}`)}/>
                         </div>
                     }      
                     <div className='border border-black rounded-full flex justify-center w-12 h-12 hover:bg-white'> 

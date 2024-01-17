@@ -1,84 +1,58 @@
 'use client'
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Image from 'next/image';
 import SubCourseCard from './SubCourseCard';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAdminCoursesProvider } from '../../provider/AdminCoursesProvider';
 import SearchInput from '@/components/SearchInput';
+import { AdminService } from '../../services/admin.service';
 
 interface SubCourseCardProps {
     items: ICourse[] | []
     title: string
+    lvl: number
 }
 
 type Inputs = {
   name: string;
 };
 
-const ListSubCourses:FC<SubCourseCardProps> = ({items,title}) => {
+const ListSubCourses:FC<SubCourseCardProps> = ({items,title,lvl}) => {
 
-    const [loading, setLoading] = useState(false)
-    const [changedArray, setChangedArray] = useState<ICourse[]>([]);
-    const [filterArr, setFilterArr] = useState<ICourse[]>([]);
     const { register: registerAdd, handleSubmit: handleAdd } = useForm<Inputs>();
     const [activeAdd, setActiveAdd] = useState(false);
     const [filterData, setFilterData] = useState('');
-    const {lvl4Id} = useAdminCoursesProvider()
+    const {lvl1Id,lvl2Id, lvl3Id ,lvl4Id} = useAdminCoursesProvider()
+
+    const {createCourse} = useAdminCoursesProvider()
+
     const onDragEnd = (result: DropResult) => {
         if (!result.destination) return;
-    
-        const newItems = data
+        const newItems = items
         const [removed] = newItems.splice(result.source.index, 1);
         newItems.splice(result.destination.index, 0, removed);
-    
-        if (filterArr.length > 0) {
-          const updatedFilterArr = newItems.map((item, index) => ({
-            ...item,
-            orden: index + 1,
-          }));
-          setFilterArr(updatedFilterArr);
-        } else {
-          const updatedData = newItems.map((item, index) => ({
-            ...item,
-            orden: index + 1,
-          }));
-          setChangedArray(updatedData)
-    
-          setTimeout(() => {
-            updatedData.map((item) => {
-              CourseMethods.silentUpdate(item.id, item.name, item.grade, item.level, item.published, item.orden);
-            })
-      
-          },500)
-    
-    
-        }
+        const updatedData = newItems.map((item, index) => ({
+          ...item,
+          orden: index + 1,
+        }));
+        AdminService.UpdateSortable(updatedData)
     };
 
     const onSubmitAdd: SubmitHandler<Inputs> = (data) => {
-      //TODO
-      // CourseMethods.createFunction(data.name, level, parentId);
-      setChangedArray([])
-      setActiveAdd(false)
-      clearArray()
+      let parentId: string | undefined = '0';
+      if(lvl === 2) {
+        parentId = lvl1Id
+      } else if(lvl === 3) {
+        parentId = lvl2Id
+      } else if(lvl === 4) {
+        parentId = lvl3Id
+      } else if(lvl === 5) {
+        parentId = lvl4Id
+      }
+      createCourse({name:data.name, level: lvl, parentId: +parentId!})
     };
 
-    
-    const clearArray = () => {
-      setChangedArray([])
-    }
-
-    useEffect(() => {
-      if (filterData) {
-        let filter = (changedArray.length > 0 ? changedArray : data).filter((item) => item.name.includes(filterData));
-        setFilterArr(filter);
-      } else {
-        setFilterArr([]);
-      }
-    }, [items, filterData,changedArray]);
-
-      
     return (
         <DragDropContext onDragEnd={onDragEnd}>
         <div className='border border-black/20 rounded-md'>
@@ -102,7 +76,6 @@ const ListSubCourses:FC<SubCourseCardProps> = ({items,title}) => {
             </div>
             {activeAdd && (
               !lvl4Id ?
-  
               <div className='m-auto px-4'>
                 <div className='flex'>
                   <p>שם ה{title}</p>
@@ -118,7 +91,6 @@ const ListSubCourses:FC<SubCourseCardProps> = ({items,title}) => {
                   </div>
                 </form>
               </div>
-  
               :
               <div className='m-auto px-4'>
               <div className='flex py-2'>
@@ -129,41 +101,36 @@ const ListSubCourses:FC<SubCourseCardProps> = ({items,title}) => {
                   <input {...registerAdd('name')} className='border border-primary/30 rounded-md w-full px-2 py-2' placeholder='שם' />
                 </div>
                 <div className='col-span-12'>
-                  <button className='bg-green/40  w-full rounded-md text-white  hover:bg-green/70 py-2' style={{ backgroundColor: '#31B0F2' }}>
+                  <button  className='bg-green/40  w-full rounded-md text-white  hover:bg-green/70 py-2' style={{ backgroundColor: '#31B0F2' }}>
                     בניית תרגיל
                   </button>
                 </div>
               </form>
             </div>
             )}
-              {loading ? 
-                <div className='myCenter p-12'>
-                    <p>loading...</p>
-                </div> 
-                :
-                <div className='overflow-auto py-2'>
-                  <Droppable droppableId='droppable'>
-                    {(provided) => (
-                      <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {(changedArray.length > 0 ? (filterArr.length > 0 ? filterArr : changedArray) : (filterArr.length > 0 ? filterArr : items)).map((item, index) => (
-                          <Draggable key={item.id} draggableId={item?.id?.toString() ?? ''} index={index}>
-                            {(provided) => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <SubCourseCard item={item}  key={index}/>
-                              </div>
-                            )}
-                          </Draggable>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </div>
-              }
+
+            <div className='overflow-auto py-2'>
+              <Droppable droppableId='droppable'>
+                {(provided) => (
+                  <div {...provided.droppableProps} ref={provided.innerRef}>
+                    {((filterData ? items.filter((item) =>  item.name.includes(filterData)) : items)).map((item, index) => (
+                      <Draggable key={item.id} draggableId={item?.id?.toString() ?? ''} index={index}>
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <SubCourseCard item={item}  key={index}/>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </div>
           </div>
         </div>
       </DragDropContext>

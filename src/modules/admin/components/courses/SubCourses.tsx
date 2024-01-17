@@ -13,6 +13,7 @@ const SubCourses = () => {
             return ''
         }
     }
+    
     return (
         <div>
             <div className='px-12 py-6'>
@@ -20,16 +21,16 @@ const SubCourses = () => {
             </div>
             <div className='grid grid-cols-4 gap-4 px-12 pb-12'>
                 {lvl1Id &&
-                    <ListSubCourses items={lvl1IdCourses?.children ?? []} title='פרקים' />
+                    <ListSubCourses items={lvl1IdCourses?.children.filter((item) => item.level === 2) ?? []} title='פרקים' lvl={2} />
                 }
                 {lvl2Id &&
-                    <ListSubCourses items={lvl2IdCourses?.children ?? []} title='יחידות'/>
+                    <ListSubCourses items={lvl2IdCourses?.children.filter((item) => item.level === 3) ?? []} title='יחידות' lvl={3}/>
                 }
                 {lvl3Id &&
-                    <ListSubCourses items={lvl3IdCourses?.children ?? []} title='נושאים'/>
+                    <ListSubCourses items={lvl3IdCourses?.children.filter((item) => item.level === 4) ?? []} title='נושאים' lvl={4}/>
                 }
                 {lvl4Id &&
-                    <ListSubCourses items={lvl4IdCourses?.children ?? []}title='תרגילים' />
+                    <ListSubCourses items={lvl4IdCourses?.children.filter((item) => item.level === 5) ?? []}title='תרגילים' lvl={5}/>
                 }
             </div>
         </div>

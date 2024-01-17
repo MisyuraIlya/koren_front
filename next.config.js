@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true  
+  },
   reactStrictMode: false,
   env: {
     SERVER_URL: process.env.SERVER_URL

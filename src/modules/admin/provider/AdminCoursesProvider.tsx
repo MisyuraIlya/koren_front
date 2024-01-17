@@ -5,19 +5,28 @@ import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { onAsk } from '@/utils/sweetAlert';
 import { AdminService } from '../services/admin.service';
+import useSWR from 'swr'
 
 interface AdminContextType {
-  courses: ICourse[]
+  courses: ICourse[] | undefined
+  isLoading: boolean
   lvl1Id: string | undefined
   lvl2Id: string | undefined
   lvl3Id: string | undefined
   lvl4Id: string | undefined
-  lvl1IdCourses: ICourse
-  lvl2IdCourses: ICourse
-  lvl3IdCourses: ICourse
-  lvl4IdCourses: ICourse
+  lvl1IdCourses: ICourse | undefined
+  lvl2IdCourses: ICourse | undefined
+  lvl3IdCourses: ICourse | undefined
+  lvl4IdCourses: ICourse | undefined
   deleteCourse: (id: string) => void
+  createCourse: (obj: ICreateCourseDto) => void 
 }
+
+const fetchData = async () => {
+  const response = await fetch(`http://localhost:4001/course`);
+  const data = await response.json();
+  return data;
+};
 
 const AdminContext = createContext<AdminContextType | null>(null);
 
@@ -31,15 +40,18 @@ const useAdminCoursesProvider = (): AdminContextType => {
 };
 
 interface AdminCoursesProviderProps {
-  courses: ICourse[]
   children: ReactNode
 };
 
 
 const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
-  const [courses, setCourses] = useState(props.courses)
 
-  const searchParams = useSearchParams()
+  const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminService.GetCourses,
+    {
+      revalidateOnFocus: false, 
+    }
+  );
+
   const path = usePathname()
   const lvl1Id = path.split('/')?.[3]
   const lvl2Id = path.split('/')?.[4]
@@ -53,12 +65,20 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
   const deleteCourse = async (id: string) => {
     const ask = await onAsk('למחוק קורס זה?','')
     if(ask) {
-      AdminService.DeleteCourse(id)
+      await AdminService.DeleteCourse(id)
+      mutate();
     }
   }
 
+  const createCourse = async (obj: ICreateCourseDto) => {
+    await AdminService.CreateCourse(obj)
+    mutate();
+  }
+
+
   const value: AdminContextType = {
     courses,
+    isLoading,
     lvl1Id,
     lvl2Id,
     lvl3Id,
@@ -67,7 +87,8 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
     lvl2IdCourses,
     lvl3IdCourses,
     lvl4IdCourses,
-    deleteCourse
+    deleteCourse,
+    createCourse
   };
 
   return <AdminContext.Provider value={value} {...props} />;
