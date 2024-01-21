@@ -30,7 +30,7 @@ const TextAreaModule2: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
 
 
   return (
-    <th >
+    <th className='disbleTh'>
       <label
         className="input-sizer stacked bg-white"
         // style={

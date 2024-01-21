@@ -16,7 +16,7 @@ const MainHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
     
     return (
         <th 
-            // className={`${checkIsThereImage ? '' : ''} ${(isTable || isClearTable) ? 'tableModule' : ''} ${checkIsIcon && 'bg-[#005CBB] text-white'} text-[23px] leading-10`} 
+            className={`text-[23px] leading-10`} 
             // style={{
             //     minWidth: isTable ? `${CustomTableWidth}px` : '',
             // }}

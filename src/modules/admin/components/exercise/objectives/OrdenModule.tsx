@@ -1,8 +1,8 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
-
+import { themeColors } from '@/styles/mui';
 const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    
+    console.log('objective',objective)
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -14,25 +14,19 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
     }, []);
 
     return (
-        <th  style={{
+        <th  
+            style={{
                 minWidth:'70px', 
                 maxWidth:'70px',
-                verticalAlign: 'top', // Align text to the top
+                verticalAlign: 'top', 
                 textAlign: 'right', 
                 paddingTop:'25px',
             }} 
-            // className={`
-            //     specific-th 
-            //     ${(isTable || isClearTable) ? '' : ''} 
-            //     pt-4
-            //     ${isExplanationRowSplited && 'bg-white'}
-            //     `} 
-
             >
             <div className='text-center flex justify-center items-center py-1'>
-                <div  className='px-2 rounded-md'>
+                <p className='px-2 rounded-md' style={{background:themeColors.primary, color:'white'}}>
                     {objective.values?.[0]?.value}
-                </div>
+                </p>
             </div>
         </th>
     );

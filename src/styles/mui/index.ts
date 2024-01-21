@@ -1,7 +1,7 @@
 import { alpha, createTheme, lighten, darken } from "@mui/material"
 import { red } from "@mui/material/colors"
 
-const themeColors = {
+export const themeColors = {
   primary: "#002536",
   secondary: "#161D25",
   success: "#4ade80",
@@ -12,9 +12,13 @@ const themeColors = {
   white: "#ffffff",
   primaryAlt: "#000C57",
   text: "#303545",
+
+  blueOne:'#005CBB',
+  blueTwo:'#3995F5',
+  exerciseMain:'#e5f0fe',
 }
 
-const themeSettings = {
+export const themeSettings = {
   borderRadius: "16px",
 }
 

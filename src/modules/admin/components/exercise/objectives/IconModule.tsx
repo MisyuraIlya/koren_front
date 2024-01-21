@@ -41,10 +41,9 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
         // ${(firstIdTextModule === value && !isClearTable)  ? 'specific-th ' : ''}
         
         // `}
+        className='disbleTh px-4'
         >
- 
-
-            <div className=' text-right  fontSizeExercise pr-4 pt-1 flex items-center justify-center h-full'>
+            <div>
                 <Image src={'/images/' + handleIcon()} width={50} height={50} alt='image' />
             </div>
         </th>

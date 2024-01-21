@@ -18,10 +18,12 @@ const InstructionWhite:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective?.answers)
     }, []);
 
-    
     //   const isDisabledTh = collectionsCols.some((item) => item.orden === col + 1 && item.title == 'h')
     return (
         <th 
+        style={{
+            background:objective?.moduleType === 'instructionWhite' ? 'white' : ''
+        }}
         // className={`
         // relative
         // text-[23px]

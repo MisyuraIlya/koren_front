@@ -17,20 +17,19 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
     },[])
 
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
-    console.log('right',right)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
-            <Grid container spacing={6}>
+            <Grid container spacing={1}>
                 <Grid item xs={rightScreen} sx={{ position: "relative" }}>
                     {right.map((task, taskIndex) => 
                         <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
                     )}
                 </Grid>
-                {/* <Grid item xs={leftScreen}>
+                <Grid item xs={leftScreen}>
                     {left.map((task, taskIndex) => 
                         <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
                     )}
-                </Grid> */}
+                </Grid>
             </Grid>
             {/* <Grid item xs={4}>
                 {regular.map((task, taskIndex) => 

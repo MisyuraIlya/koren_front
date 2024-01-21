@@ -14,7 +14,7 @@ const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
     }, []);
 
     return (
-        <th className='text-right text-white py-4'>
+        <th className='text-right text-white py-4 disbleTh'>
             <div className='flex items-center mr-5 justify-center '>
                 <h4
                 style={{ fontSize: '30px', fontWeight: '600', paddingTop: '10px' }}

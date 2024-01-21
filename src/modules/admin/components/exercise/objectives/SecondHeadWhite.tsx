@@ -15,6 +15,7 @@ const SecondHeadWhiteModule: FC<IObjectiveModule> = ({objective,tabIndex,taskInd
     
     return (
         <th 
+        className='disbleTh'
             // className={`bg-white w-full pt-5 pb-5 ${(isTable || isClearTable) ? 'tableModule' : ''} ${checkIsIcon && 'bg-[#005CBB] text-white'} text-[23px] leading-10`} 
             // style={{
             //     minWidth: isTable ? `${CustomTableWidth}px` : '',
