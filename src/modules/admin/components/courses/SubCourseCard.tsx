@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useAdminCoursesProvider } from '../../provider/AdminCoursesProvider';
+import PdfHandler from './PdfHandler';
 interface SubCourseCardProps {
     item: ICourse
 }
@@ -16,6 +17,7 @@ type Inputs = {
 
 const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
     const [editMode, setEditMode] = useState(false)
+    const {updateName} = useAdminCoursesProvider()
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
     const {lvl1Id,lvl2Id,lvl3Id, lvl4Id, deleteCourse} = useAdminCoursesProvider()
     const pathname = usePathname()
@@ -34,6 +36,11 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
             router.replace(`/admin/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${lvl4Id}/${item.id}`, {scroll: false})
         } 
     }
+
+    const onSubmit = (e:Inputs) => {
+        updateName(item.id!.toString(),e.name)
+        setEditMode(false)
+    }
     return (
         <div className={`border-t border-gray cardHover ${isActive ? 'clickedCard' : ''}`}>
             <div className='flex py-2 m-auto px-4 '>
@@ -43,20 +50,8 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
                     <p>{item.name}</p>
                 </div>
                 <div className='flex gap-2 '>
-                    {item.pdf &&
-                        <div className={`border border-black rounded-full flex justify-center w-12 h-12 cursor-pointer text-center items-center ${item.pdf ? 'bg-primary text-white' : ''}`}>
-                            <label className='cursor-pointer' htmlFor={`fileInput-${item.id}`}>PDF</label>
-                            {/* <input type="file" id={`fileInput-${item.id}`} ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} /> */}
-                        </div>
-                    }
-                    {
-                        item.pdf &&
-                        <div className={`border border-black rounded-full flex justify-center w-12 h-12  text-center items-center bg-primary cursor-pointer text-white`} 
-                        // onClick={() => openPdf(item.pdf)}
-                        >
-                            <label className='cursor-pointer' style={{fontSize:'12px'}}>צפייה ב PDF</label>
-                        </div>
-
+                    {item.level === 4 &&
+                        <PdfHandler item={item}/>
                     }
                     {
                         item.level === 5 &&
@@ -81,10 +76,10 @@ const SubCourseCard:FC<SubCourseCardProps> = ({item}) => {
                     <input {...register("name")} type='text' placeholder='עריכה' className='border border-gray p-2 rounded-md'  defaultValue={item.name}/>
                 </div>
                 <div className='flex gap-2 justify-end'>
-                    <div className=' rounded-full flex justify-center w-12 h-12' style={{backgroundColor:'#31B0F2'}} > 
-                        <Image src={'/images/vWhite.svg'} width={25} height={25} priority alt='draw' className=' cursor-pointer rounded-lg p-1' 
-                        // onClick={handleSubmit(onSubmit)}
-                        />
+                    <div className=' rounded-full flex justify-center w-12 h-12' style={{backgroundColor:'#31B0F2'}} 
+                    onClick={handleSubmit(onSubmit)}
+                    > 
+                        <Image src={'/images/vWhite.svg'} width={25} height={25} priority alt='draw' className=' cursor-pointer rounded-lg p-1' />
                     </div>  
                     <div className=' rounded-full flex justify-center w-12 h-12' style={{backgroundColor:'rgba(49, 176, 242, 0.3)'}}>
                         <Image src={'/images/xBlue.svg'} width={25} height={25} priority alt='trash' className=' cursor-pointer rounded-lg p-1' onClick={() => setEditMode(false)}/>

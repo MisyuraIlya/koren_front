@@ -3,9 +3,10 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { onAsk } from '@/utils/sweetAlert';
+import { onAsk, onErrorAlert, onSuccessAlert } from '@/utils/sweetAlert';
 import { AdminService } from '../services/admin.service';
 import useSWR from 'swr'
+import { MainService } from '../services/main.service';
 
 interface AdminContextType {
   courses: ICourse[] | undefined
@@ -20,6 +21,8 @@ interface AdminContextType {
   lvl4IdCourses: ICourse | undefined
   deleteCourse: (id: string) => void
   createCourse: (obj: ICreateCourseDto) => void 
+  uploadPdf: (id: string, file: File) => void
+  updateName: (id: string, name: string) => void
 }
 
 const fetchData = async () => {
@@ -75,6 +78,31 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
     mutate();
   }
 
+  const uploadPdf = async (id: string, file: File) => {
+    const filePath = await MainService.UploadMedia(file)
+    if(!filePath.path) {
+      onErrorAlert('שגיאה','קובץ גדול מדי')  
+      return
+    }
+    const response = await AdminService.UpdateCourse(id, {pdf: filePath.path})
+    if(response?.id){
+      onSuccessAlert('PDF עלה בהצלחה','')
+      mutate();
+    } else {
+      onErrorAlert('שגיאה','')
+    }
+  }
+
+  const updateName = async(id: string, name: string) => {
+    const response = await AdminService.UpdateCourse(id, {name: name})
+    if(response?.id){
+      onSuccessAlert('עודכן בהצלחה','')
+      mutate();
+    } else {
+      onErrorAlert('שגיאה','')
+    }
+  }
+
 
   const value: AdminContextType = {
     courses,
@@ -88,7 +116,9 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
     lvl3IdCourses,
     lvl4IdCourses,
     deleteCourse,
-    createCourse
+    createCourse,
+    uploadPdf,
+    updateName
   };
 
   return <AdminContext.Provider value={value} {...props} />;

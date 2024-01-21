@@ -37,5 +37,16 @@ export const AdminService = {
             },
             body: JSON.stringify(courses),
         });
+    },
+
+    async UpdateCourse(id: string, obj: any): Promise<ICourse> {
+        const response = await fetch(`http://localhost:4001/course/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj),
+        });
+        return response.json() 
     }
 }
