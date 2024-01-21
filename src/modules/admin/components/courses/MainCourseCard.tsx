@@ -28,7 +28,7 @@ const MainCourseCard:FC<MainCourseCardProps> = ({item}) => {
     }
 
     return (
-        <div className={`rounded-md relative ${editMode ? 'editMode' : ''} bg-cardBg/10 myShadowCard cursor-pointer h-[300px] w-[300px]`}  onClick={() => router.replace(`/admin/courses/${item.id}`)}>
+        <div className={`rounded-md relative ${editMode ? 'editMode' : ''} bg-cardBg/10 myShadowCard cursor-pointer h-[300px] w-[300px]`}  onClick={() => router.push(`/admin/courses/${item.id}`)}>
             {editMode &&
                 <div className='float-left m-4 absolute'>
                     <CloseIcon 

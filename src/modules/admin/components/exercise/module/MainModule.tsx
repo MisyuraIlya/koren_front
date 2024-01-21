@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import Task from './Task';
 import { useEffect } from 'react';
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
-import { Box } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import { TaskSplitChecker } from '@/helpers/TaskSplitChecker';
 interface MainModuleProps {
     item: ITab
@@ -16,12 +16,27 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
         setValue(`tabs[${tabIndex}].title`, item.title)
     },[])
 
-    const tasks = TaskSplitChecker(item.tasks)
+    const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
+    console.log('right',right)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
-            {item.tasks.map((task, taskIndex) => 
-                <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
-            )}
+            <Grid container spacing={6}>
+                <Grid item xs={rightScreen} sx={{ position: "relative" }}>
+                    {right.map((task, taskIndex) => 
+                        <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
+                    )}
+                </Grid>
+                {/* <Grid item xs={leftScreen}>
+                    {left.map((task, taskIndex) => 
+                        <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
+                    )}
+                </Grid> */}
+            </Grid>
+            {/* <Grid item xs={4}>
+                {regular.map((task, taskIndex) => 
+                    <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
+                )}
+            </Grid> */}
         </Box>
     );
 };

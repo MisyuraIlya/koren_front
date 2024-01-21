@@ -15,7 +15,7 @@ const LoginForm = () => {
     const onSubmit :SubmitHandler<LoginForm> = async (data) => {
         const response = await login(data)
         if(response){
-            router.replace('/admin/courses/1')
+            router.push('/admin/courses/1')
         } else {
             onErrorAlert('שגיאה','נתונים לא נכונים, נסה שנית')
         }
