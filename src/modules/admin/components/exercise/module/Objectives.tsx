@@ -3,6 +3,53 @@ import TextModule from '../objectives/TextModule';
 import SelectModule from '../objectives/SelectModule';
 import OrdenModule from '../objectives/OrdenModule';
 import WordModule from '../objectives/WordModule';
+import IconModule from '../objectives/IconModule';
+import StoryInstruction from '../objectives/StoryInstruction';
+import InstructionWhite from '../objectives/InstructionWhite';
+import InputModule from '../objectives/InputModule';
+import InputCenteredModule from '../objectives/InputCenteredModule';
+import Instruction from '../objectives/Instruction';
+import OrdenBoldModule from '../objectives/OrdenBoldModule';
+import SubInstruction from '../objectives/SubInstruction';
+import TextModuled from '../objectives/TextModuled';
+import TextModuleCentered from '../objectives/TextModuleCentered';
+import RootInputModule from '../objectives/RootInputModule';
+import ExplanationSplited from '../objectives/ExplanationSplited';
+import Explanation from '../objectives/Explanation';
+import MixModule from '../objectives/MixModule';
+import BankModule from '../objectives/BankModule';
+import MixDrag from '../objectives/MixDrag';
+import CheckBoxModule from '../objectives/CheckBoxModule';
+import ImageFormRight from '../objectives/ImageFormRight';
+import VideoForm from '../objectives/VideoForm';
+import ChartForm from '../objectives/ChartForm';
+import UnitedForm from '../objectives/UnitedForm';
+import TableModule from '../objectives/TableModule';
+import TableClearModule from '../objectives/TableClearModule';
+import OpenQuestion from '../objectives/OpenQuestion';
+import MergedExercise from '../objectives/MergedExercise';
+import TextCopy from '../objectives/TextCopy';
+import HeadLine2 from '../objectives/HeadLine2';
+import ClearText from '../objectives/ClearText';
+import TypedInput from '../objectives/TypedInput';
+import DraftBank from '../objectives/DraftBank';
+import Draft from '../objectives/Draft';
+import HeightSpace from '../objectives/HeightSpace';
+import Properties from '../objectives/Properties';
+import StoryHeadline from '../objectives/StoryHeadline';
+import OriginModule from '../objectives/OriginModule';
+import MainHead from '../objectives/MainHead';
+import SecondHead from '../objectives/SecondHead';
+import SecondHeadWhiteModule from '../objectives/SecondHeadWhite';
+import IconDescription from '../objectives/IconDescription';
+import SplitedScreenRight from '../objectives/SplitedScreenRight';
+import DoneSplitedScreenRight from '../objectives/DoneSplitedScreenRight';
+import SplitedScreenLeft from '../objectives/SplitedScreenLeft';
+import DoneSplitedScreenLeft from '../objectives/DoneSplitedScreenLeft';
+import SongModule from '../objectives/SongModule';
+import TextAreaModule2 from '../objectives/TextAreaModule';
+import PdfModule from '../objectives/PdfIframe';
+import CopyModule from '../objectives/CopyModule';
 
 interface ObjectivesProps {
     objective: IObjective
@@ -11,72 +58,71 @@ interface ObjectivesProps {
 const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
     return (
         <>
-            {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes}/>}
-            {objective?.moduleType === 'word' && <WordModule objective={objective} {...objectiveIndexes}/>}
-            {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
-            {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes}/>}
+        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'orden' || 'numberBold' && <OrdenModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'word' && <WordModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'icon1' || 'icon2' && <IconModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'instructionWhite' || 'wordBold' || 'wordRegular' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'ordenBold' && <OrdenBoldModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textModuled' && <TextModuled objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'bank' && <BankModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'openQuestion' || 'openQuestionHamarot' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'headline2' && <HeadLine2 objective={objective} {...objectiveIndexes} />}
 
-            {/* {objective?.moduleType === 'input' && <InputModule  tab={tab} CustomInputWidth={CustomInputWidth} CustomTableWidth={CustomTableWidth}isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} key={index} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText} />} */}
-            {/* {objective?.moduleType === 'inputCentered' && <InputCenteredModule tab={tab} CustomInputWidth={CustomInputWidth} CustomTableWidth={CustomTableWidth}isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} key={index} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText} />} */}
-            {/* {objective?.moduleType === 'instruction' && <Instruction tab={tab} checkIsIcon={checkIsIcon}CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} setValue={setValue} value={row.collectionValues[0].value} col={orden} row={row.orden} register={register} />} */}
-            {/* {objective?.moduleType === 'ordenBold' && <OrdenBoldModule tab={tab} isExplanationRowSplited={isExplanationRowSplited} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value} />} */}
-            {/* {objective?.moduleType === 'subInstruction' && <SubInstruction tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value} />} */}
-            {/* {objective?.moduleType === 'textModuled' && <TextModuled tab={tab} whiteSpace={whiteSpace} textAlign={textAlign} paddingRight={paddingRight} paddingLeft={paddingLeft} textBgColor={textBgColor} textMargin={textMargin} widthText={widthText} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols} firstIdTextModule={firstIdTextModule} isTable={isTable} isClearTable={isClearTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'textCentered' && <TextModuleCentered tab={tab} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols} firstIdTextModule={firstIdTextModule} isTable={isTable} isClearTable={isClearTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'rootInput' && <RootInputModule tab={tab} CustomTableWidth={CustomTableWidth} isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} key={index} exerciseId={exerciseId} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText}/>} */}
-            {/* {objective?.moduleType === 'explanationSplited' && <ExplanationSplited tab={tab} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols} firstIdTextModule={firstIdTextModule} isTable={isTable} isClearTable={isClearTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'explanation' && <Explanation tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable}   checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'wordBold' && <WordBoldModule tab={tab} isExplanationRowSplited={isExplanationRowSplited} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row?.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'mix' && <MixModule/>} */}
-            {/* {objective?.moduleType === 'bank' && <BankModule tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} values={row.collectionValues} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} />} */}
-            {/* {objective?.moduleType === 'mixDrag' && <MixDrag tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionAnswers[0].value}/>} */}
-            {/* {objective?.moduleType === 'checkBox' && <CheckBoxModule tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} values={row.collectionValues} answer={row.collectionAnswers}/>} */}
-
-            {/* {objective?.moduleType === 'imageRight' && <ImageFormRight tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionAnswers[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'imageLeft' && <ImageFormLeft tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionAnswers[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'video' && <VideoForm  tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue}/>} */}
-            {/* {objective?.moduleType === 'chart' && <ChartForm tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue}/>} */}
-            {/* {objective?.moduleType === 'merged' && <UnitedForm tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'table' && <TableModule tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'tableClear' && <TableClearModule tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'openQuestion' && <OpenQuestion tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} placeholder={row.placeholder || ''}/>} */}
-            {/* {objective?.moduleType === 'mergedExercise' && <MergedExercise tab={tab} CustomTableWidth={CustomTableWidth} mergedData={mergedData} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} control={control}/>} */}
-            {/* {objective?.moduleType === 'textCopy' && <TextCopy tab={tab} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'headline2' && <HeadLine2 tab={tab} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'numberBold' && <NumberBold tab={tab} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value} isClearTable={false} collectionsCols={collectionsCols}/>} */}
-            {/* {objective?.moduleType === 'clearText' && <ClearText tab={tab} collectionsCols={collectionsCols} isClearTable={isClearTable} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'icon1' && <IconModule tab={tab} collectionsCols={collectionsCols} isClearTable={isClearTable} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'icon2' && <IconSecondModule tab={tab} collectionsCols={collectionsCols} isClearTable={isClearTable} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'typedInput' && <TypedInput tab={tab} CustomTableWidth={CustomTableWidth} isMerged={row?.isMerged} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} key={index} id={row.id} answer={row.collectionAnswers} placeholder={row.placeholder || ''}  register={register} col={orden} row={row.orden} setValue={setValue} isFullText={row.isFullText} />} */}
-            {/* {objective?.moduleType === 'openQuestionHamarot' && <OpenQuestionHamarot tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} answer={row.collectionAnswers} placeholder={row.placeholder || ''}/>} */}
-            {/* {objective?.moduleType === 'draftBank' && <DraftBank tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImag/e={checkIsThereImage} values={row.collectionValues} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue}  />} */}
-            {/* {objective?.moduleType === 'draft' && <Draft tab={tab} CustomTableWidth={CustomTableWidth} draftBankCollectionValues={draftBankCollectionValues}  isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/> } */}
-            {/* {objective?.moduleType === 'heightSpace' && <HeightSpace tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionAnswers[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'properties' && <Properties tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/> } */}
+        {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'draft' && <Draft objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'storyHeadline' && <StoryHeadline objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'iconDescriptionOne' || 'iconDescriptionTwo' && <IconDescription objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'song' && <SongModule objective={objective} {...objectiveIndexes} />}
 
 
-            {/* {objective?.moduleType === 'storyInstruction' && <StoryInstruction tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'storyHeadline' && <StoryHeadline tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'origin' && <OriginModule tab={tab} paddingRight={paddingRight} paddingLeft={paddingLeft} textBgColor={textBgColor} textMargin={textMargin} widthText={widthText} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value} />} */}
-            {/* {objective?.moduleType === 'divider' && <Divider tab={tab} checkIsIcon={checkIsIcon}CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} setValue={setValue} value={''} col={orden} row={row.orden} register={register} />} */}
-            {/* {objective?.moduleType === 'mainHead' && <MainHead tab={tab} checkIsIcon={checkIsIcon}CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} setValue={setValue} value={row.collectionValues[0].value} col={orden} row={row.orden} register={register} />} */}
-            {/* {objective?.moduleType === 'secondHead' && <SecondHead tab={tab} paddingRight={paddingRight} paddingLeft={paddingLeft} textBgColor={textBgColor} textMargin={textMargin} widthText={widthText} checkIsIcon={checkIsIcon}CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} setValue={setValue} value={row.collectionValues[0].value} col={orden} row={row.orden} register={register} />} */}
-            {/* {objective?.moduleType === 'instructionWhite' && <InstructionWhite tab={tab} whiteSpace={whiteSpace} textAlign={textAlign} paddingRight={paddingRight} paddingLeft={paddingLeft} textBgColor={textBgColor} textMargin={textMargin} widthText={widthText} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols}  isTable={isTable} isClearTable={isClearTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'wordRegular' && <WordRegular tab={tab} index={index} isStoryInstruction={isStoryInstruction} isExplanationRowSplited={isExplanationRowSplited} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row?.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule tab={tab} checkIsIcon={checkIsIcon}CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} setValue={setValue} value={row.collectionValues[0].value} col={orden} row={row.orden} register={register} />} */}
-            {/* {objective?.moduleType === 'iconDescriptionOne' && <IconDescriptionOne tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value} />} */}
-            {/* {objective?.moduleType === 'iconDescriptionTwo' && <IconDescriptionTwo tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value} />} */}
-            {/* {objective?.moduleType === 'circle' && <CircleModule tab={tab} collectionsCols={collectionsCols} isClearTable={isClearTable} CustomTableWidth={CustomTableWidth} firstIdTextModule={firstIdTextModule} isTable={isTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            
-            {/* {objective?.moduleType === 'overflow' && <ToggleModule tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/>} */}
-            {/* {objective?.moduleType === 'splitedScreenRight' && <SplitedScreenRight tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'doneSplitedScreenRight' && <DoneSplitedScreenRight tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'splitedScreenLeft' && <SplitedScreenLeft tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'doneSplitedScreenLeft' && <DoneSplitedScreenLeft tab={tab} CustomTableWidth={CustomTableWidth} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0]?.value}/> } */}
-            {/* {objective?.moduleType === 'song' && <SongModule tab={tab} songPropetries={songPropetries} CustomTableWidth={CustomTableWidth} collectionsCols={collectionsCols}  isTable={isTable} isClearTable={isClearTable}  checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>} */}
-            {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 copyType={copyType} index={index} tableWidth2={tableWidth2} tableWidth1={tableWidth1} tab={tab} textAreaWidth={textAreaWidth} CustomTableWidth={CustomTableWidth} isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} answer={row.collectionAnswers} placeholder={row.placeholder || ''}/>} */}
-            {/* {objective?.moduleType === 'pdf' && <PdfModule  tab={tab} CustomTableWidth={CustomTableWidth}  isTable={isTable} isClearTable={isClearTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue}/>} */}
-            {/* {objective?.moduleType === 'copy' && <CopyModule tab={tab} isTable={isTable} checkIsThereImage={checkIsThereImage} dataObjectId={dataObjectId} exerciseId={exerciseId} col={orden} row={row.orden} setValue={setValue} value={row.collectionValues[0].value}/>}    */}
+
+        {/* SPECIAL */}
+        {objective?.moduleType === 'mixDrag' && <MixDrag objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'explanation' && <Explanation objective={objective} {...objectiveIndexes} />}
+        {/* {objective?.moduleType === 'copy' && <CopyModule objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'splitedScreenRight' && <SplitedScreenRight objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'doneSplitedScreenRight' && <DoneSplitedScreenRight objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'splitedScreenLeft' && <SplitedScreenLeft objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'doneSplitedScreenLeft' && <DoneSplitedScreenLeft objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'imageRight' && <ImageFormRight objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'properties' && <Properties objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'pdf' && <PdfModule objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'table' && <TableModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'tableClear' && <TableClearModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'merged' && <UnitedForm objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'chart' && <ChartForm objective={objective} {...objectiveIndexes} />} */}
+        {/* {objective?.moduleType === 'mergedExercise' && <MergedExercise objective={objective} {...objectiveIndexes} />} */}
+
+
+        {/* DELTE? */}
+        {/* {objective?.moduleType === 'mix' && <MixModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'rootInput' && <RootInputModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'explanationSplited' && <ExplanationSplited objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textCopy' && <TextCopy objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'typedInput' && <TypedInput objective={objective} {...objectiveIndexes} />} */}
+
+
+
+
+
+   
         </>
     );
 };

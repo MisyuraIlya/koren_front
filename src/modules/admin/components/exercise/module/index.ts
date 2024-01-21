@@ -1,7 +1,7 @@
-import Tabs from "./Tabs";
+import ExerciseTabs from "./ExerciseTabs";
 import MainModule from "./MainModule";
 
 export default {
-    Tabs: Tabs,
+    ExerciseTabs: ExerciseTabs,
     MainModule: MainModule
 }

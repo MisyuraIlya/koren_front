@@ -1,8 +1,7 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
-const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    
+const OrdenBoldModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -15,27 +14,23 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
 
     return (
         <th  style={{
-                minWidth:'70px', 
-                maxWidth:'70px',
-                verticalAlign: 'top', // Align text to the top
-                textAlign: 'right', 
-                paddingTop:'25px',
-            }} 
-            // className={`
-            //     specific-th 
-            //     ${(isTable || isClearTable) ? '' : ''} 
-            //     pt-4
-            //     ${isExplanationRowSplited && 'bg-white'}
-            //     `} 
+            minWidth:'70px', 
+            maxWidth:'70px',
+            verticalAlign: 'top', // Align text to the top
+            textAlign: 'right', 
+            paddingTop:'25px',
 
+            
+            }} 
+            // className={`${checkIsThereImage ? '' : 'specific-th'} ${(isTable || isClearTable) ? '' : ''} pt-4 ${isExplanationRowSplited && 'bg-white'}`} 
             >
             <div className='text-center flex justify-center items-center py-1'>
-                <div  className='px-2 rounded-md'>
-                    {objective.values?.[0]?.value}
+                <div className='rounded-md bg-primary text-white px-2'>
+                    {objective.values[0].value}
                 </div>
             </div>
         </th>
     );
 };
 
-export default OrdenModule;
+export default OrdenBoldModule;

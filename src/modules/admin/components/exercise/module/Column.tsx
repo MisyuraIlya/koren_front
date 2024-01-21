@@ -19,7 +19,7 @@ const Column:FC<ColumnProps> = ({column,tabIndex,taskIndex,columnIndex}) => {
     return (
         <>
         {(column?.title || column?.type == 'אות' || column?.type == 'מספור')&&
-            <th>
+            <th key={columnIndex}>
                 <div
                     dangerouslySetInnerHTML={{ __html:column.title }}
                     className={`min-h-[60px] ${column?.title && 'bg-mainBlue'}`}

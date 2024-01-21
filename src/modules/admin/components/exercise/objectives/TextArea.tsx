@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tabs = () => {
+const TextArea = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Tabs = () => {
     );
 };
 
-export default Tabs;
+export default TextArea;

@@ -1,15 +1,7 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
-type WordModuleProps = {
-    objective: IObjective
-    tabIndex: number
-    taskIndex: number
-    rowIndex: number
-    objectiveIndex: number
-}
-
-const WordModule:FC<WordModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+const WordModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     
     const {setValue} = useAdminExercise()
     useEffect(() => {

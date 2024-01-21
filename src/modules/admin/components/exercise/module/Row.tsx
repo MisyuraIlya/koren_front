@@ -23,7 +23,7 @@ const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
     
     
     return (
-        <tr>
+        <tr key={rowIndex}>
             {row?.objectives?.map((objective, objectiveIndex) => {
                 const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex}
                 return (

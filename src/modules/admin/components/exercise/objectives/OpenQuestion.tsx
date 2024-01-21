@@ -1,8 +1,7 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
-const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    
+const OpenQuestion:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -11,31 +10,23 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
-    }, []);
+    }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
 
     return (
-        <th  style={{
-                minWidth:'70px', 
-                maxWidth:'70px',
-                verticalAlign: 'top', // Align text to the top
-                textAlign: 'right', 
-                paddingTop:'25px',
-            }} 
-            // className={`
-            //     specific-th 
-            //     ${(isTable || isClearTable) ? '' : ''} 
-            //     pt-4
-            //     ${isExplanationRowSplited && 'bg-white'}
-            //     `} 
-
-            >
-            <div className='text-center flex justify-center items-center py-1'>
-                <div  className='px-2 rounded-md'>
-                    {objective.values?.[0]?.value}
+        <th 
+            // className={`${checkIsThereImage ? 'h-full justify-left text-center float-left' : 'h-full justify-lefttext-center float-left'} w-full`} 
+            // style={{
+            //     minWidth: isTable ? `${CustomTableWidth}px` : '',
+            // }}
+        >
+            <div className='flex items-center py-4 px-2 w-full float-left'>
+                <div className='rounded-md bg-white text-white px-2  float-left w-full'  >
+                    {/* <RichTextEditor placholder={placeholder}/> */}
+                    rich text editor
                 </div>
             </div>
         </th>
     );
 };
 
-export default OrdenModule;
+export default OpenQuestion;

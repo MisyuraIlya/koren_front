@@ -1,8 +1,8 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
-const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    
+const OriginModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -11,31 +11,27 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
-    }, []);
+    }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
 
     return (
-        <th  style={{
-                minWidth:'70px', 
-                maxWidth:'70px',
-                verticalAlign: 'top', // Align text to the top
-                textAlign: 'right', 
-                paddingTop:'25px',
-            }} 
-            // className={`
-            //     specific-th 
-            //     ${(isTable || isClearTable) ? '' : ''} 
-            //     pt-4
-            //     ${isExplanationRowSplited && 'bg-white'}
-            //     `} 
-
+        <th
+        // style={{
+        //     verticalAlign: 'top', // Align text to the top
+        //     textAlign: 'right',   // Align text to the right
+        //     width:`${widthText}%`,
+        //     paddingRight:paddingRight ? `${paddingRight}px` : '', paddingLeft:paddingLeft ? `${paddingLeft}px` : ''
+        // }}
+        >   
+            <div 
+            // className={` ${textBgColor == 'לבן' && 'bg-white mt-10 mb-10 rounded-md shadow-xl px-8 shadow-black/10'}`}
             >
-            <div className='text-center flex justify-center items-center py-1'>
-                <div  className='px-2 rounded-md'>
-                    {objective.values?.[0]?.value}
-                </div>
+
             </div>
+            <div className='px-4 pt-5 pb-7' 
+            // style={{color:'#00000080', width: widthText ? `${widthText}%` : '100%', marginRight:textMargin ? `${textMargin}%` : ''}} 
+            dangerouslySetInnerHTML={{ __html: objective.values[0].value }}/>
         </th>
     );
 };
 
-export default OrdenModule;
+export default OriginModule;

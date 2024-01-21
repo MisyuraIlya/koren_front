@@ -1,0 +1,36 @@
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import React, { FC, useEffect, useState } from 'react';
+
+const SecondHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+    const {setValue} = useAdminExercise()
+    useEffect(() => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
+    }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
+
+    
+    return (
+        <th 
+            // className={`${checkIsThereImage ? '' : ''} ${(isTable || isClearTable) ? 'tableModule' : ''} ${checkIsIcon && 'bg-[#005CBB] text-white'} text-[23px] leading-10`} 
+            // style={{
+            //     minWidth: isTable ? `${CustomTableWidth}px` : '',
+            //     paddingRight:paddingRight ? `${paddingRight}px` : '', paddingLeft:paddingLeft ? `${paddingLeft}px` : ''
+            // }}
+            >
+            <div  
+                // className={`text-right px-4 py-6 ${textBgColor == 'לבן' && 'bg-white mt-10 mb-10 rounded-md shadow-xl px-8 shadow-black/10'}`}
+                // style={choosedModule ? 
+                // {width:widthText ? `${widthText}%` : '100%', marginRight:textMargin ? `${textMargin}%` : ''}:
+                // {width:widthText ? `${widthText}%` : '100%',marginRight: textMargin ? `${textMargin}%` : ''}}
+            >
+                <h3 className='text-[26px] font-semibold'>{objective.values[0].value}</h3>
+            </div>
+        </th>
+    );
+};
+
+export default SecondHead;

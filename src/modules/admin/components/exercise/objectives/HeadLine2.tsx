@@ -1,8 +1,8 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
-const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    
+
+const HeadLine2:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -11,31 +11,26 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
-    }, []);
+    }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
 
     return (
-        <th  style={{
-                minWidth:'70px', 
-                maxWidth:'70px',
-                verticalAlign: 'top', // Align text to the top
-                textAlign: 'right', 
-                paddingTop:'25px',
-            }} 
-            // className={`
-            //     specific-th 
-            //     ${(isTable || isClearTable) ? '' : ''} 
-            //     pt-4
-            //     ${isExplanationRowSplited && 'bg-white'}
-            //     `} 
-
-            >
-            <div className='text-center flex justify-center items-center py-1'>
-                <div  className='px-2 rounded-md'>
-                    {objective.values?.[0]?.value}
-                </div>
+        <th 
+        // className={`
+        // ${checkIsThereImage ? '' : ''}
+        // `}
+        // style={{
+        //     minWidth: isTable ? `${CustomTableWidth}px` : '',
+        // }}
+        >
+            <div className='text-center  px-4 py-4'>
+                <div
+                    // onInput={handleInputChange}
+                    dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                    className=""
+                />
             </div>
         </th>
     );
 };
 
-export default OrdenModule;
+export default HeadLine2;

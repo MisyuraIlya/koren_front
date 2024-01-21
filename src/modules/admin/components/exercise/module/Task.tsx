@@ -3,6 +3,7 @@ import Column from './Column';
 import Row from './Row';
 import TaskStyles from '@/styles/Task.module.scss';
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Box } from '@mui/material';
 
 interface TaskProps {
     task: ITask
@@ -19,7 +20,7 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].properties`, task.properties)
     },[])
     return (
-    <div className='bg-secondBlue relative'>
+    <Box className='bg-secondBlue relative' key={taskIndex}>
         <table className={'TaskStyles'}>
             <tbody>
                 <tr className='w-full'>
@@ -29,14 +30,14 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
                 </tr>
                 {task?.rows.map((row, rowIndex) => 
                     <>
-                    <div className={`h-1 absolute z-1 w-full bg-white`}></div>       
+                    <div className={`h-1 absolute z-1 w-full bg-white`} key={rowIndex}></div>       
                     <Row row={row} tabIndex={tabIndex} taskIndex={taskIndex} rowIndex={rowIndex}/>
                     </>
                 )}
                 <div className='bg-white h-1 w-full z-1 absolute z-10'></div>
             </tbody>
         </table>
-    </div>
+    </Box>
 
 
     );

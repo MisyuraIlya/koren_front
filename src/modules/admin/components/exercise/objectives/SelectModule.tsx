@@ -5,31 +5,7 @@ import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider
 // import { collectionAnswers } from '@/types/ModulesTypes.ts/SecondModule.interface';
 // import ToolTip from '../ToolTip';
 
-interface SelectModuleProps {
-    // answer: collectionAnswers[]
-    // options: collectionAnswers[]
-    // placeholder: string
-    // col: number
-    // row:number
-    // register: any
-    // setValue: any;
-    // control: any
-    // exerciseId: number
-    // dataObjectId: number
-    // checkIsThereImage: boolean
-    // isTable: boolean
-    // isMerged: boolean
-    // isClearTable: boolean
-    // CustomTableWidth: number
-    // CustomSelectBoxWidth: number
-    // tab: number | null
-    objective: IObjective
-    tabIndex: number
-    taskIndex: number
-    rowIndex: number
-    objectiveIndex: number
-}
-const SelectModule:FC<SelectModuleProps> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
     const {setValue} = useAdminExercise()
     useEffect(() => {

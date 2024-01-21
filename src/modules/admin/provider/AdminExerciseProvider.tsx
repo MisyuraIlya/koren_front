@@ -15,6 +15,8 @@ interface AdminContextType {
     uploadXl: () => void
     deleteExercise: (id: string) => void
     setFileChoosed: (data: File | null) => void
+    choosedTab: number
+    setChoosedTab: (value: number) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -36,6 +38,7 @@ interface AdminExerciseProviderProps {
 
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   const [exercise, setExercise] = useState<IExercise>(props.exercise)
+  const [choosedTab, setChoosedTab] = useState<number>(0)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [isOnlineExercise, setIsOnlineExercise] = useState<boolean>(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
@@ -78,6 +81,8 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     uploadXl,
     deleteExercise,
     setFileChoosed,
+    choosedTab,
+    setChoosedTab
   };
 
   return (

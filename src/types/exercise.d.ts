@@ -63,5 +63,21 @@ interface IObjectiveIndexes {
     objectiveIndex: number
 }
 
-type specialModuleType = 'draggenDrop' | 'imageRight' | 'video' | 'pdf'
+interface IObjectiveModule {
+    objective: IObjective
+    tabIndex: number
+    taskIndex: number
+    rowIndex: number
+    objectiveIndex: number  
+}
+
+interface TasksSplit {
+    right: ITask[]
+    rightScreen: number
+    left: ITask[]
+    leftScreen: number
+    regular: ITask[]
+}
+
+type specialModuleType = 'imageRight' | 'mixDrag' | 'copy' | 'splitedScreenLeft' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'doneSplitedScreenLeft' | 'properties' | 'table' | 'tableClear' | 'video' | 'chart' | 'pdf' | 'explanation' 
 type ModuleType = "word" | "orden" | "instruction" | "subInstruction" | "text" | "input" | "selectbox" | "explanation" | "rootInput" | "mix" | "bank" | 'mixDrag' | 'checkBox' | 'imageRight' |  'imageLeft' |'merged' | 'table' | 'questInstruction' | 'openQuestion' | 'mergedExercise' | 'textCopy' | 'headline2' | 'clearText' | 'typedInput' | 'openQuestionHamarot' | 'draftBank' | 'draft' | 'tableClear' | 'video' | 'chart' | 'textCentered' | 'properties' | 'inputCentered' | 'heightSpace' | 'wordBold' | 'ordenBold' | 'story' | 'storyInstruction' | 'storyHeadline' | 'explanationSplited' | 'origin' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'splitedScreenLeft' | 'doneSplitedScreenLeft' |'numberBold' | 'icon1' | 'icon2' | 'divider' | 'mainHead' | 'secondHead' | 'globalSettings' | 'instructionWhite' | 'border' | 'wordRegular' | 'song' | 'iconDescriptionOne' |'secondHeadWhite' | 'iconDescriptionTwo' | 'circle' | 'overflow' | 'textArea' | 'pdf' |'textModuled' | 'copy'
