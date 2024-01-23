@@ -13,14 +13,36 @@ interface ExercisePageProps {
 }
 
 const ExercisePage:FC<ExercisePageProps> = async ({params}) => {
-    const exercise = await AdminService.GetExercise(params.id)
-    return (
-        <AdminExerciseProvider exercise={exercise} courseId={params.id}>
-            <Admin.Exercise.ExerciseTitle/>
-            <Admin.Exercise.ExerciseOptions/>
-            <Admin.Exercise.ExerciseModule/>
-        </AdminExerciseProvider>
-    );
+    try {
+        const exercise = await AdminService.GetExercise(params.id)
+        return (
+            <AdminExerciseProvider exercise={exercise} courseId={params.id}>
+                <Admin.Exercise.ExerciseTitle/>
+                <Admin.Exercise.ExerciseOptions/>
+                <Admin.Exercise.ExerciseModule/>
+            </AdminExerciseProvider>
+        );
+    } catch(e) {
+        const exercise = {
+            title: 'as',
+            description1: '',
+            description2: '',
+            courseId: 0,
+            module: 4,
+            youtubeLink: '',
+            pdf: '',
+            isInTheBook: false,  // Corrected typo here
+            tabs: [],
+        };
+        return (
+            <AdminExerciseProvider exercise={exercise} courseId={params.id}>
+                <Admin.Exercise.ExerciseTitle/>
+                <Admin.Exercise.ExerciseOptions/>
+                <Admin.Exercise.ExerciseModule/>
+            </AdminExerciseProvider>
+        );
+    }
+
 };
 
 export default ExercisePage;

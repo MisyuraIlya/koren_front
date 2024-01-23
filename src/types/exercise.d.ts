@@ -27,7 +27,7 @@ interface ITask extends Idefinder {
 interface IColumnTask extends Idefinder {
     title: string
     orden: number
-    type: string;
+    type: ModuleType;
 }
 
 interface IRowTask extends Idefinder {

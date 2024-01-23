@@ -23,6 +23,7 @@ const SubInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIn
         <th 
         // className={`${checkIsThereImage ? 'm-1 px-4 py-4 ' : 'm-1 px-4 py-4'} text-[23px] leading-10`}   
         >
+        
             <div className='text-right' >
                 {/* {!isOnlineXml &&
                     <BoldChanger html={htmlTag} handleUpdateHtml={handleUpdateHtml}/>

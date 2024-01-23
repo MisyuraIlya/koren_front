@@ -1,8 +1,9 @@
+import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
 
 const MixDrag:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-
+    const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
@@ -15,6 +16,7 @@ const MixDrag:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,obj
 
     return (
         <>
+        MixDrag
         {/* <th className={`${checkIsThereImage ? '' : ''} ${isTable ? 'tableModule' : ''}`}>
             <div className='py-4 px-4 w-48 bg-white' >
                 <div className=''>

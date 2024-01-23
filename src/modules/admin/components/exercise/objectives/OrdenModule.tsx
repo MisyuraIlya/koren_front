@@ -1,8 +1,8 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 import { themeColors } from '@/styles/mui';
+import { Typography } from '@mui/material';
 const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    console.log('objective',objective)
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
@@ -24,9 +24,12 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
             }} 
             >
             <div className='text-center flex justify-center items-center py-1'>
-                <p className='px-2 rounded-md' style={{background:themeColors.primary, color:'white'}}>
+                {/* <p className='' style={{background:themeColors.primary, color:'white'}}>
                     {objective.values?.[0]?.value}
-                </p>
+                </p> */}
+                <Typography variant='h6' sx={{background:themeColors.primary, color:'white', paddingRight:'9px', paddingLeft:'9px', borderRadius:'5px'}}>
+                    {objective.values?.[0]?.value}
+                </Typography>
             </div>
         </th>
     );

@@ -17,6 +17,7 @@ const DraftBank:FC <IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
 
     return (
         <>
+        DraftBank
         {/* 
         <th>
             <div className={`${checkIsThereImage ? 'grid grid-cols-12 px-4' : 'grid grid-cols-12 px-4'} ${isTable ? 'tableModule' : ''}`} >

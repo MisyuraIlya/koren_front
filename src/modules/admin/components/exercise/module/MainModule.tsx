@@ -15,7 +15,6 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
         setValue(`tabs[${tabIndex}].orden`, item.orden)
         setValue(`tabs[${tabIndex}].title`, item.title)
     },[])
-
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
@@ -31,11 +30,11 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                     )}
                 </Grid>
             </Grid>
-            {/* <Grid item xs={4}>
+            <Grid item xs={4}>
                 {regular.map((task, taskIndex) => 
                     <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
                 )}
-            </Grid> */}
+            </Grid>
         </Box>
     );
 };
