@@ -9,7 +9,7 @@ export const TaskSplitChecker = (tasks: ITask[]):TasksSplit => {
 
     tasks?.forEach((item: ITask) => {
       if (item.specialModuleType === 'splitedScreenLeft') {
-        leftScreen = parseInt(item.properties.split(":")[1]);
+        leftScreen = parseInt(item.properties?.split(":")[1]);
         isLeftSection = true;
       }
   
@@ -18,7 +18,7 @@ export const TaskSplitChecker = (tasks: ITask[]):TasksSplit => {
       }
   
       if (item.specialModuleType === 'splitedScreenRight') {
-        rightScreen = parseInt(item.properties.split(":")[1]);
+        rightScreen = parseInt(item.properties?.split(":")[1]);
         isRightSection = true;
       }
   

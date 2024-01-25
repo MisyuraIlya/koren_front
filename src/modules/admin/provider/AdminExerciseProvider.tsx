@@ -5,10 +5,11 @@ import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
 import { onAsk } from '@/utils/sweetAlert';
-import { AdminService } from '../services/admin.service';
-
+import { AdminExerciseService } from '../services/adminExercise.service';
+import useSWR from 'swr';
 interface AdminContextType {
-    exercise: IExercise
+    exercise: IExercise | undefined
+    isLoading: boolean
     register: UseFormRegister<IExercise>
     setValue: UseFormSetValue<any>
     control: Control<IExercise, any>
@@ -31,32 +32,52 @@ const useAdminExercise = (): AdminContextType => {
 };
 
 interface AdminExerciseProviderProps {
-  exercise: IExercise
   children: ReactNode
   courseId: string
 };
 
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
-  const [exercise, setExercise] = useState<IExercise>(props.exercise)
   const [choosedTab, setChoosedTab] = useState<number>(0)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
-  const [isOnlineExercise, setIsOnlineExercise] = useState<boolean>(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
+  
+  const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
+    `http://localhost:4001/exercise/${props.courseId}`,
+    () => AdminExerciseService.GetExercise(props.courseId),
+    {
+      revalidateOnFocus: false,
+    }
+  );
 
-  const uploadXl = () => {
-
+  const uploadXl = async () => {
+    if(fileChoosed){
+      const reponse = await AdminExerciseService.uploadExercise(fileChoosed)
+      mutate(reponse, false)
+    }
   }
 
   const deleteExercise = async (id: string) => {
     const ask = await onAsk('בטוח למחוק תרגיל זה?','')
     if(ask){
-      AdminService.DeleteExercise(id)
+      AdminExerciseService.DeleteExercise(id)
+      const exercise = {
+        title: 'as',
+        description1: '',
+        description2: '',
+        courseId: 0,
+        module: 4,
+        youtubeLink: '',
+        pdf: '',
+        isInTheBook: false, 
+        tabs: [],
+    };
+      mutate(exercise, false)
     }
   }
 
-  const createExercise = (data: any) => {
-    console.log('here')
-    console.log('data',data)
+  const createExercise = async (data: any) => {
+    const response = await AdminExerciseService.createExercise(data)
+    mutate()
   }
 
   useEffect(() => {
@@ -75,6 +96,7 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
 
   const value: AdminContextType = {
     exercise,
+    isLoading,
     register,
     setValue,
     control,

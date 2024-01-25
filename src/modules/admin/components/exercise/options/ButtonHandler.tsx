@@ -31,7 +31,7 @@ const ButtonHandler = () => {
             העלה
           </Button>
           {exercise?.id &&
-            <Button color="error" sx={{ minWidth: '150px', fontSize: '18px' }} variant="contained" type="submit" onClick={() => deleteExercise(exercise.id!.toString())}>
+            <Button color="error" sx={{ minWidth: '150px', fontSize: '18px' }} variant="contained" type="button" onClick={() => deleteExercise(exercise.id!.toString())}>
               מחיקה
             </Button>
           }

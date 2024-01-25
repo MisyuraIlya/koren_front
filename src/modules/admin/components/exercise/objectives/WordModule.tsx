@@ -42,7 +42,7 @@ const WordModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
         >
             <div className='flex items-center justify-center'>
                 <div className='px-2 rounded-md'>
-                    {objective?.values[0].value}
+                    {objective?.values?.[0].value}
                 </div>
             </div>
         </th>

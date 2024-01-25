@@ -6,7 +6,7 @@ import SubCourseCard from './SubCourseCard';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAdminCoursesProvider } from '../../provider/AdminCoursesProvider';
 import SearchInput from '@/components/SearchInput';
-import { AdminService } from '../../services/admin.service';
+import { AdminCourseService } from '../../services/adminCourse.service';
 
 interface SubCourseCardProps {
     items: ICourse[] | []
@@ -36,7 +36,7 @@ const ListSubCourses:FC<SubCourseCardProps> = ({items,title,lvl}) => {
           ...item,
           orden: index + 1,
         }));
-        AdminService.UpdateSortable(updatedData)
+        AdminCourseService.UpdateSortable(updatedData)
     };
 
     const onSubmitAdd: SubmitHandler<Inputs> = (data) => {

@@ -4,7 +4,7 @@ import React, { createContext, useContext, ReactNode, useEffect, useState } from
 import { useAdmin } from '../store/admin.store';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { onAsk, onErrorAlert, onSuccessAlert } from '@/utils/sweetAlert';
-import { AdminService } from '../services/admin.service';
+import { AdminCourseService } from '../services/adminCourse.service';
 import useSWR from 'swr'
 import { MainService } from '../services/main.service';
 
@@ -49,7 +49,7 @@ interface AdminCoursesProviderProps {
 
 const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
 
-  const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminService.GetCourses,
+  const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminCourseService.GetCourses,
     {
       revalidateOnFocus: false, 
     }
@@ -68,13 +68,13 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
   const deleteCourse = async (id: string) => {
     const ask = await onAsk('למחוק קורס זה?','')
     if(ask) {
-      await AdminService.DeleteCourse(id)
+      await AdminCourseService.DeleteCourse(id)
       mutate();
     }
   }
 
   const createCourse = async (obj: ICreateCourseDto) => {
-    await AdminService.CreateCourse(obj)
+    await AdminCourseService.CreateCourse(obj)
     mutate();
   }
 
@@ -84,7 +84,7 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
       onErrorAlert('שגיאה','קובץ גדול מדי')  
       return
     }
-    const response = await AdminService.UpdateCourse(id, {pdf: filePath.path})
+    const response = await AdminCourseService.UpdateCourse(id, {pdf: filePath.path})
     if(response?.id){
       onSuccessAlert('PDF עלה בהצלחה','')
       mutate();
@@ -94,7 +94,7 @@ const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
   }
 
   const updateName = async(id: string, name: string) => {
-    const response = await AdminService.UpdateCourse(id, {name: name})
+    const response = await AdminCourseService.UpdateCourse(id, {name: name})
     if(response?.id){
       onSuccessAlert('עודכן בהצלחה','')
       mutate();

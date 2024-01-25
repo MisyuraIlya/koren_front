@@ -16,6 +16,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
         setValue(`tabs[${tabIndex}].title`, item.title)
     },[])
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
+
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
             <Grid container spacing={1}>
