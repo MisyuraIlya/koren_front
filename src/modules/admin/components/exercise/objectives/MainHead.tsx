@@ -22,7 +22,7 @@ const MainHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
             // }}
             >
             <div  className='text-right px-4 py-4'>
-                <h1 className='text-[40px] font-bold'>{objective.values[0].value}</h1>
+                <h1 className='text-[40px] font-bold'>{objective.values[0]?.value}</h1>
             </div>
         </th>
     );

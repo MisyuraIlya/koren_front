@@ -43,7 +43,7 @@ const SongModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
                     <div className=' py-4 fontSizeExercise bg-white shadow-xl shadow-black/10 rounded-sm px-9 text-justify '>
                         <div
                             // onInput={handleInputChange}
-                            dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                            dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                             className=""
                         />
                     </div>

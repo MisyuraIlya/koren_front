@@ -15,7 +15,7 @@ const StoryHeadline:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInd
 
     return (
         <div >
-            <div className='font-bold pt-6 px-4' style={{fontSize:'30px'}} dangerouslySetInnerHTML={{ __html: objective.values[0].value }}/>
+            <div className='font-bold pt-6 px-4' style={{fontSize:'30px'}} dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}/>
         </div>
     );
 };

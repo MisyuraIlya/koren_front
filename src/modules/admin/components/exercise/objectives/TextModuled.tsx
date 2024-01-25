@@ -50,7 +50,7 @@ const TextModuled:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
             >
                 <div
                     // onInput={handleInputChange}
-                    dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                    dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                     className=""
                     // style={{ textAlign: textAlign === 'אמצע' ? 'center' : undefined, whiteSpace: whiteSpace === 'לא' ? 'nowrap' : undefined}}
                 />

@@ -22,7 +22,7 @@ const SecondHeadWhiteModule: FC<IObjectiveModule> = ({objective,tabIndex,taskInd
             // }}
             >
             <div  className='text-right px-4'>
-                <h3 className='text-[26px] font-semibold'>{objective.values[0].value}</h3>
+                <h3 className='text-[26px] font-semibold'>{objective?.values[0]?.value}</h3>
             </div>
         </th>
     );

@@ -26,7 +26,7 @@ const SubInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIn
 
                 <div
                     // onInput={handleInputChange}
-                    dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                    dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                     className="fontSizeExercise"
                 />
             </div>

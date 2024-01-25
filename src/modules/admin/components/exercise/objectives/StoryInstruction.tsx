@@ -18,7 +18,7 @@ const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
             <div className='flex items-center mr-5 justify-center '>
                 <h4
                 style={{ fontSize: '30px', fontWeight: '600', paddingTop: '10px' }}
-                dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                 />
             </div>
         </th>

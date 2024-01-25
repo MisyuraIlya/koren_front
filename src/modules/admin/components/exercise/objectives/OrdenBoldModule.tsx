@@ -26,7 +26,7 @@ const OrdenBoldModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowI
             >
             <div className='text-center flex justify-center items-center py-1'>
                 <div className='rounded-md bg-primary text-white px-2'>
-                    {objective.values[0].value}
+                    {objective?.values[0]?.value}
                 </div>
             </div>
         </th>

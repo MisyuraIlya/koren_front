@@ -29,7 +29,7 @@ const OriginModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
             </div>
             <div className='px-4 pt-5 pb-7' 
             // style={{color:'#00000080', width: widthText ? `${widthText}%` : '100%', marginRight:textMargin ? `${textMargin}%` : ''}} 
-            dangerouslySetInnerHTML={{ __html: objective.values[0].value }}/>
+            dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}/>
         </th>
     );
 };

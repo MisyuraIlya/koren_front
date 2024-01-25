@@ -10,6 +10,7 @@ import useSWR from 'swr';
 interface AdminContextType {
     exercise: IExercise | undefined
     isLoading: boolean
+    loading: boolean
     register: UseFormRegister<IExercise>
     setValue: UseFormSetValue<any>
     control: Control<IExercise, any>
@@ -39,6 +40,7 @@ interface AdminExerciseProviderProps {
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   const [choosedTab, setChoosedTab] = useState<number>(0)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
+  const [loading, setLoading] = useState(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
   
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
@@ -76,8 +78,20 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   }
 
   const createExercise = async (data: any) => {
-    const response = await AdminExerciseService.createExercise(data)
-    mutate()
+    try {
+      setLoading(true)
+      const response = await AdminExerciseService.createExercise(data)
+      if(response?.id){
+        setTimeout(() => {
+          mutate()
+        },3000)
+      }
+    } catch(e) {
+      console.log('e',e)
+    } finally {
+      setLoading(false)
+    }
+    
   }
 
   useEffect(() => {
@@ -97,6 +111,7 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
   const value: AdminContextType = {
     exercise,
     isLoading,
+    loading,
     register,
     setValue,
     control,

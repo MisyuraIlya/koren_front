@@ -62,7 +62,7 @@ const ExplanationSplited:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,r
                     <div className='text-right  px-4 py-4 fontSizeExercise 0'>
                         <div
                             // onInput={handleInputChange}
-                            dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                            dangerouslySetInnerHTML={{ __html: objective.values[0]?.value }}
                             className=""
                         />
                     </div>

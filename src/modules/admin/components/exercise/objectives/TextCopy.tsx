@@ -29,7 +29,7 @@ const TextCopy:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,ob
             <div className='text-center px-4 py-4 fontSizeExercise'>
                 <div
                     // onInput={handleInputChange}
-                    dangerouslySetInnerHTML={{ __html: objective.values[0].value }}
+                    dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                     className="bg-white rounded-md"
                 />
             </div>
