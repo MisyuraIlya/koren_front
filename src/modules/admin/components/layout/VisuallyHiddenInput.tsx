@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { ChangeEvent, FC } from 'react';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -12,8 +13,24 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function InputFileUpload() {
-  return (
-    <VisuallyHiddenInput type="file" />
-  );
+interface InputFileUploadProps {
+  handleOnChange: (file: File) => void;
 }
+
+const InputFileUpload: FC<InputFileUploadProps> = ({ handleOnChange }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleOnChange(file);
+    }
+  };
+
+  return (
+    <VisuallyHiddenInput
+      type="file"
+      onChange={handleChange}
+    />
+  );
+};
+
+export default InputFileUpload;

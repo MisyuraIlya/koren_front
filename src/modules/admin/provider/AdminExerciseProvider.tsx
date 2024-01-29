@@ -19,6 +19,7 @@ interface AdminContextType {
     setFileChoosed: (data: File | null) => void
     choosedTab: number
     setChoosedTab: (value: number) => void
+    updateExercise: (id:string, obj: IUpdateExerciseDto) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -94,6 +95,22 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     
   }
 
+  const updateExercise = async (id: string, obj: IUpdateExerciseDto) => {
+    try {
+      setLoading(true)
+      const response = await AdminExerciseService.updateExercise(id, obj)
+      if(response?.id){
+        setTimeout(() => {
+          mutate()
+        },3000)
+      }
+    } catch(e) {
+      console.log('e',e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     if(exercise){
       setValue(`title`,exercise.title);
@@ -119,7 +136,8 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     deleteExercise,
     setFileChoosed,
     choosedTab,
-    setChoosedTab
+    setChoosedTab,
+    updateExercise
   };
 
   return (

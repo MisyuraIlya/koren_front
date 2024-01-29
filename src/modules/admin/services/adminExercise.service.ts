@@ -6,6 +6,11 @@ export const AdminExerciseService = {
         return response.data
     },
 
+    async updateExercise(id:string, data: IUpdateExerciseDto): Promise<IExercise> {
+        const response = await axios.patch(`http://localhost:4001/exercise/${id}`,data)
+        return response.data;
+    },
+
     async GetExercise(id: string): Promise<IExercise>{
         const response = await fetch(`http://localhost:4001/exercise/${id}`)
         return response.json()

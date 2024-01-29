@@ -4,3 +4,8 @@ interface ICreateCourseDto {
     level: number
     grade?: string
 }
+
+interface IUpdateExerciseDto {
+    youtubeLink?: string | null;
+    pdf?: string | null;
+}
