@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
 import {FC} from 'react'
-import SideBars from './SideBars';
+import SideBars from '../../../../utils/SideBars';
 import { onAsk } from '@/utils/sweetAlert';
 import { useAuth } from '@/modules/auth/store/auth.store';
 // import { useActions } from '@/hooks/useActions';
@@ -104,7 +104,7 @@ const Header: FC = () => {
             </div>
         </header>
 
-        <SideBars anchor="right" isOpen={isSidebarOpen} onClose={handleSidebarClose} isPrimaryBg={true}>
+        <SideBars anchor="left" isOpen={isSidebarOpen} onClose={handleSidebarClose} isPrimaryBg={true}>
             <div style={{width:'394px'}}>
                 <div className='bg-black w-full'>
                     <div className='mr-10 ml-10 py-12'>
