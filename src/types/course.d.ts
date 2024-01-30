@@ -13,4 +13,11 @@ interface ICourse extends Idefinder{
     youtubeLink: string
     isNotInTheBook: boolean
     exercises: IExercise
+    pdfUtilities: IPdfUtilities[]
+}
+
+interface IPdfUtilities extends Idefinder {
+    name: string
+    pdf: string
+    orden: number
 }

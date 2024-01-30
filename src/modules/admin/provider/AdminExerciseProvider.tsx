@@ -8,6 +8,7 @@ import { onAsk } from '@/utils/sweetAlert';
 import { AdminExerciseService } from '../services/adminExercise.service';
 import useSWR from 'swr';
 import { AdminCourseService } from '../services/adminCourse.service';
+import { PdfUtilitiesService } from '../services/adminPdfUtilities';
 interface AdminContextType {
     exercise: IExercise | undefined
     isLoading: boolean
@@ -22,6 +23,8 @@ interface AdminContextType {
     setChoosedTab: (value: number) => void
     updateExercise: (id:string, obj: IUpdateExerciseDto) => void
     updateCourse: (id:string, obj: IUpdateCourseDto) => void
+    createPdfUtilities: (id: string, obj: ICreatePdfUtility) => void
+    deletePdfUtilities: (id:string | number) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -129,6 +132,36 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     }
   }
 
+  const createPdfUtilities = async (id: string, obj: ICreatePdfUtility) => {
+    try {
+      setLoading(true)
+      const response = await PdfUtilitiesService.create(id,obj);
+      if(response?.id){
+        setTimeout(() => {
+          mutate()
+        },3000)
+      }
+    } catch(e) {
+      console.log('[ERROR]',e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const deletePdfUtilities = async (id:string | number) => {
+    try {
+      setLoading(true)
+      const response = await PdfUtilitiesService.delete(id);
+      setTimeout(() => {
+        mutate()
+      },3000)
+    } catch(e) {
+      console.log('[ERROR]',e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     if(exercise){
       setValue(`title`,exercise.title);
@@ -156,7 +189,9 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     choosedTab,
     setChoosedTab,
     updateExercise,
-    updateCourse
+    updateCourse,
+    createPdfUtilities,
+    deletePdfUtilities
   };
 
   return (

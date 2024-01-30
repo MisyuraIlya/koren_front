@@ -11,6 +11,7 @@ const ExerciseOptions = () => {
                 </Grid>
                 <Grid item md={9} style={{display:'flex', justifyContent:'left', gap:'50px', alignItems:'center'}}>
                     <Options.ButtonHandler/>
+                    <Options.Utilities/>
                     <Options.SideBar/>
                 </Grid>
             </Grid>

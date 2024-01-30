@@ -17,3 +17,8 @@ interface IUpdateExerciseDto {
     youtubeLink?: string | null;
     pdf?: string | null;
 }
+
+interface ICreatePdfUtility {
+    title: string;
+    pdf: string;
+}
