@@ -29,7 +29,7 @@ export const AdminCourseService = {
         });
     },
 
-    async UpdateCourse(id: string, obj: any): Promise<ICourse> {
+    async UpdateCourse(id: string, obj: IUpdateCourseDto): Promise<ICourse> {
         const response = await fetch(`http://localhost:4001/course/${id}`, {
             method: 'PATCH',
             headers: {

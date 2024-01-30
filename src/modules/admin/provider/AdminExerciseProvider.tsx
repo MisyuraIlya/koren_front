@@ -7,6 +7,7 @@ import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control 
 import { onAsk } from '@/utils/sweetAlert';
 import { AdminExerciseService } from '../services/adminExercise.service';
 import useSWR from 'swr';
+import { AdminCourseService } from '../services/adminCourse.service';
 interface AdminContextType {
     exercise: IExercise | undefined
     isLoading: boolean
@@ -20,6 +21,7 @@ interface AdminContextType {
     choosedTab: number
     setChoosedTab: (value: number) => void
     updateExercise: (id:string, obj: IUpdateExerciseDto) => void
+    updateCourse: (id:string, obj: IUpdateCourseDto) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -111,6 +113,22 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     }
   }
 
+  const updateCourse = async (id: string, obj: IUpdateCourseDto) => {
+    try {
+      setLoading(true)
+      const response = await AdminCourseService.UpdateCourse(id, obj)
+      if(response?.id){
+        setTimeout(() => {
+          mutate()
+        },3000)
+      }
+    } catch(e) {
+      console.log('e',e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     if(exercise){
       setValue(`title`,exercise.title);
@@ -137,7 +155,8 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
     setFileChoosed,
     choosedTab,
     setChoosedTab,
-    updateExercise
+    updateExercise,
+    updateCourse
   };
 
   return (

@@ -1,7 +1,7 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Box, Button, CircularProgress, IconButton, TextField, Typography } from '@mui/material';
+import { Box, Button, Checkbox, CircularProgress, IconButton, TextField, Typography } from '@mui/material';
 import SideBars from '../../../../../utils/SideBars';
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import InputFileUpload from '../../layout/VisuallyHiddenInput';
@@ -17,9 +17,9 @@ const SideBar = () => {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState('')
     const [openLink, setOpenLink] = useState(false)
-    const {exercise, updateExercise, isLoading} = useAdminExercise()
+    const {exercise, updateExercise,updateCourse, isLoading} = useAdminExercise()
     const [loading, setLoading] = useState(false)
-
+    const [isNotInTheBook, setIsNotInTheBook] = useState(false)
     const handleSaveLink = async () => {
         try {
             setLoading(true)
@@ -83,6 +83,24 @@ const SideBar = () => {
         }
 
     }
+
+    const handleIsInTheBook = async (value: boolean) => {
+        setIsNotInTheBook(value)
+        try {
+            setLoading(true)
+            if(exercise){
+                updateCourse(exercise?.course!?.id!.toString(),{isNotInTheBook:value})
+            }
+        } catch(e) {
+            console.log('[SideBar]',e)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        setIsNotInTheBook(exercise?.course?.isNotInTheBook!)
+    },[exercise])
 
 
     return (
@@ -162,6 +180,10 @@ const SideBar = () => {
                         }
                     </>
                 }
+                <Box sx={{display:'flex'}}>
+                    <Checkbox checked={isNotInTheBook} onChange={(e) => handleIsInTheBook(e.target.checked)}/>
+                    <Typography sx={{display:'flex', justifyContent:'center', alignItems:'center'}} variant='h6'>אינו קיים בחוברת</Typography>
+                </Box>
 
 
             </SideBars>

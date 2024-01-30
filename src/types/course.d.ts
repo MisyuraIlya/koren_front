@@ -11,5 +11,6 @@ interface ICourse extends Idefinder{
     image: string
     pdf: string
     youtubeLink: string
+    isNotInTheBook: boolean
     exercises: IExercise
 }

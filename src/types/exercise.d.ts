@@ -2,6 +2,7 @@ interface IExercise extends Idefinder{
     title: string
     description1: string
     description2: string
+    course?: ICourse
     courseId: number
     module: number
     youtubeLink: string
