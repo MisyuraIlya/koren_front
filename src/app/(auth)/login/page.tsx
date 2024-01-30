@@ -1,12 +1,14 @@
+"use client"
 import React from 'react';
 import Auth from '@/modules/auth';
+import { Box } from '@mui/material';
 
 const page = () => {
     return (
-      <div >
-            <Auth.Description.LoginDescription/>
-            <Auth.Forms.LoginForm/>
-      </div>
+      <Box sx={{width:'60%'}}>
+          <Auth.Description.LoginDescription/>
+          <Auth.Forms.LoginForm/>
+      </Box>
     );
 };
 

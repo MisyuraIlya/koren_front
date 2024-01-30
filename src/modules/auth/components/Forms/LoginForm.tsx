@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useAuth } from '../../store/auth.store';
 import LoginInput from '@/components/LoginInput';
 import { onErrorAlert } from '@/utils/sweetAlert';
+import { Box } from '@mui/material';
 const LoginForm = () => {
     const {login, loading} = useAuth()
     const {register: formRegister, handleSubmit, formState: {errors}, reset} = useForm<LoginForm>({
@@ -19,8 +20,8 @@ const LoginForm = () => {
         reset()
     }
     return (
-        <div className='content '>
-            <div className='py-12 px-8 rounded-xl'>
+        <Box>
+            <Box sx={{margin:'40px 0'}}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <LoginInput 
                     {...formRegister('email', {
@@ -42,19 +43,19 @@ const LoginForm = () => {
                     placeholder='סיסמה'
                     error={errors.password?.message}
                     />
-                    <div className='flex justify-between'>
-                        <div>
+                    <Box className='flex justify-between'>
+                        <Box>
                             {/* <Link href={Links.FORGOT_PASSWORD} className='text-button_primary cursor-pointer'>שחכתי סיסמה</Link> */}
-                        </div>
+                        </Box>
                         {/* <div className='flex gap-2'>
                             <input type='checkbox' defaultChecked className='w-5 rounded-2xl' />
                             <p>זכור אותי</p>
                         </div> */}
-                    </div>
+                    </Box>
                     <button type='submit' className='mainBtn font-bold mt-10 text-center w-full rounded-3xl py-2 text-white'>כניסה</button>
                 </form>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

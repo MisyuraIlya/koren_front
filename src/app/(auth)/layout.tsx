@@ -12,8 +12,8 @@ const AuthLayout = ({children}:{children: React.ReactNode }) => {
                 <Grid item xs={6}>
                     <RightLayOut/>
                 </Grid>
-                <Grid item xs={6}>
-                    <Box sx={{background:'white', height:'100vh'}}>
+                <Grid item xs={6} >
+                    <Box sx={{background:'white', height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
                         {children}
                     </Box>
                 </Grid>
