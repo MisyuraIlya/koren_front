@@ -24,12 +24,14 @@ export default function RootLayout({
   return (
     <html lang="he" dir='rtl'>
       <head></head>
-      <CacheProvider value={cacheRtl}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </CacheProvider>
+      <body>
+        <CacheProvider value={cacheRtl}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </CacheProvider>
+      </body>
     </html>
   )
 }

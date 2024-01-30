@@ -5,7 +5,7 @@ import '../globals.scss';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <body>
+    <>
         <Header />
         <div className="grid grid-cols-12">
           <div className="col-span-1">
@@ -15,6 +15,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </div>
         </div>
-    </body>
+    </>
   );
 }
