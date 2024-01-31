@@ -328,8 +328,8 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#fff",
-          color: "#303545",
+          backgroundColor: "primary",
+          color: "white",
           iconColor: "#303545",
         },
       },
@@ -387,6 +387,15 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: themeSettings.borderRadius,
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          border:'none',
+          backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
+          marginTop: '120px',
         },
       },
     },

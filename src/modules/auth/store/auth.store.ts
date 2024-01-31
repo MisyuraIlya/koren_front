@@ -34,7 +34,7 @@ export const useAuth = create(
                 
             },
             logout: () => {
-    
+                set({user:null})
             }
         }),
         {

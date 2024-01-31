@@ -25,11 +25,6 @@ interface AdminContextType {
   updateName: (id: string, name: string) => void
 }
 
-const fetchData = async () => {
-  const response = await fetch(`http://localhost:4001/course`);
-  const data = await response.json();
-  return data;
-};
 
 const AdminContext = createContext<AdminContextType | null>(null);
 

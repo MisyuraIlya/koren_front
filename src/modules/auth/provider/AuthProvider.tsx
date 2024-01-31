@@ -35,7 +35,7 @@ const AuthProvider: React.FC<AuthProviderProps> = (props) => {
       if(user?.role === 'admin'){
         router.push('/admin/courses/1')
       } else if(user?.role === 'student') {
-          router.push('/client/courses')
+          router.push('/student/courses')
       }
     }
   },[])

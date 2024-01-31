@@ -6,15 +6,13 @@ import {FC} from 'react'
 import SideBars from '../../../../utils/SideBars';
 import { onAsk } from '@/utils/sweetAlert';
 import { useAuth } from '@/modules/auth/store/auth.store';
-// import { useActions } from '@/hooks/useActions';
-// import { useAuth } from '@/hooks/useAuth';
+import { Box, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 const Header: FC = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    // const {user} = useAuth()
-    const {logout} = useAuth()
-    // const { logout } = useActions();
-
+    const {logout, user} = useAuth()
+    const router = useRouter();
     const handleSidebarToggle = () => {
       setIsSidebarOpen(!isSidebarOpen);
     };
@@ -27,13 +25,14 @@ const Header: FC = () => {
         const res = await onAsk('האם את רוצה לצאת מהמערכת?','')
         if(res) {
             logout()
+            router.push('/login')
         }
     }
 
     return (
         <>
         <header className='bg-primary w-full py-2 px-6 grid grid-cols-2 fixed' style={{height:'70px', zIndex:1000000}}>
-            <div className='flex justify-start items-center' >
+            <Box sx={{display:'flex', gap:'10px', textAlign:'center', alignItems:'center'}}>
                 <Image
                 priority
                 width={48}
@@ -43,10 +42,10 @@ const Header: FC = () => {
                 className='cursor-pointer'
                 onClick={() => handleSidebarToggle()}
                 />
-                <p className='text-center text-white px-4'>אורלי</p>
-            </div>
-            <div className='flex justify-end'>
-                <div className='flex'>
+                <Typography variant='h6' color={'white'}>{user?.firstName}</Typography>
+            </Box>
+            <Box className='flex justify-end'>
+                <Box className='flex'>
                     <Link href={'/admin/courses/1'} className='flex justify-center items-center px-4'>
                         <Image
                         priority
@@ -73,16 +72,16 @@ const Header: FC = () => {
                         src={'/images/header/bell.svg'}    
                         alt='Sary'
                         />
-                        <div className='items-center rounded-full bg-red text-white absolute left-4 px-1'>
+                        <Box className='items-center rounded-full bg-red text-white absolute left-4 px-1'>
                             <p>12</p>
-                        </div>  
+                        </Box>  
                     </Link>  
-                </div>
-                <div className="flex justify-between px-8">
-                    <div className="w-1/2 border-r" style={{borderColor:'#F3F6F9'}}></div>
-                    <div className="w-1/2"></div>
-                </div>
-                <div className='flex'>
+                </Box>
+                <Box className="flex justify-between px-8">
+                    <Box className="w-1/2 border-r" style={{borderColor:'#F3F6F9'}}></Box>
+                    <Box className="w-1/2"></Box>
+                </Box>
+                <Box className='flex'>
                     <Link href={'/admin/courses/1'} className='flex'>
                         <Image
                         priority
@@ -100,20 +99,20 @@ const Header: FC = () => {
                         className='items-center justify-center pt-5 px-4'
                         />
                     </Link>    
-                </div>
-            </div>
+                </Box>
+            </Box>
         </header>
 
         <SideBars anchor="left" isOpen={isSidebarOpen} onClose={handleSidebarClose} isPrimaryBg={true}>
-            <div style={{width:'394px'}}>
-                <div className='bg-black w-full'>
-                    <div className='mr-10 ml-10 py-12'>
-                        <h2 style={{fontSize:'25px', fontWeight:'700', color:'#C6CEE6'}}>הפרופיל שלי</h2>
-                    </div>
-                </div>
-                <div className='mr-10 ml-10 mt-12'>
-                    <div className='grid grid-cols-12'>
-                        <div className='col-span-5 items-center flex'>
+            <Box style={{width:'394px'}}>
+                <Box className='bg-black w-full'>
+                    <Box className='mr-10 ml-10 py-12'>
+                        <Typography variant='h6'>הפרופיל שלי</Typography>
+                    </Box>
+                </Box>
+                <Box className='mr-10 ml-10 mt-12'>
+                    <Box className='grid grid-cols-12'>
+                        <Box className='col-span-5 items-center flex'>
                             <Image
                                 priority
                                 width={78}
@@ -123,10 +122,10 @@ const Header: FC = () => {
                                 className='cursor-pointer'
                                 onClick={() => handleSidebarToggle()}
                             />
-                        </div>
-                        <div className='col-span-7'>
-                            <h2 style={{fontSize:'35px', fontWeight:'700', color:'#C6CEE6'}}>אורלי</h2>
-                            <div className='flex gap-4' style={{color:'#C6CEE6'}}>
+                        </Box>
+                        <Box className='col-span-7'>
+                            <Typography variant='h6'>הפרופיל שלי</Typography>
+                            <Box className='flex gap-4' style={{color:'#C6CEE6'}}>
                                 <Image
                                     priority
                                     width={22}
@@ -137,8 +136,8 @@ const Header: FC = () => {
                                     onClick={() => handleSidebarToggle()}
                                 />
                                 <p>0501234567</p>
-                            </div>
-                            <div className='flex gap-4' style={{color:'#C6CEE6'}}>
+                            </Box>
+                            <Box className='flex gap-4' style={{color:'#C6CEE6'}}>
                                 <Image
                                     priority
                                     width={22}
@@ -148,11 +147,11 @@ const Header: FC = () => {
                                     className='cursor-pointer'
                                     onClick={() => handleSidebarToggle()}
                                 />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='absolute mr-12 flex items-center text-center gap-4 cursor-pointer' style={{bottom:'120px', color:'#C6CEE6'}} onClick={() => handleExitSystem()}>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box className='absolute mr-12 flex items-center text-center gap-4 cursor-pointer' style={{bottom:'120px', color:'#C6CEE6'}} onClick={() => handleExitSystem()}>
                     <Image
                         priority
                         width={25}
@@ -161,9 +160,9 @@ const Header: FC = () => {
                         alt='Sary'
                         className='items-center '
                     />
-                    <p>יציאה מהמערכת</p>
-                </div>
-            </div>
+                    <Typography variant='body1'>יציאה מהמערכת</Typography>
+                </Box>
+            </Box>
         </SideBars>
         
         
