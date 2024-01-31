@@ -8,6 +8,7 @@ import rtlPlugin from "stylis-plugin-rtl"
 import { prefixer } from "stylis"
 import createCache from "@emotion/cache"
 import theme from "@/styles/mui"
+import { AuthProvider } from '@/modules/auth/provider/AuthProvider'
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -27,8 +28,10 @@ export default function RootLayout({
       <body>
         <CacheProvider value={cacheRtl}>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
+            <AuthProvider>
+              <CssBaseline />
+              {children}
+            </AuthProvider>
           </ThemeProvider>
         </CacheProvider>
       </body>

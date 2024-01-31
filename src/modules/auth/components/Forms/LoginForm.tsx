@@ -1,59 +1,130 @@
 'use client'
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { useAuth } from '../../store/auth.store';
 import LoginInput from '@/components/LoginInput';
 import { onErrorAlert } from '@/utils/sweetAlert';
-import { Box } from '@mui/material';
+import {
+    Box,
+    Grid,
+    Typography,
+    TextField,
+    Button,
+    FormControl,
+    FormControlLabel,
+    Checkbox,
+} from "@mui/material"
+import Link from "next/link"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { CheckBox } from "@mui/icons-material"
+import CircularProgress from '@mui/material/CircularProgress';
+import { useAuth } from '../../store/auth.store';
+import { useRouter } from 'next/navigation';
 const LoginForm = () => {
-    const {login, loading} = useAuth()
-    const {register: formRegister, handleSubmit, formState: {errors}, reset} = useForm<LoginForm>({
+    const {loading, login} = useAuth()
+    const router = useRouter();
+    const {register: formRegister, handleSubmit, formState: {errors}, control, reset} = useForm<LoginForm>({
        mode: 'onChange'
     })
 
     const onSubmit :SubmitHandler<LoginForm> = async (data) => {
         const response = await login(data)
-        if(response){
-        } else {
-            onErrorAlert('שגיאה','נתונים לא נכונים, נסה שנית')
+        if(response?.role === 'admin'){
+            router.push('/admin/courses/1')
+        } else if(response?.role === 'student') {
+            router.push('/client/courses')
         }
         reset()
     }
+
     return (
         <Box>
-            <Box sx={{margin:'40px 0'}}>
+            <Box>
+                {loading ?
+                    <CircularProgress/>
+                :
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <LoginInput 
-                    {...formRegister('email', {
-                        required: 'מספר טלפון',
-                        // pattern: validEmail
-                    })}
-                    heading='מספר טלפון'
-                    placeholder='שם משתמש'
-                    error={errors.email?.message}/>
-                    <LoginInput  {...formRegister('password', {
-                        required: 'סיסמה שדה חובה',
-                        minLength: {
-                            value:6,
-                            message:'מינימום 6 תווים'
-                        }
-                    })}
-                    type='password'
-                    heading='סיסמה'
-                    placeholder='סיסמה'
-                    error={errors.password?.message}
-                    />
-                    <Box className='flex justify-between'>
-                        <Box>
-                            {/* <Link href={Links.FORGOT_PASSWORD} className='text-button_primary cursor-pointer'>שחכתי סיסמה</Link> */}
-                        </Box>
-                        {/* <div className='flex gap-2'>
-                            <input type='checkbox' defaultChecked className='w-5 rounded-2xl' />
-                            <p>זכור אותי</p>
-                        </div> */}
+                    <FormControl fullWidth margin="normal">
+                        <Typography variant='h6' fontWeight={800}>מייל</Typography>
+                        <Controller
+                            name="email"
+                            control={control}
+                            defaultValue=""
+                            rules={{
+                                required: "מייל שדה חובה",
+                                pattern: {
+                                    value: /\S+@\S+\.\S+/,
+                                    message: "מייל אינו תקין",
+                                },
+                            }}
+                            render={({ field }) => (
+                                <TextField
+                                    {...field}
+                                    variant="outlined"
+                                    placeholder="email"
+                                    error={!!errors.email}
+                                    helperText={errors.email?.message}
+                                />
+                            )}
+                        />
+                    </FormControl>
+                    <FormControl fullWidth margin="normal">
+                        <Typography variant='h6' fontWeight={800}>סיסמה</Typography>
+                        <Controller
+                            name="password"
+                            control={control}
+                            defaultValue=""
+                            rules={{
+                                required: "סיסמא שדה חובה",
+                            }}
+                            render={({ field }) => (
+                                <TextField
+                                    {...field}
+                                    variant="outlined"
+                                    type='password'
+                                    placeholder="סיסמא *"
+                                    error={!!errors.password}
+                                    helperText={errors.password?.message}
+                                />
+                            )}
+                        />
+                    </FormControl>
+                    <Box sx={{display:'flex', justifyContent:'space-between', margin:'20px 0px'}}>
+                        <Typography
+                            variant="body1"
+                            fontWeight={400}
+                            fontSize={18}
+                            sx={{ display:'flex', alignItems:'center'}}
+                        >
+                            <Link href="#" style={{ color: "#4255FF" }}>
+                                {" שחכתי סיסמה "}
+                            </Link>
+                        </Typography>
+                        <FormControlLabel
+                            control={
+                                <Controller
+                                    name="rememberMe"
+                                    control={control}
+                                    defaultValue={true}
+                                    render={({ field }) => (
+                                        <Checkbox {...field} color="primary" />
+                                    )}
+                                />
+                            }
+                            label="זכור אותי"
+                        />
                     </Box>
-                    <button type='submit' className='mainBtn font-bold mt-10 text-center w-full rounded-3xl py-2 text-white'>כניסה</button>
+                    <Button
+                        sx={{ borderRadius: "24px", padding:'5px 0px', color:'white', fontSize:'22px', fontWeight:700 }}
+                        fullWidth={true}
+
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                    >
+                        כניסה
+                    </Button>
                 </form>
+                }
+            
             </Box>
         </Box>
     );

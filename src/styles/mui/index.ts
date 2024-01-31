@@ -3,7 +3,7 @@ import { red } from "@mui/material/colors"
 
 export const themeColors = {
   primary: "#002536",
-  secondary: "#161D25",
+  secondary: "#1D99FF",
   success: "#4ade80",
   warning: "#FFA319",
   error: "#FF1943",
