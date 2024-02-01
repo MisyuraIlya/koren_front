@@ -52,7 +52,7 @@ const StudentCoursesProvider: React.FC<StudentCoursesProviderProps> = (props) =>
   const lvl3IdCourses = lvl2IdCourses?.children.filter((item) => item.id === +lvl3Id)[0]
   const lvl4IdCourses = lvl3IdCourses?.children.filter((item) => item.id === +lvl4Id)[0]
 
-
+  console.log('courses',courses,lvl1Id,lvl2Id,lvl3Id,lvl4Id)
   const value: AdminContextType = {
     courses,
     isLoading,

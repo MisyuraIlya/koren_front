@@ -30,15 +30,15 @@ const AuthProvider: React.FC<AuthProviderProps> = (props) => {
   const path = usePathname()
   const router = useRouter()
   
-  useEffect(() => {
-    if(path === '/login' || '/'){
-      if(user?.role === 'admin'){
-        router.push('/admin/courses/1')
-      } else if(user?.role === 'student') {
-          router.push('/student/courses')
-      }
-    }
-  },[])
+  // useEffect(() => {
+  //   if(path === '/login' || '/'){
+  //     if(user?.role === 'admin'){
+  //       router.push('/admin/courses/1')
+  //     } else if(user?.role === 'student') {
+  //         router.push('/student/courses')
+  //     }
+  //   }
+  // },[])
 
   const value: AdminContextType = {
   };
