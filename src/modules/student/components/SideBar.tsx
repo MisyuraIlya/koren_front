@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SearchBigInput from './SideBar/SearchBigInput';
 import { useStudentCourses } from '../provider/StudentCoursesProvider';
 import SecondSideBar from './SideBar/SecondSideBar';
+import zIndex from '@mui/material/styles/zIndex';
 
 const drawerWidth = 300;
 
@@ -54,6 +55,7 @@ const redBoxStyles = {
     width: '300px',
     height: '100vh',
     background: 'white',
+    zIndex:'1',
     position: 'fixed',
     transition: 'left 0.3s ease-in-out',
     boxShadow: '-8px 0px 20px 0px rgba(0, 0, 0, 0.12)',

@@ -9,12 +9,14 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ForumIcon from '@/../public/images/forum.svg';
 import SettingsBoard from '@/../public/images/settingsBoard.svg'
-import { AccountCircle, Height } from '@mui/icons-material';
+import { AccountCircle } from '@mui/icons-material';
 import { useAuth } from '@/modules/auth/store/auth.store';
 import NavBar from './NavBar';
+import { useStudentCourses } from '../provider/StudentCoursesProvider';
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const {user} = useAuth()
+    const {lvl1Id, lvl1IdCourses} = useStudentCourses()
 
     const containerStyle = {
         background: 'linear-gradient(227deg, #2E68F7 0%, #45C3F3 109.92%)',
@@ -34,14 +36,15 @@ const Header = () => {
     const handleClose = () => {
       setAnchorEl(null);
     };
-
     
     return (
         <AppBar position="fixed">
             <Toolbar style={{paddingRight:'0px'}}>
+                {lvl1Id &&
                 <Box style={containerStyle}>
-                    <Typography variant='h6'>בנתיבי התחביר והצורות</Typography>
+                    <Typography variant='h6'>{lvl1IdCourses?.name}</Typography>
                 </Box>
+                }
                 {user?.id && (
                     <Box>
                         <IconButton
@@ -103,7 +106,9 @@ const Header = () => {
                     </Box>
                 </Box>
             </Toolbar>
-            <NavBar/>
+            {lvl1Id &&
+                <NavBar/>        
+            }
         </AppBar>
     );
 };

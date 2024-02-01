@@ -35,15 +35,14 @@ interface StudentCoursesProviderProps {
 
 
 const StudentCoursesProvider: React.FC<StudentCoursesProviderProps> = (props) => {
-
+  const [lvl1Id, setLvl1Id] = useState<string>('')
   const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminCourseService.GetCourses,
     {
       revalidateOnFocus: false, 
     }
   );
-
+  
   const path = usePathname()
-  const lvl1Id = path.split('/')?.[3]
   const lvl2Id = path.split('/')?.[4]
   const lvl3Id = path.split('/')?.[5]
   const lvl4Id = path.split('/')?.[6]
@@ -52,7 +51,21 @@ const StudentCoursesProvider: React.FC<StudentCoursesProviderProps> = (props) =>
   const lvl3IdCourses = lvl2IdCourses?.children.filter((item) => item.id === +lvl3Id)[0]
   const lvl4IdCourses = lvl3IdCourses?.children.filter((item) => item.id === +lvl4Id)[0]
 
-  console.log('courses',courses,lvl1Id,lvl2Id,lvl3Id,lvl4Id)
+  useEffect(() => {
+    const lvl1Id = path.split('/')?.[3]
+    if(path.includes('courses')) {
+      if(lvl1Id){
+        localStorage.setItem('lvl1Id',lvl1Id)
+        setLvl1Id(lvl1Id)
+      } else {
+        setLvl1Id(localStorage.lvl1Id ? localStorage.lvl1Id : '')
+      }
+    } else {
+      setLvl1Id(localStorage.lvl1Id ? localStorage.lvl1Id : '')
+    }
+
+  },[path])
+
   const value: AdminContextType = {
     courses,
     isLoading,

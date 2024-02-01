@@ -5,10 +5,7 @@ import Courses from '@/modules/student/components/courses';
 const CoursesPage = () => {
     return (
         <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-            <Box sx={{marginTop:'5%'}}>
-                <Courses.CoursesTitle/>
-                <Courses.CoursesList/>
-            </Box>
+            choosed course
         </Box>
     );
 };

@@ -1,5 +1,4 @@
 import { AdminExerciseProvider } from '@/modules/admin/provider/AdminExerciseProvider';
-import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
 import React, {FC} from 'react';
 import Admin from '@/modules/admin';
 

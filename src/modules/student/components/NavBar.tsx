@@ -47,6 +47,7 @@ const NavBar = () => {
         <Paper elevation={4} sx={{ position: 'fixed', top: '60px', width: '100%', borderRadius: '0', minHeight: '60px', backgroundColor: '#F0FBFF', display: 'flex', alignItems: 'center' }}>
             <Select
                 value={selectedLvl1Id}
+                placeholder='פרק'
                 onChange={(event) => handleChange(event, 2)}
                 sx={{ minWidth: '250px', background: 'white', margin: '10px', height: '30px' }}
             >
@@ -56,6 +57,7 @@ const NavBar = () => {
             </Select>
 
             <Select
+                placeholder='יחידה'
                 value={selectedLvl2Id}
                 onChange={(event) => handleChange(event, 3)}
                 sx={{ minWidth: '250px', background: 'white', margin: '10px', height: '30px' }}
@@ -66,6 +68,7 @@ const NavBar = () => {
             </Select>
 
             <Select
+                placeholder='שם העצם'
                 value={selectedLvl3Id}
                 onChange={(event) => handleChange(event, 4)}
                 sx={{ minWidth: '250px', background: 'white', margin: '10px', height: '30px' }}
@@ -76,6 +79,7 @@ const NavBar = () => {
             </Select>
 
             <Select
+                placeholder='תרגיל'
                 value={selectedLvl4Id}
                 onChange={(event) => handleChange(event, 5)}
                 sx={{ minWidth: '250px', background: 'white', margin: '10px', height: '30px' }}
