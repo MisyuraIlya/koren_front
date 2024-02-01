@@ -1,8 +1,13 @@
 import { Box, Card, Typography } from '@mui/material';
-import React from 'react';
+import React, {FC} from 'react';
 import { themeColors } from '@/styles/mui';
 
-const MinCard = () => {
+interface MinCardProps {
+    type: string
+    title:string
+}
+
+const MinCard:FC<MinCardProps> = ({type, title}) => {
     return (
         <Card sx={{
             padding:'15px 0px',
@@ -10,6 +15,7 @@ const MinCard = () => {
             color:'white', 
             border:'1px solid white',
             transition: 'background 0.2s', 
+            marginTop:'10px',
             cursor:'pointer',
             '&:hover': {
                 background: themeColors.primary,
@@ -17,10 +23,10 @@ const MinCard = () => {
             }
         }}>
             <Box sx={{textAlign:'center'}}>
-                <Typography variant='h5' fontWeight={900}>א</Typography>
+                <Typography variant='h5' fontWeight={900}>{type}</Typography>
             </Box>
             <Box sx={{textAlign:'center'}}>
-                <Typography variant='body2' fontWeight={700}>הבנה והבעה</Typography>
+                <Typography variant='body2' fontWeight={700}>{title}</Typography>
             </Box>
         </Card>
     );
