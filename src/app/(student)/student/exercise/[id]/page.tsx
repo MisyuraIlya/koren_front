@@ -3,6 +3,8 @@ import React, {FC} from 'react';
 import { StudentExerciseProvider } from '@/modules/student/provider/StudentExerciseProvider';
 import Exercise from '@/modules/student/components/exercise';
 import { Box, Grid, Paper } from '@mui/material';
+import Options from '@/modules/student/components/exercise/ExerciseHeader/Options';
+import ExerciseHeader from '@/modules/student/components/exercise/ExerciseHeader/ExerciseHeader';
 
 interface ExercisePageProps {
     params: {
@@ -16,21 +18,9 @@ interface ExercisePageProps {
 const ExercisePage:FC<ExercisePageProps> =  async ({params}) => {
     return (
         <StudentExerciseProvider courseId={params.id}>
-            <Paper elevation={4} sx={{padding:'20px 50px'}}>
-                <Grid container spacing={2}>
-                    <Grid item md={5}>
-                        <Exercise.ExerciseHeader.Description/>
-                    </Grid>
-                    <Grid item  md={4}>
-                        <Exercise.ExerciseHeader.Utils/>
-                    </Grid>
-                    <Grid item md={3}>
-                        <Exercise.ExerciseHeader.Grade/>
-                    </Grid>
-                </Grid>
-            </Paper>
+            <ExerciseHeader/>
             <Box sx={{width:'100%', justifyContent:'left', display:'flex'}}>
-                <Exercise.ExerciseHeader.Options/>
+                <Options/>
             </Box>
             <Exercise.ExerciseModule.Tabs/>
         </StudentExerciseProvider>

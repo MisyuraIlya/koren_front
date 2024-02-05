@@ -10,6 +10,8 @@ import { AdminExerciseService } from '@/modules/admin/services/adminExercise.ser
 interface AdminContextType {
     exercise: IExercise | undefined
     isLoading: boolean
+    closeHeaderExercise: boolean
+    setCloseHeaderExerise: (value: boolean) => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -30,6 +32,7 @@ interface StudentExerciseProviderProps {
 
 const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) => {
   const [choosedTab, setChoosedTab] = useState<number>(0)
+  const [closeHeaderExercise, setCloseHeaderExerise] = useState<boolean>(true)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [loading, setLoading] = useState(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
@@ -60,6 +63,8 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
   const value: AdminContextType = {
     exercise,
     isLoading,
+    closeHeaderExercise,
+    setCloseHeaderExerise
  
   };
 
