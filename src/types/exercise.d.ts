@@ -9,6 +9,7 @@ interface IExercise extends Idefinder{
     pdf: string
     isInTheBook: boolean
     tabs: ITab[] 
+    histories: IHistory[]
 }
 
 interface ITab extends Idefinder {
@@ -50,6 +51,8 @@ interface IObjective extends Idefinder {
 interface IAnswer extends Idefinder {
     value: string
     objective: string
+    answers: IStudentAnswer[]
+
 }   
 
 interface IValue extends Idefinder {
@@ -82,3 +85,17 @@ interface TasksSplit {
 
 type specialModuleType = 'imageRight' | 'mixDrag' | 'copy' | 'splitedScreenLeft' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'doneSplitedScreenLeft' | 'properties' | 'table' | 'tableClear' | 'video' | 'chart' | 'pdf' | 'explanation' 
 type ModuleType = "word" | "orden" | "instruction" | "subInstruction" | "text" | "input" | "selectbox" | "explanation" | "rootInput" | "mix" | "bank" | 'mixDrag' | 'checkBox' | 'imageRight' |  'imageLeft' |'merged' | 'table' | 'questInstruction' | 'openQuestion' | 'mergedExercise' | 'textCopy' | 'headline2' | 'clearText' | 'typedInput' | 'openQuestionHamarot' | 'draftBank' | 'draft' | 'tableClear' | 'video' | 'chart' | 'textCentered' | 'properties' | 'inputCentered' | 'heightSpace' | 'wordBold' | 'ordenBold' | 'story' | 'storyInstruction' | 'storyHeadline' | 'explanationSplited' | 'origin' | 'splitedScreenRight' | 'doneSplitedScreenRight' | 'splitedScreenLeft' | 'doneSplitedScreenLeft' |'numberBold' | 'icon1' | 'icon2' | 'divider' | 'mainHead' | 'secondHead' | 'globalSettings' | 'instructionWhite' | 'border' | 'wordRegular' | 'song' | 'iconDescriptionOne' |'secondHeadWhite' | 'iconDescriptionTwo' | 'circle' | 'overflow' | 'textArea' | 'pdf' |'textModuled' | 'copy'
+
+
+interface IHistory extends Idefinder, IDate {
+    grade: number
+    isDone: boolean
+    totalQuestions: number
+    totalCorrect: number
+    totalUncorrect: number
+}
+
+interface IStudentAnswer extends Idefinder, IDate {
+    isCorrect: boolean
+    value: string
+}

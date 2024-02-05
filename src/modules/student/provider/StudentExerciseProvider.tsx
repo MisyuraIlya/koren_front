@@ -6,6 +6,8 @@ import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control 
 import { onAsk } from '@/utils/sweetAlert';
 import useSWR from 'swr';
 import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
+import { StudentExerciseServices } from '../services/StudentExerciseServices';
+import { useAuth } from '@/modules/auth/store/auth.store';
 
 interface AdminContextType {
     exercise: IExercise | undefined
@@ -36,6 +38,7 @@ interface StudentExerciseProviderProps {
 };
 
 const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) => {
+  const {user} = useAuth()
   const [choosedTab, setChoosedTab] = useState<number>(0)
   const [closeHeaderExercise, setCloseHeaderExerise] = useState<boolean>(true)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
@@ -43,8 +46,8 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
   
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
-    `http://localhost:4001/exercise/${props.courseId}`,
-    () => AdminExerciseService.GetExercise(props.courseId),
+    `http://localhost:4001/exercise/${props.courseId}/${user?.id!}`,
+    () => StudentExerciseServices.GetExerciseStudent(props.courseId, user?.id!),
     {
       revalidateOnFocus: false,
     }

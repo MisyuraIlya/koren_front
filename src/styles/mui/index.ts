@@ -162,19 +162,19 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiBackdrop: {
-      styleOverrides: {
-        root: {
-          backgroundColor: alpha(darken(themeColors.primaryAlt, 0.4), 0.2),
-          backdropFilter: "blur(2px)",
+    // MuiBackdrop: {
+    //   styleOverrides: {
+    //     root: {
+    //       backgroundColor: alpha(darken(themeColors.primaryAlt, 0.4), 0.2),
+    //       backdropFilter: "blur(2px)",
 
-          "&.MuiBackdrop-invisible": {
-            backgroundColor: "transparent",
-            backdropFilter: "blur(2px)",
-          },
-        },
-      },
-    },
+    //       "&.MuiBackdrop-invisible": {
+    //         backgroundColor: "transparent",
+    //         backdropFilter: "blur(2px)",
+    //       },
+    //     },
+    //   },
+    // },
     MuiFormHelperText: {
       styleOverrides: {
         root: {
@@ -283,12 +283,15 @@ const theme = createTheme({
     },
     MuiSelect: {
       styleOverrides: {
+        root: {
+
+        },
         iconOutlined: {
           color: colors.alpha.black[50],
         },
-        icon: {
-          top: "calc(50% - 14px)",
-        },
+        // icon: {
+        //   top: "50%",
+        // },
       },
     },
     MuiChip: {
