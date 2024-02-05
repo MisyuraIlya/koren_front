@@ -11,12 +11,8 @@ interface MainModuleProps {
 }
 
 const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
-
     const {choosedTab} = useStudentExercise()
-    
-
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
-
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
             <Grid container spacing={1}>
@@ -31,7 +27,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                     )}
                 </Grid>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12}>
                 {regular.map((task, taskIndex) => 
                     <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
                 )}

@@ -3,16 +3,12 @@ import { Box } from '@mui/material';
 import { themeColors } from '@/styles/mui';
 import Column from './Column';
 import Row from './Row';
-
 interface TaskProps {
     task: ITask
     tabIndex: number
     taskIndex: number
 }
-
-
 const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
-
     const backgroundColor = () => {
         const isIcon = task.columns.some((item) => item.type === 'icon1')
         const isIcon2 = task.columns.some((item) => item.type === 'icon2')

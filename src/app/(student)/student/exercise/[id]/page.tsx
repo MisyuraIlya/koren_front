@@ -22,8 +22,10 @@ const ExercisePage:FC<ExercisePageProps> =  async ({params}) => {
             <Box sx={{width:'100%', justifyContent:'left', display:'flex'}}>
                 <Options/>
             </Box>
-            <Exercise.ExerciseModule.Tabs/>
-            <Exercise.ExerciseModule.Module/>
+            <Box sx={{width:'100%'}}>
+                <Exercise.ExerciseModule.Tabs/>
+                <Exercise.ExerciseModule.Module/>
+            </Box>
         </StudentExerciseProvider>
     );
 };
