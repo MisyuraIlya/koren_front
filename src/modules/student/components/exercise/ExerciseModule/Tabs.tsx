@@ -1,13 +1,24 @@
 'use client'
-import { Box } from '@mui/material';
+import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { Box, Tab, Tabs as MuiTabs } from '@mui/material';  // Rename Tabs to MuiTabs
 import React from 'react';
 
-const Tabs = () => {
+const CustomTabs = () => {
+    const { exercise, choosedTab, setChoosedTab } = useStudentExercise()
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setChoosedTab(newValue);
+    };
+
     return (
         <Box>
-            Tabs
+            <MuiTabs value={choosedTab} onChange={handleChange} centered>
+                {exercise?.tabs?.map((item, index) =>
+                    <Tab label={item.title} key={index} />
+                )}
+            </MuiTabs>
         </Box>
     );
 };
 
-export default Tabs;
+export default CustomTabs;

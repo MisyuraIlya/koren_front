@@ -12,6 +12,11 @@ interface AdminContextType {
     isLoading: boolean
     closeHeaderExercise: boolean
     setCloseHeaderExerise: (value: boolean) => void
+    choosedTab: number
+    setChoosedTab: (value: number) => void
+    register: UseFormRegister<IExercise>
+    setValue: UseFormSetValue<any>
+    control: Control<IExercise, any>
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -64,8 +69,12 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     exercise,
     isLoading,
     closeHeaderExercise,
-    setCloseHeaderExerise
- 
+    setCloseHeaderExerise,
+    choosedTab,
+    setChoosedTab,
+    register,
+    setValue,
+    control,
   };
 
   return (

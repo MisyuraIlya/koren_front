@@ -1,4 +1,6 @@
 import Tabs from "./Tabs"
+import Module from "./Module"
 export default {
-    Tabs:Tabs
+    Tabs:Tabs,
+    Module:Module
 }
