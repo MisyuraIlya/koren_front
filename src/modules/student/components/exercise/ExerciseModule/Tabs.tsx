@@ -5,7 +5,7 @@ import React from 'react';
 
 const CustomTabs = () => {
     const { exercise, choosedTab, setChoosedTab } = useStudentExercise()
-
+    
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setChoosedTab(newValue);
     };
@@ -13,7 +13,7 @@ const CustomTabs = () => {
     return (
         <Box>
             <MuiTabs value={choosedTab} onChange={handleChange} centered>
-                {exercise?.tabs?.map((item, index) =>
+                {exercise && exercise?.tabs?.length > 1 && exercise?.tabs?.map((item, index) =>
                     <Tab label={item.title} key={index} />
                 )}
             </MuiTabs>
