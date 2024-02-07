@@ -22,14 +22,17 @@ const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => (
   
 
 const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    const {exercise} = useStudentExercise()
-    const {setValue} = useStudentExercise()
-    const [age, setAge] = React.useState('');
+    const {exercise,handleAnswer} = useStudentExercise()
     const isCorrect = objective?.answers?.[0]?.answers?.[0]?.isCorrect ?? false;
-    console.log('exercise',exercise)
+    const isDone = exercise?.histories[0]?.isDone ?? false;
+    const StudentAnswer = objective?.answers?.[0]?.answers[0]?.value ?? ''
 
+
+    const [answer, setAnswer] = React.useState(StudentAnswer);
+    
     const handleChange = (event: SelectChangeEvent<unknown>) => {
-        setAge(event.target.value as string);
+        setAnswer(event.target.value as string);
+        handleAnswer(objective.answers[0],event.target.value as string)
     };
 
     return (
@@ -39,9 +42,9 @@ const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
                 <FormControl error={!isCorrect && exercise?.histories[0]?.isDone} >
                     <CustomSelect
                         placeholder={objective.placeholder}
-                        value={age}
+                        value={answer}
                         onChange={handleChange}
-                        isCorrect={isCorrect && exercise?.histories[0]?.isDone}
+                        isCorrect={isCorrect && isDone}
                     >
                         <MenuItem value="">
                             <em>בחירה</em>

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
-import { onAsk } from '@/utils/sweetAlert';
+import { onAsk, onInfoAlert } from '@/utils/sweetAlert';
 import useSWR from 'swr';
 import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
 import { StudentExerciseServices } from '../services/StudentExerciseServices';
@@ -16,9 +16,9 @@ interface AdminContextType {
     setCloseHeaderExerise: (value: boolean) => void
     choosedTab: number
     setChoosedTab: (value: number) => void
-    register: UseFormRegister<IExercise>
-    setValue: UseFormSetValue<any>
-    control: Control<IExercise, any>
+    handleAnswer: (objective: IAnswer, answer: string) => void
+    handleDone: () => void
+    handleReset: () => void
 }
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -43,7 +43,6 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
   const [closeHeaderExercise, setCloseHeaderExerise] = useState<boolean>(true)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [loading, setLoading] = useState(false)
-  const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
   
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
     `http://localhost:4001/exercise/${props.courseId}/${user?.id!}`,
@@ -53,19 +52,40 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     }
   );
 
+  const handleAnswer = (objective: IAnswer, answer: string) => {
+    try {
+      const response = StudentExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)
+    } catch(e) {
+      onInfoAlert('אופס','שגיאה' + e)
+    } 
+  }
 
-  useEffect(() => {
-    if(exercise){
-      setValue(`title`,exercise.title);
-      setValue(`description1`,exercise.description1);
-      setValue(`description2`, exercise.description2);
-      setValue('courseId', +props.courseId); 
-      setValue(`module`, exercise.module);
-      setValue(`youtubeLink`, exercise.youtubeLink);
-      setValue(`isInTheBook`, exercise.isInTheBook);
-      setValue(`pdf`, exercise.pdf);
+
+  const handleDone = async () => {
+    try {
+        const ask = await onAsk('בטוח סיימת?','')
+        if(ask){
+          const response = await StudentExerciseServices.updateHistory(exercise?.histories[0]?.id!, true)
+          mutate()
+        }
+    } catch(e) {
+      onInfoAlert('אופס','שגיאה' + e)
     }
-  },[exercise])
+  }
+
+  const handleReset = async () => {
+    try {
+      const ask = await onAsk('להתחיל מחדש?','')
+      if(ask){
+        const response = await StudentExerciseServices.updateHistory(exercise?.histories[0]?.id!, false)
+        mutate()
+      }
+  } catch(e) {
+    onInfoAlert('אופס','שגיאה' + e)
+  }
+  }
+
+
 
 
   const value: AdminContextType = {
@@ -75,9 +95,9 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     setCloseHeaderExerise,
     choosedTab,
     setChoosedTab,
-    register,
-    setValue,
-    control,
+    handleAnswer,
+    handleDone,
+    handleReset
   };
 
   return (

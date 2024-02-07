@@ -3,6 +3,7 @@ import { useStudentExercise } from '@/modules/student/provider/StudentExercisePr
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import MainModule from './MainModule';
+import ExerciseFooter from './ExerciseFooter';
 const Module = () => {
     const {exercise, isLoading} = useStudentExercise()
     return (
@@ -15,6 +16,7 @@ const Module = () => {
             {exercise && exercise?.tabs?.map((item, tabIndex) => (
                 <MainModule key={tabIndex} item={item} tabIndex={tabIndex} />
             ))}
+            <ExerciseFooter/>
         </div>
     );
 };
