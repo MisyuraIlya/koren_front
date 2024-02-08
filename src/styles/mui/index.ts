@@ -235,6 +235,17 @@ const theme = createTheme({
         ":root": {
           "--swiper-theme-color": colors.primary.main,
         },
+        '*::-webkit-scrollbar': {
+          width: '1px',
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: themeColors.primary, 
+          borderRadius: '10px',
+        },
+        '*::-webkit-scrollbar-track': {
+          backgroundColor: themeColors.primary,
+        },
+
         code: {
           background: colors.info.lighter,
           color: colors.info.dark,

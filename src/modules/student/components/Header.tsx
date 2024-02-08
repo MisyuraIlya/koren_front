@@ -13,11 +13,12 @@ import { AccountCircle } from '@mui/icons-material';
 import { useAuth } from '@/modules/auth/store/auth.store';
 import NavBar from './NavBar';
 import { useStudentCourses } from '../provider/StudentCoursesProvider';
+import { useRouter } from 'next/navigation';
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const {user} = useAuth()
     const {lvl1Id, lvl1IdCourses} = useStudentCourses()
-
+    const router = useRouter()
     const containerStyle = {
         background: 'linear-gradient(227deg, #2E68F7 0%, #45C3F3 109.92%)',
         minHeight:'64px',
@@ -100,7 +101,7 @@ const Header = () => {
                         </IconButton>
                     </Box>
                     <Divider orientation="vertical" variant="middle" flexItem sx={{background:'#F3F6F9'}}/>
-                    <Box sx={{display:'flex', gap:'10px'}}>
+                    <Box sx={{display:'flex', gap:'10px', cursor:'pointer'}} onClick={() => router.push('/student/courses')}>
                         <Image src={Logo} alt='logo' width={40} height={40} />
                         <Image style={{marginTop:'15px'}} src={LogoTitle} alt='logoTitle' width={150} height={50}/>
                     </Box>
