@@ -36,7 +36,11 @@ const SideBar = ({open}: {open: boolean}) => {
     };
     return (
     <>
-        <List>
+        <List sx={{
+            height:'100vh',
+            zIndex:'100',
+            backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
+        }}>
             <ListItem  disablePadding sx={{ display: 'block', px: 2.5, }}>
                 {!open &&
                 <>
@@ -67,9 +71,8 @@ const SideBar = ({open}: {open: boolean}) => {
                 </>
                 }
             </ListItem>
+
         </List>
-
-
 
         {open &&
             <Box

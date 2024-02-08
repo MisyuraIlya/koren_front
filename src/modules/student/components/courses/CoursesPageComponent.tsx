@@ -68,7 +68,16 @@ const CoursesPageComponent = ({ children }: { children: React.ReactNode }) => {
                         <SideBar open={open}/>
                     </Drawer>
                     <Box onClick={() => setOpen(!open)} sx={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-                        <Box sx={{background:'#3DA4F4', color:'white', padding:'20px 0px', cursor:'pointer', borderTopRightRadius:'5px', borderBottomRightRadius:'5px'}}>
+                        <Box sx={{
+                          background:'#3DA4F4',
+                          position:'fixed', 
+                          color:'white', 
+                          padding:'20px 0px', 
+                          cursor:'pointer', 
+                          borderTopRightRadius:'5px', 
+                          borderBottomRightRadius:'5px',
+                          paddingLeft:'20px',
+                          }}>
                             <ArrowBackIosNewIcon/>
                         </Box>
                     </Box>
