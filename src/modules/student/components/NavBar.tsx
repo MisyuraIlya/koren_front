@@ -39,12 +39,12 @@ const NavBar = () => {
         } else if (lvl === 4) {
             router.push(`/student/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${id}`, {scroll: false})
         } else if (lvl === 5) {
-            router.push(`/student/courses/${lvl1Id}/${lvl2Id}/${lvl3Id}/${lvl4Id}/${id}`, {scroll: false})
+            router.push(`/student/exercise/${id}`, {scroll: false})
         } 
     }
 
     return (
-        <Paper elevation={4} sx={{ position: 'fixed', top: '60px', width: '100%', borderRadius: '0', minHeight: '60px', backgroundColor: '#F0FBFF', display: 'flex', alignItems: 'center' }}>
+        <Paper elevation={4} sx={{ position: 'fixed', zIndex:'1300', top: '60px', width: '100%', borderRadius: '0', minHeight: '60px', backgroundColor: '#F0FBFF', display: 'flex', alignItems: 'center' }}>
             <Select
                 value={selectedLvl1Id}
                 placeholder='פרק'
