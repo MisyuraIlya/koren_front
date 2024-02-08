@@ -57,9 +57,7 @@ const CoursesPageComponent = ({ children }: { children: React.ReactNode }) => {
     const {lvl1Id} = useStudentCourses()
 
     const [open, setOpen] = React.useState(false);
-  
 
-    
     return (
         <Box >
             <Header/>
@@ -82,7 +80,7 @@ const CoursesPageComponent = ({ children }: { children: React.ReactNode }) => {
                         </Box>
                     </Box>
                     
-                    <Box sx={{ flexGrow: 1, p: 3, marginTop:'100px' }}>
+                    <Box sx={{ flexGrow: 1, p: 3, marginTop:'95px' }}>
                         {children}
                     </Box>
                 </Box>

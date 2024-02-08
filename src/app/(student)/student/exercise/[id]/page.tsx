@@ -19,7 +19,7 @@ const ExercisePage:FC<ExercisePageProps> =  async ({params}) => {
     return (
         <StudentExerciseProvider courseId={params.id}>
             <ExerciseHeader/>
-            <Box sx={{width:'100%', justifyContent:'left', display:'flex'}}>
+            <Box sx={{width:'100%', justifyContent:'left', display:'flex', paddingTop:'130px'}}>
                 <Options/>
             </Box>
             <Box sx={{width:'100%'}}>

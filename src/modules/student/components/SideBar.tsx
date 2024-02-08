@@ -1,15 +1,12 @@
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import React, { useState } from 'react';
-import MuiDrawer from '@mui/material/Drawer';
 import { Box, Divider, List, ListItem} from '@mui/material';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import MinCard from './SideBar/MinCard';
 import BigCard from './SideBar/BigCard';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchBigInput from './SideBar/SearchBigInput';
 import { useStudentCourses } from '../provider/StudentCoursesProvider';
 import SecondSideBar from './SideBar/SecondSideBar';
-import zIndex from '@mui/material/styles/zIndex';
 
 const redBoxStyles = {
     width: '300px',
