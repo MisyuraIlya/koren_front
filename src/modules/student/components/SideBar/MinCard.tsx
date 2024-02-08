@@ -5,9 +5,10 @@ import { themeColors } from '@/styles/mui';
 interface MinCardProps {
     type: string
     title:string
+    onClick: () => void
 }
 
-const MinCard:FC<MinCardProps> = ({type, title}) => {
+const MinCard:FC<MinCardProps> = ({type, title,onClick}) => {
     return (
         <Card sx={{
             padding:'15px 0px',
@@ -21,7 +22,9 @@ const MinCard:FC<MinCardProps> = ({type, title}) => {
                 background: themeColors.primary,
                 border:`1px solid ${themeColors.primary}`,
             }
-        }}>
+        }}
+        onClick={() => onClick()}
+        >
             <Box sx={{textAlign:'center'}}>
                 <Typography variant='h5' fontWeight={900}>{type}</Typography>
             </Box>

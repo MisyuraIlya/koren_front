@@ -1,12 +1,13 @@
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import React, { useState } from 'react';
-import { Box, Divider, List, ListItem} from '@mui/material';
+import { Box, Divider, IconButton, List, ListItem} from '@mui/material';
 import MinCard from './SideBar/MinCard';
 import BigCard from './SideBar/BigCard';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchBigInput from './SideBar/SearchBigInput';
 import { useStudentCourses } from '../provider/StudentCoursesProvider';
 import SecondSideBar from './SideBar/SecondSideBar';
+import CloseIcon from '@mui/icons-material/Close';
 
 const redBoxStyles = {
     width: '300px',
@@ -18,19 +19,18 @@ const redBoxStyles = {
     boxShadow: '-8px 0px 20px 0px rgba(0, 0, 0, 0.12)',
 };
 
-const SideBar = ({open}: {open: boolean}) => {
-    const [isHovered, setIsHovered] = useState(false);
+const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => void}) => {
+    const [isOpen, setIsOpen] = useState(false);
     const [courseHovered, setCourseHovered] = useState<number>(0)
     const {lvl1IdCourses} = useStudentCourses()
 
-    const handleHover = (courseId: number) => {
-        setCourseHovered(courseId)
-        setIsHovered(true);
-    };
+    const handleMiniCard = () => {
+        setOpen(true)
+        setTimeout(() => {
+            setIsOpen(!isOpen)
+        },100)
+    }
 
-    const handleHoverEnd = () => {
-        setIsHovered(false);
-    };
     return (
     <>
         <List sx={{
@@ -45,7 +45,12 @@ const SideBar = ({open}: {open: boolean}) => {
                         <SearchIcon sx={{fontSize:'50px', color:'white', cursor:'pointer'}}/>
                     </Box>
                     {lvl1IdCourses?.children?.map((item) =>
-                        <MinCard type={item.id!.toString()} title={item.name}/>
+                        <MinCard 
+                        type={item.id!.toString()} 
+                        title={item.name}
+                        onClick={() => handleMiniCard()}
+
+                        />
                     )}
                     
                 </>
@@ -58,8 +63,7 @@ const SideBar = ({open}: {open: boolean}) => {
                         {lvl1IdCourses?.children?.map((item, key) =>
                             <Box
                                 key={key}
-                                onMouseEnter={() => handleHover(item?.id!)}
-                                onMouseLeave={handleHoverEnd}
+                                onClick={() => setIsOpen(!isOpen)}
                             >
                                 <BigCard title={item.name} type='פרק' totalChildren={item.children.length}/>
                             </Box>
@@ -75,12 +79,13 @@ const SideBar = ({open}: {open: boolean}) => {
             <Box
                 sx={{
                     ...redBoxStyles,
-                    left: !isHovered ? '-300px' : '300px',
+                    left: !isOpen ? '-300px' : '300px',
                     overflow:'auto',
                 }}
-                onMouseEnter={() => handleHover(courseHovered)} 
-                onMouseLeave={handleHoverEnd} 
             >
+                <IconButton onClick={() => setIsOpen(false)}>
+                    <CloseIcon/>
+                </IconButton>
                 <Box sx={{marginTop:'100px'}}>
                     <SecondSideBar courseHovered={courseHovered}/>
                 </Box>

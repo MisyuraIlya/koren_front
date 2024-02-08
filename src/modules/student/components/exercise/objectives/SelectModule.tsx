@@ -5,9 +5,11 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/material';
 
 const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => ({
-    width: 300,
+    width: 400,
     height: 70,
+    fontSize:'23px',
     '&.MuiOutlinedInput-root': {
+
       '& fieldset': {
         borderColor: isCorrect ? 'green' : 'initial',
       },

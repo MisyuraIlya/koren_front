@@ -63,7 +63,7 @@ const CoursesPageComponent = ({ children }: { children: React.ReactNode }) => {
             <Header/>
                 <Box sx={{ display: 'flex' }}>
                     <Drawer variant="permanent" open={open}>
-                        <SideBar open={open}/>
+                        <SideBar open={open} setOpen={setOpen}/>
                     </Drawer>
                     <Box onClick={() => setOpen(!open)} sx={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
                         <Box sx={{
