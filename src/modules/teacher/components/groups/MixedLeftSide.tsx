@@ -5,18 +5,26 @@ import { useGroups } from '../../store/groups.store';
 import { useClasses } from '../../store/classes.store';
 import Image from 'next/image';
 import useDataGroup from '../../hooks/useDataGroup';
+import { onErrorAlert } from '@/utils/sweetAlert';
 const MixedLeftSide = () => {
-    const {teachers,setTeachers, groupNameMixed, setGroupNameMixed, typeMixed} = useGroups()
-    const {classes, setClasses} = useClasses()
+    const {teachers,setTeachers, groupNameMixed, setGroupNameMixed, typeMixed, deleteTeacher} = useGroups()
+    const {classes, setClasses, deleteClass} = useClasses()
     const [openSnack, setOpenSnack] = useState(false)
     const {createGroup} = useDataGroup()
 
     const handleCreate = () => {
+        if(!groupNameMixed){
+            onErrorAlert('צריך להזין שם קבוצה!','')
+            return 
+        }
         createGroup(groupNameMixed,'custom',classes.map((item) => {return item.id.toString()}), 'owner', false ,teachers.map((item) => {return item.id!?.toString()}))
         setOpenSnack(true)
         setClasses([])
         setTeachers([])
         setGroupNameMixed('')
+        setTimeout(() => {
+            setOpenSnack(false)
+        },3000)
     }
     return (
         <Box sx={{display:'flex', justifyContent:'center'}}>
@@ -32,6 +40,7 @@ const MixedLeftSide = () => {
                         <List 
                             sx={{ 
                                 margin:'0',
+                                marginTop:'20px',
                                 padding:'0',
                                 width: '100%', 
                                 bgcolor: 'background.paper',
@@ -45,7 +54,7 @@ const MixedLeftSide = () => {
                                 key={key}
                                 sx={{ border: '1px solid #F3F6F9' }}
                                 secondaryAction={
-                                    <IconButton edge="end" aria-label="delete" >
+                                    <IconButton edge="end" aria-label="delete" onClick={() => deleteTeacher(teacher.id!)}>
                                         <Image src={'/images/teacher/trash.svg'} width={20} height={20} alt='computer' />
                                     </IconButton>
                                 }
@@ -81,7 +90,7 @@ const MixedLeftSide = () => {
                             key={key}
                             sx={{ border: '1px solid #F3F6F9' }}
                             secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
+                                <IconButton edge="end" aria-label="delete" onClick={() => deleteClass(element.id)}>
                                     <Image src={'/images/teacher/trash.svg'} width={20} height={20} alt='computer' />
                                 </IconButton>
                             }
@@ -92,7 +101,7 @@ const MixedLeftSide = () => {
                             </ListItem>
                         )}
                     </List>
-                    <Button variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
+                    <Button disabled={typeMixed === 2 ? classes.length === 0 || teachers.length === 0 : classes.length === 0 } variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
                         שמירה
                     </Button>
                     <Box sx={{position:'relative', marginTop:'30px'}}>

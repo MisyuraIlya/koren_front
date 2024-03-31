@@ -14,6 +14,9 @@ const LeftSide = () => {
         setOpenSnack(true)
         createGroup('','original',classes.map((item) => {return item.id.toString()}),'owner',true)
         setClasses([])
+        setTimeout(() => {
+            setOpenSnack(false)
+        },3000)
     }
     return (
         <Box sx={{display:'flex', justifyContent:'center'}}>
@@ -38,7 +41,7 @@ const LeftSide = () => {
                             <LeftSideItem classItem={item} key={index}/>
                         )}
                     </List>
-                    <Button variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
+                    <Button disabled={classes.length === 0} variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
                         שמירה
                     </Button>
                     <Box sx={{position:'relative', marginTop:'30px'}}>

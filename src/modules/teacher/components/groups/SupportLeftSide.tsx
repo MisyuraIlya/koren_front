@@ -5,6 +5,7 @@ import { Alert, Box, Button, Divider, IconButton, List, ListItem, ListItemText, 
 import Image from 'next/image';
 import useDataGroup from '../../hooks/useDataGroup';
 import { useClasses } from '../../store/classes.store';
+import { onErrorAlert } from '@/utils/sweetAlert';
 
 const SupportLeftSide = () => {
     const {groupName, students, deleteStudent, setStudents, setGroupName} = useGroups()
@@ -13,11 +14,18 @@ const SupportLeftSide = () => {
     const {createGroup} = useDataGroup()
 
     const handleCreate = () => {
+        if(!groupName){
+            onErrorAlert('צריך להזין שם קבוצה!','')
+            return 
+        }
         setOpenSnack(true)
         createGroup(groupName,'custom',[],'support',false,[],students.map((item) => {return item.id!.toString()}))
         setClasses([])
         setStudents([])
         setGroupName('')
+        setTimeout(() => {
+            setOpenSnack(false)
+        },3000)
     }
 
     return (
@@ -25,7 +33,7 @@ const SupportLeftSide = () => {
             <Box sx={{width:'50%'}}>
                 <Box sx={{display:'flex', gap:'10px', marginBottom:'10px'}}>
                     <Typography variant='h6' color={'#0172E880'} fontWeight={400}>
-                        שם הקבוצה   
+                        {groupName ? groupName : <> שם הקבוצה </>  }
                     </Typography>
                 </Box>
                 <Divider sx={{background:'#0172E84D', color:'#0172E84D'}}/>
@@ -59,7 +67,7 @@ const SupportLeftSide = () => {
                     </List>
 
 
-                    <Button variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
+                    <Button disabled={students.length === 0} variant='contained' fullWidth color='secondary' sx={{fontWeight:700, fontSize:'20px', marginTop:'20px'}} onClick={() => handleCreate()}>
                         שמירה
                     </Button>
                     <Box sx={{position:'relative', marginTop:'30px'}}>

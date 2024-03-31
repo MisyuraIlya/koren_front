@@ -20,7 +20,7 @@ const MenuProps = {
 
 
 const RightSide = () => {
-    const {setClasses} = useClasses()
+    const {setClasses,classes} = useClasses()
 
     const handleFunc = (arr: IClass[]) => {
         setClasses(arr)
@@ -36,7 +36,7 @@ const RightSide = () => {
                     </Typography>
                 </Box>
                 <Divider sx={{background:'#0172E84D', color:'#0172E84D'}}/>
-                <ClassForm handle={handleFunc}/>
+                <ClassForm handle={handleFunc} classes={classes}/>
             </Box>
   
         </Box>

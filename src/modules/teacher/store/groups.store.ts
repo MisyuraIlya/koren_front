@@ -9,11 +9,12 @@ interface useGroupsState {
     setGroupName: (value: string) => void
     teachers: IUser[]
     setTeachers: (arr: IUser[]) => void
+    deleteTeacher: (id: number) => void;
     groupNameMixed: string
     setGroupNameMixed: (value: string) => void
     typeMixed: number,
     setTypeMixed: (number : 1 | 2) => void
-
+    clear:() => void
 }
 
 export const useGroups = create(
@@ -27,13 +28,21 @@ export const useGroups = create(
                 }));
             },
             typeMixed:1,
-            setTypeMixed:(number : 1 | 2) => set({typeMixed:number}),
+            setTypeMixed:(number : 1 | 2) => {
+                set({typeMixed:number})
+            },
             groupName:'',
             setGroupName:(value) => set({groupName:value}),
             teachers: [],
             setTeachers: (arr: IUser[]) => set({teachers:arr}),
+            deleteTeacher: (id: number) => {
+                set(prevState => ({
+                  teachers: prevState.teachers.filter(teacher => teacher.id !== id)
+                }));
+            },
             groupNameMixed:'',
             setGroupNameMixed:(value: string) => set({groupNameMixed:value}),
+            clear: () => set({teachers:[],groupNameMixed:'',groupName:'',students:[]})
         }),
         {
             name: 'groups-teacher-storage',

@@ -7,12 +7,19 @@ import Image from 'next/image';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useRouter } from 'next/navigation';
 import { useGroups } from '../store/groups.store';
+import { useClasses } from '../store/classes.store';
 
 const SideBar = () => {
     const [open1, setOpen1] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const {setTypeMixed} = useGroups()
+    const {setTypeMixed,clear} = useGroups()
+    const {setClasses} = useClasses()
     const router = useRouter();
+
+    const handleClear = () => {
+        setClasses([])
+        clear()
+    }
 
     const handleClick = () => {
       setOpen1(!open1);
@@ -38,7 +45,7 @@ const SideBar = () => {
             }
             >
                 <ListItem>
-                    <ListItemButton onClick={() => router.push('/teacher/classes')} sx={{padding:'15px 30px', background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
+                    <ListItemButton onClick={() => {router.push('/teacher/classes'); handleClear()}} sx={{padding:'15px 30px', background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
                         <ListItemIcon>
                             <Image src={'/images/teacher/computer.svg'} width={30} height={30} alt='computer' />
                         </ListItemIcon>
@@ -57,13 +64,13 @@ const SideBar = () => {
                         </ListItemButton>
                         <Collapse in={open1} timeout="auto" unmountOnExit sx={{background:'white', border:'1px solid #D1E1E7', borderBottomRightRadius:'10px', borderBottomLeftRadius:'10px'}}>
                             <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 9 }} onClick={() => router.push('/teacher/groups/support')}>
+                                <ListItemButton sx={{ pl: 9 }} onClick={() => {router.push('/teacher/groups/support');; handleClear()}}>
                                     <ListItemText primary="יצירת קבוצות למידה לתגבור" />
                                 </ListItemButton>
-                                <ListItemButton sx={{ pl: 9 }} onClick={() => {router.push('/teacher/groups/mixedTeacher'); setTypeMixed(1)}}>
+                                <ListItemButton sx={{ pl: 9 }} onClick={() => {router.push('/teacher/groups/mixedTeacher'); setTypeMixed(1); handleClear()}}>
                                     <ListItemText primary="יצירת קבוצות לימוד מכיתת אם אחת" />
                                 </ListItemButton>
-                                <ListItemButton sx={{ pl: 9 }} onClick={() => {router.push('/teacher/groups/mixedTeacher'); setTypeMixed(2)}}>
+                                <ListItemButton sx={{ pl: 9 }} onClick={() => {router.push('/teacher/groups/mixedTeacher'); setTypeMixed(2); handleClear()}}>
                                     <ListItemText primary="יצירת כיתות לימוד עם שני מורים" />
                                 </ListItemButton>
                             </List>

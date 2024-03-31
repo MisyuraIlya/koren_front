@@ -10,8 +10,8 @@ import { useClasses } from '../../store/classes.store';
 
 
 const MixedRightSide = () => {
-    const {setTeachers, groupNameMixed, setGroupNameMixed, typeMixed} = useGroups()
-    const {setClasses} = useClasses()
+    const {setTeachers, groupNameMixed, setGroupNameMixed, typeMixed, teachers} = useGroups()
+    const {setClasses, classes} = useClasses()
     const handleFunc = (arr: IClass[]) => {
         setClasses(arr)
     }
@@ -45,9 +45,9 @@ const MixedRightSide = () => {
                     </Grid>
                 </Box>
                 <Box sx={{marginTop:'20px'}}>
-                    <ClassForm handle={handleFunc}/>
+                    <ClassForm handle={handleFunc} classes={classes}/>
                     {typeMixed == 2 &&
-                        <TeacherForm handle={handleTeacher}/>
+                        <TeacherForm handle={handleTeacher} teachers={teachers}/>
                     }
                 </Box>
             </Box>
