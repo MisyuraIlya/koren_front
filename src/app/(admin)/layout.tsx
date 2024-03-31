@@ -2,7 +2,6 @@ import Header from '@/modules/admin/components/layout/Header';
 import Sidebar from '@/modules/admin/components/layout/Sidebar';
 import '../globals.scss';
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
