@@ -31,6 +31,8 @@ const LoginForm = () => {
             router.push('/admin/courses/1')
         } else if(response?.role === 'student') {
             router.push('/student/courses')
+        }  else if(response?.role === 'teacher') {
+            router.push('/teacher/home')
         }
         reset()
     }

@@ -6,7 +6,11 @@ interface IUser extends Idefinder{
     role: string
     isActive: boolean
     role: Role
+    school: ISchool
+    class: IClass
 }
+
+
 
 interface LoginForm {
     email: string;
@@ -14,8 +18,5 @@ interface LoginForm {
     rememberMe: boolean;
 }
 
-enum Role {
-    Student = 'student',
-    Teacher = 'teacher',
-    Admin = 'admin',
-}
+type Role = 'student' | 'teacher' | 'admin'
+

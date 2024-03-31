@@ -9,6 +9,16 @@ export const AuthService = {
             body: JSON.stringify(obj),
         });
         return response.json()
+    },
+
+    async getUserByTypeAndSchool(type: Role, schoolId: string): Promise<IUser[]> {
+        const response = await fetch(`http://localhost:4001/auth/allUsers/${type}/${schoolId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()
     }
     
 }

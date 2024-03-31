@@ -61,29 +61,29 @@ const CoursesPageComponent = ({ children }: { children: React.ReactNode }) => {
     return (
         <Box >
             <Header/>
-                <Box sx={{ display: 'flex' }}>
-                    <Drawer variant="permanent" open={open}>
-                        <SideBar open={open} setOpen={setOpen}/>
-                    </Drawer>
-                    <Box onClick={() => setOpen(!open)} sx={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-                        <Box sx={{
-                          background:'#3DA4F4',
-                          position:'fixed', 
-                          color:'white', 
-                          padding:'20px 0px', 
-                          cursor:'pointer', 
-                          borderTopRightRadius:'5px', 
-                          borderBottomRightRadius:'5px',
-                          paddingLeft:'20px',
-                          }}>
-                            <ArrowBackIosNewIcon/>
-                        </Box>
-                    </Box>
-                    
-                    <Box sx={{ flexGrow: 1, p: 3, marginTop:'95px' }}>
-                        {children}
+            <Box sx={{ display: 'flex' }}>
+                <Drawer variant="permanent" open={open}>
+                    <SideBar open={open} setOpen={setOpen}/>
+                </Drawer>
+                <Box onClick={() => setOpen(!open)} sx={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
+                    <Box sx={{
+                      background:'#3DA4F4',
+                      position:'fixed', 
+                      color:'white', 
+                      padding:'20px 0px', 
+                      cursor:'pointer', 
+                      borderTopRightRadius:'5px', 
+                      borderBottomRightRadius:'5px',
+                      paddingLeft:'20px',
+                      }}>
+                        <ArrowBackIosNewIcon/>
                     </Box>
                 </Box>
+                
+                <Box sx={{ flexGrow: 1, p: 3, marginTop:'95px' }}>
+                    {children}
+                </Box>
+            </Box>
         </Box>
     );
 };
