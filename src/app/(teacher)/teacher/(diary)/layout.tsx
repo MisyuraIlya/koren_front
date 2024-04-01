@@ -6,7 +6,6 @@ import { Box, Collapse, Grid, List, ListItem, ListItemButton, ListItemIcon, List
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  console.log('children',children)
   return (
     <>
     <Box sx={{ flex: 1, marginTop:'20px' }}>

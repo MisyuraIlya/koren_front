@@ -1,3 +1,4 @@
+import NavBar from '@/modules/teacher/components/exercise/NavBar';
 import React from 'react';
 
 interface ExercisePageProps {
@@ -11,9 +12,9 @@ interface ExercisePageProps {
 
 const page = async (page: ExercisePageProps) => {
     return (
-        <div>
-            exercise
-        </div>
+        <>
+            <NavBar/>
+        </>
     );
 };
 

@@ -1,20 +1,28 @@
 import { Box, Card, Typography } from '@mui/material';
 import React, {FC} from 'react';
 import { themeColors } from '@/styles/mui';
+import { useCourses } from '@/provider/CourseProvider';
 
 interface MinCardProps {
-    type: string
-    title:string
+    index: number
+    item:ICourse
     onClick: () => void
 }
 
-const MinCard:FC<MinCardProps> = ({type, title,onClick}) => {
+const MinCard:FC<MinCardProps> = ({index, item, onClick}) => {
+    const {lvl2} = useCourses()
+    const convertToHebrew = (index: number) => {
+        const hebrewAlphabet = 'אבגדהוזחטיכלמנסעפצקרשת';
+        return hebrewAlphabet[index];
+    };
+
+      
     return (
         <Card sx={{
             padding:'15px 0px',
-            background:'none', 
+            background:lvl2 == item.id ? themeColors.primary :'none', 
             color:'white', 
-            border:'1px solid white',
+            border: lvl2 == item.id ? `1px solid ${themeColors.primary}` :'1px solid white', 
             transition: 'background 0.2s', 
             marginTop:'10px',
             cursor:'pointer',
@@ -26,10 +34,10 @@ const MinCard:FC<MinCardProps> = ({type, title,onClick}) => {
         onClick={() => onClick()}
         >
             <Box sx={{textAlign:'center'}}>
-                <Typography variant='h5' fontWeight={900}>{type}</Typography>
+                <Typography variant='h5' fontWeight={900}>{convertToHebrew(index)}</Typography>
             </Box>
             <Box sx={{textAlign:'center'}}>
-                <Typography variant='body2' fontWeight={700}>{title}</Typography>
+                <Typography variant='body2' fontWeight={700}>{item.name}</Typography>
             </Box>
         </Card>
     );

@@ -2,13 +2,14 @@ import { Box, Card, Typography } from '@mui/material';
 import React from 'react';
 import { themeColors } from '@/styles/mui';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { useStudentCourses } from '../../provider/StudentCoursesProvider';
+import { useStudentCourses } from '../../../modules/student/provider/StudentCoursesProvider';
 import { useRouter } from 'next/navigation';
+import { useCourses } from '@/provider/CourseProvider';
 const FourthCard = ({item} : {item: ICourse}) => {
     const router = useRouter()
-    
+    const {lvl1,lvl2,lvl3,lvl4} = useCourses()
     const handlePush = () => {
-        router.push(`/student/exercise/${item.id}`, {scroll: false})
+        router.push(`/teacher/exercise/${lvl1}/${lvl2}/${lvl3}/${lvl4}/${item.id}`, {scroll: false})
     }
     return (
         <Box sx={{marginTop:'10px'}}>

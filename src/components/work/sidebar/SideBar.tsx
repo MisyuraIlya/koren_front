@@ -1,13 +1,12 @@
-import { styled, Theme, CSSObject } from '@mui/material/styles';
 import React, { useState } from 'react';
-import { Box, Divider, IconButton, List, ListItem} from '@mui/material';
-import MinCard from './SideBar/MinCard';
-import BigCard from './SideBar/BigCard';
+import { Box, IconButton, List, ListItem} from '@mui/material';
+import MinCard from './MinCard';
+import BigCard from './BigCard';
 import SearchIcon from '@mui/icons-material/Search';
-import SearchBigInput from './SideBar/SearchBigInput';
-import { useStudentCourses } from '../provider/StudentCoursesProvider';
-import SecondSideBar from './SideBar/SecondSideBar';
+import SearchBigInput from './SearchBigInput';
+import SecondSideBar from './SecondSideBar';
 import CloseIcon from '@mui/icons-material/Close';
+import { useCourses } from '@/provider/CourseProvider';
 
 const redBoxStyles = {
     width: '300px',
@@ -21,8 +20,8 @@ const redBoxStyles = {
 
 const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => void}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [courseHovered, setCourseHovered] = useState<number>(0)
-    const {lvl1IdCourses} = useStudentCourses()
+    const [courseChoosed, setCourseChoosed] = useState<number>(0)
+    const {lvl2IdCourses} = useCourses()
 
     const handleMiniCard = () => {
         setOpen(true)
@@ -44,31 +43,28 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                     <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'90px'}}>
                         <SearchIcon sx={{fontSize:'50px', color:'white', cursor:'pointer'}}/>
                     </Box>
-                    {lvl1IdCourses?.children?.map((item) =>
+                    {lvl2IdCourses?.children?.map((item,index) =>
                         <MinCard 
-                        type={item.id!.toString()} 
-                        title={item.name}
+                        index={index} 
+                        item={item}
                         onClick={() => handleMiniCard()}
 
                         />
                     )}
                     
                 </>
-        
                 }
                 {open &&
                 <>
                     <SearchBigInput/>
-        
-                        {lvl1IdCourses?.children?.map((item, key) =>
-                            <Box
-                                key={key}
-                                onClick={() => setIsOpen(!isOpen)}
-                            >
-                                <BigCard title={item.name} type='פרק' totalChildren={item.children.length}/>
-                            </Box>
-
-                        )}
+                    {lvl2IdCourses?.children?.map((item, key) =>
+                        <Box
+                            key={key}
+                            onClick={() => {setIsOpen(!isOpen);setCourseChoosed(item.id!)}}
+                        >
+                            <BigCard item={item} index={key} totalChildren={item.children.length}/>
+                        </Box>
+                    )}
                 </>
                 }
             </ListItem>
@@ -87,7 +83,7 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                     <CloseIcon/>
                 </IconButton>
                 <Box sx={{marginTop:'100px'}}>
-                    <SecondSideBar courseHovered={courseHovered}/>
+                    <SecondSideBar courseHovered={courseChoosed}/>
                 </Box>
             </Box>
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header';
-import SideBar from '../SideBar';
+import SideBar from '../../../../components/work/sidebar/SideBar';
 import { useStudentCourses } from '../../provider/StudentCoursesProvider';
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';

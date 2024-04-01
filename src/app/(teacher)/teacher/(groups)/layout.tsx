@@ -5,7 +5,6 @@ import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCourse
 import { Box, Grid } from "@mui/material";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  console.log('children',children)
   return (
     <>
     <Box sx={{ flex: 1, marginTop:'20px' }}>

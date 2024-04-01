@@ -11,7 +11,9 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 const containerStyle = {
     background: 'linear-gradient(144deg, #0990FF 7.34%, #58B4FF 125.95%)',
-    padding:'20px 30px'
+    padding:'20px',
+    textAlign:'center',
+    width:'300px'
 };
 
 const Header = () => {
@@ -44,35 +46,33 @@ const Header = () => {
                 <Box style={containerStyle}>
                     <Typography variant='h6'>{'בנתיבי התחביר והצורות'}</Typography>
                 </Box>
-                <Box>
-                    <IconButton
-                        size="large"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                        color="inherit"
-                    >
-                        <List sx={{ width: '100%', height:'40px' }}>
-                            <ListItem  sx={{ width: '100%', height:'40px' }}>
-                                <ListItemAvatar >
+                <Box >
+                    <List sx={{ width: '100%',padding:'0', margin:'0'}}>
+                        <ListItem  sx={{ width: '100%', cursor:'pointer'}} onClick={handleMenu}>
+                            <ListItemAvatar>
                                 <Avatar>
-                                    <AccountCircle />
-                                </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary={`${user?.firstName} ${user?.lastName}`} secondary={`${user?.school.title}`} sx={{color:'white'}}/>
-                            </ListItem>
-                        </List>
-           
-
-                    </IconButton>
+                            <AccountCircle />
+                            </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText 
+                            primary={`${user?.firstName} ${user?.lastName}`} 
+                            secondary={`asdasd`}
+                            id="menu-appbar" 
+                            sx={{ 
+                                '& .MuiListItemText-secondary': { 
+                                    color: 'white',
+                                },
+                            }}
+                            />
+                        </ListItem>
+                    </List>
                     <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}
-                        anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                        }}
+                        // anchorOrigin={{
+                        // vertical: 'top',
+                        // horizontal: 'right',
+                        // }}
                         keepMounted
                         transformOrigin={{
                         vertical: 'top',

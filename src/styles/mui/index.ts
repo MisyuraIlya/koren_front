@@ -404,15 +404,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          border:'none',
-          backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
-          marginTop: '120px',
-        },
-      },
-    },
+
   },
 })
 

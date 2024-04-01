@@ -1,12 +1,11 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
-import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCoursesProvider";
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useState } from "react";
-import SideBar from "@/modules/student/components/SideBar";
+import SideBar from '@/components/work/sidebar/SideBar';
+import { CoursesProvider } from "@/provider/CourseProvider";
 
 const drawerWidth = 300;
 
@@ -31,8 +30,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
     },
 });
 
-
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
@@ -51,36 +48,42 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
   
-  
-
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   const [open, setOpen] = useState(false);
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Drawer variant="permanent" open={open}>
-        {/* <SideBar open={open} setOpen={setOpen}/> */}
-      </Drawer>
-      <Box onClick={() => setOpen(!open)} sx={{height:'80vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-          <Box sx={{
-            background:'#3DA4F4',
-            position:'fixed', 
-            color:'white', 
-            padding:'20px 0px', 
-            cursor:'pointer', 
-            borderTopRightRadius:'5px', 
-            borderBottomRightRadius:'5px',
-            paddingLeft:'20px',
-            }}>
-              <ArrowBackIosNewIcon/>
-          </Box>
+    <CoursesProvider>
+      <Box sx={{ display: 'flex' }}>
+        <Drawer variant="permanent" open={open}   sx={{
+          '& .MuiDrawer-paper': {
+            border: 'none',
+            backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
+            marginTop: '132px',
+          },
+        }}>
+          <SideBar open={open} setOpen={setOpen}/>
+        </Drawer>
+        <Box onClick={() => setOpen(!open)} sx={{height:'80vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <Box sx={{
+              background:'#3DA4F4',
+              position:'fixed', 
+              color:'white', 
+              padding:'20px 0px', 
+              cursor:'pointer', 
+              borderTopRightRadius:'5px', 
+              borderBottomRightRadius:'5px',
+              paddingLeft:'20px',
+              }}>
+                <ArrowBackIosNewIcon/>
+            </Box>
+        </Box>
+        
+        <Box sx={{ flexGrow: 1, p: 3, padding:'0'}}>
+            {children}
+        </Box>
       </Box>
-      
-      <Box sx={{ flexGrow: 1, p: 3}}>
-          {children}
-      </Box>
-    </Box>
+    </CoursesProvider>
+
   );
 }

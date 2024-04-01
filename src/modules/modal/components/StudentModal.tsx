@@ -15,9 +15,9 @@ const StudentModal = ({ active, setActive }: { active: boolean; setActive: (e: b
     
     return (
         <StyledModal open={active} onClose={() => setActive(false)}>
-        <div>
-            as
-        </div>
+            <div>
+                as
+            </div>
         </StyledModal>
     );
 };
