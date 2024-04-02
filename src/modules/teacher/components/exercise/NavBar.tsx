@@ -216,7 +216,9 @@ const NavBar = () => {
 
 
                             <FormControlLabel value="other" control={<Radio />} label="מבחן" />
-                            
+                            <Button variant='contained'>
+                                שליחה
+                            </Button>
                         </RadioGroup>
                     </FormControl>
                 </Box>

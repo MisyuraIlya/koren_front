@@ -2,7 +2,7 @@
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 import { useStudentCourses } from '../../provider/StudentCoursesProvider';
-import CourseCard from './CourseCard';
+import CourseCard from '../../../../components/work/courses/CourseCard';
 
 const CoursesList = () => {
     const {courses} = useStudentCourses()

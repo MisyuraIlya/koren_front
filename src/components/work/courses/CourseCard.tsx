@@ -3,11 +3,12 @@ import { Box, Card, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { themeColors } from '@/styles/mui';
 import { useRouter } from 'next/navigation';
+import { useGlobalCourses } from '@/store/globalCourses';
 interface CourseCardProps {
     course: ICourse;
 }
 const CourseCard:FC<CourseCardProps> = ({course}) => {
-
+    const {setMainCourse} = useGlobalCourses()
     const router = useRouter()
 
     const dropShadowStyle = {
@@ -19,7 +20,7 @@ const CourseCard:FC<CourseCardProps> = ({course}) => {
             style={dropShadowStyle} 
             sx={{position:'relative', width:'300px', height:'300px', cursor:'pointer'}} 
             elevation={4}
-            onClick={() => router.push(`/student/courses/${course?.id}`)}
+            onClick={() => {router.push(`/teacher/courses/${course?.id}/0/0/0/0`); setMainCourse(course)}}
         >
             <Box sx={{marginTop:'50px'}}>
                 <Typography variant='h5' fontWeight={900} textAlign={'center'}>

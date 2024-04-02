@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { AppBar, Avatar, Badge, Box, Divider, FormControl, hexToRgb, IconButton, InputLabel, List, ListItem, ListItemAvatar, ListItemText, Menu, MenuItem, Select, SelectChangeEvent, Toolbar, Tooltip, Typography } from '@mui/material';
+import React from 'react';
+import { AppBar, Avatar, Badge, Box, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Menu, MenuItem, Select, Toolbar, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
-import { AccountCircle, Height, Padding } from '@mui/icons-material';
+import { AccountCircle } from '@mui/icons-material';
 import { useAuth } from '@/modules/auth/store/auth.store';
 import Logo from '@/../public/images/logo.svg';
 import LogoTitle from '@/../public/images/logoTitle.svg';
@@ -9,6 +9,8 @@ import useDataTeacherGroups from '../hooks/useDataTeacherGroups';
 import TeacherNavBar from './shared/TeacherNavBar';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import { useTeacherWork } from '../store/work.store';
+import { useGlobalCourses } from '@/store/globalCourses';
 const containerStyle = {
     background: 'linear-gradient(144deg, #0990FF 7.34%, #58B4FF 125.95%)',
     padding:'20px',
@@ -18,6 +20,8 @@ const containerStyle = {
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const {mainCourse} = useGlobalCourses()
+    const {setClassesChoosed, setStudentChoosed, studentChoosed, classChoosed, groupSelected, setSelectedGroup} = useTeacherWork()
     const {data} = useDataTeacherGroups()
     const router = useRouter()
     const {user} = useAuth()
@@ -31,20 +35,29 @@ const Header = () => {
         setAnchorEl(null);
     };
 
-    const [groupSelected, setSelectedGroup] = useState<ITeacherGroup | null>();
-    const [selectedUser, setSelectedUser] = useState('')
-    
-    const handleChange = (event: SelectChangeEvent) => {
-        const find = data?.find((item) => item.uuid == event.target.value)
-        setSelectedGroup(find)
-        setSelectedUser('')
-    };
+
+    const handleClassChoose = (uuid:string) => {
+        const find = data?.find((item) => item.uuid === uuid)
+        if(find) {
+            setSelectedGroup(find)
+            setClassesChoosed(find)
+            setStudentChoosed(null)
+        }
+    }
+
+    const handleStudentChoose = (studentChoosed:number) => {
+        const findClass = data?.find((item) => item.title === classChoosed?.title)
+        const findUser = findClass?.students.find((user) => user.id === studentChoosed)
+        if(findUser) {
+            setStudentChoosed(findUser)
+        }
+    }
   
     return (
         <AppBar position="sticky">
             <Toolbar style={{paddingRight:'0px'}}>
-                <Box style={containerStyle}>
-                    <Typography variant='h6'>{'בנתיבי התחביר והצורות'}</Typography>
+                <Box sx={containerStyle}>
+                    <Typography variant='h6' style={{minHeight:'32px'}}>{mainCourse?.name}</Typography>
                 </Box>
                 <Box >
                     <List sx={{ width: '100%',padding:'0', margin:'0'}}>
@@ -69,10 +82,6 @@ const Header = () => {
                     <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}
-                        // anchorOrigin={{
-                        // vertical: 'top',
-                        // horizontal: 'right',
-                        // }}
                         keepMounted
                         transformOrigin={{
                         vertical: 'top',
@@ -115,8 +124,8 @@ const Header = () => {
                 <Box sx={{display:'flex', gap:'20px'}}>
                     <Select
                         sx={{bgcolor:'#F0FBFF', minWidth:'150px', height:'35px'}}
-                        value={groupSelected?.uuid}
-                        onChange={handleChange}
+                        value={classChoosed?.uuid}
+                        onChange={(e) => handleClassChoose(e.target.value)}
                         autoWidth
                     >
                         {data?.map((item,index) => 
@@ -125,12 +134,12 @@ const Header = () => {
                     </Select>
                     <Select
                         sx={{bgcolor:'#F0FBFF', minWidth:'150px', height:'35px'}}
-                        value={selectedUser}
-                        onChange={(e) => setSelectedUser(e.target.value)}
+                        value={studentChoosed?.id}
+                        onChange={(e) => handleStudentChoose(+e.target.value)}
                         autoWidth
                     >
                         {groupSelected?.students?.map((item,index) =>
-                        <MenuItem key={index} value={item.id}>{item.firstName}</MenuItem>
+                            <MenuItem key={index} value={item.id}>{item.firstName}</MenuItem>
                         )}
                     </Select>
                 </Box>
