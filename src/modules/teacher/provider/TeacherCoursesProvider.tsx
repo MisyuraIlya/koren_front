@@ -38,7 +38,6 @@ const TeacherCoursesProvider: React.FC<TeacherCoursesProviderProps> = (props) =>
       revalidateOnFocus: false, 
     }
   );
-  console.log('data',data)
   const {courses, exercise } = useParams()
   const lvl1 = exercise ? exercise?.[0] : courses?.[0] ?? 0;
   const lvl2 = exercise ? exercise?.[1] : courses?.[1] ?? 0;
