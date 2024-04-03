@@ -1,3 +1,4 @@
+"use client"
 import LeftSide from '@/modules/teacher/components/classes/LeftSide';
 import RightSide from '@/modules/teacher/components/classes/RightSide';
 import { Box, Grid } from '@mui/material';
