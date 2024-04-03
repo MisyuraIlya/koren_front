@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+
+const LOCAL_API_BASE_PATH = 'http://localhost:4001'
+const PUBLIC_API_BASE_PATH = 'http://3.74.228.194:4001'
+
 const nextConfig = {
 
   reactStrictMode: false,
@@ -24,6 +28,22 @@ const nextConfig = {
       },
       {
         source: '/answers/:slug*',
+        destination: `http://3.74.228.194:4001/answers/:slug*`
+      },
+      {
+        source: '/school/:slug*',
+        destination: `http://3.74.228.194:4001/answers/:slug*`
+      },
+      {
+        source: '/class/:slug*',
+        destination: `http://3.74.228.194:4001/answers/:slug*`
+      },
+      {
+        source: '/group/:slug*',
+        destination: `http://3.74.228.194:4001/answers/:slug*`
+      },
+      {
+        source: '/confirmation/:slug*',
         destination: `http://3.74.228.194:4001/answers/:slug*`
       }
     ]
