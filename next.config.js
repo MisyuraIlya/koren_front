@@ -12,19 +12,19 @@ const nextConfig = {
     return [
       {
         source: '/auth/:slug*',
-        destination: `http://localhost:4001/auth/:slug*`
+        destination: `http://3.74.228.194:4001/auth/:slug*`
       },
       {
         source: '/courses/:slug*',
-        destination: `http://localhost:4001/courses/:slug*`
+        destination: `http://3.74.228.194:4001/courses/:slug*`
       },
       {
         source: '/exercises/:slug*',
-        destination: `http://localhost:4001/exercises/:slug*`
+        destination: `http://3.74.228.194:4001/exercises/:slug*`
       },
       {
         source: '/answers/:slug*',
-        destination: `http://localhost:4001/answers/:slug*`
+        destination: `http://3.74.228.194:4001/answers/:slug*`
       }
     ]
   }

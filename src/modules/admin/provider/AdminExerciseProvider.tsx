@@ -79,7 +79,7 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
         isInTheBook: false, 
         tabs: [],
     };
-      mutate(exercise, false)
+      // mutate(exercise, false)
     }
   }
 

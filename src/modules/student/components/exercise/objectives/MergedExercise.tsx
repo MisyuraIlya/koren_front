@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import InputModule from './InputModule';
-import ToolTip from '../ToolTip';
+// import ToolTip from '../ToolTip';
 import ReactSelect from 'react-select'
 import { Controller } from 'react-hook-form'
 type MergedExerciseProps = {
@@ -55,9 +55,9 @@ const MergedExercise:FC<MergedExerciseProps> = ({tab, CustomTableWidth, mergedDa
                         />
 
                     </div>
-                    {(mergedData?.previous?.placeholder || mergedData?.previous?.collectionAnswers.length > 1) &&
+                    {/* {(mergedData?.previous?.placeholder || mergedData?.previous?.collectionAnswers.length > 1) &&
                         <ToolTip placeholder={mergedData?.previous?.placeholder} answers={mergedData?.previous?.collectionAnswers} />
-                    }
+                    } */}
                 </div>
                 }
                 {mergedData?.previous?.module_type === 'selectbox' &&
@@ -96,9 +96,9 @@ const MergedExercise:FC<MergedExerciseProps> = ({tab, CustomTableWidth, mergedDa
                             />
 
                         </div>
-                        {(mergedData?.previous?.placeholder || mergedData?.previous?.collectionAnswers.length > 1) &&
+                        {/* {(mergedData?.previous?.placeholder || mergedData?.previous?.collectionAnswers.length > 1) &&
                             <ToolTip placeholder={mergedData?.previous?.placeholder} answers={mergedData?.previous?.collectionAnswers} />
-                        }
+                        } */}
                     </div>
                 }
                 {mergedData?.next?.module_type === 'selectbox' &&

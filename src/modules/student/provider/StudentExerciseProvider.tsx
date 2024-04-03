@@ -19,7 +19,9 @@ interface AdminContextType {
     handleAnswer: (objective: IAnswer, answer: string) => void
     handleDone: () => void
     handleReset: () => void
+    setValue: any
 }
+
 
 const AdminContext = createContext<AdminContextType | null>(null);
 
@@ -85,7 +87,7 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
   }
   }
 
-
+  const setValue = () => console.log('FIX')
 
 
   const value: AdminContextType = {
@@ -97,7 +99,8 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     setChoosedTab,
     handleAnswer,
     handleDone,
-    handleReset
+    handleReset,
+    setValue
   };
 
   return (
