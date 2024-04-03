@@ -26,6 +26,7 @@ const NavBarNavigation = () => {
         } 
     }
 
+    const isDisabled = (lvl5IdCourses?.confirmations?.length ?? 0) > 0;
     return (
         <>
         {(exercise || courses) && 
@@ -67,7 +68,7 @@ const NavBarNavigation = () => {
                 sx={{ width:'160px', background: 'white', margin: '10px', height: '30px' }}
             >
                 {lvl5IdCourses?.children?.map((course) =>
-                    <MenuItem  value={course.id}>{course.name}</MenuItem>
+                    <MenuItem  value={course.id} disabled={!isDisabled}>{course.name}</MenuItem>
                 )}
             </Select>
         </Box>

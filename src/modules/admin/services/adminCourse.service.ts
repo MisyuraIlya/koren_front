@@ -1,7 +1,7 @@
 
 export const AdminCourseService = {
-    async GetCourses(): Promise<ICourse[]>{
-        const response = await fetch(`http://localhost:4001/course`)
+    async GetCourses(userId: number): Promise<ICourse[]>{
+        const response = await fetch(`http://localhost:4001/course/${userId}`)
         return response.json()
     },
 

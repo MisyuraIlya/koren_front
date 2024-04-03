@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { AppBar, Avatar, Badge, Box, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Menu, MenuItem, Select, Toolbar, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -15,7 +16,7 @@ const containerStyle = {
     background: 'linear-gradient(144deg, #0990FF 7.34%, #58B4FF 125.95%)',
     padding:'20px',
     textAlign:'center',
-    width:'300px'
+    width:'300px',
 };
 
 const Header = () => {
@@ -24,7 +25,7 @@ const Header = () => {
     const {setClassesChoosed, setStudentChoosed, studentChoosed, classChoosed, groupSelected, setSelectedGroup} = useTeacherWork()
     const {data} = useDataTeacherGroups()
     const router = useRouter()
-    const {user} = useAuth()
+    const {user, logout} = useAuth()
     const path = usePathname()
     const isAllowNavBar = path.includes('/teacher/home') || path.includes('/teacher/courses') || path.includes('/teacher/exercise')
 
@@ -33,6 +34,8 @@ const Header = () => {
       };
     const handleClose = () => {
         setAnchorEl(null);
+        router.push('/')
+        logout()
     };
 
 
@@ -57,7 +60,7 @@ const Header = () => {
         <AppBar position="sticky">
             <Toolbar style={{paddingRight:'0px'}}>
                 <Box sx={containerStyle}>
-                    <Typography variant='h6' style={{minHeight:'32px'}}>{mainCourse?.name}</Typography>
+                    <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer'}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name}</Typography>
                 </Box>
                 <Box >
                     <List sx={{ width: '100%',padding:'0', margin:'0'}}>
@@ -90,12 +93,11 @@ const Header = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>פרופיל</MenuItem>
                         <MenuItem onClick={handleClose}>יציאה</MenuItem>
                     </Menu>
                 </Box>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{background:'#F3F6F9'}}/>
-                <Box>
+                <Box sx={{ml:'10px'}}>
                     <Tooltip title="עמוד בית">
                         <IconButton onClick={() => router.push('/teacher/courses')}>
                             <Image src={'/images/teacher/home.svg'} alt='' width={30} height={30}/>
@@ -128,7 +130,7 @@ const Header = () => {
                         onChange={(e) => handleClassChoose(e.target.value)}
                         autoWidth
                     >
-                        {data?.map((item,index) => 
+                        {data && Array.isArray(data) &&  data?.map((item,index) => 
                             <MenuItem key={index} value={item.uuid}>{item.title}</MenuItem>
                         )}
                     </Select>

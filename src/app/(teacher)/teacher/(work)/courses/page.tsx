@@ -10,7 +10,7 @@ const page = () => {
         <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', height:'100%'}}>
             <Box sx={{width:'60%'}}>
                 <Grid container spacing={4}>
-                    {data?.map((course) =>
+                    {data && Array.isArray(data) && data?.map((course) =>
                     <Grid item xs={4}>
                         <CourseCard course={course}/>
                     </Grid>

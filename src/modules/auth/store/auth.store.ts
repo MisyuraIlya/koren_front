@@ -34,6 +34,7 @@ export const useAuth = create(
                 
             },
             logout: () => {
+                localStorage.clear()
                 set({user:null})
             }
         }),

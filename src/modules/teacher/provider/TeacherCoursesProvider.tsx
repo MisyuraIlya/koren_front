@@ -4,6 +4,7 @@ import React, { createContext, useContext, ReactNode, useEffect, useState } from
 import { useParams, usePathname } from 'next/navigation';
 import { AdminCourseService } from '@/modules/admin/services/adminCourse.service';
 import useSWR from 'swr'
+import { useAuth } from '@/modules/auth/store/auth.store';
 
 interface AdminContextType {
     data: ICourse[] | undefined
@@ -31,12 +32,13 @@ interface TeacherCoursesProviderProps {
 
 
 const TeacherCoursesProvider: React.FC<TeacherCoursesProviderProps> = (props) => {
-  const { data, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminCourseService.GetCourses,
+  const {user} = useAuth()
+  const { data, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, () => AdminCourseService.GetCourses(user?.id!),
     {
       revalidateOnFocus: false, 
     }
   );
-
+  console.log('data',data)
   const {courses, exercise } = useParams()
   const lvl1 = exercise ? exercise?.[0] : courses?.[0] ?? 0;
   const lvl2 = exercise ? exercise?.[1] : courses?.[1] ?? 0;
@@ -44,10 +46,10 @@ const TeacherCoursesProvider: React.FC<TeacherCoursesProviderProps> = (props) =>
   const lvl4 = exercise ? exercise?.[3] : courses?.[3] ?? 0;
   const lvl5 = exercise ? exercise?.[4] : courses?.[4] ?? 0;
   
-  const lvl2IdCourses = data?.filter((item) => item.id === +lvl1)[0]
-  const lvl3IdCourses = lvl2IdCourses?.children.filter((item) => item.id === +lvl2)[0]
-  const lvl4IdCourses = lvl3IdCourses?.children.filter((item) => item.id === +lvl3)[0]
-  const lvl5IdCourses = lvl4IdCourses?.children.filter((item) => item.id === +lvl4)[0]
+  const lvl2IdCourses = data && Array.isArray(data) ? data.filter(item => item.id === +lvl1)[0] : undefined;
+  const lvl3IdCourses = lvl2IdCourses && lvl2IdCourses.children ? lvl2IdCourses.children.filter(item => item.id === +lvl2)[0] : undefined;
+  const lvl4IdCourses = lvl3IdCourses && lvl3IdCourses.children ? lvl3IdCourses.children.filter(item => item.id === +lvl3)[0] : undefined;
+  const lvl5IdCourses = lvl4IdCourses && lvl4IdCourses.children ? lvl4IdCourses.children.filter(item => item.id === +lvl4)[0] : undefined;
 
 
   const value: AdminContextType = {

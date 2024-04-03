@@ -14,6 +14,7 @@ interface ICourse extends Idefinder{
     isNotInTheBook: boolean
     exercises: IExercise
     pdfUtilities: IPdfUtilities[]
+    confirmations?: IConfirmation[]
 }
 
 interface IPdfUtilities extends Idefinder {
