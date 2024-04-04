@@ -90,12 +90,12 @@ module.exports = (phase, { defaultConfig }) => {
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
         },
         {
-          source: '/courses/:slug*',
-          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/courses/:slug*`
+          source: '/course/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/course/:slug*`
         },
         {
-          source: '/exercises/:slug*',
-          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercises/:slug*`
+          source: '/exercise/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise/:slug*`
         },
         {
           source: '/answers/:slug*',
