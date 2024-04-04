@@ -30,6 +30,8 @@ module.exports = (phase, { defaultConfig }) => {
       domains: ['localhost','3.74.228.194']
     },
   }
+
+
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       ...nextConfig,
@@ -41,6 +43,10 @@ module.exports = (phase, { defaultConfig }) => {
       },
       async rewrites() {
         return [
+          {
+            source: '/media/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/media/:slug*`
+          },
           {
             source: '/auth/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
@@ -87,6 +93,10 @@ module.exports = (phase, { defaultConfig }) => {
     },
     async rewrites() {
       return [
+        {
+          source: '/media/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/media/:slug*`
+        },
         {
           source: '/auth/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
