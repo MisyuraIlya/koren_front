@@ -6,18 +6,20 @@ import { useClasses } from '../../store/classes.store';
 import Image from 'next/image';
 import useDataGroup from '../../hooks/useDataGroup';
 import { onErrorAlert } from '@/utils/sweetAlert';
+import useDataTeacherGroups from '../../hooks/useDataTeacherGroups';
 const MixedLeftSide = () => {
     const {teachers,setTeachers, groupNameMixed, setGroupNameMixed, typeMixed, deleteTeacher} = useGroups()
     const {classes, setClasses, deleteClass} = useClasses()
     const [openSnack, setOpenSnack] = useState(false)
     const {createGroup} = useDataGroup()
-
-    const handleCreate = () => {
+    const {mutate} = useDataTeacherGroups()
+    
+    const handleCreate = async () => {
         if(!groupNameMixed){
             onErrorAlert('צריך להזין שם קבוצה!','')
             return 
         }
-        createGroup(groupNameMixed,'custom',classes.map((item) => {return item.id.toString()}), 'owner', false ,teachers.map((item) => {return item.id!?.toString()}))
+        await createGroup(groupNameMixed,'custom',classes.map((item) => {return item.id.toString()}), 'owner', false ,teachers.map((item) => {return item.id!?.toString()}))
         setOpenSnack(true)
         setClasses([])
         setTeachers([])
@@ -25,6 +27,7 @@ const MixedLeftSide = () => {
         setTimeout(() => {
             setOpenSnack(false)
         },3000)
+        mutate()
     }
     return (
         <Box sx={{display:'flex', justifyContent:'center'}}>

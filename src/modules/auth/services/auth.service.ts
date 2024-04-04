@@ -1,7 +1,6 @@
 
-
 export const AuthService = {
-    async login(obj: LoginForm): Promise<IUser>{
+    async login(obj: LoginForm): Promise<ReposeLogin>{
         const response = await fetch(`/auth/login`, {
             method: 'POST',
             headers: {

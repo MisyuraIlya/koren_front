@@ -11,6 +11,9 @@ interface IUser extends Idefinder{
 }
 
 
+interface ReposeLogin extends IUser{
+    message: string
+}
 
 interface LoginForm {
     email: string;

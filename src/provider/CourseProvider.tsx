@@ -18,6 +18,7 @@ interface contextType {
     lvl3: string | undefined
     lvl4: string | undefined
     lvl5: string | undefined
+    mutate: any
 }
 
 const CourseContext = createContext<contextType | null>(null);
@@ -68,7 +69,8 @@ const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
     lvl2,
     lvl3,
     lvl4,
-    lvl5
+    lvl5,
+    mutate
   };
 
   return <CourseContext.Provider value={value} {...props} />;

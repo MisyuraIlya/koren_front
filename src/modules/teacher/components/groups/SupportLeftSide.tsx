@@ -6,26 +6,29 @@ import Image from 'next/image';
 import useDataGroup from '../../hooks/useDataGroup';
 import { useClasses } from '../../store/classes.store';
 import { onErrorAlert } from '@/utils/sweetAlert';
+import useDataTeacherGroups from '../../hooks/useDataTeacherGroups';
 
 const SupportLeftSide = () => {
     const {groupName, students, deleteStudent, setStudents, setGroupName} = useGroups()
     const [openSnack, setOpenSnack] = useState(false)
     const {setClasses} = useClasses()
     const {createGroup} = useDataGroup()
-
-    const handleCreate = () => {
+    const {mutate} = useDataTeacherGroups()
+    
+    const handleCreate = async () => {
         if(!groupName){
             onErrorAlert('צריך להזין שם קבוצה!','')
             return 
         }
         setOpenSnack(true)
-        createGroup(groupName,'custom',[],'support',false,[],students.map((item) => {return item.id!.toString()}))
+        await createGroup(groupName,'custom',[],'support',false,[],students.map((item) => {return item.id!.toString()}))
         setClasses([])
         setStudents([])
         setGroupName('')
         setTimeout(() => {
             setOpenSnack(false)
         },3000)
+        mutate()
     }
 
     return (

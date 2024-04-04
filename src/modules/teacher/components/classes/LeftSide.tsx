@@ -4,19 +4,22 @@ import React, { useState } from 'react';
 import { useClasses } from '../../store/classes.store';
 import LeftSideItem from './LeftSideItem';
 import useDataGroup from '../../hooks/useDataGroup';
+import useDataTeacherGroups from '../../hooks/useDataTeacherGroups';
 
 const LeftSide = () => {
     const {classes,setClasses} = useClasses()
     const {createGroup} = useDataGroup()
     const [openSnack, setOpenSnack] = useState(false)
-
-    const handleCreate = () => {
+    const {mutate} = useDataTeacherGroups()
+    
+    const handleCreate = async () => {
         setOpenSnack(true)
-        createGroup('','original',classes.map((item) => {return item.id.toString()}),'owner',true)
+        await createGroup('','original',classes.map((item) => {return item.id.toString()}),'owner',true)
         setClasses([])
         setTimeout(() => {
             setOpenSnack(false)
         },3000)
+        mutate()
     }
     return (
         <Box sx={{display:'flex', justifyContent:'center'}}>

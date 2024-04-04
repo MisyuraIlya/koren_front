@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service'
 interface useAuthState {
     loading: boolean
     user: IUser | null
-    login:(obj: LoginForm) => Promise<IUser | null>
+    login:(obj: LoginForm) => Promise<ReposeLogin | null>
     register:() => void
     logout:() => void
 }

@@ -34,8 +34,6 @@ const Header = () => {
       };
     const handleClose = () => {
         setAnchorEl(null);
-        router.push('/')
-        logout()
     };
 
 
@@ -67,7 +65,7 @@ const Header = () => {
                         <ListItem  sx={{ width: '100%', cursor:'pointer'}} onClick={handleMenu}>
                             <ListItemAvatar>
                                 <Avatar>
-                            <AccountCircle />
+                                <Image src={'/images/avatar.png'} alt='' width={50} height={50}/>
                             </Avatar>
                             </ListItemAvatar>
                             <ListItemText 
@@ -93,7 +91,7 @@ const Header = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>יציאה</MenuItem>
+                        <MenuItem onClick={() => {logout();router.push('/')}}>יציאה</MenuItem>
                     </Menu>
                 </Box>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{background:'#F3F6F9'}}/>
@@ -131,7 +129,7 @@ const Header = () => {
                         autoWidth
                     >
                         {data && Array.isArray(data) &&  data?.map((item,index) => 
-                            <MenuItem key={index} value={item.uuid}>{item.title}</MenuItem>
+                            <MenuItem sx={{minWidth:'150px'}} key={index} value={item.uuid}>{item.title}</MenuItem>
                         )}
                     </Select>
                     <Select
@@ -141,7 +139,7 @@ const Header = () => {
                         autoWidth
                     >
                         {groupSelected?.students?.map((item,index) =>
-                            <MenuItem key={index} value={item.id}>{item.firstName}</MenuItem>
+                            <MenuItem key={index} value={item.id} sx={{minWidth:'150px'}}>{item.firstName}</MenuItem>
                         )}
                     </Select>
                 </Box>

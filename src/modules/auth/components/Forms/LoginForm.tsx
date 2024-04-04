@@ -27,12 +27,15 @@ const LoginForm = () => {
 
     const onSubmit :SubmitHandler<LoginForm> = async (data) => {
         const response = await login(data)
+        console.log('response',response)
         if(response?.role === 'admin'){
             router.push('/admin/courses/1')
         } else if(response?.role === 'student') {
             router.push('/student/courses')
         }  else if(response?.role === 'teacher') {
             router.push('/teacher/home')
+        } else {
+            onErrorAlert('שם משתמש/ סיסמה לא נכונין',response?.message ?? '')
         }
         reset()
     }
