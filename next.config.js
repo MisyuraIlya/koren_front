@@ -29,6 +29,10 @@ module.exports = (phase, { defaultConfig }) => {
     images: {
       domains: ['localhost','3.74.228.194']
     },
+    webpack: (config) => {
+      config.resolve.alias.canvas = false;
+      return config;
+    },
   }
 
 
