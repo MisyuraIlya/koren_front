@@ -1,7 +1,10 @@
 
+const entry = process.env.NEXT_PUBLIC_APP_ENTRYPOINT
+
 export const AuthService = {
     async login(obj: LoginForm): Promise<IUser>{
-        const response = await fetch(`http://localhost:4001/auth/login`, {
+        console.log('entry',entry)
+        const response = await fetch(`${entry}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,7 +15,7 @@ export const AuthService = {
     },
 
     async getUserByTypeAndSchool(type: Role, schoolId: string): Promise<IUser[]> {
-        const response = await fetch(`http://localhost:4001/auth/allUsers/${type}/${schoolId}`, {
+        const response = await fetch(`${entry}/auth/allUsers/${type}/${schoolId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

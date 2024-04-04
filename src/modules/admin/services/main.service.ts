@@ -1,8 +1,11 @@
+
+const entry = process.env.NEXT_PUBLIC_APP_ENTRYPOINT
+
 export const MainService = {
     async UploadMedia(file: File): Promise<{ path: string }> {
         const formDataObject = new FormData();
         formDataObject.append('file', file);
-        const response = await fetch('http://localhost:4001/media', {
+        const response = await fetch(`${entry}/media`, {
             method: 'POST',
             body: formDataObject,
         });

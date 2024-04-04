@@ -5,7 +5,7 @@ const {headers} = require("next/headers");
 
 const path = require('path')
 
-const LOCAL_API_BASE_PATH = 'http://localhost'
+const LOCAL_API_BASE_PATH = 'http://localhost:4001'
 const PUBLIC_API_BASE_PATH = 'http://3.74.228.194:4001'
 
 const PUBLIC_API_MEDIA = 'http://localhost:3000'
@@ -58,19 +58,19 @@ module.exports = (phase, { defaultConfig }) => {
           },
           {
             source: '/school/:slug*',
-            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/school/:slug*`
           },
           {
             source: '/class/:slug*',
-            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/class/:slug*`
           },
           {
             source: '/group/:slug*',
-            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/group/:slug*`
           },
           {
             source: '/confirmation/:slug*',
-            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/confirmation/:slug*`
           }
         ]
       }
@@ -103,19 +103,19 @@ module.exports = (phase, { defaultConfig }) => {
         },
         {
           source: '/school/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/school/:slug*`
         },
         {
           source: '/class/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/class/:slug*`
         },
         {
           source: '/group/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/group/:slug*`
         },
         {
           source: '/confirmation/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/confirmation/:slug*`
         }
       ]
     }

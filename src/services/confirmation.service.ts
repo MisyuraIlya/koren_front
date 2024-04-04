@@ -1,6 +1,9 @@
+
+const entry = process.env.NEXT_PUBLIC_APP_ENTRYPOINT
+
 export const ConfirmationService = {
     createConfirmation: async (userId: number, courseId: number):Promise<IConfirmation> => {
-        const response = await fetch(`http://localhost:4001/confirmation`, {
+        const response = await fetch(`${entry}/confirmation`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -10,7 +13,7 @@ export const ConfirmationService = {
         return response.json()
     },
     getConfirmation: async (userId: number):Promise<IConfirmation[]> => {
-        const response = await fetch(`http://localhost:4001/confirmation/${userId}`, {
+        const response = await fetch(`${entry}/confirmation/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
