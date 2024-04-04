@@ -6,7 +6,7 @@ const {headers} = require("next/headers");
 const path = require('path')
 
 const LOCAL_API_BASE_PATH = 'http://localhost:4001'
-const PUBLIC_API_BASE_PATH = 'http://localhost:4001'
+const PUBLIC_API_BASE_PATH = 'http://localhost'
 
 const PUBLIC_API_MEDIA = 'http://localhost:3000'
 const BACKEND_ENDPOINT_PORT = '4001'
