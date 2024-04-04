@@ -27,7 +27,7 @@ module.exports = (phase, { defaultConfig }) => {
       includePaths: [path.join(__dirname, 'styles')],
     },
     images: {
-      domains: ['localhost']
+      domains: ['localhost','3.74.228.194']
     },
   }
   if (phase === PHASE_DEVELOPMENT_SERVER) {
