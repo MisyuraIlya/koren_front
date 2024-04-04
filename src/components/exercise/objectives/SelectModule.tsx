@@ -3,6 +3,7 @@ import ReactSelect from 'react-select'
 import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/material';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => ({
     width: 400,
@@ -24,7 +25,7 @@ const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => (
   
 
 const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    const {exercise,handleAnswer} = useStudentExercise()
+    const {exercise,handleAnswer} = useExercise()
     const isCorrect = objective?.answers?.[0]?.answers?.[0]?.isCorrect ?? false;
     const isDone = exercise?.histories[0]?.isDone ?? false;
     const StudentAnswer = objective?.answers?.[0]?.answers[0]?.value ?? ''

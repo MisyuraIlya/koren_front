@@ -48,6 +48,7 @@ import SplitedScreenLeft from '../objectives/SplitedScreenLeft';
 // import DoneSplitedScreenLeft from '../objectives/DoneSplitedScreenLeft';
 import SongModule from '../objectives/SongModule';
 import TextAreaModule2 from '../objectives/TextAreaModule';
+import ObjectiveInput from '../objectives2/ObjectiveInput';
 // import PdfModule from '../objectives/PdfIframe';
 // import CopyModule from '../objectives/CopyModule';
 
@@ -65,8 +66,10 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
-
-        {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'inputCentered' && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
+        {/* {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />} */}
 
         {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}

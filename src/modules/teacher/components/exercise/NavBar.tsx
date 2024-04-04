@@ -39,7 +39,6 @@ const NavBar = () => {
     const toggleDrawer = (newOpen: boolean) => () => {
       setOpen(newOpen);
     };
-
     return (
         <>
         <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px'}}>

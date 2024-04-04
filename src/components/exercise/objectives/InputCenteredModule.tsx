@@ -1,4 +1,5 @@
 import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useExercise } from '@/provider/ExerciseProvider';
 import React, {FC, useEffect,useState} from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -6,15 +7,7 @@ import { Controller } from 'react-hook-form';
 const InputCenteredModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     // const {ExerciseMethods} = useExercise()
     // const [isChecked, setIsChecked] = useState(isFullText)
-    const {setValue} = useStudentExercise()
-    useEffect(() => {
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
-        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
-    }, []);
+    const {setValue} = useExercise()
 
     // const handleCheckBox = () => {
     //     setIsChecked(!isChecked)
