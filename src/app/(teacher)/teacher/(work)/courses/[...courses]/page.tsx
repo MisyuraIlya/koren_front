@@ -1,10 +1,9 @@
 'use client'
 import useDataConfirmation from '@/hooks/useDataConfirmation';
 import { useCourses } from '@/provider/CourseProvider';
-import { onSuccessAlert } from '@/utils/sweetAlert';
-import { CheckBox } from '@mui/icons-material';
-import { Box, Button } from '@mui/material';
-import React from 'react';
+import { Alert, Box, Button, Snackbar } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
 interface CoursePageProps {
     params: {
@@ -15,21 +14,26 @@ interface CoursePageProps {
 
   
 const page = () => {
+    const [openSnack, setOpenSnack] = useState(false)
+    const {lvl1,lvl2,lvl3,lvl4,} = useCourses()
     const {lvl5IdCourses, mutate} = useCourses()
+    const router = useRouter()
     const {data,create} = useDataConfirmation()
 
     const handleIsRead = async () => {
+        setOpenSnack(true)
         await create(lvl5IdCourses?.id!)
+        if(lvl5IdCourses?.children?.[0].id){
+            router.push(`/teacher/exercise/${lvl1}/${lvl2}/${lvl3}/${lvl4}/${lvl5IdCourses?.children?.[0].id}`)
+        }
         mutate()
-        onSuccessAlert('נשמר בהצלחה','ניתן להמשיך לתרגול')
     }
-    console.log('lvl5IdCourses',lvl5IdCourses)
     return (
         <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', height:'100%'}}>
             {lvl5IdCourses?.pdf &&
-                <Box sx={{boxShadow:'0px 4px 30px 0px #00000099', padding:'20px', marginTop:'10px'}}>
+                <Box sx={{padding:'20px', marginTop:'10px'}}>
                 <iframe 
-                width='1100px' 
+                width='1400px' 
                 height='600px'  
                 title='pdf-link' 
                 src={`${process.env.NEXT_PUBLIC_MEDIA}/${lvl5IdCourses?.pdf}`}  
@@ -42,6 +46,17 @@ const page = () => {
     
                 </Box>
             }
+                <Snackbar autoHideDuration={2000} open={openSnack}  onClose={() => setOpenSnack(false)}>
+                <Alert
+                    onClose={() => setOpenSnack(false)}
+                    severity="success"
+                    variant="filled"
+                    
+                    sx={{ width: '100%' }}
+                >
+                    נתונים נשמרו בהצלחה
+                </Alert>
+                </Snackbar>
         </Box>
     );
 };

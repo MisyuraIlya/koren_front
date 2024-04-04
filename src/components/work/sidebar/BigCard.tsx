@@ -43,7 +43,7 @@ const BigCard:FC<BigCardProps> = ({index,item, totalChildren}) => {
                 </Grid>
                 <Grid item xs={8} >
                     <Box>
-                        <Typography variant='h6'>{item.name}</Typography>
+                        <Typography variant='h6' sx={{whiteSpace:'break-spaces'}}>{item.name}</Typography>
                     </Box>
                     <Box>
                         <Typography variant='body2'>{totalChildren} יחידות</Typography>

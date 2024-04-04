@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Box, IconButton, List, ListItem} from '@mui/material';
 import MinCard from './MinCard';
 import BigCard from './BigCard';
-import SearchIcon from '@mui/icons-material/Search';
-import SearchBigInput from './SearchBigInput';
 import SecondSideBar from './SecondSideBar';
 import CloseIcon from '@mui/icons-material/Close';
 import { useCourses } from '@/provider/CourseProvider';
@@ -33,16 +31,14 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
     return (
     <>
         <List sx={{
-            height:'100vh',
+            height:'85vh',
             zIndex:'100',
+            overflow:'auto',
             backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
         }}>
-            <ListItem  disablePadding sx={{ display: 'block', px: 2.5, }}>
+            <ListItem  disablePadding sx={{ display: 'block', px: 2.5 }}>
                 {!open &&
                 <>
-                    <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'90px'}}>
-                        <SearchIcon sx={{fontSize:'50px', color:'white', cursor:'pointer'}}/>
-                    </Box>
                     {lvl2IdCourses?.children?.map((item,index) =>
                         <MinCard 
                         index={index} 
@@ -56,7 +52,6 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                 }
                 {open &&
                 <>
-                    <SearchBigInput/>
                     {lvl2IdCourses?.children?.map((item, key) =>
                         <Box
                             key={key}

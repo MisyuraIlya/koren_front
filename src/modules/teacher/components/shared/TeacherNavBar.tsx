@@ -4,16 +4,18 @@ import StarIcon from '@mui/icons-material/Star';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import NavBarNavigation from '@/components/shared/NavBarNavigation';
 import { useTeacherWork } from '../../store/work.store';
+import { useParams } from 'next/navigation';
 
 const TeacherNavBar = () => {
-    const {studentChoosed,classChoosed} = useTeacherWork()
+    const {classChoosed} = useTeacherWork()
+    const {exercise } = useParams()
     return (
         <Box sx={{bgcolor:'#F0FBFF', height:'60px', width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0 40px'}}>
             <Box sx={{width:'40%', display:'flex'}}>
                 <NavBarNavigation/>
             </Box>
             {
-                classChoosed && studentChoosed &&
+                classChoosed && exercise && 
                 <Box sx={{width:'60%', display:'flex', gap:'20px', alignItems:'center'}}>
                     <Box sx={{display:'flex', gap:'10px'}}>
                         <VisibilityOffIcon sx={{color:'black'}}/>

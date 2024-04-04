@@ -37,7 +37,7 @@ const MinCard:FC<MinCardProps> = ({index, item, onClick}) => {
                 <Typography variant='h5' fontWeight={900}>{convertToHebrew(index)}</Typography>
             </Box>
             <Box sx={{textAlign:'center'}}>
-                <Typography variant='body2' fontWeight={700}>{item.name}</Typography>
+                <Typography variant='body2' fontWeight={700} sx={{whiteSpace:'break-spaces'}}>{item.name}</Typography>
             </Box>
         </Card>
     );
