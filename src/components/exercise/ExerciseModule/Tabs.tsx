@@ -1,10 +1,11 @@
 'use client'
 import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useExercise } from '@/provider/ExerciseProvider';
 import { Box, Tab, Tabs as MuiTabs } from '@mui/material';  // Rename Tabs to MuiTabs
 import React from 'react';
 
 const CustomTabs = () => {
-    const { exercise, choosedTab, setChoosedTab } = useStudentExercise()
+    const { exercise, choosedTab, setChoosedTab } = useExercise()
     
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setChoosedTab(newValue);

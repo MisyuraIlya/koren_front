@@ -57,6 +57,7 @@ interface ObjectivesProps {
 }
 
 const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
+    console.log('objective',objective)
     return (
         <>
         {objective?.moduleType === ('orden' ) && <OrdenModule objective={objective} {...objectiveIndexes} />}
@@ -65,7 +66,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
 
-
+        {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
 
         {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
@@ -85,7 +86,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'bank' && <BankModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'openQuestionHamarot' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
+        
         {objective?.moduleType === 'headline2' && <HeadLine2 objective={objective} {...objectiveIndexes} />} */}
 {/* 
         {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}

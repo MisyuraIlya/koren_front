@@ -26,20 +26,20 @@ interface AdminContextType {
 const AdminContext = createContext<AdminContextType | null>(null);
 
 // React hook
-const useStudentExercise = (): AdminContextType => {
+const useExercise = (): AdminContextType => {
   const context = useContext(AdminContext);
   if (!context) {
-    throw new Error('Can not run without "StudentExerciseProvider"');
+    throw new Error('Can not run without "ExerciseProvider"');
   }
   return context;
 };
 
-interface StudentExerciseProviderProps {
+interface ExerciseProviderProps {
   children: ReactNode
   courseId: string
 };
 
-const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) => {
+const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   const {user} = useAuth()
   const [choosedTab, setChoosedTab] = useState<number>(0)
   const [closeHeaderExercise, setCloseHeaderExerise] = useState<boolean>(true)
@@ -53,7 +53,6 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
       revalidateOnFocus: false,
     }
   );
-
   const handleAnswer = (objective: IAnswer, answer: string) => {
     try {
       const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)
@@ -112,4 +111,4 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
   );
 };
 
-export { useStudentExercise, StudentExerciseProvider };
+export { useExercise, ExerciseProvider };

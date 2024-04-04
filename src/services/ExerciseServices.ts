@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const StudentExerciseServices = {
+export const ExerciseServices = {
     async GetExerciseStudent(id: string, studentId: number): Promise<IExercise>{
         const response = await fetch(`/exercise/${id}/${studentId}`)
         return response.json()

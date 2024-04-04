@@ -15,6 +15,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { themeColors } from '@/styles/mui';
 import CloseIcon from '@mui/icons-material/Close';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const type = [
     {
@@ -30,10 +31,11 @@ const type = [
         name:'מבחן',
     },
 ]
+
 const NavBar = () => {
     const [choosedType, setChoosedType] = useState('')
     const [open, setOpen] = React.useState(false);
-
+    const {exercise} = useExercise()
     const toggleDrawer = (newOpen: boolean) => () => {
       setOpen(newOpen);
     };
@@ -43,7 +45,7 @@ const NavBar = () => {
         <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px'}}>
             <Grid container>
                 <Grid item xs={2}>
-                    <Typography variant='h4' fontWeight={900}>תרגיל 5</Typography>
+                    <Typography variant='h5' fontWeight={900}>{exercise?.title}</Typography>
                     <Box sx={{display:'flex', gap:'20px', marginTop:'10px'}}>
                         <Button variant='contained' sx={{borderRadius:'60px', fontWeight:600, fontSize:'16px'}}>
                         הוראות תרגיל

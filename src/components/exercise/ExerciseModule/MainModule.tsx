@@ -1,9 +1,9 @@
 'use client'
 import React, {FC} from 'react';
 import { Box, Grid } from '@mui/material';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { TaskSplitChecker } from '@/helpers/TaskSplitChecker';
 import Task from './Task';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 interface MainModuleProps {
     item: ITab
@@ -11,7 +11,7 @@ interface MainModuleProps {
 }
 
 const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
-    const {choosedTab} = useStudentExercise()
+    const {choosedTab} = useExercise()
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
