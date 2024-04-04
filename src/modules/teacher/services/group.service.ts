@@ -1,6 +1,4 @@
 
-const entry = process.env.NEXT_PUBLIC_APP_ENTRYPOINT
-
 export const GroupService = {
     async createGroup(
         teacherId: number,
@@ -13,7 +11,7 @@ export const GroupService = {
         students?: string[],
 
     ){
-        const response = await fetch(`${entry}/group/${teacherId}`, {
+        const response = await fetch(`/group/${teacherId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +22,7 @@ export const GroupService = {
     },
 
     async findByTeacherId(teacherId: number): Promise<ITeacherGroup[]>{
-        const response = await fetch(`${entry}/group/teacher/${teacherId}`, {
+        const response = await fetch(`/group/teacher/${teacherId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

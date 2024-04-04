@@ -5,7 +5,7 @@ export const MainService = {
     async UploadMedia(file: File): Promise<{ path: string }> {
         const formDataObject = new FormData();
         formDataObject.append('file', file);
-        const response = await fetch(`${entry}/media`, {
+        const response = await fetch(`/media`, {
             method: 'POST',
             body: formDataObject,
         });
