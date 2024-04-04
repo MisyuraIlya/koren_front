@@ -4,7 +4,7 @@ const entry = process.env.NEXT_PUBLIC_APP_ENTRYPOINT
 export const AuthService = {
     async login(obj: LoginForm): Promise<IUser>{
         console.log('entry',entry)
-        const response = await fetch(`${entry}/auth/login`, {
+        const response = await fetch(`/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

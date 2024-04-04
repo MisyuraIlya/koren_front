@@ -81,41 +81,41 @@ module.exports = (phase, { defaultConfig }) => {
     ...nextConfig,
     env: {
       ...nextConfig.env,
-      NEXT_PUBLIC_APP_ENTRYPOINT: `${PUBLIC_API_BASE_PATH}/api`,
+      NEXT_PUBLIC_APP_ENTRYPOINT: `${LOCAL_API_BASE_PATH}`,
     },
     async rewrites() {
       return [
         {
           source: '/auth/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
         },
         {
           source: '/courses/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/courses/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/courses/:slug*`
         },
         {
           source: '/exercises/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/exercises/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercises/:slug*`
         },
         {
           source: '/answers/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/answers/:slug*`
         },
         {
           source: '/school/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/school/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/school/:slug*`
         },
         {
           source: '/class/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/class/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/class/:slug*`
         },
         {
           source: '/group/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/group/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/group/:slug*`
         },
         {
           source: '/confirmation/:slug*',
-          destination: `http://${PUBLIC_API_BASE_PATH}:${BACKEND_ENDPOINT_PORT}/confirmation/:slug*`
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/confirmation/:slug*`
         }
       ]
     }
