@@ -30,7 +30,7 @@ const PdfHandler = ({item}: {item: ICourse}) => {
 
     const openLink = () => {
         if (item?.pdf) {
-          const pdfUrl = `http://localhost:4001/${item.pdf}`;
+          const pdfUrl = `${process.env.NEXT_PUBLIC_MEDIA}/${item.pdf}`;
           window.open(pdfUrl, '_blank');
         }
     };

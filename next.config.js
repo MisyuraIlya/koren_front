@@ -8,7 +8,8 @@ const path = require('path')
 const LOCAL_API_BASE_PATH = 'http://localhost:4001'
 const PUBLIC_API_BASE_PATH = 'http://localhost'
 
-const PUBLIC_API_MEDIA = 'http://localhost:3000'
+const LOCAL_API_MEDIA = 'http://localhost:4001'
+const PUBLIC_API_MEDIA = 'http://3.74.228.194:4001'
 const BACKEND_ENDPOINT_PORT = '4001'
 
 
@@ -36,7 +37,7 @@ module.exports = (phase, { defaultConfig }) => {
       env: {
         ...nextConfig.env,
         NEXT_PUBLIC_APP_ENTRYPOINT: `${LOCAL_API_BASE_PATH}`,
-        NEXT_PUBLIC_MEDIA: PUBLIC_API_MEDIA,
+        NEXT_PUBLIC_MEDIA: LOCAL_API_MEDIA,
       },
       async rewrites() {
         return [
@@ -82,6 +83,7 @@ module.exports = (phase, { defaultConfig }) => {
     env: {
       ...nextConfig.env,
       NEXT_PUBLIC_APP_ENTRYPOINT: `${LOCAL_API_BASE_PATH}`,
+      NEXT_PUBLIC_MEDIA: PUBLIC_API_MEDIA,
     },
     async rewrites() {
       return [
