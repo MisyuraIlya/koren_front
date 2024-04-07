@@ -14,7 +14,7 @@ const Module = () => {
                     <CircularProgress/>
                 </Box>
             }
-            {exercise && exercise?.tabs?.map((item, tabIndex) => (
+            {exercise && exercise.title === 'תרגיל 1 - הפעיל' && exercise?.tabs?.map((item, tabIndex) => (
                 <MainModule key={tabIndex} item={item} tabIndex={tabIndex} />
             ))}
             <ExerciseFooter/>
