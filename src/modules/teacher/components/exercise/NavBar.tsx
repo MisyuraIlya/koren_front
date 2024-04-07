@@ -63,25 +63,25 @@ const NavBar = () => {
                         </Button>
                     </Box>
                 </Grid>
+                <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
+                <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
+                    <Box sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+                        <Box sx={{ display: 'flex', gap: '20px' }}>
+                            <Paper elevation={4} sx={{ opacity: exercise?.youtubeLink ? '1' : '0.5' , width: '120px', height: '80px', background: '#E7F3E8', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', cursor:'pointer', border:'0.63px solid #378CF54D'}} onClick={() => {exercise?.youtubeLink && setOpenModalLink(true)}}>
+                                <Image src={VideoIcon} width={50} height={50} alt='VideoIcon' />
+                                <Typography variant='body2' textAlign={'center'} fontWeight={700}>לצפות וללמוד</Typography>
+                            </Paper>
+                            <Paper elevation={4} sx={{ opacity:exercise?.pdf ? '1' : '0.5', width: '120px', height: '80px', background: '#E7F3E8', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border:'0.63px solid #378CF54D', cursor:'pointer'}} onClick={() => {exercise?.pdf && setOpenModalPdf(true)}}>
+                                <Image src={BookIcon} width={70} height={70} alt='BookIcon' />
+                                <Typography variant='body2' textAlign={'center'} fontWeight={700}>הסבר</Typography>
+                            </Paper>
+                        </Box>
+                    </Box>
+                </Grid>
+                <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                 {
                     classChoosed &&
                     <>
-                        <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
-                        <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
-                            <Box sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-                                <Box sx={{ display: 'flex', gap: '20px' }}>
-                                    <Paper elevation={4} sx={{ opacity: exercise?.youtubeLink ? '1' : '0.5' , width: '120px', height: '80px', background: '#E7F3E8', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', cursor:'pointer', border:'0.63px solid #378CF54D'}} onClick={() => {exercise?.youtubeLink && setOpenModalLink(true)}}>
-                                        <Image src={VideoIcon} width={50} height={50} alt='VideoIcon' />
-                                        <Typography variant='body2' textAlign={'center'} fontWeight={700}>לצפות וללמוד</Typography>
-                                    </Paper>
-                                    <Paper elevation={4} sx={{ opacity:exercise?.pdf ? '1' : '0.5', width: '120px', height: '80px', background: '#E7F3E8', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border:'0.63px solid #378CF54D', cursor:'pointer'}} onClick={() => {exercise?.pdf && setOpenModalPdf(true)}}>
-                                        <Image src={BookIcon} width={70} height={70} alt='BookIcon' />
-                                        <Typography variant='body2' textAlign={'center'} fontWeight={700}>הסבר</Typography>
-                                    </Paper>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                         <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                             <Box>
                                 <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}> 
