@@ -13,11 +13,14 @@ const CustomTabs = () => {
 
     return (
         <Box>
+            {exercise && exercise?.tabs?.length > 1 &&
             <MuiTabs value={choosedTab} onChange={handleChange} centered>
-                {exercise && exercise?.tabs?.length > 1 && exercise?.tabs?.map((item, index) =>
+                {exercise?.tabs?.map((item, index) =>
                     <Tab label={item.title} key={index} />
                 )}
             </MuiTabs>
+            }
+ 
         </Box>
     );
 };

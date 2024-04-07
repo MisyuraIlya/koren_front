@@ -13,19 +13,9 @@ const Instruction: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
 
     
     return (
-        <th 
-            // className={` bg-mainExerciseBg ${checkIsThereImage ? '' : ''} ${(isTable || isClearTable) ? 'tableModule' : ''}  text-[23px] leading-10`} 
-            // style={{
-            //     minWidth: isTable ? `${CustomTableWidth}px` : '',
-            // }}
-            >
+        <th className='disbleTh'>
             <div  className='text-right px-4 py-4'>
-                {/* {!isOnlineXml &&
-                    <BoldChanger html={htmlTag} handleUpdateHtml={handleUpdateHtml}/>
-                } */}
-
                 <div
-                    // onInput={handleInputChange}
                     dangerouslySetInnerHTML={{ __html: htmlTag }}
                     className="fontSizeExercise"
                 />

@@ -11,12 +11,14 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   ).toString();
 
   
-const PdfUtil = ({link}:{link:string}) => {
+const PdfUtil = ({link}:{link:string | null}) => {
     return (
         <>
-        <Document file={link}>
-            <Page pageNumber={1} renderTextLayer={false}/>
-        </Document>
+        {link &&
+            <Document file={link}>
+                <Page pageNumber={1} renderTextLayer={false}/>
+            </Document>
+        }
         </>
     );
 };

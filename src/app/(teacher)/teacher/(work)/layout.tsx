@@ -73,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               cursor:'pointer', 
               borderTopRightRadius:'5px', 
               borderBottomRightRadius:'5px',
+              zIndex:'999',
               paddingLeft:'20px',
               }}>
                 <ArrowBackIosNewIcon/>

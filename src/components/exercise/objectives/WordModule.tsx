@@ -10,7 +10,7 @@ const WordModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
         style={{
             minWidth:'70px', 
             maxWidth:'70px',
-            verticalAlign: 'top', // Align text to the top
+            verticalAlign: 'top', 
             textAlign: 'right', 
             paddingTop:'30px', 
         }}

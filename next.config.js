@@ -52,6 +52,10 @@ module.exports = (phase, { defaultConfig }) => {
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/media/:slug*`
           },
           {
+            source: '/files/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/files/:slug*`
+          },
+          {
             source: '/auth/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/auth/:slug*`
           },
@@ -100,6 +104,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/media/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/media/:slug*`
+        },
+        {
+          source: '/files/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/files/:slug*`
         },
         {
           source: '/auth/:slug*',

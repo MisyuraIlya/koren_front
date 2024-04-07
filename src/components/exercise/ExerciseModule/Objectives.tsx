@@ -49,6 +49,7 @@ import SplitedScreenLeft from '../objectives/SplitedScreenLeft';
 import SongModule from '../objectives/SongModule';
 import TextAreaModule2 from '../objectives/TextAreaModule';
 import ObjectiveInput from '../objectives2/ObjectiveInput';
+import ObjectiveRootInput from '../objectives2/ObjectiveRootInput';
 // import PdfModule from '../objectives/PdfIframe';
 // import CopyModule from '../objectives/CopyModule';
 
@@ -58,7 +59,6 @@ interface ObjectivesProps {
 }
 
 const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
-    console.log('objective',objective)
     return (
         <>
         {objective?.moduleType === ('orden' ) && <OrdenModule objective={objective} {...objectiveIndexes} />}
@@ -68,7 +68,10 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'rootInput' && <ObjectiveRootInput objective={objective} {...objectiveIndexes} />}
+
         {/* {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />} */}
 
         {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />} */}
@@ -81,7 +84,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === ('wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
+       
         {objective?.moduleType === 'ordenBold' && <OrdenBoldModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textModuled' && <TextModuled objective={objective} {...objectiveIndexes} />}
@@ -131,7 +134,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
 
         {/* DELTE? */}
         {/* {objective?.moduleType === 'mix' && <MixModule objective={objective} {...objectiveIndexes} />} */}
-        {/* {objective?.moduleType === 'rootInput' && <RootInputModule objective={objective} {...objectiveIndexes} />} */}
+        
         {/* {objective?.moduleType === 'textCopy' && <TextCopy objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'typedInput' && <TypedInput objective={objective} {...objectiveIndexes} />} */}
         </>

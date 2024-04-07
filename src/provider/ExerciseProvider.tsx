@@ -90,7 +90,7 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
 
   const setValue = () => console.log('FIX')
 
-
+  console.log('exercise',exercise)
   const value: AdminContextType = {
     exercise,
     isLoading,

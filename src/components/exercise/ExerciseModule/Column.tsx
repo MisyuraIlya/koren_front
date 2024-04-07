@@ -5,10 +5,11 @@ interface ColumnProps {
     columnIndex: number
 }
 const Column:FC<ColumnProps> = ({column, columnIndex}) => {
+    console.log('column',column,columnIndex)
     return (
         <>
-        {(column?.title || column?.type === 'orden')&&
-            <th key={columnIndex} style={{textAlign:'center'}}>
+        {(column?.title || column?.type === 'orden' || column?.type === 'word') &&
+            <th key={columnIndex} style={{textAlign:'center'}} >
                 <div
                     dangerouslySetInnerHTML={{ __html:column.title }}
                     style={{padding:'0 20px', textAlign:'center', display:'flex', justifyContent:'center', alignItems:'center'}}

@@ -6,7 +6,11 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
 
 
     return (
-        <th>
+        <th
+            style={{
+                minWidth:'70px'
+            }}
+        >
             <Box className='text-center flex justify-center items-center py-1'>
                 <Typography variant='h6' sx={{background:themeColors.primary, color:'white', paddingRight:'9px', paddingLeft:'9px', borderRadius:'5px'}}>
                     {objective.values?.[0]?.value}

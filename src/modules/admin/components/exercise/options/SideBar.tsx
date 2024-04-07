@@ -184,8 +184,6 @@ const SideBar = () => {
                     <Checkbox checked={isNotInTheBook} onChange={(e) => handleIsInTheBook(e.target.checked)}/>
                     <Typography sx={{display:'flex', justifyContent:'center', alignItems:'center'}} variant='h6'>אינו קיים בחוברת</Typography>
                 </Box>
-
-
             </SideBars>
         </Box>
     );

@@ -14,6 +14,7 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
         const isIcon2 = task.columns.some((item) => item.type === 'icon2')
         const explanationSplited = task.columns.some((item) => item.type === 'explanationSplited')
         const instructionWhite = task.columns.some((item) => item.type === 'instructionWhite')
+        
         if(isIcon){
             return themeColors.blueOne
         } else if(isIcon2) {
@@ -26,7 +27,6 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
             return themeColors.exerciseMain
         }
     }
-
     return (
         <Box className='bg-secondBlue relative' sx={{background:backgroundColor()}} key={taskIndex}>
             <table className={'TaskStyles'}>
