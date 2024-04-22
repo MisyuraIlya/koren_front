@@ -1,0 +1,1 @@
+type sendExerciseType = 'exercise' | 'test' | 'exam' | ''

@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Chip, Divider, Drawer, FormControl, FormControlLabel, FormLabel, Grid, IconButton, InputBase, MenuItem, Paper, Radio, RadioGroup, Select, Typography } from '@mui/material';
+import { Box, Button, Chip, Divider, Drawer, FormControl, FormControlLabel, FormLabel, Grid, Icon, IconButton, InputBase, MenuItem, Paper, Radio, RadioGroup, Select, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import BookIcon from '@/../public/images/book.svg';
@@ -20,6 +20,9 @@ import ExerciseModal from '@/utils/Modals/ExerciseModal';
 import PdfUtil from '@/utils/PdfUtil';
 import YoutubeIframe from '@/utils/YoutubeIframe';
 import { useTeacherWork } from '../../store/work.store';
+import Send from './ExerciseDrawer/Send';
+import Answer from './ExerciseDrawer/Answer';
+import ExerciseDrawer from './ExerciseDrawer';
 
 const type = [
     {
@@ -38,16 +41,18 @@ const type = [
 
 const NavBar = () => {
     const [choosedType, setChoosedType] = useState('')
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [open2, setOpen2] = useState(false);
     const [openModalPdf, setOpenModalPdf] = useState(false)
     const [openModalLink, setOpenModalLink] = useState(false)
     const [openModalDescription1, setOpenModalDescription1] = useState(false)
     const [openModalDescription2, setOpenModalDescription2] = useState(false)
     const {exercise} = useExercise()
     const {classChoosed} = useTeacherWork()
-    const toggleDrawer = (newOpen: boolean) => () => {
-      setOpen(newOpen);
-    };
+
+    const toggleDrawer2 = (newOpen: boolean) => () => {
+        setOpen2(newOpen);
+      };
     return (
         <>
         <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px', bgcolor:'white'}}>
@@ -63,7 +68,7 @@ const NavBar = () => {
                         </Button>
                     </Box>
                 </Grid>
-                <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
+
                 <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                     <Box sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                         <Box sx={{ display: 'flex', gap: '20px' }}>
@@ -78,7 +83,6 @@ const NavBar = () => {
                         </Box>
                     </Box>
                 </Grid>
-                <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                 {
                     classChoosed &&
                     <>
@@ -112,7 +116,6 @@ const NavBar = () => {
                                 </Box>
                             </Box>
                         </Grid>
-                        <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                         <Grid item xs={1.5} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
                             <Box sx={{position:'relative'}}>
                                 <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
@@ -146,28 +149,21 @@ const NavBar = () => {
                                 </Box>
                             </Box>
                         </Grid>
-                        <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                         <Grid item xs={2.5} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
                             <Box>
                                 <Box sx={{display:'flex', alignItems:'center'}}>
                                     <Typography>סוג התרגיל:</Typography>
-                                    <Select
-                                        value={choosedType}
-                                        onChange={(event) => setChoosedType(event.target.value)}
-                                        placeholder='יחידה'
-                                        sx={{ width:'160px',background: 'white', margin: '10px', height: '30px', border:'1px solid #BACEE9'}}
-                                    >
-                                        {type?.map((item) =>
-                                            <MenuItem  value={item.name}>{item.name}</MenuItem>
-                                        )}
-                                    </Select>
+                                    <IconButton onClick={() => setOpen(true)}>
+                                        <BorderColorIcon sx={{color:'black'}}/>
+                                    </IconButton>
                                 </Box>
+                                <Chip
+                                    label="טרם נשלח"
+                                    sx={{background:'#EDF2F9', pl:'5px'}}
+                                    avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
+                                />
                                 <Box sx={{display:'flex', gap:'20px'}}>
-                                    <Chip
-                                        label="טרם נשלח"
-                                        sx={{background:'#EDF2F9', pl:'5px'}}
-                                        avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
-                                    />
+                           
                                     <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
                                         <CalendarTodayIcon sx={{fontSize:'20px'}}/>
                                         <Typography variant='body1'>13.3.2023</Typography>
@@ -179,7 +175,6 @@ const NavBar = () => {
                                 </Box>
                             </Box>
                         </Grid>
-                        <Divider orientation="vertical" flexItem sx={{color:'#BDD0EA'}}/>
                         <Grid item xs={1.5} sx={{display:'flex', justifyContent:'center'}}>
                             <Box>
                                 <Chip
@@ -187,7 +182,7 @@ const NavBar = () => {
                                     sx={{background:'#EDF2F9', pl:'5px'}}
                                     avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
                                 />
-                                <IconButton onClick={() => setOpen(true)}>
+                                <IconButton onClick={() => setOpen2(true)}>
                                     <BorderColorIcon sx={{color:'black'}}/>
                                 </IconButton>
                             </Box>
@@ -197,49 +192,8 @@ const NavBar = () => {
 
             </Grid>
         </Paper>
-        <Drawer 
-            open={open} 
-            onClose={toggleDrawer(false)} 
-            anchor='right'
-            sx={{
-                '& .MuiDrawer-paper': {
-                border: 'none',
-                marginTop: '132px',
-                backgroundColor: 'white', 
-                },
-                '& .MuiBackdrop-root': {
-                    backgroundColor: 'transparent', // Set backdrop color to transparent
-                  },
-            }}
-        >
-           <Box sx={{minWidth:'300px'}}>
-                <Box sx={{background:themeColors.primary, display:'flex', gap:'10px', alignItems:'center', padding:'10px 20px'}}>
-                    <IconButton onClick={toggleDrawer(false)}>
-                        <CloseIcon sx={{color:'white'}}/>
-                    </IconButton>
-                    <Typography variant='h6' sx={{color:'white', fontWeight:700}}>שליחת תרגיל</Typography>
-                </Box>
-                <Box sx={{margin:'20px 40px'}}>
-                    <FormControl>
-                        <FormLabel id="demo-radio-buttons-group-label" sx={{color:'black'}}>סוג התרגיל:</FormLabel>
-                        <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
-                            name="radio-buttons-group"
-                        >
-                            <FormControlLabel value="female" control={<Radio />} label="תרגול - ללא תזמון" />
-                            <FormControlLabel value="male" control={<Radio />} label="מבדק" />
-
-
-                            <FormControlLabel value="other" control={<Radio />} label="מבחן" />
-                            <Button variant='contained'>
-                                שליחה
-                            </Button>
-                        </RadioGroup>
-                    </FormControl>
-                </Box>
-            </Box>
-        </Drawer>
+        <ExerciseDrawer.Send open={open} setOpen={setOpen}/>
+        <ExerciseDrawer.Answer open={open2} setOpen={setOpen2}/>
         <ExerciseModal open={openModalPdf} setOpen={setOpenModalPdf}> 
             <Box>
                 <PdfUtil link={`/${exercise?.pdf}`} />
