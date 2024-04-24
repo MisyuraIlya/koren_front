@@ -5,6 +5,12 @@ import { themeColors } from '@/styles/mui';
 import useDataExerciseTypes from '@/modules/teacher/hooks/useDataExerciseTypes';
 import { useTeacherWork } from '@/modules/teacher/store/work.store';
 
+
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 interface SendProps {
     open: boolean
     setOpen: (value: boolean) => void
@@ -17,6 +23,9 @@ const Send:FC<SendProps> = ({open, setOpen}) => {
             open={open} 
             onClose={() => setOpen(false)} 
             anchor='right'
+            SlideProps={{
+                direction:'right'
+            }}
             sx={{
                 '& .MuiDrawer-paper': {
                 border: 'none',
@@ -52,11 +61,15 @@ const Send:FC<SendProps> = ({open, setOpen}) => {
                                         <Box sx={{display:'flex', gap:'5px'}}>
                                         {
                                             item?.isDateable && 
-                                            <TextField value={''} label={'תאריך'}/>
+                                                <DemoContainer components={['DatePicker']}>
+                                                    <DatePicker label="תאריך" />
+                                                </DemoContainer>
                                         }   
                                         {
                                             item?.isTimeable &&
-                                            <TextField value={''} label={'שעה'}/>
+                                            <DemoContainer components={['TimePicker']}>
+                                                <TimePicker label="שעה"  views={['hours','minutes']}/>
+                                            </DemoContainer>
                                         }
                                         </Box>
                                     }
