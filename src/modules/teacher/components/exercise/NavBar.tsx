@@ -40,7 +40,6 @@ const type = [
 ]
 
 const NavBar = () => {
-    const [choosedType, setChoosedType] = useState('')
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [openModalPdf, setOpenModalPdf] = useState(false)
@@ -49,10 +48,9 @@ const NavBar = () => {
     const [openModalDescription2, setOpenModalDescription2] = useState(false)
     const {exercise} = useExercise()
     const {classChoosed} = useTeacherWork()
+    const {sendType} = useTeacherWork()
 
-    const toggleDrawer2 = (newOpen: boolean) => () => {
-        setOpen2(newOpen);
-      };
+
     return (
         <>
         <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px', bgcolor:'white'}}>
@@ -152,7 +150,7 @@ const NavBar = () => {
                         <Grid item xs={2.5} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
                             <Box>
                                 <Box sx={{display:'flex', alignItems:'center'}}>
-                                    <Typography>סוג התרגיל:</Typography>
+                                    <Typography>סוג התרגיל: {sendType}</Typography>
                                     <IconButton onClick={() => setOpen(true)}>
                                         <BorderColorIcon sx={{color:'black'}}/>
                                     </IconButton>
@@ -163,13 +161,8 @@ const NavBar = () => {
                                     avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
                                 />
                                 <Box sx={{display:'flex', gap:'20px'}}>
-                           
                                     <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                                        <CalendarTodayIcon sx={{fontSize:'20px'}}/>
                                         <Typography variant='body1'>13.3.2023</Typography>
-                                    </Box>
-                                    <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                                        <AccessTimeIcon/>
                                         <Typography variant='body1'>14:00</Typography>
                                     </Box>
                                 </Box>

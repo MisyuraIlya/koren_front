@@ -11,8 +11,13 @@ interface useTeacherWorkState {
     setStudentChoosed: (studentChoosed: IUser | null) => void;
     groupSelected: ITeacherGroup | null;
     setSelectedGroup: (groupSelected: ITeacherGroup) => void;
+
     sendType: sendExerciseType;
-    setSendType: (sendType: sendExerciseType) => void; // Define sendType type here
+    setSendType: (sendType: sendExerciseType) => void; 
+    dateChoosed: string
+    setDateChoosed: (dateChoosed: string) => void
+    timeChoosed: string
+    setTimeChoosed: (timeChoosed: string) => void
 }
 
 export const useTeacherWork = create(
@@ -27,7 +32,11 @@ export const useTeacherWork = create(
 
             //SEND DRAWER
             sendType: '' as sendExerciseType,
-            setSendType: (sendType: sendExerciseType) => set({ sendType }), // Explicitly define sendType type here
+            setSendType: (sendType: sendExerciseType) => set({ sendType }), 
+            dateChoosed: '',
+            setDateChoosed: (dateChoosed) => set({dateChoosed}),
+            timeChoosed:'',
+            setTimeChoosed: (timeChoosed) => set({timeChoosed})
         }),
         {
             name: 'work-teacher-storage',

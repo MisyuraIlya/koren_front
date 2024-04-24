@@ -5,7 +5,6 @@ interface ColumnProps {
     columnIndex: number
 }
 const Column:FC<ColumnProps> = ({column, columnIndex}) => {
-    console.log('column',column,columnIndex)
     return (
         <>
         {(column?.title || column?.type === 'orden' || column?.type === 'word') &&
