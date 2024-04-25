@@ -90,6 +90,10 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/exercise-type/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/exercise-type/:slug*`
+          },
+          {
+            source: '/exercise-group-connection/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/exercise-group-connection/:slug*`
           }
         ]
       }
@@ -148,6 +152,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/exercise-type/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise-type/:slug*`
+        },
+        {
+          source: '/exercise-group-connection/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise-group-connection/:slug*`
         }
       ]
     }

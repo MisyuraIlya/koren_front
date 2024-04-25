@@ -24,7 +24,6 @@ export default function RootLayout({
     stylisPlugins: [prefixer, rtlPlugin],
   })
 
-
   return (
     <html lang="he" dir='rtl'>
       <head></head>

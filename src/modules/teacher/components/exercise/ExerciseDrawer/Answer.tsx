@@ -1,19 +1,65 @@
-import { Box, Button, Drawer, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Typography } from '@mui/material';
-import React,{FC} from 'react';
+import { Box, Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton, Radio, RadioGroup, Typography } from '@mui/material';
+import React,{FC, useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { themeColors } from '@/styles/mui';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import moment from 'moment';
 
 interface SendProps {
     open: boolean
     setOpen: (value: boolean) => void
 }
 
+const choises = [
+    {
+        id:1,
+        name:'ידנית',
+        isDatable:false,
+        isMultiCheck:false
+    },
+    {
+        id:2,
+        name:'לפי תאריך',
+        isDatable:true,
+        isMultiCheck:false
+    },
+    {
+        id:3,
+        name:'כל הכיתה',
+        isDatable:false,
+        isMultiCheck:false
+    },
+    {
+        id:4,
+        name:'לפי תלמיד',
+        isDatable:false,
+        isMultiCheck:true
+    }
+]
+
 const Answer:FC<SendProps> = ({open, setOpen}) => {
+    const {openAnswerAt, setOpenAnswerAt, openHourAnswerAt, setOpenHourAnswerAt,groupSelected} = useTeacherWork()
+    const [choosedType, setChoosedType] = useState('')
+    const [choosedStudents, setChoosedStudents] = useState<IUser[]>([])
+
+    const handleChange = (student: IUser) => {
+        const updatedStudents = choosedStudents.includes(student)
+            ? choosedStudents.filter(s => s.id !== student.id)
+            : [...choosedStudents, student];
+        setChoosedStudents(updatedStudents);
+    };
+
     return (
         <Drawer 
         open={open} 
         onClose={() => setOpen(false)} 
         anchor='right'
+        SlideProps={{
+            direction:'right'
+        }}
         sx={{
             '& .MuiDrawer-paper': {
             border: 'none',
@@ -21,11 +67,11 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
             backgroundColor: 'white', 
             },
             '& .MuiBackdrop-root': {
-                backgroundColor: 'transparent',
+                backgroundColor: 'transparent', 
               },
         }}
     >
-       <Box sx={{minWidth:'300px'}}>
+       <Box sx={{minWidth:'370px'}}>
             <Box sx={{background:themeColors.primary, display:'flex', gap:'10px', alignItems:'center', padding:'10px 20px'}}>
                 <IconButton onClick={() => setOpen(false)}>
                     <CloseIcon sx={{color:'white'}}/>
@@ -34,22 +80,48 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
             </Box>
             <Box sx={{margin:'20px 40px'}}>
                 <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label" sx={{color:'black'}}>סוג התרגיל:</FormLabel>
                     <RadioGroup
+                        value={choosedType}
+                        onChange={(e) => setChoosedType(e.target.value)}
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue="female"
                         name="radio-buttons-group"
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="תרגול - ללא תזמון" />
-                        <FormControlLabel value="male" control={<Radio />} label="מבדק" />
+                        {choises?.map((item) =>
+                        <Box>
+                            <FormControlLabel value={item.name} control={<Radio />} label={item.name} />
+                            {item?.isDatable && choosedType == item.name &&
+                            <Box>
+                                <Box>
+                                    <DemoContainer components={['DatePicker']}>
+                                        <DatePicker label="תאריך התחלה" value={moment(openAnswerAt)} onChange={(e) => setOpenAnswerAt(new Date(e?.toString()!))}/>
+                                    </DemoContainer>
+                                </Box>
+                                <Box>
+                                    <DemoContainer components={['TimePicker']}>
+                                        <TimePicker label="שעה"  views={['hours','minutes']} value={moment(openHourAnswerAt)} onChange={(e) => setOpenHourAnswerAt(e?.toString()!)}/>
+                                    </DemoContainer>
+                                </Box>
+                            </Box>
+                                       
+                            }
+                            {item?.isMultiCheck && choosedType == item.name &&
+                                    <FormGroup >
+                                        {groupSelected?.students?.map((student,index) =>
+                                            <FormControlLabel key={index} control={<Checkbox   checked={choosedStudents.includes(student)} onChange={() => handleChange(student)}/>} label={student?.firstName} />
+                                        )}
+                                    </FormGroup>
+                            } 
+                        </Box>
+                        )}
 
-
-                        <FormControlLabel value="other" control={<Radio />} label="מבחן" />
-                        <Button variant='contained'>
-                            שליחה
-                        </Button>
+                      
                     </RadioGroup>
+                    <Button variant='contained' fullWidth>
+                        שליחה
+                    </Button>
                 </FormControl>
+             
             </Box>
         </Box>
     </Drawer>

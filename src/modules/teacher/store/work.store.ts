@@ -14,10 +14,17 @@ interface useTeacherWorkState {
 
     sendType: sendExerciseType;
     setSendType: (sendType: sendExerciseType) => void; 
-    dateChoosed: string
-    setDateChoosed: (dateChoosed: string) => void
+    fromDate: Date
+    setFromDate: (fromDate: Date) => void
+    toDate: Date
+    setToDate: (toDate: Date) => void
     timeChoosed: string
     setTimeChoosed: (timeChoosed: string) => void
+
+    openAnswerAt: Date,
+    setOpenAnswerAt: (openAnswerAt: Date) => void
+    openHourAnswerAt: string
+    setOpenHourAnswerAt: (value: string) => void
 }
 
 export const useTeacherWork = create(
@@ -33,10 +40,17 @@ export const useTeacherWork = create(
             //SEND DRAWER
             sendType: '' as sendExerciseType,
             setSendType: (sendType: sendExerciseType) => set({ sendType }), 
-            dateChoosed: '',
-            setDateChoosed: (dateChoosed) => set({dateChoosed}),
+            fromDate: new Date,
+            setFromDate: (fromDate) => set({fromDate}),
+            toDate: new Date,
+            setToDate: (toDate) => set({toDate}),
             timeChoosed:'',
-            setTimeChoosed: (timeChoosed) => set({timeChoosed})
+            setTimeChoosed: (timeChoosed) => set({timeChoosed}),
+
+            openAnswerAt: new Date,
+            setOpenAnswerAt: (openAnswerAt) => set({openAnswerAt}),
+            openHourAnswerAt:'',
+            setOpenHourAnswerAt: () => set({},)
         }),
         {
             name: 'work-teacher-storage',

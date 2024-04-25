@@ -23,6 +23,10 @@ import { useTeacherWork } from '../../store/work.store';
 import Send from './ExerciseDrawer/Send';
 import Answer from './ExerciseDrawer/Answer';
 import ExerciseDrawer from './ExerciseDrawer';
+import moment from 'moment';
+import useDataConnectionGroup from '../../hooks/useDataConnectionGroup';
+import { onAsk, onInfoAlert } from '@/utils/sweetAlert';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const type = [
     {
@@ -47,9 +51,16 @@ const NavBar = () => {
     const [openModalDescription1, setOpenModalDescription1] = useState(false)
     const [openModalDescription2, setOpenModalDescription2] = useState(false)
     const {exercise} = useExercise()
-    const {classChoosed} = useTeacherWork()
+    const {classChoosed, toDate, fromDate,  timeChoosed} = useTeacherWork()
     const {sendType} = useTeacherWork()
-
+    const {data, deletGroup} = useDataConnectionGroup()
+    
+    const handleDelete = async () => {
+        const ask = await onAsk(`למחוק ${sendType}?`,'')
+        if(ask){
+            deletGroup(data?.id!)
+        }
+    }
 
     return (
         <>
@@ -154,16 +165,18 @@ const NavBar = () => {
                                     <IconButton onClick={() => setOpen(true)}>
                                         <BorderColorIcon sx={{color:'black'}}/>
                                     </IconButton>
+                                    <IconButton onClick={() => handleDelete()}>
+                                        <DeleteIcon sx={{color:'black'}}/>
+                                    </IconButton>
                                 </Box>
-                                <Chip
-                                    label="טרם נשלח"
-                                    sx={{background:'#EDF2F9', pl:'5px'}}
-                                    avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
-                                />
+                                <Button  startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.id ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
+                                    טרם נשלח
+                                </Button>
                                 <Box sx={{display:'flex', gap:'20px'}}>
                                     <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                                        <Typography variant='body1'>13.3.2023</Typography>
-                                        <Typography variant='body1'>14:00</Typography>
+                                        <Typography variant='body1'>{moment(data?.fromDate ? data?.fromDate : fromDate).format('DD-MM-YYYY')}</Typography>
+                                        <Typography variant='body1'>{moment(data?.toDate ? data?.toDate : toDate).format('DD-MM-YYYY')}</Typography>
+                                        <Typography variant='body1'>{moment(data?.time ? data?.time: timeChoosed).format('HH:mm')}</Typography>
                                     </Box>
                                 </Box>
                             </Box>
