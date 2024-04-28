@@ -21,6 +21,8 @@ interface useTeacherWorkState {
     timeChoosed: string
     setTimeChoosed: (timeChoosed: string) => void
 
+    answerType: string 
+    setAnswerType: (answerType: string) => void
     openAnswerAt: Date,
     setOpenAnswerAt: (openAnswerAt: Date) => void
     openHourAnswerAt: string
@@ -47,10 +49,12 @@ export const useTeacherWork = create(
             timeChoosed:'',
             setTimeChoosed: (timeChoosed) => set({timeChoosed}),
 
+            answerType:'',
+            setAnswerType:(answerType:string) => set({answerType}),
             openAnswerAt: new Date,
             setOpenAnswerAt: (openAnswerAt) => set({openAnswerAt}),
             openHourAnswerAt:'',
-            setOpenHourAnswerAt: () => set({},)
+            setOpenHourAnswerAt: (openHourAnswerAt) => set({openHourAnswerAt},)
         }),
         {
             name: 'work-teacher-storage',

@@ -5,5 +5,7 @@ interface IConnectionGroup {
     toDate: string
     createdAt: string
     updatedAt: string
+    answerType: string
     time: string
+    answerTime: string
 }

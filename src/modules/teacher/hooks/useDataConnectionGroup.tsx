@@ -17,7 +17,7 @@ const fetchData = async (groupUuid: string, exerciseTypeId: string, exerciseId: 
 
 const useDataConnectionGroup = () => {
   const { user } = useAuth()
-  const {groupSelected, fromDate, toDate, timeChoosed, sendType} = useTeacherWork()
+  const {groupSelected, fromDate, toDate, timeChoosed, sendType, answerType} = useTeacherWork()
   const {exercise} = useExercise()
   const { data, error, isLoading, mutate } = useSWR<IConnectionGroup>(
     `/api/exercise-group-connection/${groupSelected?.uuid!}/${sendType}/${exercise?.id!}/${user?.id}`,
@@ -43,11 +43,27 @@ const useDataConnectionGroup = () => {
         )
         mutate()
   }
+
+  const createGroupAnswer = async (students:IUser[],date?:Date, time?:string) => {
+    await connectionServices.createConnectionGroupAnswer(
+      data?.id!,
+      answerType,
+      students,
+      date,
+      time
+    )
+    mutate()
+  }
   
   const deletGroup = async (id: number) => {
     await connectionServices.deleteConnectionGroup(id);
     mutate(undefined); 
   };
+
+  const deletAnswerGroup = async (id:number) => {
+    await connectionServices.deleteConnectionGroupAnswer(id);
+    mutate()
+  }
 
 
   return {
@@ -56,7 +72,9 @@ const useDataConnectionGroup = () => {
     isError: error,
     mutate,
     createGroupConnection,
-    deletGroup
+    deletGroup,
+    createGroupAnswer,
+    deletAnswerGroup
   }
 }
 

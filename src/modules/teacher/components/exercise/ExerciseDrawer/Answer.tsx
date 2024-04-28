@@ -7,6 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { useTeacherWork } from '@/modules/teacher/store/work.store';
 import moment from 'moment';
+import useDataConnectionGroup from '@/modules/teacher/hooks/useDataConnectionGroup';
 
 interface SendProps {
     open: boolean
@@ -41,9 +42,9 @@ const choises = [
 ]
 
 const Answer:FC<SendProps> = ({open, setOpen}) => {
-    const {openAnswerAt, setOpenAnswerAt, openHourAnswerAt, setOpenHourAnswerAt,groupSelected} = useTeacherWork()
-    const [choosedType, setChoosedType] = useState('')
+    const {openAnswerAt, setOpenAnswerAt, openHourAnswerAt, setOpenHourAnswerAt,groupSelected, answerType, setAnswerType} = useTeacherWork()
     const [choosedStudents, setChoosedStudents] = useState<IUser[]>([])
+    const {createGroupAnswer,data} = useDataConnectionGroup()
 
     const handleChange = (student: IUser) => {
         const updatedStudents = choosedStudents.includes(student)
@@ -51,6 +52,20 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
             : [...choosedStudents, student];
         setChoosedStudents(updatedStudents);
     };
+
+    const handleSend = () => {
+        if(answerType == 'לפי תאריך'){
+            createGroupAnswer(
+                groupSelected?.students!,
+                openAnswerAt,
+                openHourAnswerAt
+            )
+        } else if(answerType == 'לפי תלמיד') {
+            createGroupAnswer(choosedStudents)
+        } else {
+            createGroupAnswer(groupSelected?.students!)
+        }
+    }
 
     return (
         <Drawer 
@@ -81,8 +96,9 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
             <Box sx={{margin:'20px 40px'}}>
                 <FormControl>
                     <RadioGroup
-                        value={choosedType}
-                        onChange={(e) => setChoosedType(e.target.value)}
+                        defaultChecked={choises?.some((item) => item.name === answerType)}
+                        value={answerType}
+                        onChange={(e) => setAnswerType(e.target.value)}
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue="female"
                         name="radio-buttons-group"
@@ -90,7 +106,7 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
                         {choises?.map((item) =>
                         <Box>
                             <FormControlLabel value={item.name} control={<Radio />} label={item.name} />
-                            {item?.isDatable && choosedType == item.name &&
+                            {item?.isDatable && answerType == item.name &&
                             <Box>
                                 <Box>
                                     <DemoContainer components={['DatePicker']}>
@@ -99,25 +115,25 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
                                 </Box>
                                 <Box>
                                     <DemoContainer components={['TimePicker']}>
-                                        <TimePicker label="שעה"  views={['hours','minutes']} value={moment(openHourAnswerAt)} onChange={(e) => setOpenHourAnswerAt(e?.toString()!)}/>
+                                        <TimePicker label="שעה"  views={['hours']} value={moment(data?.answerTime ? data?.answerTime : openHourAnswerAt)} onChange={(e) => setOpenHourAnswerAt(e?.toString()!)}/>
                                     </DemoContainer>
                                 </Box>
                             </Box>
                                        
                             }
-                            {item?.isMultiCheck && choosedType == item.name &&
-                                    <FormGroup >
-                                        {groupSelected?.students?.map((student,index) =>
-                                            <FormControlLabel key={index} control={<Checkbox   checked={choosedStudents.includes(student)} onChange={() => handleChange(student)}/>} label={student?.firstName} />
-                                        )}
-                                    </FormGroup>
+                            {item?.isMultiCheck && answerType == item.name &&
+                                <FormGroup >
+                                    {groupSelected?.students?.map((student,index) =>
+                                        <FormControlLabel key={index} control={<Checkbox   checked={choosedStudents.includes(student)} onChange={() => handleChange(student)}/>} label={student?.firstName} />
+                                    )}
+                                </FormGroup>
                             } 
                         </Box>
                         )}
 
                       
                     </RadioGroup>
-                    <Button variant='contained' fullWidth>
+                    <Button variant='contained' fullWidth onClick={() => handleSend()} disabled={!data?.id}>
                         שליחה
                     </Button>
                 </FormControl>

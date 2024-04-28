@@ -9,7 +9,6 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -53,13 +52,20 @@ const NavBar = () => {
     const {exercise} = useExercise()
     const {classChoosed, toDate, fromDate,  timeChoosed} = useTeacherWork()
     const {sendType} = useTeacherWork()
-    const {data, deletGroup} = useDataConnectionGroup()
+    const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
     
     const handleDelete = async () => {
         const ask = await onAsk(`למחוק ${sendType}?`,'')
         if(ask){
             deletGroup(data?.id!)
         }
+    }
+
+    const handleDeleteAnswer = async () => {
+        const ask = await onAsk(`לאפס תשובות?`,'')
+        if(ask){
+            deletAnswerGroup(data?.id!)
+        } 
     }
 
     return (
@@ -96,32 +102,32 @@ const NavBar = () => {
                     classChoosed &&
                     <>
                         <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
-                            <Box>
+                            <Box sx={{position:'relative'}}>
                                 <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}> 
                                     <Typography color={'error'} sx={{fontSize:'14px', fontWeight:700}}>12</Typography>
                                     <Typography sx={{fontSize:'14px'}}>תשובות שגויות</Typography>
-                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', ml:'3px'}}>
-                                        <ArrowForwardIosIcon sx={{fontSize:'20px'}}/>
+                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', ml:'3px',height:'20px', width:'20px'}}>
+                                        <ArrowForwardIosIcon sx={{fontSize:'15px'}}/>
                                     </IconButton>
-                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px'}}>
-                                        <ArrowBackIosNewIcon sx={{fontSize:'20px'}}/>
+                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}}>
+                                        <ArrowBackIosNewIcon sx={{fontSize:'15px'}}/>
                                     </IconButton>
                                 </Box>
                                 <Box sx={{display:'flex', gap:'10px', alignItems:'center', marginTop:'10px'}}> 
                                     <Typography color={'error'} sx={{fontSize:'14px', fontWeight:700}}>12</Typography>
                                     <Typography sx={{fontSize:'14px'}}>שאלות פתוחות</Typography>
-                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px'}}>
-                                        <ArrowForwardIosIcon sx={{fontSize:'20px'}}/>
+                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}}>
+                                        <ArrowForwardIosIcon sx={{fontSize:'15px'}}/>
                                     </IconButton>
-                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', display:'flex'}}>
-                                        <ArrowBackIosNewIcon sx={{fontSize:'20px'}}/>
+                                    <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', display:'flex',height:'20px', width:'20px'}}>
+                                        <ArrowBackIosNewIcon sx={{fontSize:'15px'}}/>
                                     </IconButton>
                                 </Box>
-                                <Box sx={{display:'flex', gap:'10px', alignItems:'center', marginTop:'10px'}}> 
+                                <Box sx={{display:'flex', gap:'10px', alignItems:'center', position:'absolute', bottom:'10px', width:'100%'}}> 
                                     <IconButton sx={{padding:'0'}}>
-                                        <VisibilityOffIcon/>
+                                        <VisibilityOffIcon sx={{fontSize:'20px'}}/>
                                     </IconButton>
-                                    <Typography>הסתרת השאלות הפתוחות</Typography>
+                                    <Typography fontSize={'13px'}>הסתרת השאלות הפתוחות</Typography>
                                 </Box>
                             </Box>
                         </Grid>
@@ -152,28 +158,31 @@ const NavBar = () => {
                                             <RemoveRedEyeIcon sx={{color:'black'}}/>
                                         </IconButton>
                                         <IconButton>
-                                            <BorderColorIcon sx={{color:'black'}}/>
+                                            <Image src={'/images/editExercise.svg'} width={20} height={20} alt='edit'/>
                                         </IconButton>
                                     </Box>
                                 </Box>
                             </Box>
                         </Grid>
-                        <Grid item xs={2.5} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
-                            <Box>
+                        <Grid item xs={2} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
+                            <Box >
                                 <Box sx={{display:'flex', alignItems:'center'}}>
                                     <Typography>סוג התרגיל: {sendType}</Typography>
                                     <IconButton onClick={() => setOpen(true)}>
-                                        <BorderColorIcon sx={{color:'black'}}/>
+                                        <Image src={'/images/editExercise.svg'} width={20} height={20} alt='edit'/>
                                     </IconButton>
                                     <IconButton onClick={() => handleDelete()}>
                                         <DeleteIcon sx={{color:'black'}}/>
                                     </IconButton>
                                 </Box>
-                                <Button  startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.id ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
-                                    טרם נשלח
-                                </Button>
+                          
                                 <Box sx={{display:'flex', gap:'20px'}}>
-                                    <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
+                                    <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                                        <Button  startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.id ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
+                                            טרם נשלח
+                                        </Button>
+                                    </Box>
+                                    <Box>
                                         <Typography variant='body1'>{moment(data?.fromDate ? data?.fromDate : fromDate).format('DD-MM-YYYY')}</Typography>
                                         <Typography variant='body1'>{moment(data?.toDate ? data?.toDate : toDate).format('DD-MM-YYYY')}</Typography>
                                         <Typography variant='body1'>{moment(data?.time ? data?.time: timeChoosed).format('HH:mm')}</Typography>
@@ -181,15 +190,16 @@ const NavBar = () => {
                                 </Box>
                             </Box>
                         </Grid>
-                        <Grid item xs={1.5} sx={{display:'flex', justifyContent:'center'}}>
+                        <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                             <Box>
-                                <Chip
-                                    label="התשובות סגורות"
-                                    sx={{background:'#EDF2F9', pl:'5px'}}
-                                    avatar={<Box sx={{ bgcolor: 'red', borderRadius: '50%', height: '10px !important', width: '10px !important' , pb:'3px'}} />}
-                                />
+                                <Button  startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.answerType ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
+                                    {data?.answerType ? 'הוגדר':'לא הוגדר'}
+                                </Button>
                                 <IconButton onClick={() => setOpen2(true)}>
-                                    <BorderColorIcon sx={{color:'black'}}/>
+                                    <Image src={'/images/editExercise.svg'} width={20} height={20} alt='edit'/>
+                                </IconButton>
+                                <IconButton onClick={() => handleDeleteAnswer()}>
+                                    <DeleteIcon sx={{color:'black'}}/>
                                 </IconButton>
                             </Box>
                         </Grid>

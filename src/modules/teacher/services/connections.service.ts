@@ -8,7 +8,6 @@ export const connectionServices = {
         });
         return response.json()
     },
-
     async createConnectionGroup(groupUuid:string,exerciseTypeId:string,exerciseId:number,teacherId:number,fromDate: Date, toDate: Date, time: string, students: IUser[]){
         const response = await fetch(`/exercise-group-connection`, {
             method: 'POST',
@@ -28,6 +27,27 @@ export const connectionServices = {
         });
         return response.json()
     },
+    async deleteConnectionGroupAnswer(id:number){
+        const response = await fetch(`/exercise-group-connection/answer/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()
+    },
+    async createConnectionGroupAnswer(exerciseGroupConnectionId:number,answerType:string,students:IUser[], dueDate?: Date, time?: string) {
+        const response = await fetch(`/exercise-group-connection/answer/${exerciseGroupConnectionId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({answerType, students, dueDate, time}),
+        });
+        return response.json()
+    },
+
+
     createConnectionUser(){
 
     }
