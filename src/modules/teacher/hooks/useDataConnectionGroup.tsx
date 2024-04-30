@@ -52,6 +52,7 @@ const useDataConnectionGroup = () => {
       date,
       time
     )
+    console.log('heree')
     mutate()
   }
   
