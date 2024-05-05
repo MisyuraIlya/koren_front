@@ -10,6 +10,7 @@ interface IExercise extends Idefinder{
     isInTheBook: boolean
     tabs: ITab[] 
     histories: IHistory[]
+    fullPath?: string
 }
 
 interface ITab extends Idefinder {

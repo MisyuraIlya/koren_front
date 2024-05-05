@@ -83,7 +83,7 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
             },
             '& .MuiBackdrop-root': {
                 backgroundColor: 'transparent', 
-              },
+            },
         }}
     >
        <Box sx={{minWidth:'370px'}}>

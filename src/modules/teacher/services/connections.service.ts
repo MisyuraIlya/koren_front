@@ -48,7 +48,13 @@ export const connectionServices = {
     },
 
 
-    createConnectionUser(){
-
-    }
+    async getTeacherConnectionGroup(teacherId: number):Promise<IConnectionGroup[]>{
+        const response = await fetch(`/exercise-group-connection/teacher/${teacherId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()
+    },
 }
