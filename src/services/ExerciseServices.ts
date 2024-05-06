@@ -11,8 +11,14 @@ export const ExerciseServices = {
         return response.data
     },
 
-    async updateHistory(id: number, isDone: boolean): Promise<IHistory> {
-        const response = await axios.patch(`/student-history/${id}`,{isDone})
+    async updateHistory(id: number, isDone: boolean, exerciseId: number): Promise<IHistory> {
+        const response = await axios.patch(`/student-history/${id}`,{isDone,exerciseId})
+        return response.data
+    },
+
+    async createHistory(studentId: number, exerciseId: number): Promise<{isNew:boolean, data: IHistory}> {
+        const response = await axios.post(`/student-history`,{studentId,exerciseId})
         return response.data
     }
+
 }

@@ -13,7 +13,7 @@ const Instruction: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
 
     
     return (
-        <th className='disbleTh'>
+        <th className='disbleTh' key={objectiveIndex}>
             <div  className='text-right px-4 py-4'>
                 <div
                     dangerouslySetInnerHTML={{ __html: htmlTag }}

@@ -103,8 +103,8 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
                         defaultValue="female"
                         name="radio-buttons-group"
                     >
-                        {choises?.map((item) =>
-                        <Box>
+                        {choises?.map((item,index) =>
+                        <Box key={index}>
                             <FormControlLabel value={item.name} control={<Radio />} label={item.name} />
                             {item?.isDatable && answerType == item.name &&
                             <Box>

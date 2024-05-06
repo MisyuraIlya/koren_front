@@ -40,7 +40,7 @@ const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
 
     return (
         <>
-            <th className={`p-4`} >
+            <th className={`p-4`} key={objectiveIndex}>
        
                 <FormControl error={!isCorrect && exercise?.histories[0]?.isDone} >
                     <CustomSelect

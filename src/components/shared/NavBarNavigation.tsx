@@ -38,8 +38,8 @@ const NavBarNavigation = () => {
                 placeholder='פרק'
                 sx={{ width:'160px', background: 'white', margin: '10px', height: '30px' }}
             >
-                {lvl2IdCourses?.children?.map((course) =>
-                    <MenuItem  value={course.id}>{course.name}</MenuItem>
+                {lvl2IdCourses?.children?.map((course,index) =>
+                    <MenuItem key={index} value={course.id}>{course.name}</MenuItem>
                 )}
             </Select>
             <Select
@@ -48,8 +48,8 @@ const NavBarNavigation = () => {
                 placeholder='יחידה'
                 sx={{ width:'160px',background: 'white', margin: '10px', height: '30px' }}
             >
-                {lvl3IdCourses?.children?.map((course) =>
-                    <MenuItem  value={course.id}>{course.name}</MenuItem>
+                {lvl3IdCourses?.children?.map((course,index) =>
+                    <MenuItem  value={course.id} key={index}>{course.name}</MenuItem>
                 )}
             </Select>
             <Select
@@ -58,8 +58,8 @@ const NavBarNavigation = () => {
                 placeholder='שם העצם'
                 sx={{ width:'160px', background: 'white', margin: '10px', height: '30px' }}
             >
-                {lvl4IdCourses?.children?.map((course) =>
-                    <MenuItem  value={course.id}>{course.name}</MenuItem>
+                {lvl4IdCourses?.children?.map((course,index) =>
+                    <MenuItem  value={course.id}  key={index}>{course.name}</MenuItem>
                 )}
             </Select>
             <Select
@@ -68,8 +68,8 @@ const NavBarNavigation = () => {
                 placeholder='תרגיל'
                 sx={{ width:'160px', background: 'white', margin: '10px', height: '30px' }}
             >
-                {lvl5IdCourses?.children?.map((course) =>
-                    <MenuItem  value={course.id} disabled={!isDisabled}>{course.name}</MenuItem>
+                {lvl5IdCourses?.children?.map((course,index) =>
+                    <MenuItem  value={course.id} disabled={!isDisabled}  key={index}>{course.name}</MenuItem>
                 )}
             </Select>
         </Box>

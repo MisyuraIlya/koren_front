@@ -41,6 +41,7 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                 <>
                     {lvl2IdCourses?.children?.map((item,index) =>
                         <MinCard 
+                        key={index}
                         index={index} 
                         item={item}
                         onClick={() => handleMiniCard()}

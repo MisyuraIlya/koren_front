@@ -30,6 +30,7 @@ const ClearText:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
     //   const isDisabledTh = collectionsCols.some((item) => item.orden === col + 1 && item.title == 'h')
     return (
         <th 
+        key={objectiveIndex}
         className='disbleTh'
         // className={`
         // relative

@@ -1,9 +1,27 @@
 import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useExercise } from '@/provider/ExerciseProvider';
 import React, {FC, useEffect,useState} from 'react';
+import { useDebounce } from 'use-debounce';
 
 const InputModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    // const [isChecked, setIsChecked] = useState(isFullText)
-    const {setValue} = useStudentExercise()
+    const [value, setValue] = useState('');
+    const [debouncedValue] = useDebounce(value, 5000);
+    const {handleAnswer} = useExercise()
+    const {studentChoosed} = useTeacherWork()
+    
+    useEffect(() => {
+      if(debouncedValue){
+        handleAnswer(objective.answers[0],debouncedValue)
+      }
+    },[debouncedValue])
+
+    useEffect(() => {
+        setValue(objective?.answers[0]?.answers[0]?.value ?? '')
+      },[studentChoosed])
+
+
+      
 
     // const handleCheckBox = () => {
     //     setIsChecked(!isChecked)
@@ -15,6 +33,7 @@ const InputModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
         <>
             {/* {!isMerged && */}
                 <th 
+                key={objectiveIndex}
                 // className={`${checkIsThereImage ? '' : ''} ${(isTable || isClearTable)  ? 'tableModule ' : ''} relative `}
                 // style={{
                 //     minWidth: isTable ? `${CustomTableWidth}px` : '',
@@ -31,12 +50,14 @@ const InputModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
                             <>
                             <input 
                             type='text' 
+                            
                             // disabled={isOnlineXml ? true : false}
                             disabled
                             // placeholder={splitPlaceHolder[1] ? '' : objective.placeholder} 
                             className={` px-4 h-full py-2 border border-white rounded-md bg-white fontSizeExercise`}
                             // style={{width: CustomInputWidth}} 
-                            value={objective.answers[0].value}
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
                             // {...register(`exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].collectionAnswers[0].value`,{value: answer[0].value})}
                             />
                             {/* {answer &&

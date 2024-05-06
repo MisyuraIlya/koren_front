@@ -7,6 +7,7 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
 
     return (
         <th
+        key={objectiveIndex}
             style={{
                 minWidth:'70px'
             }}

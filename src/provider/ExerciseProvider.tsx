@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
 import { ExerciseServices } from '@/services/ExerciseServices';
 import { useAuth } from '@/modules/auth/store/auth.store';
+import { useTeacherWork } from '@/modules/teacher/store/work.store';
 
 interface AdminContextType {
     exercise: IExercise | undefined
@@ -19,7 +20,6 @@ interface AdminContextType {
     handleAnswer: (objective: IAnswer, answer: string) => void
     handleDone: () => void
     handleReset: () => void
-    setValue: any
 }
 
 
@@ -45,16 +45,16 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   const [closeHeaderExercise, setCloseHeaderExerise] = useState<boolean>(true)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [loading, setLoading] = useState(false)
-  
+  const {studentChoosed} = useTeacherWork()
+
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
-    `http://localhost:4001/exercise/${props.courseId}/${user?.id!}`,
-    () => ExerciseServices.GetExerciseStudent(props.courseId, user?.id!),
+    `http://localhost:4001/exercise/${props.courseId}/${user?.role === 'teacher' && studentChoosed?.id  ? studentChoosed.id! :  user?.id!}`,
+    () => ExerciseServices.GetExerciseStudent(props.courseId, user?.role === 'teacher' && studentChoosed?.id  ? studentChoosed.id! :  user?.id!),
     {
       revalidateOnFocus: false,
     }
   );
 
-  console.log('erroerrorr',error)
   const handleAnswer = (objective: IAnswer, answer: string) => {
     try {
       const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)
@@ -63,12 +63,11 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     } 
   }
 
-
   const handleDone = async () => {
     try {
         const ask = await onAsk('בטוח סיימת?','')
         if(ask){
-          const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, true)
+          const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, true, exercise?.id!)
           mutate()
         }
     } catch(e) {
@@ -88,9 +87,24 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   }
   }
 
-  const setValue = () => console.log('FIX')
+  const handleCreateHistory = async () => {
+    try {
+      if(user?.id && exercise?.id){
+        const res = await ExerciseServices.createHistory(user?.id,exercise?.id)
+        if(res.isNew){
+          mutate()
+        }
+      }
+    } catch(e) {
+      console.log('[ERROR] exercise provider', e)
+    } 
+  }
 
-  console.log('exercise',exercise)
+
+  useEffect(() => {
+    handleCreateHistory()
+  },[user,exercise])
+
   const value: AdminContextType = {
     exercise,
     isLoading,
@@ -100,8 +114,7 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     setChoosedTab,
     handleAnswer,
     handleDone,
-    handleReset,
-    setValue
+    handleReset
   };
 
   return (

@@ -94,6 +94,14 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/exercise-group-connection/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/exercise-group-connection/:slug*`
+          },
+          {
+            source: '/student-answer/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/student-answer/:slug*`
+          },
+          {
+            source: '/student-history/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/student-history/:slug*`
           }
         ]
       }
@@ -156,6 +164,14 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/exercise-group-connection/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise-group-connection/:slug*`
+        },
+        {
+          source: '/student-answer/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/student-answer/:slug*`
+        },
+        {
+          source: '/student-answer/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/student-history/:slug*`
         }
       ]
     }
