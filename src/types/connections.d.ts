@@ -21,4 +21,5 @@ interface IExerciseUserConnection {
     answerTime: string
     isOpenAnswer: boolean
     isDone: boolean
+    isResend: boolean
 }

@@ -17,7 +17,7 @@ const useDataTeacherConnectionGroup = () => {
         user?.id!
       )
   )
-
+  console.log('data',data)
   return {
     data,
     isLoading: isLoading,

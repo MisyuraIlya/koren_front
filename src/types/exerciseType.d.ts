@@ -5,3 +5,5 @@ interface IExerciseType {
     isTimeable: boolean
     ordern: number
 }
+
+type IExerciseEnum = 'מבחן' | 'מבדק' | 'תרגיל' | 'הכל'

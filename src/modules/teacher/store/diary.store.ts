@@ -7,6 +7,8 @@ interface useDiratyState {
     connectionGroup: IConnectionGroup | null
     setConnectionGroup: (value: IConnectionGroup) => void
     clear: () => void
+    filter: IExerciseEnum 
+    setFilter: (value:IExerciseEnum) => void
 }
 
 export const useDiratyStore= create(
@@ -16,7 +18,9 @@ export const useDiratyStore= create(
         setOpenStudents: (openStudents) => set({openStudents}),
         connectionGroup: null,
         setConnectionGroup: (connectionGroup) => set({connectionGroup}),
-        clear: () => set({openStudents:false,connectionGroup:null})
+        clear: () => set({openStudents:false,connectionGroup:null}),
+        filter:'הכל' as IExerciseEnum,
+        setFilter: (filter) => set({filter})
     }),
     {
       name: 'diray-teacher-storage',

@@ -1,14 +1,38 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
-import SideBar from "@/modules/teacher/components/SideBar";
-import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCoursesProvider";
-import { Box, Collapse, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from '@mui/material';
+import { Box, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ListStudents from "@/modules/teacher/components/diary/ListStudents";
-import { useDiratyStore } from "@/modules/teacher/store/diary.store";
+import { themeColors } from "@/styles/mui";
+import { usePathname, useRouter } from "next/navigation";
+import { TeacherURLS } from "@/enums/urls";
+
+
+const nav = [
+  {
+    name:'משימות כיתתיות',
+    link:TeacherURLS.CLASSES_MISSIONS,
+  },
+  {
+    name:'ממתין לבדיקה',
+    link:TeacherURLS.TO_CHECK,
+  },
+  {
+    name:'הוחזר לתיקון',
+    link:TeacherURLS.RESTORE,
+  },
+  {
+    name:'בתהליך עבודה',
+    link:TeacherURLS.IN_PROCESS,
+  },
+  {
+    name:'באיחור הגשה',
+    link:TeacherURLS.LATE_SUBMISSION,
+  },
+]
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const {openStudents,setOpenStudents, connectionGroup} = useDiratyStore()
+  const location = usePathname()
+  const {push} = useRouter()
+
   return (
     <>
     <Box sx={{ flex: 1}}>
@@ -26,54 +50,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </ListSubheader>
                   }
                   >
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <ListItemText primary="בנק המשובים"  sx={{pl:'10px'}}/>
+                    {nav?.map((item,index) =>
+                      <ListItem key={index}>
+                          <ListItemButton 
+                            sx={{
+                                background:location === item.link ? themeColors.primary : 'white',
+                                color: location === item.link ? 'white': themeColors.primary,
+                                border:'1px solid #D1E1E7', 
+                                borderRadius:'10px'
+                              }}
+                              onClick={() => push(item.link)}
+                          >
+                              <ListItemText primary={item.name}  sx={{pl:'10px'}}/>
                               <ListItemIcon>
-                                <ArrowBackIosIcon/>
+                                <ArrowBackIosIcon sx={{color: location === item.link ? 'white': themeColors.primary}}/>
                               </ListItemIcon>
                           </ListItemButton>
                       </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <ListItemText primary="ממתין לבדיקה"  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <ListItemText primary="תיקיית מבחנים"  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <ListItemText primary="תיקייה אישית למורה"  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <ListItemText primary='ספריית "שרי"'  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
+                    )}
                 </List>
               </Box>
             </Grid>
             <Grid item xs={9.5} sx={{ background: 'white', height: '100%', borderLeft:'1px solid #DCDDDE', display:'flex'}}>
                 {children}
-                {connectionGroup &&
-                  <ListStudents open={openStudents} setOpen={setOpenStudents} elemnt={connectionGroup}/>
-                }
             </Grid>
         </Grid>
     </Box>
