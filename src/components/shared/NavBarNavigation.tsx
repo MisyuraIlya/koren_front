@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, MenuItem, Select, SelectChangeEvent, Toolbar } from '@mui/material';
 import { useParams, useRouter } from 'next/navigation';
 import { useTeacherCourses } from '@/modules/teacher/provider/TeacherCoursesProvider';
+import { useCourses } from '@/provider/CourseProvider';
 const NavBarNavigation = () => {
     const {exercise, courses} = useParams()
 
@@ -12,7 +13,7 @@ const NavBarNavigation = () => {
     const lvl4 = exercise ? exercise?.[3] : courses?.[3];
     const lvl5 = exercise ? exercise?.[4] : courses?.[4];
 
-    const {lvl2IdCourses,lvl3IdCourses,lvl4IdCourses,lvl5IdCourses} = useTeacherCourses()
+    const {lvl2IdCourses,lvl3IdCourses,lvl4IdCourses,lvl5IdCourses} = useCourses()
     
     const handleChange = (lvl: number, event:SelectChangeEvent) => {
         if(lvl === 2 ) {

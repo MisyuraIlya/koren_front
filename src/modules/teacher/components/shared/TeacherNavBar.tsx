@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 
 const TeacherNavBar = () => {
     const {classChoosed} = useTeacherWork()
-    const {exercise } = useParams()
+    const { exercise } = useParams()
     return (
         <Box sx={{bgcolor:'#F0FBFF', height:'60px', width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0 40px'}}>
             <Box sx={{width:'40%', display:'flex'}}>
