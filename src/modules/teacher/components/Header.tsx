@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { useTeacherWork } from '../store/work.store';
 import { useGlobalCourses } from '@/store/globalCourses';
+import { TeacherURLS } from '@/enums/urls';
 const containerStyle = {
     background: 'linear-gradient(144deg, #0990FF 7.34%, #58B4FF 125.95%)',
     padding:'20px',
@@ -35,7 +36,6 @@ const Header = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
 
     const handleClassChoose = (uuid:string) => {
         const find = data?.find((item) => item.uuid === uuid)
@@ -115,7 +115,7 @@ const Header = () => {
                     </Tooltip> 
 
                     <Tooltip title="יומן המורה">
-                        <IconButton onClick={() => router.push('/teacher/diary')}>
+                        <IconButton onClick={() => router.push(TeacherURLS.CLASSES_MISSIONS)}>
                             <Image src={'/images/teacher/list.svg'} alt='' width={40} height={40}/>
                         </IconButton>
                     </Tooltip>   

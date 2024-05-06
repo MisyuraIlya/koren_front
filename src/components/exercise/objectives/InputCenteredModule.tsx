@@ -7,7 +7,6 @@ import { Controller } from 'react-hook-form';
 const InputCenteredModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     // const {ExerciseMethods} = useExercise()
     // const [isChecked, setIsChecked] = useState(isFullText)
-    const {setValue} = useExercise()
 
     // const handleCheckBox = () => {
     //     setIsChecked(!isChecked)

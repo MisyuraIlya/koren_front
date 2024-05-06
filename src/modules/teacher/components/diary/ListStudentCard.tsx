@@ -3,6 +3,7 @@ import moment from 'moment';
 import Image from 'next/image';
 import React, {FC} from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useRouter } from 'next/navigation';
 
 
 interface ListStudentCardProps {
@@ -11,12 +12,13 @@ interface ListStudentCardProps {
 }
 
 const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
-
+    const {push} = useRouter()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
     };
+    
     const handleClose = () => {
       setAnchorEl(null);
     };
@@ -41,10 +43,10 @@ const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem >מעבר לתרגיל</MenuItem>
-                            <MenuItem >כתיבת משוב</MenuItem>
-                            <MenuItem >שליחת הודעה לתלמיד</MenuItem>
-                            <MenuItem >קביעת ציון סופי</MenuItem>
+                            <MenuItem onClick={() => push(item.exercise.fullLink!)}>מעבר לתרגיל</MenuItem>
+                            <MenuItem disabled>כתיבת משוב</MenuItem>
+                            <MenuItem disabled>שליחת הודעה לתלמיד</MenuItem>
+                            <MenuItem disabled>קביעת ציון סופי</MenuItem>
                         </Menu>
                     </Box>
                     <Typography fontWeight={400} variant='body2' fontSize={'14px'}>

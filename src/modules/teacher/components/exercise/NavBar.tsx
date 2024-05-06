@@ -183,9 +183,11 @@ const NavBar = () => {
                                         </Button>
                                     </Box>
                                     <Box>
-                                        <Typography variant='body1'>{moment(data?.fromDate ? data?.fromDate : fromDate).format('DD-MM-YYYY')}</Typography>
-                                        <Typography variant='body1'>{moment(data?.toDate ? data?.toDate : toDate).format('DD-MM-YYYY')}</Typography>
-                                        <Typography variant='body1'>{moment(data?.time ? data?.time: timeChoosed).format('HH:mm')}</Typography>
+                                        <Typography variant='body1'>{`מ.תאריך ${moment(data?.fromDate ? data?.fromDate : fromDate).format('DD-MM-YYYY')}`}</Typography>
+                                        <Typography variant='body1'>{`עד.תאריך ${moment(data?.toDate ? data?.toDate : toDate).format('DD-MM-YYYY')}`}</Typography>
+                                        {(data?.time || timeChoosed) &&
+                                            <Typography variant='body1'>{`שעה ${moment(data?.time ? data?.time: timeChoosed).format('HH:mm')}`}</Typography>
+                                        }
                                     </Box>
                                 </Box>
                             </Box>

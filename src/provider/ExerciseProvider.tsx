@@ -79,7 +79,7 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     try {
       const ask = await onAsk('להתחיל מחדש?','')
       if(ask){
-        const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false)
+        const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false, exercise?.id!)
         mutate()
       }
   } catch(e) {
@@ -99,7 +99,6 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
       console.log('[ERROR] exercise provider', e)
     } 
   }
-
 
   useEffect(() => {
     handleCreateHistory()

@@ -29,7 +29,6 @@ const useDataConnectionGroup = () => {
         user?.id!
       )
   )
-
   const createGroupConnection = async (students:IUser[]) => {
         await connectionServices.createConnectionGroup(
             groupSelected?.uuid!,
@@ -52,7 +51,6 @@ const useDataConnectionGroup = () => {
       date,
       time
     )
-    console.log('heree')
     mutate()
   }
   
@@ -65,7 +63,6 @@ const useDataConnectionGroup = () => {
     await connectionServices.deleteConnectionGroupAnswer(id);
     mutate()
   }
-
 
   return {
     data,

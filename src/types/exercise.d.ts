@@ -11,6 +11,7 @@ interface IExercise extends Idefinder{
     tabs: ITab[] 
     histories: IHistory[]
     fullPath?: string
+    fullLink?: string
     group?: IConnectionGroup
     userGroup?: IExerciseUserConnection
 }

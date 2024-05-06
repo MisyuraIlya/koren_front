@@ -67,7 +67,7 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     try {
         const ask = await onAsk('בטוח סיימת?','')
         if(ask){
-          const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, true)
+          // const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, true)
           mutate()
         }
     } catch(e) {
@@ -79,7 +79,7 @@ const StudentExerciseProvider: React.FC<StudentExerciseProviderProps> = (props) 
     try {
       const ask = await onAsk('להתחיל מחדש?','')
       if(ask){
-        const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false)
+        // const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false)
         mutate()
       }
   } catch(e) {
