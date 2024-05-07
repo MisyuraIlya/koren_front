@@ -5,7 +5,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useState } from "react";
 import SideBar from './SideBar';
-import { CoursesProvider } from "@/provider/CourseProvider";
+import { CoursesProvider, useCourses } from "@/provider/CourseProvider";
 import { usePathname } from 'next/navigation';
 
 const drawerWidth = 300;
@@ -51,11 +51,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
     const [open, setOpen] = useState(false);
-
+    const {lvl1} = useCourses()
     return (
       <CoursesProvider>
-        <Box sx={{ display: 'flex' }}>
-          
+        <Box sx={{ display: 'flex', height:'100vh' }}>
+          {lvl1 &&
+          <>
           <Drawer variant="permanent" open={open}   sx={{
             '& .MuiDrawer-paper': {
               border: 'none',
@@ -80,6 +81,10 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
                   <ArrowBackIosNewIcon/>
               </Box>
           </Box>
+          </>
+          
+          }
+
           
           <Box sx={{ flexGrow: 1, p: 3, padding:'0'}}>
               {children}

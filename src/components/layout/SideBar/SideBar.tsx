@@ -20,7 +20,7 @@ const redBoxStyles = {
 const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => void}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [courseChoosed, setCourseChoosed] = useState<number>(0)
-    const {lvl2IdCourses} = useCourses()
+    const {lvl2IdCourses,setClickedLvl3} = useCourses()
 
     const handleMiniCard = () => {
         setOpen(true)
@@ -64,7 +64,7 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                     {lvl2IdCourses?.children?.map((item, key) =>
                         <Box
                             key={key}
-                            onClick={() => {setIsOpen(!isOpen);setCourseChoosed(item.id!)}}
+                            onClick={() => {setIsOpen(!isOpen);setCourseChoosed(item.id!);setClickedLvl3(false)}}
                         >
                             <BigCard item={item} index={key} totalChildren={item.children.length}/>
                         </Box>

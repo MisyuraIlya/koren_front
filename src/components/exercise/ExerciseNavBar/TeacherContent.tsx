@@ -65,7 +65,7 @@ const TeacherContent = () => {
                                 <ArrowBackIosNewIcon sx={{fontSize:'15px'}}/>
                             </IconButton>
                         </Box>
-                        <Box sx={{display:'flex', gap:'10px', alignItems:'center', position:'absolute', bottom:'10px', width:'100%'}}> 
+                        <Box sx={{display:'flex', gap:'10px', alignItems:'center',width:'100%', mt:'25px'}}> 
                             <IconButton sx={{padding:'0'}}>
                                 <VisibilityOffIcon sx={{fontSize:'20px'}}/>
                             </IconButton>
@@ -89,7 +89,7 @@ const TeacherContent = () => {
                                 </IconButton>
                             </Box>
                         </Box>
-                        <Box sx={{display:'flex', justifyContent:'space-between', position:'absolute', bottom:'0', width:'100%'}}>
+                        <Box sx={{display:'flex', justifyContent:'space-between',mt:'25px' , width:'100%', alignItems:'center'}}>
                             <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
                                 <Box sx={{background:'red', borderRadius:'50%', height:'10px', width:'10px'}}>
                                 </Box>
@@ -118,19 +118,21 @@ const TeacherContent = () => {
                             </IconButton>
                         </Box>
                     
-                        <Box sx={{display:'flex', gap:'20px'}}>
+                        <Box sx={{display:'flex',alignItems:'center'}}>
                             <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                                 <Button startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.id ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
                                     טרם נשלח
                                 </Button>
                             </Box>
-                            <Box>
-                                <Typography variant='body1'>{`מ.תאריך ${moment(data?.fromDate ? data?.fromDate : fromDate).format('DD-MM-YYYY')}`}</Typography>
-                                <Typography variant='body1'>{`עד.תאריך ${moment(data?.toDate ? data?.toDate : toDate).format('DD-MM-YYYY')}`}</Typography>
-                                {(data?.time || timeChoosed) &&
-                                    <Typography variant='body1'>{`שעה ${moment(data?.time ? data?.time: timeChoosed).format('HH:mm')}`}</Typography>
-                                }
-                            </Box>
+                
+                        </Box>
+                        <Box sx={{display:'flex', gap:'10px', mt:'8px'}}>
+                            {data?.toDate && 
+                                <Typography variant='body1'>{`${moment(data?.toDate).format('DD-MM-YYYY')}`}</Typography>
+                            }
+                            {(data?.time || timeChoosed) &&
+                                <Typography variant='body1'>{`${moment(data?.time ).format('HH:mm')}`}</Typography>
+                            }
                         </Box>
                     </Box>
                 </Grid>

@@ -130,8 +130,6 @@ const Send:FC<SendProps> = ({open, setOpen}) => {
                 </Box>
                 :
                 <Box>
-        
-
                     <Box sx={{margin:'20px 40px'}}>
                         <FormControl>
                             <FormLabel sx={{color:'black'}}>סוג התרגיל:</FormLabel>

@@ -15,4 +15,5 @@ interface ITeacherGroup {
     class: string
     students: IUser[]
     teachers: IUser[]
+    connection: IConnectionGroup
 }

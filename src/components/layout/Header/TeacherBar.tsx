@@ -8,15 +8,16 @@ import React from 'react';
 
 const TeacherBar = () => {
     const router = useRouter()
-    const {setClassesChoosed, setStudentChoosed, studentChoosed, classChoosed, groupSelected, setSelectedGroup} = useTeacherWork()
+    const {setClassesChoosed, setStudentChoosed, studentChoosed, classChoosed, groupSelected, setSelectedGroup, setSendType} = useTeacherWork()
     const {data} = useDataTeacherGroups()
-    
+
     const handleClassChoose = (uuid:string) => {
         const find = data?.find((item) => item.uuid === uuid)
         if(find) {
             setSelectedGroup(find)
             setClassesChoosed(find)
             setStudentChoosed(null)
+            setSendType(find.connection.exerciseType?.title as sendExerciseType)
         }
     }
 
@@ -38,7 +39,7 @@ const TeacherBar = () => {
                 </Tooltip>   
 
                 <Tooltip title="מעקב התקדמות כיתתית">
-                    <IconButton onClick={() => router.push('/teacher/classProgress')}>
+                    <IconButton onClick={() => router.push(TeacherURLS.CLASSES_MISSIONS)}>
                         <Image src={'/images/teacher/doc.svg'} alt='' width={30} height={30}/>
                     </IconButton>
                 </Tooltip>
@@ -50,7 +51,7 @@ const TeacherBar = () => {
                 </Tooltip> 
 
                 <Tooltip title="יומן המורה">
-                    <IconButton onClick={() => router.push(TeacherURLS.CLASSES_MISSIONS)}>
+                    <IconButton  onClick={() => router.push('/teacher/classProgress')}>
                         <Image src={'/images/teacher/list.svg'} alt='' width={40} height={40}/>
                     </IconButton>
                 </Tooltip>   

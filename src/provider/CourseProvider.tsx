@@ -20,6 +20,8 @@ interface contextType {
     lvl4: string | undefined
     lvl5: string | undefined
     mutate: any
+    clickedLvl3: boolean
+    setClickedLvl3: (value: boolean) => void
 }
 
 const CourseContext = createContext<contextType | null>(null);
@@ -41,6 +43,7 @@ interface CoursesProviderProps {
 const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const {user} = useAuth()
   const {setMainCourse} = useGlobalCourses()
+  const [clickedLvl3,setClickedLvl3] = useState(false)
   const { data, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, () => AdminCourseService.GetCourses(user?.id!),
     {
       revalidateOnFocus: false, 
@@ -77,7 +80,9 @@ const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
     lvl3,
     lvl4,
     lvl5,
-    mutate
+    mutate,
+    clickedLvl3,
+    setClickedLvl3
   };
 
   return <CourseContext.Provider value={value} {...props} />;
