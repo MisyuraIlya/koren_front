@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import LoginInput from '@/components/LoginInput';
+import LoginInput from './LoginInput';
 import { onErrorAlert } from '@/utils/sweetAlert';
 import {
     Box,

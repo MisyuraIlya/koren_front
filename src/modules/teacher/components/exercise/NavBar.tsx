@@ -23,7 +23,7 @@ import Send from './ExerciseDrawer/Send';
 import Answer from './ExerciseDrawer/Answer';
 import ExerciseDrawer from './ExerciseDrawer';
 import moment from 'moment';
-import useDataConnectionGroup from '../../hooks/useDataConnectionGroup';
+import useDataConnectionGroup from '../../../../hooks/useDataConnectionGroup';
 import { onAsk, onInfoAlert } from '@/utils/sweetAlert';
 import DeleteIcon from '@mui/icons-material/Delete';
 

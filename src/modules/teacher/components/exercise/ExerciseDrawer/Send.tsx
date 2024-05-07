@@ -2,7 +2,6 @@ import { Box, Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup
 import React,{FC, useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { themeColors } from '@/styles/mui';
-import useDataExerciseTypes from '@/modules/teacher/hooks/useDataExerciseTypes';
 import { useTeacherWork } from '@/modules/teacher/store/work.store';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -10,8 +9,9 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import moment from 'moment';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
-import useDataConnectionGroup from '@/modules/teacher/hooks/useDataConnectionGroup';
 import { onInfoAlert } from '@/utils/sweetAlert';
+import useDataConnectionGroup from '@/hooks/useDataConnectionGroup';
+import useDataExerciseTypes from '@/hooks/useDataExerciseTypes';
 
 interface SendProps {
     open: boolean

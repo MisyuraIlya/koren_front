@@ -1,7 +1,7 @@
 'use client'
 import { Box } from '@mui/material';
 import React from 'react';
-import useDataTeacherConnectionGroup from '../../hooks/useDataTeacherConnectionGroup';
+import useDataTeacherConnectionGroup from '../../../../hooks/useDataTeacherConnectionGroup';
 import DiaryCard from './DiaryCard';
 import { useDiratyStore } from '../../store/diary.store';
 

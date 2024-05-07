@@ -1,11 +1,11 @@
 "use client"
-import WorkLayout from "@/components/shared/WorkLayout";
+import Layout from "@/components/layout";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-      <WorkLayout>
+      <Layout.SideBar>
         {children}
-      </WorkLayout>
+      </Layout.SideBar>
 
   );
 }

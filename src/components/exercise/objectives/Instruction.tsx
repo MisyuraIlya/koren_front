@@ -1,4 +1,3 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { type } from 'os';
 import React, { FC, useEffect, useState } from 'react';
 

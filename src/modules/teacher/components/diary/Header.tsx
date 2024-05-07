@@ -1,5 +1,5 @@
 'use client'
-import useDataExerciseTypes from '@/modules/teacher/hooks/useDataExerciseTypes';
+import useDataExerciseTypes from '@/hooks/useDataExerciseTypes';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React from 'react';

@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { Box, Button, Typography } from '@mui/material';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const Description = () => {
-    const {exercise} = useStudentExercise()
+    const {exercise} = useExercise()
     return (
         <Box>
             <Typography variant='h5' fontWeight={900} >

@@ -4,10 +4,10 @@ import React from 'react';
 import Description from './Description';
 import Utils from './Utils';
 import Grade from './Grade';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const ExerciseHeader = () => {
-    const {closeHeaderExercise} = useStudentExercise()
+    const {closeHeaderExercise} = useExercise()
     return (
         <>
             {

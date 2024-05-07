@@ -1,14 +1,14 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
+import MainLayout from "@/components/layout/MainLayout";
 import { CoursesProvider } from "@/provider/CourseProvider";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <CoursesProvider>
-        <TeacherLayout>
+        <MainLayout>
           {children}
-        </TeacherLayout>
+        </MainLayout>
       </CoursesProvider>
     </>
   );

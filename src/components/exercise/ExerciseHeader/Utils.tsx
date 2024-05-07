@@ -5,11 +5,11 @@ import React from 'react';
 import BookIcon from '@/../public/images/book.svg';
 import VideoIcon from '@/../public/images/video.svg';
 import { useModal } from '@/modules/modal/provider/ModalProvider';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const Utils = () => {
     const {handleIframe, handleExplanation} = useModal()
-    const {exercise} = useStudentExercise()
+    const {exercise} = useExercise()
 
     const handleIframeFunc = () => {
         handleIframe(exercise?.youtubeLink!)

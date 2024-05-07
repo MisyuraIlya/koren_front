@@ -5,10 +5,10 @@ import CropFreeIcon from '@mui/icons-material/CropFree';
 import Book from '@/../public/images/book.svg';
 import Utility from '@/../public/images/utilities.svg';
 import Image from 'next/image';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
+import { useExercise } from '@/provider/ExerciseProvider';
 
 const Options = () => {
-    const {closeHeaderExercise, setCloseHeaderExerise} = useStudentExercise()
+    const {closeHeaderExercise, setCloseHeaderExerise} = useExercise()
     return (
         <Box sx={{width:'100%', justifyContent:'right', display:'flex'}}>
             <IconButton>

@@ -7,7 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { useTeacherWork } from '@/modules/teacher/store/work.store';
 import moment from 'moment';
-import useDataConnectionGroup from '@/modules/teacher/hooks/useDataConnectionGroup';
+import useDataConnectionGroup from '@/hooks/useDataConnectionGroup';
 
 interface SendProps {
     open: boolean

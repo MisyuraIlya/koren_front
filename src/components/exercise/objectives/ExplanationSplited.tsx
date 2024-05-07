@@ -1,6 +1,5 @@
 // import React, {FC, useEffect, useState} from 'react';
 // import Image from 'next/image';
-// import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 
 // const ExplanationSplited:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
@@ -13,7 +12,6 @@
     
 
 
-//     const {setValue} = useStudentExercise()
 //     useEffect(() => {
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)

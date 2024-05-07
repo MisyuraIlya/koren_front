@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import ReactSelect from 'react-select'
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/material';
 import { useExercise } from '@/provider/ExerciseProvider';

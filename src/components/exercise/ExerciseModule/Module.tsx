@@ -1,5 +1,4 @@
 "use client";
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import MainModule from './MainModule';

@@ -1,4 +1,3 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
 const WordModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {

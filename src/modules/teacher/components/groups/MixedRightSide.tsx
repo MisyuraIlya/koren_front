@@ -2,7 +2,7 @@
 import { Box, Button, Checkbox, Divider, FormControl, Grid, InputBase, ListItemText, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import useDataClass from '../../hooks/useDataClass';
+import useDataClass from '../../../../hooks/useDataClass';
 import ClassForm from '../shared/ClassForm';
 import TeacherForm from '../shared/TeacherForm';
 import { useGroups } from '../../store/groups.store';

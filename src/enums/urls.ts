@@ -1,6 +1,3 @@
-export enum URLS {
-    LOGIN = '/login',
-}
 
 export enum TeacherURLS {
     CLASSES_MISSIONS = '/teacher/diray/classesMissions',
@@ -8,4 +5,10 @@ export enum TeacherURLS {
     RESTORE = '/teacher/diray/restore',
     IN_PROCESS = '/teacher/diray/inProcess',
     LATE_SUBMISSION = '/teacher/diray/lateSubmission'
+}
+
+export enum AuthURLS {
+    LOGIN = '/login',
+    SIGN_IN = 'privateSignIn',
+    FORGOT_PASSWORD = 'forgotPassword',
 }

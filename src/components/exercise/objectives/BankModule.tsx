@@ -1,10 +1,8 @@
-// import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 // import React, {FC, useEffect} from 'react';
 
 
 // const BankModule:FC <IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
-//     const {setValue} = useStudentExercise()
 //     useEffect(() => {
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)

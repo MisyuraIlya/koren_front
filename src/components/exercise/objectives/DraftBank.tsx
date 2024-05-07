@@ -1,10 +1,8 @@
 // import React, {FC, useEffect} from 'react';
-// import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 
 
 // const DraftBank:FC <IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     
-//     const {setValue} = useStudentExercise()
 
 //     useEffect(() => {
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)

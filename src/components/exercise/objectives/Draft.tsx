@@ -1,11 +1,9 @@
 // import React, {FC, useEffect} from 'react';
 // import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
-// import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 
 
 // const Draft:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
-//     const {setValue} = useStudentExercise()
 //     useEffect(() => {
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
 //         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)

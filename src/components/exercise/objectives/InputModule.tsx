@@ -1,4 +1,3 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { useTeacherWork } from '@/modules/teacher/store/work.store';
 import { useExercise } from '@/provider/ExerciseProvider';
 import React, {FC, useEffect,useState} from 'react';

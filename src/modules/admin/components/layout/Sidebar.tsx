@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import { sideBarList } from '@/config/sidebarList';
+import { sideBarList } from '@/enums/sidebarList';
 
 const Sidebar = () => {
     return (

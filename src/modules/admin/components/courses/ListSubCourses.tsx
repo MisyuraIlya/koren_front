@@ -5,7 +5,7 @@ import Image from 'next/image';
 import SubCourseCard from './SubCourseCard';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAdminCoursesProvider } from '../../provider/AdminCoursesProvider';
-import SearchInput from '@/components/SearchInput';
+import SearchInput from '../SearchInput';
 import { AdminCourseService } from '../../services/adminCourse.service';
 
 interface SubCourseCardProps {

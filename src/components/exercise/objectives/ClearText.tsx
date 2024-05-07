@@ -1,9 +1,7 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import React, {FC, useEffect} from 'react';
 import { useState } from 'react';
 
 const ClearText:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    // const {setValue} = useStudentExercise()
     // const {choosedModule} = useExercise()
     // const {isOnlineXml} = useExercise()
     // let formattedValue = value?.replaceAll('$$$$', "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll('@', "<br/>");

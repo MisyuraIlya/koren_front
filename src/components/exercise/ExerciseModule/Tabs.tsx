@@ -1,5 +1,4 @@
 'use client'
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { useExercise } from '@/provider/ExerciseProvider';
 import { Box, Tab, Tabs as MuiTabs } from '@mui/material';  // Rename Tabs to MuiTabs
 import React from 'react';

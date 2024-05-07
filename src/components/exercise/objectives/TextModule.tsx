@@ -1,4 +1,3 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import { Box } from '@mui/material';
 import React, {FC, useEffect, useState} from 'react';
 

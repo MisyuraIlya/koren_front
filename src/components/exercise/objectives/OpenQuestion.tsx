@@ -1,5 +1,4 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import React, {FC, useEffect} from 'react';
 
 const OpenQuestion:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {

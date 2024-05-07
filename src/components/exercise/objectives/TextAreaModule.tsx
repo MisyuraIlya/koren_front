@@ -1,19 +1,10 @@
 import React, {FC, useEffect,useRef, useState} from 'react';
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 
 
 const TextAreaModule2: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const {setValue} = useStudentExercise()
-  useEffect(() => {
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective.isFullText)
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].moduleType`, objective.moduleType)
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].orden`, objective.orden)
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].placeholder`, objective.placeholder)
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values`, objective.values)
-      setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
-  }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
+
 
 
   // useEffect(() => {

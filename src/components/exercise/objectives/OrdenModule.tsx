@@ -1,4 +1,3 @@
-import { useStudentExercise } from '@/modules/student/provider/StudentExerciseProvider';
 import React, {FC, useEffect} from 'react';
 import { themeColors } from '@/styles/mui';
 import { Box, Typography } from '@mui/material';
