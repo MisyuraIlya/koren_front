@@ -259,3 +259,11 @@ mark>span {
 
 
 
+
+.linear {
+  background: rgb(69,195,243);
+  background: linear-gradient(31deg, rgba(69,195,243,1) 6%, rgba(46,104,247,1) 49%);
+  padding: 20px;
+  text-align: center;
+  width:300px;
+}

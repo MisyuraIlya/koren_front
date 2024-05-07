@@ -5,6 +5,7 @@ import BigCard from './BigCard';
 import SecondSideBar from './SecondSideBar';
 import CloseIcon from '@mui/icons-material/Close';
 import { useCourses } from '@/provider/CourseProvider';
+import Image from 'next/image';
 
 const redBoxStyles = {
     width: '300px',
@@ -30,25 +31,32 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
 
     return (
     <>
-        <List sx={{
+        <List 
+        sx={{
             height:'85vh',
             zIndex:'100',
             overflow:'auto',
             backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
-        }}>
-            <ListItem  disablePadding sx={{ display: 'block', px: 2.5 }}>
+        }}
+        >
+            <ListItem  disablePadding sx={{ display: 'block', px: 2.5}}>
                 {!open &&
                 <>
                     {lvl2IdCourses?.children?.map((item,index) =>
                         <MinCard 
-                        key={index}
-                        index={index} 
-                        item={item}
-                        onClick={() => handleMiniCard()}
-
+                            key={index}
+                            index={index} 
+                            item={item}
+                            onClick={() => handleMiniCard()}
                         />
                     )}
-                    
+                    <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                        <Box>
+                            <Image src={'/images/videoTeach.png'} width={75} height={75} alt='tech' style={{marginTop:'10px'}}/>
+                            <Image src={'/images/support.png'} width={75} height={48} alt='tech' style={{marginTop:'10px'}}/>
+                            <Image src={'/images/lisence.png'} width={75} height={48} alt='tech' style={{marginTop:'10px'}}/>
+                        </Box>
+                    </Box>
                 </>
                 }
                 {open &&

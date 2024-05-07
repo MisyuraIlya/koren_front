@@ -55,10 +55,10 @@ const Header = () => {
     }
   
     return (
-        <AppBar position="sticky">
+        <AppBar position="fixed">
             <Toolbar style={{paddingRight:'0px'}}>
-                <Box sx={containerStyle}>
-                    <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer'}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name}</Typography>
+                <Box className="linear">
+                    <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer',fontWeight:800}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name ?? 'לא נבחר עדיין קורס'}</Typography>
                 </Box>
                 <Box >
                     <List sx={{ width: '100%',padding:'0', margin:'0'}}>

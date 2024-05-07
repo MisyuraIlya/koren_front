@@ -19,12 +19,15 @@ const MinCard:FC<MinCardProps> = ({index, item, onClick}) => {
       
     return (
         <Card sx={{
-            padding:'15px 0px',
             background:lvl2 == item.id ? themeColors.primary :'none', 
             color:'white', 
             border: lvl2 == item.id ? `1px solid ${themeColors.primary}` :'1px solid white', 
             transition: 'background 0.2s', 
             marginTop:'10px',
+            minHeight:'80px',
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
             cursor:'pointer',
             '&:hover': {
                 background: themeColors.primary,
@@ -33,11 +36,13 @@ const MinCard:FC<MinCardProps> = ({index, item, onClick}) => {
         }}
         onClick={() => onClick()}
         >
-            <Box sx={{textAlign:'center'}}>
-                <Typography variant='h5' fontWeight={900}>{convertToHebrew(index)}</Typography>
-            </Box>
-            <Box sx={{textAlign:'center'}}>
-                <Typography variant='body2' fontWeight={700} sx={{whiteSpace:'break-spaces'}}>{item.name}</Typography>
+            <Box sx={{padding:'0 2px'}}>
+                <Box sx={{textAlign:'center'}}>
+                    <Typography variant='h5' fontWeight={900}>{convertToHebrew(index)}</Typography>
+                </Box>
+                <Box sx={{textAlign:'center'}}>
+                    <Typography variant='body2' fontSize={'12px'} lineHeight={'12px'} fontWeight={500} sx={{whiteSpace:'break-spaces'}}>{item.name}</Typography>
+                </Box>
             </Box>
         </Card>
     );

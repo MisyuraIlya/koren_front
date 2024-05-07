@@ -35,7 +35,7 @@ const Header = () => {
 
 
     return (
-        <AppBar position="sticky">
+        <AppBar position="fixed">
             <Toolbar style={{paddingRight:'0px'}}>
                 <Box sx={containerStyle}>
                     <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer'}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name}</Typography>

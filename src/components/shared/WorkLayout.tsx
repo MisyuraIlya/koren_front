@@ -66,7 +66,7 @@ const WorkLayout = ({ children }: { children: React.ReactNode }) => {
           }}>
             <SideBar open={open} setOpen={setOpen}/>
           </Drawer>
-          <Box onClick={() => setOpen(!open)} sx={{height:'80vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
+          <Box onClick={() => setOpen(!open)} sx={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
               <Box sx={{
                 background:'#3DA4F4',
                 position:'fixed', 

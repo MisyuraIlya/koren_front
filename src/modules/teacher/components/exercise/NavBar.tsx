@@ -70,7 +70,7 @@ const NavBar = () => {
 
     return (
         <>
-        <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px', bgcolor:'white'}}>
+        <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px', bgcolor:'white', marginTop:'130px'}}>
             <Grid container>
                 <Grid item xs={2}>
                     <Typography variant='h5' fontWeight={900}>{exercise?.title}</Typography>
