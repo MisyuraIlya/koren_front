@@ -1,6 +1,6 @@
 "use client"
-import LeftSide from '@/modules/teacher/components/classes/LeftSide';
-import RightSide from '@/modules/teacher/components/classes/RightSide';
+import LeftSide from '@/components/classes/LeftSide';
+import RightSide from '@/components/classes/RightSide';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 

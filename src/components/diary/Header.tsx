@@ -3,13 +3,13 @@ import useDataExerciseTypes from '@/hooks/useDataExerciseTypes';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import { useDiratyStore } from '../../../../store/diary.store';
+import { useDiaryStore } from '@/store/diary.store';
 import { TeacherURLS } from '@/enums/urls';
 
 const Header = () => {
     const {data} = useDataExerciseTypes()
     const location = usePathname()
-    const {filter,setFilter} = useDiratyStore()
+    const {filter,setFilter} = useDiaryStore()
     
     const handleTitle = () => {
         if(location === TeacherURLS.CLASSES_MISSIONS) {

@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react';
-import { useGroups } from '../../../../store/groups.store';
+import { useGroups } from '@/store/groups.store';
 import { Alert, Box, Button, Divider, IconButton, List, ListItem, ListItemText, Snackbar, Typography } from '@mui/material';
 import Image from 'next/image';
-import useDataGroup from '../../../../hooks/useDataGroup';
-import { useClasses } from '../../../../store/classes.store';
+import useDataGroup from '@/hooks/useDataGroup';
+import { useClasses } from '@/store/classes.store';
 import { onErrorAlert } from '@/utils/sweetAlert';
-import useDataTeacherGroups from '../../../../hooks/useDataTeacherGroups';
+import useDataTeacherGroups from '@/hooks/useDataTeacherGroups';
 
 const SupportLeftSide = () => {
     const {groupName, students, deleteStudent, setStudents, setGroupName} = useGroups()

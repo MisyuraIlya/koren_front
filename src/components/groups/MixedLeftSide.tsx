@@ -1,12 +1,13 @@
 'use client'
 import React, { useState } from 'react';
 import { Alert, Box, Button, Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
-import { useGroups } from '../../../../store/groups.store';
-import { useClasses } from '../../../../store/classes.store';
+import { useGroups } from '@/store/groups.store';
+import { useClasses } from '@/store/classes.store';
 import Image from 'next/image';
-import useDataGroup from '../../../../hooks/useDataGroup';
+import useDataGroup from '@/hooks/useDataGroup';
 import { onErrorAlert } from '@/utils/sweetAlert';
-import useDataTeacherGroups from '../../../../hooks/useDataTeacherGroups';
+import useDataTeacherGroups from '@/hooks/useDataTeacherGroups';
+
 const MixedLeftSide = () => {
     const {teachers,setTeachers, groupNameMixed, setGroupNameMixed, typeMixed, deleteTeacher} = useGroups()
     const {classes, setClasses, deleteClass} = useClasses()

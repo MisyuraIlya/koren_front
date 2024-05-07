@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
-import useDataClass from '../../../../hooks/useDataClass';
-import { Box, Button, Checkbox, Divider, FormControl, Grid, InputBase, List, ListItemText, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import useDataClass from '@/hooks/useDataClass';
+import { Box, Divider, Grid, InputBase, List, Typography } from '@mui/material';
 import Image from 'next/image';
 import ListItemWithCheckBox from '@/utils/ListItemWithCheckBox';
-import { useGroups } from '../../../../store/groups.store';
+import { useGroups } from '@/store/groups.store';
 import { useAuth } from '@/modules/auth/store/auth.store';
 
 const ITEM_HEIGHT = 48;

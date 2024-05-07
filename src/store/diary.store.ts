@@ -11,7 +11,7 @@ interface useDiratyState {
     setFilter: (value:IExerciseEnum) => void
 }
 
-export const useDiratyStore= create(
+export const useDiaryStore= create(
   persist(
     (set, get) => ({
         openStudents: false,

@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <>
-    <Box sx={{ flex: 1}}>
+    <Box sx={{ flex: 1, marginTop:'135px'}}>
         <Grid container spacing={0} sx={{height: '100%' }}>
             <Grid item xs={2.5} sx={{ background: '#F6F8FC', height: '100%' }}>
               <Box sx={{width:'100%', position:'fixed'}}>

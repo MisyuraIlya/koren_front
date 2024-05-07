@@ -1,4 +1,4 @@
-import Diary from '@/modules/teacher/components/diary';
+import Diary from '@/components/diary';
 import { Box } from '@mui/material';
 import React from 'react';
 const page = () => {

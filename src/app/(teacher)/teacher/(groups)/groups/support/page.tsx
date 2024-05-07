@@ -1,9 +1,8 @@
 "use client"
-import LeftSide from '@/modules/teacher/components/classes/LeftSide';
-import RightSide from '@/modules/teacher/components/classes/RightSide';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
-import Groups from '@/modules/teacher/components/groups/inedx'
+import Groups from '@/components/groups/inedx'
+
 const SuppoertPage = () => {
     return (
         <Box sx={{height:'100%'}}>

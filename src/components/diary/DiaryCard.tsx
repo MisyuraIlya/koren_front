@@ -5,7 +5,7 @@ import React, {FC} from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { TeacherURLS } from '@/enums/urls';
 import { usePathname } from 'next/navigation';
-import { useDiratyStore } from '../../../../store/diary.store';
+import { useDiaryStore } from '@/store/diary.store';
 
 interface DiaryCardProps {
     item: IConnectionGroup
@@ -13,7 +13,7 @@ interface DiaryCardProps {
 
 const DiaryCard:FC<DiaryCardProps> = ({item}) => {
     const location = usePathname()
-    const {setOpenStudents,setConnectionGroup} = useDiratyStore()
+    const {setOpenStudents,setConnectionGroup} = useDiaryStore()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     

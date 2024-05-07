@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import useDataTeachers from '../../../../hooks/useDataTeachers';
+import useDataTeachers from '../../hooks/useDataTeachers';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

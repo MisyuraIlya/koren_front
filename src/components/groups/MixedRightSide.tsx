@@ -1,12 +1,11 @@
 'use client'
-import { Box, Button, Checkbox, Divider, FormControl, Grid, InputBase, ListItemText, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Box, Divider, Grid, InputBase, Typography } from '@mui/material';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import useDataClass from '../../../../hooks/useDataClass';
-import ClassForm from '../shared/ClassForm';
-import TeacherForm from '../shared/TeacherForm';
-import { useGroups } from '../../../../store/groups.store';
-import { useClasses } from '../../../../store/classes.store';
+import React from 'react';
+import TeacherForm from '../classes/TeacherForm';
+import { useGroups } from '@/store/groups.store';
+import { useClasses } from '@/store/classes.store';
+import ClassForm from '../classes/ClassForm';
 
 
 const MixedRightSide = () => {
