@@ -1,3 +1,4 @@
+'use client'
 import { Box, Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton, Radio, RadioGroup, Typography } from '@mui/material';
 import React,{FC, useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';

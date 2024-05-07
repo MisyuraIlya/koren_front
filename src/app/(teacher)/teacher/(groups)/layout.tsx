@@ -1,5 +1,5 @@
 "use client"
-import SideBar from "@/modules/teacher/components/SideBar";
+import SideBar from "@/components/classes/SideBar";
 import { Box, Grid } from "@mui/material";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
