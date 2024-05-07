@@ -9,7 +9,6 @@ import { prefixer } from "stylis"
 import createCache from "@emotion/cache"
 import theme from "@/styles/mui"
 import { AuthProvider } from '@/modules/auth/provider/AuthProvider'
-import { ModalProvider } from '@/modules/modal/provider/ModalProvider'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 // const inter = Inter({ subsets: ['latin'] })
@@ -30,13 +29,11 @@ export default function RootLayout({
       <body>
         <CacheProvider value={cacheRtl}>
           <ThemeProvider theme={theme}>
-          <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale='he'>
-              <ModalProvider>
-                <AuthProvider>
-                  <CssBaseline />
-                  {children}
-                </AuthProvider>
-              </ModalProvider>
+            <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale='he'>
+              <AuthProvider>
+                <CssBaseline />
+                {children}
+              </AuthProvider>
             </LocalizationProvider>
           </ThemeProvider>
         </CacheProvider>
