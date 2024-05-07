@@ -5,6 +5,7 @@ import { useParams, usePathname } from 'next/navigation';
 import { AdminCourseService } from '@/modules/admin/services/adminCourse.service';
 import useSWR from 'swr'
 import { useAuth } from '@/modules/auth/store/auth.store';
+import { useGlobalCourses } from '@/store/globalCourses';
 
 interface contextType {
     data: ICourse[] | undefined
@@ -39,7 +40,7 @@ interface CoursesProviderProps {
 
 const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const {user} = useAuth()
-  
+  const {setMainCourse} = useGlobalCourses()
   const { data, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, () => AdminCourseService.GetCourses(user?.id!),
     {
       revalidateOnFocus: false, 
@@ -57,6 +58,12 @@ const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const lvl3IdCourses = lvl2IdCourses && lvl2IdCourses.children ? lvl2IdCourses.children.filter(item => item.id === +lvl2)[0] : undefined;
   const lvl4IdCourses = lvl3IdCourses && lvl3IdCourses.children ? lvl3IdCourses.children.filter(item => item.id === +lvl3)[0] : undefined;
   const lvl5IdCourses = lvl4IdCourses && lvl4IdCourses.children ? lvl4IdCourses.children.filter(item => item.id === +lvl4)[0] : undefined;
+
+  useEffect(() => {
+    if(lvl1 && lvl2IdCourses) {
+      setMainCourse(lvl2IdCourses)
+    }
+  },[])
 
   const value: contextType = {
     data,

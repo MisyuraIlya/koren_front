@@ -19,7 +19,7 @@ export const themeColors = {
 }
 
 export const themeSettings = {
-  borderRadius: "16px",
+  borderRadius: "5px",
 }
 
 export const colors = {

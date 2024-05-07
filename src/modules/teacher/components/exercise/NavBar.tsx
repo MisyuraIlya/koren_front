@@ -195,7 +195,7 @@ const NavBar = () => {
                         <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                             <Box>
                                 <Button  startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.answerType ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
-                                    {data?.answerType ? 'הוגדר':'לא הוגדר'}
+                                    {data?.answerType ? 'התשובות פתוחות':'התשובות סגורות'}
                                 </Button>
                                 <IconButton onClick={() => setOpen2(true)}>
                                     <Image src={'/images/editExercise.svg'} width={20} height={20} alt='edit'/>

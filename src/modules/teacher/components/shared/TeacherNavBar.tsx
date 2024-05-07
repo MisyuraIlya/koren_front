@@ -5,23 +5,21 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import NavBarNavigation from '@/components/shared/NavBarNavigation';
 import { useTeacherWork } from '../../store/work.store';
 import { useParams } from 'next/navigation';
+import { themeColors, themeSettings } from '@/styles/mui';
 
 const TeacherNavBar = () => {
     const {classChoosed} = useTeacherWork()
     const { exercise } = useParams()
     return (
         <Box sx={{bgcolor:'#F0FBFF', height:'60px', width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0 40px'}}>
-            <Box sx={{width:'40%', display:'flex'}}>
+            <Box sx={{width:'50%', display:'flex'}}>
                 <NavBarNavigation/>
             </Box>
             {
                 classChoosed && exercise && 
-                <Box sx={{width:'60%', display:'flex', gap:'20px', alignItems:'center'}}>
-                    <Box sx={{display:'flex', gap:'10px'}}>
-                        <VisibilityOffIcon sx={{color:'black'}}/>
-                        <Typography variant='body1' sx={{color:'black', whiteSpace:'nowrap'}}>
-                            הסתרת השאלות הפתוחות לכל הכיתה  
-                        </Typography>
+                <Box sx={{width:'50%', display:'flex', gap:'20px', alignItems:'center'}}>
+                    <Box sx={{display:'flex', gap:'10px',bgcolor:'#CAE1EA' ,borderRadius:themeSettings.borderRadius}}>
+                        <VisibilityOffIcon sx={{color:'#33363F', padding:'4px', fontSize:'30px'}}/>
                     </Box>
                     <Box sx={{display:'flex', width:'100%'}}>
                         <Tooltip title="ממתין לבדיקה">
@@ -68,7 +66,6 @@ const TeacherNavBar = () => {
 
                     </Box>
                     <Box sx={{display:'flex', gap:"10px"}}>
-                        <StarIcon sx={{color:'black'}}/>
                         <Typography variant='body1' sx={{color:'black', whiteSpace:'nowrap'}}>ממוצע ציונים כיתתי:</Typography>
                         <Typography variant='body1' sx={{color:'#0172E8', fontWeight:600}}>85%</Typography>
                     </Box>
