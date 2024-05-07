@@ -10,7 +10,7 @@ const InputModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
     const {studentChoosed} = useTeacherWork()
     
     useEffect(() => {
-      if(debouncedValue){
+      if(debouncedValue && debouncedValue !== objective?.answers[0]?.answers[0]?.value){
         handleAnswer(objective.answers[0],debouncedValue)
       }
     },[debouncedValue])

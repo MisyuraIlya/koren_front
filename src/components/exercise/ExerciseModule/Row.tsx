@@ -10,14 +10,16 @@ interface RowProps {
 
 const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
     return (
-        <tr key={row.id}>
+        <tr>
             {row?.objectives?.map((objective, objectiveIndex) => {
-                const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex}
+                const key = `${row.id}_${tabIndex}_${taskIndex}_${rowIndex}_${objectiveIndex}`;
+                const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex};
                 return (
-                    <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes}/>
-                )
-                }
-            )}
+                    <React.Fragment key={key}>
+                        <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes}/>
+                    </React.Fragment>
+                );
+            })}
         </tr>
     );
 };

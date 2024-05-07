@@ -29,7 +29,9 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
             </Grid>
             <Grid item xs={12}>
                 {regular.map((task, taskIndex) => 
-                    <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
+                    <Box key={taskIndex}>
+                        <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
+                    </Box>
                 )}
             </Grid>
         </Box>

@@ -32,16 +32,24 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
             <table className={'TaskStyles'}>
                 <tbody>
                     <tr className='w-full'>
-                        {task?.columns.map((column, columnIndex) => 
-                            <Column column={column} columnIndex={columnIndex}/>
+                        {task?.columns.map((column, columnIndex) => {
+                            if((column?.title || column?.type === 'orden' || column?.type === 'word')){
+                                return (
+                                    <th key={columnIndex} style={{textAlign:'center'}} >
+                                        <Column column={column}/>
+                                    </th>
+                                )
+                            }}
                         )}
                     </tr>
-                    {task?.rows.map((row, rowIndex) => 
-                        <>
-                        <div className={`h-1 absolute z-1 w-full bg-white`} key={rowIndex}></div>       
-                        <Row row={row} tabIndex={tabIndex} taskIndex={taskIndex} rowIndex={rowIndex}/>
-                        </>
-                    )}
+                    {task?.rows.map((row, rowIndex) => (
+                        <React.Fragment key={rowIndex}>
+                            {/* FIX FIND ANOTHER WAY SET  */}
+                            <div className={`h-1 absolute z-1 w-full bg-white`} />
+                            <Row row={row} tabIndex={tabIndex} taskIndex={taskIndex} rowIndex={rowIndex}/>
+                        </React.Fragment>
+                    ))}
+                    {/* FIX FIND ANOTHER WAY SET  */}
                     <div className='bg-white h-1 w-full z-1 absolute z-10'></div>
                 </tbody>
             </table>

@@ -60,10 +60,10 @@ const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const lvl5IdCourses = lvl4IdCourses && lvl4IdCourses.children ? lvl4IdCourses.children.filter(item => item.id === +lvl4)[0] : undefined;
 
   useEffect(() => {
-    if(lvl1 && lvl2IdCourses) {
+    if(lvl2IdCourses && lvl1) {
       setMainCourse(lvl2IdCourses)
     }
-  },[])
+  },[lvl1,lvl2IdCourses])
 
   const value: contextType = {
     data,

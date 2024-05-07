@@ -25,7 +25,7 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
 
 
   useEffect(() => {
-    if(debouncedValue){
+    if(debouncedValue && debouncedValue !== objective?.answers[0]?.answers[0]?.value){
       handleAnswer(objective.answers[0],debouncedValue)
     }
     handleError()

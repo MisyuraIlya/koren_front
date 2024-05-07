@@ -19,16 +19,23 @@ const useDataConnectionGroup = () => {
   const { user } = useAuth()
   const {groupSelected, fromDate, toDate, timeChoosed, sendType, answerType} = useTeacherWork()
   const {exercise} = useExercise()
+  const shouldFetchData = sendType && exercise?.id;
+
+  const key: string | null = shouldFetchData
+    ? `/api/exercise-group-connection/${groupSelected?.uuid!}/${sendType}/${exercise?.id}/${user?.id}`
+    : null;
+
   const { data, error, isLoading, mutate } = useSWR<IConnectionGroup>(
-    `/api/exercise-group-connection/${groupSelected?.uuid!}/${sendType}/${exercise?.id!}/${user?.id}`,
-    () =>
-      fetchData(
-        groupSelected?.uuid!,
-        sendType,
-        exercise?.id!,
-        user?.id!
-      )
-  )
+    // @ts-ignore
+    key,
+    (key) => fetchData(groupSelected?.uuid!, sendType, exercise?.id!, user?.id!),
+    {
+      revalidateOnMount: shouldFetchData,
+      revalidateOnFocus: shouldFetchData,
+      revalidateOnReconnect: shouldFetchData,
+    }
+  );
+
   const createGroupConnection = async (students:IUser[]) => {
         await connectionServices.createConnectionGroup(
             groupSelected?.uuid!,
