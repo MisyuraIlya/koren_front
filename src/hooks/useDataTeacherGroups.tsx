@@ -1,6 +1,6 @@
 import { useAuth } from '@/modules/auth/store/auth.store'
 import useSWR from 'swr'
-import { GroupService } from '../modules/teacher/services/group.service'
+import { GroupService } from '../services/group.service'
 
 const fetchData = async (
     teacherId: number,

@@ -1,6 +1,6 @@
 import { useAuth } from '@/modules/auth/store/auth.store'
 import useSWR from 'swr'
-import { connectionServices } from '../modules/teacher/services/connections.service'
+import { connectionServices } from '../services/connections.service'
 
 const fetchData = async (teacherId: number)=> {
   return await connectionServices.getTeacherConnectionGroup(

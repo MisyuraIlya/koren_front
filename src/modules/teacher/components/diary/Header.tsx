@@ -3,7 +3,7 @@ import useDataExerciseTypes from '@/hooks/useDataExerciseTypes';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import { useDiratyStore } from '../../store/diary.store';
+import { useDiratyStore } from '../../../../store/diary.store';
 import { TeacherURLS } from '@/enums/urls';
 
 const Header = () => {

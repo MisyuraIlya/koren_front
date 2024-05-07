@@ -2,7 +2,7 @@ import { Box, Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup
 import React,{FC, useState} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { themeColors } from '@/styles/mui';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';

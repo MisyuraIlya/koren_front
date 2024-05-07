@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
 import { ExerciseServices } from '@/services/ExerciseServices';
 import { useAuth } from '@/modules/auth/store/auth.store';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 
 interface AdminContextType {
     exercise: IExercise | undefined

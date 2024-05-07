@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { ExerciseTypeSerivce } from '../modules/teacher/services/exerciseType.service.'
+import { ExerciseTypeSerivce } from '../services/exerciseType.service.'
 
 const fetchData = async (
 ): Promise<IExerciseType[]> => {

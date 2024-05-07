@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import useDataClass from '../../../../hooks/useDataClass';
 import ClassForm from '../shared/ClassForm';
 import TeacherForm from '../shared/TeacherForm';
-import { useGroups } from '../../store/groups.store';
-import { useClasses } from '../../store/classes.store';
+import { useGroups } from '../../../../store/groups.store';
+import { useClasses } from '../../../../store/classes.store';
 
 
 const MixedRightSide = () => {

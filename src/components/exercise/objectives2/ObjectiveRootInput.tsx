@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { IconButton, InputBase, Tooltip, Typography } from '@mui/material';
 import { useDebounce } from 'use-debounce';
 import { useExercise } from '@/provider/ExerciseProvider';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import InfoIcon from '@mui/icons-material/Info';
 import { useAuth } from '@/modules/auth/store/auth.store';
 const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskIndex, rowIndex, objectiveIndex }) => {

@@ -1,8 +1,5 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
-import SideBar from "@/modules/teacher/components/SideBar";
-import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCoursesProvider";
-import { Box, Collapse, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from '@mui/material';
+import { Box, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

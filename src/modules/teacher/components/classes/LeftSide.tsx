@@ -1,7 +1,7 @@
 'use client'
 import { Alert, Box, Button, Divider, List, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { useClasses } from '../../store/classes.store';
+import { useClasses } from '../../../../store/classes.store';
 import LeftSideItem from './LeftSideItem';
 import useDataGroup from '../../../../hooks/useDataGroup';
 import useDataTeacherGroups from '../../../../hooks/useDataTeacherGroups';

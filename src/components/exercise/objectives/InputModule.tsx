@@ -1,4 +1,4 @@
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import { useExercise } from '@/provider/ExerciseProvider';
 import React, {FC, useEffect,useState} from 'react';
 import { useDebounce } from 'use-debounce';

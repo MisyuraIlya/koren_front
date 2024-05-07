@@ -5,7 +5,7 @@ import React, {FC} from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { TeacherURLS } from '@/enums/urls';
 import { usePathname } from 'next/navigation';
-import { useDiratyStore } from '../../store/diary.store';
+import { useDiratyStore } from '../../../../store/diary.store';
 
 interface DiaryCardProps {
     item: IConnectionGroup

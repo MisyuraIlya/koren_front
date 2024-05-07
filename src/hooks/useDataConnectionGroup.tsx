@@ -1,9 +1,9 @@
 import { useAuth } from '@/modules/auth/store/auth.store'
 import useSWR from 'swr'
-import { classService } from '../modules/teacher/services/class.service'
+import { classService } from '../services/class.service'
 import { AuthService } from '@/modules/auth/services/auth.service'
-import { connectionServices } from '../modules/teacher/services/connections.service'
-import { useTeacherWork } from '../modules/teacher/store/work.store'
+import { connectionServices } from '../services/connections.service'
+import { useTeacherWork } from '../store/work.store'
 import { useExercise } from '@/provider/ExerciseProvider'
 
 const fetchData = async (groupUuid: string, exerciseTypeId: string, exerciseId: number, teacherId: number)=> {

@@ -1,7 +1,7 @@
 import { Box, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import { useParams } from 'next/navigation';
 import { themeSettings } from '@/styles/mui';
 

@@ -1,6 +1,6 @@
 import { TeacherURLS } from '@/enums/urls';
 import useDataTeacherGroups from '@/hooks/useDataTeacherGroups';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import { Badge, Box, IconButton, MenuItem, Select, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';

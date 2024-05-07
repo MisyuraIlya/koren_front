@@ -18,7 +18,7 @@ import { useExercise } from '@/provider/ExerciseProvider';
 import ExerciseModal from '@/utils/Modals/ExerciseModal';
 import PdfUtil from '@/utils/PdfUtil';
 import YoutubeIframe from '@/utils/YoutubeIframe';
-import { useTeacherWork } from '../../store/work.store';
+import { useTeacherWork } from '../../../../store/work.store';
 import Send from './ExerciseDrawer/Send';
 import Answer from './ExerciseDrawer/Answer';
 import ExerciseDrawer from './ExerciseDrawer';

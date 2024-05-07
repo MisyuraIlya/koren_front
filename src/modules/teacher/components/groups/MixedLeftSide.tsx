@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import { Alert, Box, Button, Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
-import { useGroups } from '../../store/groups.store';
-import { useClasses } from '../../store/classes.store';
+import { useGroups } from '../../../../store/groups.store';
+import { useClasses } from '../../../../store/classes.store';
 import Image from 'next/image';
 import useDataGroup from '../../../../hooks/useDataGroup';
 import { onErrorAlert } from '@/utils/sweetAlert';

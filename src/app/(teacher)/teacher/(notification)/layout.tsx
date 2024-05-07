@@ -1,7 +1,5 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
 import SideBar from "@/modules/teacher/components/SideBar";
-import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCoursesProvider";
 import { Box, Button, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import ModeIcon from '@mui/icons-material/Mode';
 

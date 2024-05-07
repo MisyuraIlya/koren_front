@@ -6,8 +6,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useRouter } from 'next/navigation';
-import { useGroups } from '../store/groups.store';
-import { useClasses } from '../store/classes.store';
+import { useGroups } from '../../../store/groups.store';
+import { useClasses } from '../../../store/classes.store';
 
 const SideBar = () => {
     const [open1, setOpen1] = React.useState(false);

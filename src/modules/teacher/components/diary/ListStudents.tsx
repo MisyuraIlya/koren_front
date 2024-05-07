@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import ListStudentCard from './ListStudentCard';
-import { useDiratyStore } from '../../store/diary.store';
+import { useDiratyStore } from '../../../../store/diary.store';
 import { usePathname } from 'next/navigation';
 import { TeacherURLS } from '@/enums/urls';
 import moment from 'moment';

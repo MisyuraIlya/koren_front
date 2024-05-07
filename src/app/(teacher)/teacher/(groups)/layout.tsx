@@ -1,7 +1,5 @@
 "use client"
-import TeacherLayout from "@/modules/teacher/components/layout/TeacherLayout";
 import SideBar from "@/modules/teacher/components/SideBar";
-import { TeacherCoursesProvider } from "@/modules/teacher/provider/TeacherCoursesProvider";
 import { Box, Grid } from "@mui/material";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

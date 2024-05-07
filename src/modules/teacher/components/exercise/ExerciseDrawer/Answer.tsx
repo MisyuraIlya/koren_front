@@ -5,7 +5,7 @@ import { themeColors } from '@/styles/mui';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { useTeacherWork } from '@/modules/teacher/store/work.store';
+import { useTeacherWork } from '@/store/work.store';
 import moment from 'moment';
 import useDataConnectionGroup from '@/hooks/useDataConnectionGroup';
 
