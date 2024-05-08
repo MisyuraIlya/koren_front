@@ -28,7 +28,7 @@ const TeacherBar = () => {
             setStudentChoosed(findUser)
         }
     }
-
+    console.log('classChoosed?.uuid',classChoosed?.uuid)
     return (
         <Box sx={{display:'flex', alignItems:'center', height:'100%', justifyContent:'space-between'}}>
             <Box sx={{display:'flex', alignItems:'center'}}>

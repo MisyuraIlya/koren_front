@@ -4,6 +4,8 @@ import Image from 'next/image';
 import React, {FC} from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useRouter } from 'next/navigation';
+import { useTeacherWork } from '@/store/work.store';
+import useDataTeacherGroups from '@/hooks/useDataTeacherGroups';
 
 
 interface ListStudentCardProps {
@@ -13,6 +15,8 @@ interface ListStudentCardProps {
 
 const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
     const {push} = useRouter()
+    const {data} = useDataTeacherGroups()
+    const {setSelectedGroup,setStudentChoosed,setClassesChoosed} = useTeacherWork()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,6 +26,19 @@ const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    
+    const handleGoToExercise = () => {
+        const uuid = item?.group
+        const find = data?.find((item) => item.uuid === uuid)
+        if(find) {
+            setSelectedGroup(find)
+            setClassesChoosed(find)
+            setStudentChoosed(element?.student)
+            push(item.exercise.fullLink!)
+
+        }
+ 
+    }
 
     return (
         <Paper key={item.id} sx={{padding:'20px 10px', mt:'15px'}}>
@@ -43,7 +60,7 @@ const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={() => push(item.exercise.fullLink!)}>מעבר לתרגיל</MenuItem>
+                            <MenuItem onClick={() => handleGoToExercise()}>מעבר לתרגיל</MenuItem>
                             <MenuItem disabled>כתיבת משוב</MenuItem>
                             <MenuItem disabled>שליחת הודעה לתלמיד</MenuItem>
                             <MenuItem disabled>קביעת ציון סופי</MenuItem>
