@@ -83,7 +83,7 @@ const DiaryCard:FC<DiaryCardProps> = ({item}) => {
                             </Box>
                             לרשימת התלמידים 
                         </MenuItem>
-                        <MenuItem>תאריך חדש לכל הכיתה</MenuItem>
+                        <MenuItem disabled>תאריך חדש לכל הכיתה</MenuItem>
                     </Menu>
 
                     <Chip label={`סוג התרגיל: ${item?.exerciseType?.title}`} sx={{bgcolor:'#FAE0D1', mt:'10px'}}/>

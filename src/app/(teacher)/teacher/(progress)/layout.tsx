@@ -5,7 +5,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-    <Box sx={{ flex: 1, marginTop:'20px' }}>
+    <Box sx={{ flex: 1, marginTop:'150px' }}>
         <Grid container spacing={2} sx={{height: '100%' }}>
             <Grid item xs={3} sx={{ background: '#F6F8FC', height: '100%' }}>
               <Box sx={{width:'100%', position:'fixed'}}>
@@ -15,17 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   subheader={
                       <ListSubheader component="div" sx={{color:'#002536', bgcolor: '#F6F8FC', marginBottom:'30px'}}>
                           <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                              <Typography variant='h4' sx={{fontWeight:700, fontSize:'20px'}}>קצב התקדמות כיתתית</Typography>
+                              <Typography variant='h4' sx={{fontWeight:700, fontSize:'20px'}}>יומן מורה</Typography>
                           </Box>
                       </ListSubheader>
                   }
                   >
                       <ListItem>
                           <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="משימות כיתתיות"  sx={{pl:'10px'}}/>
+                          
+                              <ListItemText primary="בנק המשובים"  sx={{pl:'10px'}}/>
                               <ListItemIcon>
                                 <ArrowBackIosIcon/>
                               </ListItemIcon>
@@ -33,10 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </ListItem>
                       <ListItem>
                           <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="ממתין לבדיקה"  sx={{pl:'10px'}}/>
+                       
+                              <ListItemText primary="תיקיית מבחנים"  sx={{pl:'10px'}}/>
                               <ListItemIcon>
                                 <ArrowBackIosIcon/>
                               </ListItemIcon>
@@ -44,10 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </ListItem>
                       <ListItem>
                           <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="הוחזר לתיקון"  sx={{pl:'10px'}}/>
+                              <ListItemText primary="תיקייה אישית למורה"  sx={{pl:'10px'}}/>
                               <ListItemIcon>
                                 <ArrowBackIosIcon/>
                               </ListItemIcon>
@@ -55,38 +48,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </ListItem>
                       <ListItem>
                           <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="טרם בוצע"  sx={{pl:'10px'}}/>
+                              <ListItemText primary='ספריית "שרי"'  sx={{pl:'10px'}}/>
                               <ListItemIcon>
                                 <ArrowBackIosIcon/>
                               </ListItemIcon>
                           </ListItemButton>
                       </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="בתהליך עבודה"  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
-                      <ListItem>
-                          <ListItemButton sx={{background:'white', border:'1px solid #D1E1E7', borderRadius:'10px'}}>
-                              <Box sx={{width:'35px', height:'35px', bgcolor:'#E4F8FF', borderRadius:'50%', textAlign:'center'}}>
-                                <Typography variant="h6" fontWeight={700}>25</Typography>
-                              </Box>
-                              <ListItemText primary="באיחור הגשה"  sx={{pl:'10px'}}/>
-                              <ListItemIcon>
-                                <ArrowBackIosIcon/>
-                              </ListItemIcon>
-                          </ListItemButton>
-                      </ListItem>
-
                 </List>
               </Box>
             </Grid>
