@@ -9,7 +9,7 @@ const Module = () => {
     console.log('exercise',exercise)
     return (
         <div style={{boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.25)', marginLeft:'15px'}}>
-            {(exercise?.id === 3691 || exercise?.id === 36) &&
+            {/* {(exercise?.id === 3691 || exercise?.id === 36) && */}
             <>
             {(isLoading) &&
                 <Box sx={{display:'flex',justifyContent:'center', alignItems:'center', minHeight:'400px'}}>
@@ -22,7 +22,7 @@ const Module = () => {
             <ExerciseFooter/>
             </>
             
-            }
+            {/* } */}
 
         </div>
     );
