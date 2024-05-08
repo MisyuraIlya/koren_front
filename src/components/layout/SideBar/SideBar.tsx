@@ -6,6 +6,7 @@ import SecondSideBar from './SecondSideBar';
 import CloseIcon from '@mui/icons-material/Close';
 import { useCourses } from '@/provider/CourseProvider';
 import Image from 'next/image';
+import { themeColors } from '@/styles/mui';
 
 const redBoxStyles = {
     width: '300px',
@@ -37,6 +38,7 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
             zIndex:'100',
             overflow:'auto',
             backgroundImage: 'linear-gradient(267deg, #2E68F7 0%, #45C3F3 109.92%)',
+            position:'relative'
         }}
         >
             <ListItem  disablePadding sx={{ display: 'block', px: 2.5}}>
@@ -64,14 +66,27 @@ const SideBar = ({open,setOpen}: {open: boolean, setOpen:(value: boolean) => voi
                     {lvl2IdCourses?.children?.map((item, key) =>
                         <Box
                             key={key}
-                            onClick={() => {setIsOpen(!isOpen);setCourseChoosed(item.id!);setClickedLvl3(false)}}
+                            onClick={() => {setIsOpen(!isOpen);setCourseChoosed(item.id!);setClickedLvl3(item.id!)}}
                         >
                             <BigCard item={item} index={key} totalChildren={item.children.length}/>
                         </Box>
                     )}
+            
+
                 </>
                 }
             </ListItem>
+            {open &&
+                <Box sx={{ position:'absolute', width:'100%', left:'0', bottom:'0'}}>
+                    <Box sx={{display:'flex', gap:'20px', p:'0 20px', mb:'10px'}}>
+                        <Image src={'/images/bigLisence.png'} width={120} height={48} alt='tech' />
+                        <Image src={'/images/bigVideo.png'} width={120} height={48} alt='tech' />
+                    </Box>
+                    <Box sx={{bgcolor:themeColors.primary,display:'flex', justifyContent:'right', p:'5px 20px'}}>
+                        <Image src={'/images/accesability.svg'} width={40} height={48} alt='tech' />
+                    </Box>
+                </Box>
+            }
 
         </List>
 

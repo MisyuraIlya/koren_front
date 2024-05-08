@@ -20,8 +20,8 @@ interface contextType {
     lvl4: string | undefined
     lvl5: string | undefined
     mutate: any
-    clickedLvl3: boolean
-    setClickedLvl3: (value: boolean) => void
+    clickedLvl3: number
+    setClickedLvl3: (value: number) => void
 }
 
 const CourseContext = createContext<contextType | null>(null);
@@ -43,7 +43,7 @@ interface CoursesProviderProps {
 const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const {user} = useAuth()
   const {setMainCourse} = useGlobalCourses()
-  const [clickedLvl3,setClickedLvl3] = useState(false)
+  const [clickedLvl3,setClickedLvl3] = useState(0)
   const { data, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, () => AdminCourseService.GetCourses(user?.id!),
     {
       revalidateOnFocus: false, 
@@ -60,7 +60,6 @@ const CoursesProvider: React.FC<CoursesProviderProps> = (props) => {
   const lvl3IdCourses = lvl2IdCourses && lvl2IdCourses.children ? lvl2IdCourses.children.filter(item => item.id === +lvl2)[0] : undefined;
   const lvl4IdCourses = lvl3IdCourses && lvl3IdCourses.children ? lvl3IdCourses.children.filter(item => item.id === +lvl3)[0] : undefined;
   const lvl5IdCourses = lvl4IdCourses && lvl4IdCourses.children ? lvl4IdCourses.children.filter(item => item.id === +lvl4)[0] : undefined;
-  console.log('a')
   useEffect(() => {
     if(lvl2IdCourses && lvl1) {
       setMainCourse(lvl2IdCourses)

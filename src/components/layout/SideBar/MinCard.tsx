@@ -26,6 +26,7 @@ const MinCard:FC<MinCardProps> = ({index, item, onClick}) => {
             marginTop:'10px',
             minHeight:'80px',
             display:'flex',
+            borderRadius:'8px',
             justifyContent:'center',
             alignItems:'center',
             cursor:'pointer',

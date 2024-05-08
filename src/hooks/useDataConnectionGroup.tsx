@@ -20,7 +20,7 @@ const useDataConnectionGroup = () => {
   const {groupSelected, fromDate, toDate, timeChoosed, sendType, answerType} = useTeacherWork()
   const {exercise} = useExercise()
   const shouldFetchData = sendType && exercise?.id;
-
+  
   const key: string | null = shouldFetchData
     ? `/api/exercise-group-connection/${groupSelected?.uuid!}/${sendType}/${exercise?.id}/${user?.id}`
     : null;

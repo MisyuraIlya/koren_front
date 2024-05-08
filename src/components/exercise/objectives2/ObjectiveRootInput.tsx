@@ -10,18 +10,54 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
   const [debouncedValue] = useDebounce(value, 5000);
   const {handleAnswer,exercise} = useExercise()
   const {studentChoosed} = useTeacherWork()
-  const [error, setError] = useState(false);
   const {user} = useAuth()
 
   const handleError = () => {
     if(user?.role === 'teacher'){
-      setError(!objective?.answers[0]?.answers[0]?.isCorrect)
+      return (
+        <Tooltip title={`התשובה היא ${objective?.answers[0]?.value}`}>
+          <IconButton>
+            <InfoIcon/>
+          </IconButton>
+        </Tooltip>
+      )
     } else {
-      if(exercise?.userGroup?.isOpenAnswer){
-        setError(!objective?.answers[0]?.answers[0]?.isCorrect)
+      if(exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone){
+        return (
+          <Tooltip title={`התשובה היא ${objective?.answers[0]?.value}`}>
+            <IconButton>
+              <InfoIcon/>
+            </IconButton>
+          </Tooltip>
+        )
       }
     }
   }
+
+  const handleBorder = () => {
+    if(user?.role === 'teacher'){
+      if(objective?.answers[0]?.answers[0]?.isCorrect){
+        return '1px solid green'
+      } else if(!objective?.answers[0]?.answers[0]?.isCorrect){
+        return '1px solid red'
+      } else {
+        return '1px solid #ced4da'
+      }
+    } else {
+      if(exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone){
+        if(objective?.answers[0]?.answers[0]?.isCorrect){
+          return '1px solid green'
+        } else if(!objective?.answers[0]?.answers[0]?.isCorrect){
+          return '1px solid red'
+        } else {
+          return '1px solid #ced4da'
+        }
+      }
+    }
+
+
+  }
+
 
 
   useEffect(() => {
@@ -43,20 +79,14 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
           borderRadius: '5px', 
           padding: '5px', 
           margin: '10px',
-          border: error ? '1px solid red' : '1px solid #ced4da', 
+          border: handleBorder(), 
         }} 
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={objective.placeholder}
         
       />  
-      {error && 
-      <Tooltip title={`התשובה היא ${objective?.answers[0]?.value}`}>
-        <IconButton>
-          <InfoIcon/>
-        </IconButton>
-      </Tooltip>
-      }
+      {handleError()}
     </th>
   );
 };
