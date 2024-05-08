@@ -170,7 +170,7 @@ module.exports = (phase, { defaultConfig }) => {
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/student-answer/:slug*`
         },
         {
-          source: '/student-answer/:slug*',
+          source: '/student-history/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/student-history/:slug*`
         }
       ]
