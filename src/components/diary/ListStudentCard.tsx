@@ -16,7 +16,7 @@ interface ListStudentCardProps {
 const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
     const {push} = useRouter()
     const {data} = useDataTeacherGroups()
-    const {setSelectedGroup,setStudentChoosed,setClassesChoosed} = useTeacherWork()
+    const {setSelectedGroup,setStudentChoosed,setClassesChoosed,setSendType} = useTeacherWork()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,6 +33,7 @@ const ListStudentCard:FC<ListStudentCardProps> = ({item,element}) => {
         if(find) {
             setSelectedGroup(find)
             setClassesChoosed(find)
+            setSendType(find.connection.exerciseType?.title as sendExerciseType)
             setStudentChoosed(element?.student)
             push(item.exercise.fullLink!)
 

@@ -4,7 +4,7 @@ import { useTeacherWork } from '@/store/work.store';
 import { Badge, Box, IconButton, MenuItem, Select, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const TeacherBar = () => {
     const router = useRouter()
@@ -28,7 +28,11 @@ const TeacherBar = () => {
             setStudentChoosed(findUser)
         }
     }
-    console.log('classChoosed?.uuid',classChoosed?.uuid)
+
+    useEffect(() => {
+        // this useffect needs to render the selectboxes when changed from diary 
+    }, [classChoosed, studentChoosed]);
+
     return (
         <Box sx={{display:'flex', alignItems:'center', height:'100%', justifyContent:'space-between'}}>
             <Box sx={{display:'flex', alignItems:'center'}}>
@@ -58,7 +62,7 @@ const TeacherBar = () => {
                 <Box sx={{display:'flex', gap:'10px', mt:'5px'}}>
                     <Select
                         sx={{bgcolor:'#F0FBFF', minWidth:'150px', height:'35px'}}
-                        value={classChoosed?.uuid}
+                        value={classChoosed?.uuid ?? ''}
                         onChange={(e) => handleClassChoose(e.target.value)}
                         autoWidth
                     >
@@ -68,7 +72,7 @@ const TeacherBar = () => {
                     </Select>
                     <Select
                         sx={{bgcolor:'#F0FBFF', minWidth:'150px', height:'35px'}}
-                        value={studentChoosed?.id}
+                        value={studentChoosed?.id ?? ''}
                         onChange={(e) => handleStudentChoose(+e.target.value)}
                         autoWidth
                     >
