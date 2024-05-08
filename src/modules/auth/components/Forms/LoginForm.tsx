@@ -64,7 +64,7 @@ const LoginForm = () => {
                                 <TextField
                                     {...field}
                                     variant="outlined"
-                                    placeholder="email"
+                                    placeholder="מייל"
                                     error={!!errors.email}
                                     helperText={errors.email?.message}
                                 />

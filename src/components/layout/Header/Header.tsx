@@ -36,7 +36,7 @@ const Header = ({ children, navbar }: { children: React.ReactNode, navbar: React
                                 <ListItem  sx={{ width: '100%', cursor:'pointer'}} onClick={handleMenu}>
                                     <ListItemAvatar>
                                         <Avatar sx={{width:'50px', height:'50px'}}>
-                                        <Image src={'/images/avatar.png'} alt='' width={80} height={80} />
+                                        {/* <Image src={'/images/avatar.png'} alt='' width={80} height={80} /> */}
                                     </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText 
