@@ -41,7 +41,7 @@ const Header = ({ children, navbar }: { children: React.ReactNode, navbar: React
                                     </ListItemAvatar>
                                     <ListItemText 
                                         primary={`${user?.firstName} ${user?.lastName}`} 
-                                        secondary={`asdasd`}
+                                        secondary={`חיפה`}
                                         id="menu-appbar" 
                                         sx={{ 
                                             '& .MuiListItemText-secondary': { 
