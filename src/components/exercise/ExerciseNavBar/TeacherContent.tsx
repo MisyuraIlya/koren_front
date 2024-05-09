@@ -121,7 +121,7 @@ const TeacherContent = () => {
                         <Box sx={{display:'flex',alignItems:'center'}}>
                             <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                                 <Button startIcon={<Box sx={{borderRadius:'50%', bgcolor: data?.id ? '#07FE4C' : '#ED4136',width:'9px', height:'9px' }}/>} sx={{bgcolor:'#EDF2F9', borderRadius:'60px', padding:'2px 16px'}}>
-                                    טרם נשלח
+                                    {data?.id  ? 'נשלח' : 'טרם נשלח'}
                                 </Button>
                             </Box>
                 

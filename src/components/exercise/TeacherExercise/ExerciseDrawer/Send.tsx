@@ -47,6 +47,7 @@ const Send:FC<SendProps> = ({open, setOpen}) => {
                 createGroupConnection(choosedStudents)
             }
         }
+        setOpen(false)
     }
 
     const handleChange = (student: IUser) => {

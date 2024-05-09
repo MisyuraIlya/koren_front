@@ -1,3 +1,4 @@
+import { useAuth } from '@/modules/auth/store/auth.store';
 import { useCourses } from '@/provider/CourseProvider';
 import { Box, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useParams, useRouter } from 'next/navigation';
@@ -5,6 +6,7 @@ import React from 'react';
 
 const Wrapper = ({ children }: { children: React.ReactNode}) => {
     const {exercise, courses} = useParams()
+    const {user} = useAuth()
     const router = useRouter()
     const lvl1 = exercise ? exercise?.[0] : courses?.[0];
     const lvl2 = exercise ? exercise?.[1] : courses?.[1];
@@ -15,14 +17,15 @@ const Wrapper = ({ children }: { children: React.ReactNode}) => {
     const {lvl2IdCourses,lvl3IdCourses,lvl4IdCourses,lvl5IdCourses} = useCourses()
     
     const handleChange = (lvl: number, event:SelectChangeEvent) => {
+        const role = user?.role === 'teacher' ? 'teacher' : 'student'
         if(lvl === 2 ) {
-            router.push(`/teacher/courses/${lvl1}/${event.target.value}/0/0/0`)
+            router.push(`/${role}/courses/${lvl1}/${event.target.value}/0/0/0`)
         } else if(lvl === 3) {
-            router.push(`/teacher/courses/${lvl1}/${lvl2}/${event.target.value}/0/0`)
+            router.push(`/${role}/courses/${lvl1}/${lvl2}/${event.target.value}/0/0`)
         } else if(lvl === 4) {
-            router.push(`/teacher/courses/${lvl1}/${lvl2}/${lvl3}/${event.target.value}/0`)
+            router.push(`/${role}/courses/${lvl1}/${lvl2}/${lvl3}/${event.target.value}/0`)
         } else if(lvl === 5) {
-            router.push(`/teacher/exercise/${lvl1}/${lvl2}/${lvl3}/${lvl4}/${event.target.value}`)
+            router.push(`/${role}/exercise/${lvl1}/${lvl2}/${lvl3}/${lvl4}/${event.target.value}`)
         } 
     }
     const isDisabled = (lvl5IdCourses?.confirmations?.length ?? 0) > 0;

@@ -66,6 +66,7 @@ const Answer:FC<SendProps> = ({open, setOpen}) => {
         } else {
             createGroupAnswer(groupSelected?.students!)
         }
+        setOpen(false)
     }
 
     return (

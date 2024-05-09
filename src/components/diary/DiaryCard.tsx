@@ -56,7 +56,7 @@ const DiaryCard:FC<DiaryCardProps> = ({item}) => {
 
 
     return (
-        <Paper key={item.id} sx={{padding:'20px 10px'}}>
+        <Paper key={item.id} sx={{padding:'20px 10px',mt:'10px'}}>
             <Grid container>
                 <Grid item xs={1}>
                     <Image src={'/images/bookIcon.svg'} width={35} height={35} alt='iconbook'/>

@@ -29,12 +29,17 @@ const StudentContent = () => {
                 <Grid item xs={8}>
                     <Typography color={'black'}>{moment(exercise?.group?.fromDate).format('DD-MM-YYYY')}</Typography>
                 </Grid>
-                <Grid item xs={4}>
-                    <Typography color={'#7D7D7D'}>שעת הגשה:</Typography>
-                </Grid>
-                <Grid item xs={8}>
-                    <Typography color={'black'}>{moment(exercise?.group?.time).format('HH:mm')}</Typography>
-                </Grid>
+                {exercise?.group?.time && 
+                    <>
+                    <Grid item xs={4}>
+                        <Typography color={'#7D7D7D'}>שעת הגשה:</Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Typography color={'black'}>{moment(exercise?.group?.time).format('HH:mm')}</Typography>
+                    </Grid>
+                    </>
+                }
+ 
             </Grid>
         </Grid>
         <Grid item xs={1} sx={{display:'flex'}}>

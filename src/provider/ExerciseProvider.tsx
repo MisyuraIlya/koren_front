@@ -3,7 +3,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
-import { onAsk, onInfoAlert } from '@/utils/sweetAlert';
+import { onAsk, onInfoAlert, onSuccessAlert } from '@/utils/sweetAlert';
 import useSWR from 'swr';
 import { AdminExerciseService } from '@/modules/admin/services/adminExercise.service';
 import { ExerciseServices } from '@/services/ExerciseServices';
@@ -72,6 +72,8 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
         }
     } catch(e) {
       onInfoAlert('אופס','שגיאה' + e)
+    } finally {
+      onSuccessAlert('תרגיל נשלח בהצלחה','')
     }
   }
 
