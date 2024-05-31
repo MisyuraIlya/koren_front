@@ -348,55 +348,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-          height: 40,
-          minHeight: 40,
-          overflow: "visible",
-        },
-        scroller: {
-          paddingTop: 1,
-        },
-        indicator: {
-          top: 0,
-          height: 38,
-          minHeight: 38,
-          borderRadius: 8,
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.08)",
-          background: "#fff",
-        },
-        scrollableX: {
-          overflow: "visible !important",
-        },
-      },
-    },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          padding: 0,
-          height: 38,
-          minHeight: 38,
-          borderRadius: 6,
-          transition: "color .2s",
-          textTransform: "capitalize",
-
-          "&.MuiButtonBase-root": {
-            minWidth: "auto",
-            paddingLeft: 20,
-            paddingRight: 20,
-            marginRight: 4,
-          },
-          "&.Mui-selected, &.Mui-selected:hover": {
-            color: themeColors.text,
-            zIndex: 5,
-          },
-          "&:hover": {
-            color: colors.alpha.black[100],
-          },
-        },
-      },
-    },
     MuiCard: {
       styleOverrides: {
         root: {

@@ -13,6 +13,7 @@ const SelectMode = () => {
             placeholder='בחירת משוב'
             onChange={(e) => setChoosedMode(e.target.value)}
         >
+                <MenuItem value={''}>בחירת משוב</MenuItem>
             {mode?.map((item,index) =>
                 <MenuItem 
                     key={index}
