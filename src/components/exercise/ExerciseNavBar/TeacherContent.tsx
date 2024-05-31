@@ -15,6 +15,7 @@ import useDataConnectionGroup from '@/hooks/useDataConnectionGroup';
 import { onAsk } from '@/utils/sweetAlert';
 import ExerciseDrawer from '../TeacherExercise/ExerciseDrawer';
 import Exercise from '..';
+import FeedBack from '@/components/feedback';
 
 
 const TeacherContent = () => {
@@ -22,6 +23,7 @@ const TeacherContent = () => {
     const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
+    const [openFeedBack, setOpenFeedBack] = useState(false)
 
     const handleDelete = async () => {
         const ask = await onAsk(`למחוק ${sendType}?`,'')
@@ -99,7 +101,7 @@ const TeacherContent = () => {
                                 <IconButton>
                                     <RemoveRedEyeIcon sx={{color:'black'}}/>
                                 </IconButton>
-                                <IconButton>
+                                <IconButton onClick={() => setOpenFeedBack(true)}>
                                     <Image src={'/images/editExercise.svg'} width={20} height={20} alt='edit'/>
                                 </IconButton>
                             </Box>
@@ -153,6 +155,7 @@ const TeacherContent = () => {
         }
         <Exercise.TeacherExercise.ExerciseDrawer.Send open={open} setOpen={setOpen}/>
         <Exercise.TeacherExercise.ExerciseDrawer.Answer open={open2} setOpen={setOpen2}/>
+        <FeedBack open={openFeedBack} setOpen={setOpenFeedBack}/>
         </>
     );
 };
