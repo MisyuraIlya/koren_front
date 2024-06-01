@@ -5,11 +5,11 @@ import Image from 'next/image';
 import React from 'react';
 
 const Create = () => {
-    const {positive, negative, positiveChoosed, negativeChoosed, setPositiveChoosed, setNegativeChoosed, isSavedBank} = useFeedBack()
+    const {positive, negative, positiveChoosed, negativeChoosed, setPositiveChoosed, setNegativeChoosed, isSavedBank, setAddFeedBack, addFeedBack} = useFeedBack()
     return (
         <>
         <Box sx={{paddingTop:'20px'}}>
-            <ReachTextEditor/>
+            <ReachTextEditor value={addFeedBack} setValue={setAddFeedBack}/>
         </Box>
         <Box sx={{display:'flex', gap:'10px', alignItems:'center', bgcolor:"#E5F0FE", padding:"10px 20px", marginTop:'20px'}}>
             <Typography>

@@ -1,6 +1,7 @@
 interface IFeedBack {
     id: number
     title:string
+    type: 'negative' | 'positive'
     items: IFeedBackItem[]
 }
 

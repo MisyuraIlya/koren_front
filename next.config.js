@@ -102,7 +102,16 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/student-history/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/student-history/:slug*`
+          },
+          {
+            source: '/feed-back-main/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/feed-back-main/:slug*`
+          } ,
+          {
+            source: '/feed-back-user/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/feed-back-user/:slug*`
           }
+          
         ]
       }
     }
@@ -172,6 +181,14 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/student-history/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/student-history/:slug*`
+        },
+        {
+          source: '/feed-back-main/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/feed-back-main/:slug*`
+        },
+        {
+          source: '/feed-back-user/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/feed-back-user/:slug*`
         }
       ]
     }

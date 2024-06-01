@@ -2,6 +2,7 @@ import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemIcon, Lis
 import React, { useState } from 'react';
 import BankCard from './BankCard';
 import { useFeedBack } from '@/store/feedBack.store';
+import useDataFeedBack from '@/hooks/useDataFeedBack';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -49,12 +50,14 @@ function CustomTabPanel(props: TabPanelProps) {
 
 const Bank = () => {
     const [value, setValue] = useState(0);
-
+    const {data} = useDataFeedBack()
     const {addFeedBack,setAddFeedBack} = useFeedBack()
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     };
+
+  
 
     return (
         <>
@@ -66,15 +69,29 @@ const Bank = () => {
             </Tabs>
             <CustomTabPanel value={value} index={0}>
                 <List>
-                    {test?.map((item) => 
-                    <>
-                    <BankCard item={item}/>
-                    </>
-                    )}
+                    {data?.map((item) => {
+                      if(item.type === 'positive') {
+                        return(
+                          <>
+                          <BankCard item={item}/>
+                          </>
+                        )
+                      }
+                    })}
                 </List> 
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                Item Two
+                <List>
+                    {data?.map((item) => {
+                      if(item.type === 'negative') {
+                        return(
+                          <>
+                          <BankCard item={item}/>
+                          </>
+                        )
+                      }
+                    })}
+                </List> 
             </CustomTabPanel>
           </> 
         :
@@ -84,7 +101,7 @@ const Bank = () => {
               </Typography>
               <Box sx={{bgcolor:'#E5F0FE', padding:'20px 0'}}>
                   <Typography  sx={{textAlign:'center'}}>
-                  בסיום יש הצעה מעניינת לפתרון.
+                  {addFeedBack}
                   </Typography>
                   <Box sx={{display:'flex', gap:'10px', justifyContent:'center', alignItems:'center', paddingTop:'30px'}}>
                       <Button variant='contained' sx={{bgcolor:'#0172E8',borderRadius:'24px', padding:'6px 44px', fontSize:'16px', fontWeight:600}}>

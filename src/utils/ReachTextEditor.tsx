@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef,FC } from 'react';
 import {
     MenuButtonBold,
     MenuButtonItalic,
@@ -10,14 +10,22 @@ import {
   } from "mui-tiptap";
 import StarterKit from "@tiptap/starter-kit";
 
-const ReachTextEditor = () => {
+interface ReachTextEditorProps {
+    value: string
+    setValue: (value: string) => void
+}
+
+const ReachTextEditor:FC<ReachTextEditorProps> = ({value,setValue}) => {
     const rteRef = useRef<RichTextEditorRef>(null);
+    
     
     return (
         <>
         <RichTextEditor
             ref={rteRef}
             extensions={[StarterKit]} 
+            content={value}
+            onUpdate={(e) => setValue(e.editor.getHTML())}
             renderControls={() => (
             <MenuControlsContainer>
                 <MenuSelectHeading />
