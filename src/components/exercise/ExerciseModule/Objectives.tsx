@@ -61,8 +61,8 @@ interface ObjectivesProps {
 const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
     return (
         <>
-        {objective?.moduleType === ('orden' ) && <OrdenModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'word' && <WordModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'word' || objective?.moduleType === 'wordBold' || objective?.moduleType === 'wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
@@ -71,17 +71,22 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'rootInput' && <ObjectiveRootInput objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'imageRight' && <ImageFormRight objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'instructionWhite' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
+
+        {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />} */}
 
         {/* {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />} */}
-
         {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
-        {/* {objective?.moduleType === ('icon1') && <IconModule objective={objective} {...objectiveIndexes} />}
+        {/* 
         {objective?.moduleType === ('icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('instructionWhite' ) && <InstructionWhite objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === ('wordBold') && <WordModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />} */}
+         */}
         {/* {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
        
@@ -99,10 +104,9 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'draft' && <Draft objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'storyHeadline' && <StoryHeadline objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
+        
         {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />}
+        
         {objective?.moduleType === 'iconDescriptionTwo' && <IconDescription objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'iconDescriptionOne' && <IconDescription objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'song' && <SongModule objective={objective} {...objectiveIndexes} />}

@@ -18,7 +18,12 @@
 }
 
 .disbleTh {
-  border-left: 0px solid white !important;
+  tr {
+    th {
+        border-left: 0px solid white !important;
+    }
+  } 
+  border-left: 0px solid white !important; 
 }
 .input-sizer {
   display: inline-grid;

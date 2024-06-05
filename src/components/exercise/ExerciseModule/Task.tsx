@@ -3,18 +3,23 @@ import { Box } from '@mui/material';
 import { themeColors } from '@/styles/mui';
 import Column from './Column';
 import Row from './Row';
+import { styleHandler } from '@/helpers/StyleHandler';
 interface TaskProps {
     task: ITask
     tabIndex: number
     taskIndex: number
 }
 const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
+
+
     const backgroundColor = () => {
         const isIcon = task.columns.some((item) => item.type === 'icon1')
         const isIcon2 = task.columns.some((item) => item.type === 'icon2')
         const explanationSplited = task.columns.some((item) => item.type === 'explanationSplited')
         const instructionWhite = task.columns.some((item) => item.type === 'instructionWhite')
-        
+        const instruction = task.columns.some((item) => item.type === 'instruction')
+
+
         if(isIcon){
             return themeColors.blueOne
         } else if(isIcon2) {
@@ -23,17 +28,22 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
             return 'white'
         } else if(instructionWhite) {
             return 'white'
-        } else {
+        } else if(instruction) {
             return themeColors.exerciseMain
+        } else {
+            return '#EDF2F9'
         }
     }
+    const {merged} = styleHandler(task)
+    
+
     return (
         <Box className='bg-secondBlue relative' sx={{background:backgroundColor()}} key={taskIndex}>
-            <table className={'TaskStyles'}>
+            <table className={`TaskStyles ${merged ? "disbleTh" : ""}`}>
                 <tbody>
                     <tr className='w-full'>
                         {task?.columns.map((column, columnIndex) => {
-                            if((column?.title || column?.type === 'orden' || column?.type === 'word')){
+                            if((column?.title || (column?.type === 'orden')  || (column?.type === 'word') || (column?.type === 'wordRegular') )){
                                 return (
                                     <th key={columnIndex} style={{textAlign:'center'}} >
                                         <Column column={column}/>

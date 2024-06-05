@@ -6,9 +6,9 @@ const TextModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
 
     return (
         <th key={objectiveIndex}>
-            <Box className='fontSizeExercise ' sx={{textAlign:'left'}}>
+            <Box className='fontSizeExercise ' sx={{textAlign:'left', padding:'0 20px'}}>
                 <div
-                    style={{paddingRight:'10px'}}
+                    style={{paddingRight:'10px', textAlign:'justify'}}
                     dangerouslySetInnerHTML={{ __html: objective?.values[0].value }}
                 />
             </Box>

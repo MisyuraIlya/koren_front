@@ -1,12 +1,9 @@
 import React, {FC, useEffect} from 'react';
 import Image from 'next/image';
+import { Box, Typography } from '@mui/material';
 
 const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
-
-
-
-    // const isDisabledTh = collectionsCols.some((item) => item.orden === col + 1 && item.title == 'h')
     const handleIcon = () => {
         if(objective?.values?.[0]?.value == 'דיון') {
             return 'conversation.svg'
@@ -24,19 +21,13 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
     }
 
     return (
-        <th 
-        // className={`
-        // pt-2
-        // ${isDisabledTh && 'disbleTh'}
-        // ${checkIsThereImage ? '' : ''}
-        // ${(firstIdTextModule === value && !isClearTable)  ? 'specific-th ' : ''}
-        
-        // `}
-        className='disbleTh px-4'
-        >
-            <div>
+        <th className='disbleTh'>
+            <Box sx={{display:'flex', gap:'20px', padding:'20px 30px'}}>
                 <Image src={'/images/' + handleIcon()} width={50} height={50} alt='image' />
-            </div>
+                <Typography variant='h5' sx={{color:'white'}}>
+                {objective?.values[0].value}
+                </Typography>
+            </Box>
         </th>
     );
 };
