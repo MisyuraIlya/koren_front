@@ -7,6 +7,7 @@ import React from 'react';
 
 const StudentContent = () => {
     const {exercise} = useExercise()
+    console.log('exercise',exercise)
     return (
         <>
         <Grid item xs={2}>
@@ -45,7 +46,7 @@ const StudentContent = () => {
         <Grid item xs={1} sx={{display:'flex'}}>
             <Box>
                 <Typography variant='h6' fontWeight={600}>
-                    ציון זמני: 75
+                    ציון זמני: {exercise?.histories[0]?.grade ?? 0}
                 </Typography>
             </Box>
         </Grid>

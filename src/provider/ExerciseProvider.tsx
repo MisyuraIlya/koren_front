@@ -54,7 +54,7 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
       revalidateOnFocus: false,
     }
   );
-
+  console.log('exerciseexercise',exercise)
   const handleAnswer = (objective: IAnswer, answer: string) => {
     try {
       const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)

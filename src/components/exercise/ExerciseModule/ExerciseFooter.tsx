@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useAuth } from '@/modules/auth/store/auth.store';
 const ExerciseFooter = () => {
     const {handleDone,handleReset} = useExercise()
+    const {exercise} = useExercise()
     const {user} = useAuth()
     const isStudent = user?.role === 'student'
     return (
@@ -41,7 +42,7 @@ const ExerciseFooter = () => {
                             <AddIcon sx={{color:'black'}}/>
                         </IconButton>
                         <Typography variant='body1'>
-                        75
+                        {exercise?.histories[0]?.grade ?? 0}
                         </Typography>
                         <IconButton>
                             <RemoveIcon sx={{color:'black'}}/>
