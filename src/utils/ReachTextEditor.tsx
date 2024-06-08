@@ -1,42 +1,39 @@
-import React, { useRef,FC } from 'react';
-import {
-    MenuButtonBold,
-    MenuButtonItalic,
-    MenuControlsContainer,
-    MenuDivider,
-    MenuSelectHeading,
-    RichTextEditor,
-    type RichTextEditorRef,
-  } from "mui-tiptap";
-import StarterKit from "@tiptap/starter-kit";
+import React, { useState, useEffect, FC } from 'react';
+import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
+import { EditorState, convertToRaw } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { stateToHTML } from 'draft-js-export-html';
+import { Box } from '@mui/material';
 
-interface ReachTextEditorProps {
-    value: string
-    setValue: (value: string) => void
+const Editor = dynamic(() => import('react-draft-wysiwyg').then((module) => module.Editor), {
+  ssr: false, 
+});
+
+type Props = {
+  value: string
+  setValue: (value: string) => void
+  placholder?: string
 }
 
-const ReachTextEditor:FC<ReachTextEditorProps> = ({value,setValue}) => {
-    const rteRef = useRef<RichTextEditorRef>(null);
-    
-    
-    return (
-        <>
-        <RichTextEditor
-            ref={rteRef}
-            extensions={[StarterKit]} 
-            content={value}
-            onUpdate={(e) => setValue(e.editor.getHTML())}
-            renderControls={() => (
-            <MenuControlsContainer>
-                <MenuSelectHeading />
-                <MenuDivider />
-                <MenuButtonBold />
-                <MenuButtonItalic />
-            </MenuControlsContainer>
-            )}
-        />   
-        </>
-    );
-};
+const RichTextEditor:FC<Props> = ({value,setValue,placholder}) => {
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
-export default ReachTextEditor;
+  const handleEditorChange = (newEditorState: any) => {
+    setEditorState(newEditorState);
+    const contentState = newEditorState.getCurrentContent();
+    const contentHtml = stateToHTML(contentState);
+    setValue(contentHtml);
+  };
+
+  return (
+    <Box sx={{width:'100%', bgcolor:'white', padding:'10px 20px'}}>
+      <Editor
+        editorState={editorState}
+        onEditorStateChange={handleEditorChange}
+        placeholder={placholder}
+      />
+    </Box>
+  );
+}
+
+export default RichTextEditor;

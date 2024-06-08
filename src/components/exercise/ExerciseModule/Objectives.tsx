@@ -50,6 +50,8 @@ import SongModule from '../objectives/SongModule';
 import TextAreaModule2 from '../objectives/TextAreaModule';
 import ObjectiveInput from '../objectives2/ObjectiveInput';
 import ObjectiveRootInput from '../objectives2/ObjectiveRootInput';
+import CheckBoxModule from '../objectives/CheckBoxModule';
+import BankModule from '../objectives/BankModule';
 // import PdfModule from '../objectives/PdfIframe';
 // import CopyModule from '../objectives/CopyModule';
 
@@ -64,7 +66,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'word' || objective?.moduleType === 'wordBold' || objective?.moduleType === 'wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'text' || objective?.moduleType === 'textModuled') && <TextModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
@@ -76,11 +78,13 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
-
+        {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'openQuestion' || objective?.moduleType === 'openQuestionHamarot')  && <OpenQuestion objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
+        
         {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />} */}
-
-        {/* {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />} */}
-        {/* {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
         {/* 
         {objective?.moduleType === ('icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
@@ -89,15 +93,9 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
          */}
         {/* {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
-       
         {objective?.moduleType === 'ordenBold' && <OrdenBoldModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'textModuled' && <TextModuled objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'bank' && <BankModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'openQuestionHamarot' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
-        
         {objective?.moduleType === 'headline2' && <HeadLine2 objective={objective} {...objectiveIndexes} />} */}
 {/* 
         {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}
@@ -131,7 +129,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {/* {objective?.moduleType === 'table' && <TableModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'tableClear' && <TableClearModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'merged' && <UnitedForm objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
+        
         {objective?.moduleType === 'chart' && <ChartForm objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'mergedExercise' && <MergedExercise objective={objective} {...objectiveIndexes} />} */}
 

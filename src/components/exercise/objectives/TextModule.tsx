@@ -9,7 +9,7 @@ const TextModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
             <Box className='fontSizeExercise ' sx={{textAlign:'left', padding:'0 20px'}}>
                 <div
                     style={{paddingRight:'10px', textAlign:'justify'}}
-                    dangerouslySetInnerHTML={{ __html: objective?.values[0].value }}
+                    dangerouslySetInnerHTML={{ __html: objective?.values?.[0]?.value }}
                 />
             </Box>
         </th>

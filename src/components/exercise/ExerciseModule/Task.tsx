@@ -4,6 +4,7 @@ import { themeColors } from '@/styles/mui';
 import Column from './Column';
 import Row from './Row';
 import { styleHandler } from '@/helpers/StyleHandler';
+
 interface TaskProps {
     task: ITask
     tabIndex: number
@@ -34,8 +35,7 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
             return '#EDF2F9'
         }
     }
-    const {merged} = styleHandler(task)
-    
+    const {merged,scroll} = styleHandler(task)
 
     return (
         <Box className='bg-secondBlue relative' sx={{background:backgroundColor()}} key={taskIndex}>
@@ -43,7 +43,14 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
                 <tbody>
                     <tr className='w-full'>
                         {task?.columns.map((column, columnIndex) => {
-                            if((column?.title || (column?.type === 'orden')  || (column?.type === 'word') || (column?.type === 'wordRegular') )){
+                            if(
+                                (column?.title && column?.type !=='bank'  && column?.type !=='mixDrag') || 
+                                (column?.type === 'orden')  || 
+                                (column?.type === 'word') ||
+                                (column?.type === 'wordRegular') ||
+                                column?.type === 'overflow' 
+                            )
+                            {
                                 return (
                                     <th key={columnIndex} style={{textAlign:'center'}} >
                                         <Column column={column}/>

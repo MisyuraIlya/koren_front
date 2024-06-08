@@ -9,6 +9,7 @@ interface RowProps {
 
 
 const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
+    
     return (
         <tr>
             {row?.objectives?.map((objective, objectiveIndex) => {

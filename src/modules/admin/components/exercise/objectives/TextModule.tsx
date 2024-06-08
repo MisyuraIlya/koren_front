@@ -53,7 +53,7 @@ const TextModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
             >
                 <div
                     // onInput={handleInputChange}
-                    dangerouslySetInnerHTML={{ __html: objective?.values[0].value }}
+                    dangerouslySetInnerHTML={{ __html: objective?.values?.[0]?.value }}
                     className=""
                 />
             </div>

@@ -9,7 +9,7 @@ const ClearText:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
         key={objectiveIndex}
         className='disbleTh'
         >
-            <Box>
+            <Box sx={{padding:'20px 100px'}}>
                 <div
                     dangerouslySetInnerHTML={{ __html: objective.values[0]?.value }}
                     className=""

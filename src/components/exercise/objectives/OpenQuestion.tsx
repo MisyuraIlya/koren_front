@@ -1,21 +1,16 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
-import React, {FC, useEffect} from 'react';
+import ReachTextEditor from '@/utils/ReachTextEditor';
+import { Box } from '@mui/material';
+import React, {FC, useEffect, useState} from 'react';
 
 const OpenQuestion:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-
+    const [value, setValue] = useState('')
+    
     return (
-        <th 
-            // className={`${checkIsThereImage ? 'h-full justify-left text-center float-left' : 'h-full justify-lefttext-center float-left'} w-full`} 
-            // style={{
-            //     minWidth: isTable ? `${CustomTableWidth}px` : '',
-            // }}
-        >
-            <div className='flex items-center py-4 px-2 w-full float-left'>
-                <div className='rounded-md bg-white text-white px-2  float-left w-full'  >
-                    {/* <RichTextEditor placholder={placeholder}/> */}
-                    rich text editor
-                </div>
-            </div>
+        <th>
+            <Box sx={{padding:'20px'}}>
+                <ReachTextEditor value={value} setValue={setValue} placholder={objective.placeholder}/>
+            </Box>
         </th>
     );
 };

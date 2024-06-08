@@ -25,7 +25,7 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
             <Box sx={{display:'flex', gap:'20px', padding:'20px 30px'}}>
                 <Image src={'/images/' + handleIcon()} width={50} height={50} alt='image' />
                 <Typography variant='h5' sx={{color:'white'}}>
-                {objective?.values[0].value}
+                {objective?.values?.[0]?.value}
                 </Typography>
             </Box>
         </th>

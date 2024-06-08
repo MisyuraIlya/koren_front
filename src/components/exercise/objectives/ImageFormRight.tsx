@@ -9,7 +9,7 @@ const ImageFormRight:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIn
         <>
         <Box sx={{padding:'20px 80px'}}>
             <Image 
-                src={`http://3.74.228.194:4000/${objective.values[0].value}`} 
+                src={`http://3.74.228.194:4000/${objective.values?.[0]?.value}`} 
                 alt="uploaded image w-full h-full"  
                 width={500} 
                 height={500} 
