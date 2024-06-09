@@ -1,6 +1,7 @@
+'use client'
 import React, { useState, useEffect, FC } from 'react';
-import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
-import { EditorState, convertToRaw } from 'draft-js';
+import dynamic from 'next/dynamic';
+import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { stateToHTML } from 'draft-js-export-html';
 import { Box } from '@mui/material';
@@ -12,11 +13,25 @@ const Editor = dynamic(() => import('react-draft-wysiwyg').then((module) => modu
 type Props = {
   value: string
   setValue: (value: string) => void
-  placholder?: string
+  placeholder?: string
 }
 
-const RichTextEditor:FC<Props> = ({value,setValue,placholder}) => {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+const RichTextEditor: FC<Props> = ({ value, setValue, placeholder }) => {
+  const [editorState, setEditorState] = useState<EditorState>(() => {
+    const contentState = convertFromHTML(value ?? '');
+    if (contentState) {
+      return EditorState.createWithContent(ContentState.createFromBlockArray(contentState.contentBlocks));
+    }
+    return EditorState.createEmpty();
+  });
+
+  // Update editor state when value prop changes
+  useEffect(() => {
+    const contentState = convertFromHTML(value ?? '');
+    if (contentState) {
+      setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(contentState.contentBlocks)));
+    }
+  }, [value]);
 
   const handleEditorChange = (newEditorState: any) => {
     setEditorState(newEditorState);
@@ -25,12 +40,32 @@ const RichTextEditor:FC<Props> = ({value,setValue,placholder}) => {
     setValue(contentHtml);
   };
 
+  const toolbarOptions = {
+    options: ['inline', 'colorPicker', 'list', 'textAlign', 'link', 'history'],
+    inline: {
+      options: ['bold', 'italic', 'underline'],
+    },
+    list: {
+      options: ['unordered', 'ordered'],
+    },
+    textAlign: {
+      options: ['left', 'center', 'right'],
+    },
+    link: {
+      options: ['link'],
+    },
+    history: {
+      options: ['undo', 'redo'],
+    },
+  };
+
   return (
-    <Box sx={{width:'100%', bgcolor:'white', padding:'10px 20px'}}>
+    <Box sx={{ width: '100%', bgcolor: 'white', padding: '10px 20px' }}>
       <Editor
         editorState={editorState}
         onEditorStateChange={handleEditorChange}
-        placeholder={placholder}
+        placeholder={placeholder}
+        toolbar={toolbarOptions}
       />
     </Box>
   );

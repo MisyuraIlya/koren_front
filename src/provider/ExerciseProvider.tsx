@@ -23,6 +23,8 @@ interface AdminContextType {
     borderHandler: (objective: IObjective) => string
     nextError: () => void
     previousError: () => void
+    nextOpenQuestion: () => void
+    previousOpenQuestion: () => void
 }
 
 
@@ -50,10 +52,14 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   const [loading, setLoading] = useState(false)
   const {studentChoosed} = useTeacherWork()
   const [errorIds, setErrorIds] = useState<string[]>([])
+  const [openQuestionIds, setOpenQuestionIds] = useState<string[]>([])
   const [currentErrorId, setCurrentErrorId] = useState('')
+  const [currentQuestionId, setCurrentQuestionId] = useState<string>('')
   
   const scrollToError = (exerciseId: string) => {
+    console.log('exerciseId',exerciseId)
     const errorElement = document.getElementById(exerciseId);
+    console.log('errorElement',errorElement)
     if (errorElement) {
       const offsetTop = errorElement.offsetTop;
       window.scrollTo({
@@ -75,6 +81,21 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     const previousIndex = (currentIndex - 1 + errorIds.length) % errorIds.length;
     setCurrentErrorId(errorIds[previousIndex]);
     scrollToError(errorIds[previousIndex])
+  }
+
+  const nextOpenQuestion = () => {
+    const currentIndex = openQuestionIds.indexOf(currentQuestionId);
+    const nextIndex = (currentIndex + 1) % openQuestionIds.length;
+    setCurrentQuestionId(openQuestionIds[nextIndex]);
+    scrollToError(openQuestionIds[nextIndex])
+  }
+
+  const previousOpenQuestion = () => {
+    console.log(openQuestionIds)
+    const currentIndex = openQuestionIds.indexOf(currentQuestionId);
+    const previousIndex = (currentIndex - 1 + openQuestionIds.length) % openQuestionIds.length;
+    setCurrentQuestionId(openQuestionIds[previousIndex]);
+    scrollToError(openQuestionIds[previousIndex])
   }
 
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
@@ -159,6 +180,9 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     if(exercise?.histories?.[0]?.errorIds){
       setErrorIds(exercise?.histories?.[0].errorIds)
     }
+    if(exercise?.histories?.[0]?.openQuestionIds){
+      setOpenQuestionIds(exercise?.histories?.[0].openQuestionIds)
+    }
   },[exercise])
 
   const value: AdminContextType = {
@@ -173,7 +197,9 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     handleReset,
     borderHandler,
     nextError,
-    previousError
+    previousError,
+    nextOpenQuestion,
+    previousOpenQuestion
   };
 
   return (

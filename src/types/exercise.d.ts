@@ -99,7 +99,7 @@ interface IHistory extends Idefinder, IDate {
     totalUncorrect: number
     openQuestions: number
     errorIds: string[]
-    openQUestionIds: string[]
+    openQuestionIds: string[]
 }
 
 interface IStudentAnswer extends Idefinder, IDate {

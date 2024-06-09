@@ -22,7 +22,7 @@ import { useExercise } from '@/provider/ExerciseProvider';
 const TeacherContent = () => {
     const {classChoosed, toDate, fromDate,  timeChoosed,sendType} = useTeacherWork()
     const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
-    const {exercise, nextError, previousError} = useExercise()
+    const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion} = useExercise()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [openFeedBack, setOpenFeedBack] = useState(false)
@@ -61,10 +61,10 @@ const TeacherContent = () => {
                         <Box sx={{display:'flex', gap:'10px', alignItems:'center', marginTop:'10px'}}> 
                             <Typography color={'error'} sx={{fontSize:'14px', fontWeight:700}}>{exercise?.histories?.[0]?.openQuestions}</Typography>
                             <Typography sx={{fontSize:'14px'}}>שאלות פתוחות</Typography>
-                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}}>
+                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}} onClick={() => nextOpenQuestion()}>
                                 <ArrowForwardIosIcon sx={{fontSize:'15px'}}/>
                             </IconButton>
-                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', display:'flex',height:'20px', width:'20px'}}>
+                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', display:'flex',height:'20px', width:'20px'}} onClick={() => previousOpenQuestion()}>
                                 <ArrowBackIosNewIcon sx={{fontSize:'15px'}}/>
                             </IconButton>
                         </Box>
