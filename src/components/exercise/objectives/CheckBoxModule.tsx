@@ -4,8 +4,8 @@ import React, {FC, useEffect} from 'react';
 const CheckBoxModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
     return (
-        <th>
-            <Box> 
+        <th className='disbleTh'>
+            <Box sx={{padding:'0 20px'}}> 
                 {objective.values?.map((item,index) =>  {
                     if(item.value){
                         return (

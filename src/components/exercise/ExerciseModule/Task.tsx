@@ -45,9 +45,9 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex}) => {
                         {task?.columns.map((column, columnIndex) => {
                             if(
                                 (column?.title && column?.type !=='bank'  && column?.type !=='mixDrag') || 
-                                (column?.type === 'orden')  || 
-                                (column?.type === 'word') ||
-                                (column?.type === 'wordRegular') ||
+                                (column?.type === 'orden' && column?.title !== '')  || 
+                                (column?.type === 'word' && column?.title !== '' ) ||
+                                (column?.type === 'wordRegular' && column?.title !== '') ||
                                 column?.type === 'overflow' 
                             )
                             {

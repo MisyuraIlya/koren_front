@@ -12,7 +12,7 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
             }}
         >
             <Box className='text-center flex justify-center items-center py-1'>
-                <Typography variant='h6' sx={{background:themeColors.primary, color:'white', paddingRight:'9px', paddingLeft:'9px', borderRadius:'5px'}}>
+                <Typography variant='h6' sx={{background:objective.values?.[0]?.value ? themeColors.primary: null, color:'white', height:'35px', width:'35px' , borderRadius:'5px',  margin:'10px 20px'}}>
                     {objective.values?.[0]?.value}
                 </Typography>
             </Box>

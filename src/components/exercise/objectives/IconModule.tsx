@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 
 const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-
     const handleIcon = () => {
         if(objective?.values?.[0]?.value == 'דיון') {
             return 'conversation.svg'
@@ -23,10 +22,7 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
     return (
         <th className='disbleTh'>
             <Box sx={{display:'flex', gap:'20px', padding:'20px 30px'}}>
-                <Image src={'/images/' + handleIcon()} width={50} height={50} alt='image' />
-                <Typography variant='h5' sx={{color:'white'}}>
-                {objective?.values?.[0]?.value}
-                </Typography>
+                <Image src={'/images/' + handleIcon()} width={25} height={25} alt='image' />
             </Box>
         </th>
     );

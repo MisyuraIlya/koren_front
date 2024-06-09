@@ -83,12 +83,13 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
         
         {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
         {/* 
         {objective?.moduleType === ('icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
+        
         {objective?.moduleType === ('wordBold') && <WordModule objective={objective} {...objectiveIndexes} />}
          */}
         {/* {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
