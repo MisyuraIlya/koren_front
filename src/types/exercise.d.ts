@@ -97,6 +97,7 @@ interface IHistory extends Idefinder, IDate {
     totalQuestions: number
     totalCorrect: number
     totalUncorrect: number
+    openQuestions: number
 }
 
 interface IStudentAnswer extends Idefinder, IDate {

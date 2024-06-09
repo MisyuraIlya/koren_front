@@ -85,6 +85,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
         
+        
         {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
         {/* 

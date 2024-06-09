@@ -15,6 +15,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     const [openModalDescription2, setOpenModalDescription2] = useState(false)
     const [openModalPdf, setOpenModalPdf] = useState(false)
     const [openModalLink, setOpenModalLink] = useState(false)
+    console.log('exercise?.pdf',exercise?.pdf)
 
     return (
         <>

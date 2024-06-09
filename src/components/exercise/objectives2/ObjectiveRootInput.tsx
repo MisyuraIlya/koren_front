@@ -5,87 +5,65 @@ import { useExercise } from '@/provider/ExerciseProvider';
 import { useTeacherWork } from '@/store/work.store';
 import InfoIcon from '@mui/icons-material/Info';
 import { useAuth } from '@/modules/auth/store/auth.store';
+
 const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskIndex, rowIndex, objectiveIndex }) => {
   const [value, setValue] = useState('');
   const [debouncedValue] = useDebounce(value, 5000);
-  const {handleAnswer,exercise} = useExercise()
-  const {studentChoosed} = useTeacherWork()
-  const {user} = useAuth()
+  const { handleAnswer, exercise, borderHandler } = useExercise();
+  const { studentChoosed } = useTeacherWork();
+  const { user } = useAuth();
+  const length = objective?.answers[0].value.split('-').length;
 
   const handleError = () => {
-    if(user?.role === 'teacher'){
+    if (user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) {
       return (
         <Tooltip title={`התשובה היא ${objective?.answers[0]?.value}`}>
           <IconButton>
-            <InfoIcon/>
+            <InfoIcon />
           </IconButton>
         </Tooltip>
-      )
-    } else {
-      if(exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone){
-        return (
-          <Tooltip title={`התשובה היא ${objective?.answers[0]?.value}`}>
-            <IconButton>
-              <InfoIcon/>
-            </IconButton>
-          </Tooltip>
-        )
-      }
+      );
     }
-  }
-
-  const handleBorder = () => {
-    if(user?.role === 'teacher'){
-      if(objective?.answers[0]?.answers[0]?.isCorrect){
-        return '1px solid green'
-      } else if(!objective?.answers[0]?.answers[0]?.isCorrect){
-        return '1px solid red'
-      } else {
-        return '1px solid #ced4da'
-      }
-    } else {
-      if(exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone){
-        if(objective?.answers[0]?.answers[0]?.isCorrect){
-          return '1px solid green'
-        } else if(!objective?.answers[0]?.answers[0]?.isCorrect){
-          return '1px solid red'
-        } else {
-          return '1px solid #ced4da'
-        }
-      }
-    }
-
-
-  }
+    return null;
+  };
 
 
 
   useEffect(() => {
-    if(debouncedValue && debouncedValue !== objective?.answers[0]?.answers[0]?.value){
-      handleAnswer(objective.answers[0],debouncedValue)
+    if (debouncedValue && debouncedValue !== objective?.answers[0]?.answers[0]?.value) {
+      handleAnswer(objective.answers[0], debouncedValue);
     }
-    handleError()
-  },[debouncedValue])
-  
-  useEffect(() => {
-    setValue(objective?.answers[0]?.answers[0]?.value ?? '')
-  },[studentChoosed])
+    handleError();
+  }, [debouncedValue]);
 
+  useEffect(() => {
+    setValue(objective?.answers[0]?.answers[0]?.value ?? '');
+  }, [studentChoosed]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const deletHyphens = value.replace(/-/g, '')
+    const data = deletHyphens.split('').join('-');
+    setValue(data)
+  };
   return (
     <th key={objectiveIndex}>
-      <InputBase 
+      <InputBase
         sx={{
-          background: 'white', 
-          borderRadius: '5px', 
-          padding: '5px', 
+          background: 'white',
+          borderRadius: '5px',
+          padding: '5px',
           margin: '10px',
-          border: handleBorder(), 
-        }} 
+          border: `1px solid ${borderHandler(objective)}`,
+          '& input': {
+            textAlign: 'center',
+            fontSize: '20px'
+          }
+        }}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder={objective.placeholder}
-        
-      />  
+        onChange={handleChange}
+        placeholder={Array(length).fill('x').join('-')}
+      />
       {handleError()}
     </th>
   );

@@ -4,14 +4,14 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/material';
 import { useExercise } from '@/provider/ExerciseProvider';
 
-const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => ({
+const CustomSelect = styled(Select)(({ borderColor }: { borderColor: string }) => ({
     width: 400,
     height: 70,
     fontSize:'23px',
     '&.MuiOutlinedInput-root': {
 
       '& fieldset': {
-        borderColor: isCorrect ? 'green' : 'initial',
+        borderColor: borderColor,
       },
     },
     '& .MuiInputBase-input': {
@@ -24,7 +24,7 @@ const CustomSelect = styled(Select)(({ isCorrect }: { isCorrect: boolean }) => (
   
 
 const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
-    const {exercise,handleAnswer} = useExercise()
+    const {exercise,handleAnswer, borderHandler} = useExercise()
     const isCorrect = objective?.answers?.[0]?.answers?.[0]?.isCorrect ?? false;
     const isDone = exercise?.histories[0]?.isDone ?? false;
     const StudentAnswer = objective?.answers?.[0]?.answers[0]?.value ?? ''
@@ -46,7 +46,7 @@ const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
                         placeholder={objective.placeholder}
                         value={answer}
                         onChange={handleChange}
-                        isCorrect={isCorrect && isDone}
+                        borderColor={borderHandler(objective)}
                     >
                         <MenuItem value="">
                             <em>בחירה</em>

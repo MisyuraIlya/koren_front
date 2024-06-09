@@ -20,6 +20,7 @@ interface AdminContextType {
     handleAnswer: (objective: IAnswer, answer: string) => void
     handleDone: () => void
     handleReset: () => void
+    borderHandler: (objective: IObjective) => string
 }
 
 
@@ -54,7 +55,7 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
       revalidateOnFocus: false,
     }
   );
-  console.log('exerciseexercise',exercise)
+
   const handleAnswer = (objective: IAnswer, answer: string) => {
     try {
       const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)
@@ -102,6 +103,25 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     } 
   }
 
+  const borderHandler = (objective: IObjective) => {
+    // if ((user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) &&
+    //     (objective?.answers[0]?.answers[0]?.isCorrect)) {
+    //   return 'green';
+    // } else if ((user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) &&
+    //            (!objective?.answers[0]?.answers[0]?.isCorrect)) {
+    //   return 'red';
+    // }
+    // return '#ced4da';
+    if (exercise?.histories[0]?.isDone) {
+      if (objective?.answers[0]?.answers[0]?.isCorrect) {
+        return 'green';
+      } else {
+        return 'red';
+      }
+    }
+    return '#ced4da';
+  }
+
   useEffect(() => {
     handleCreateHistory()
   },[user,exercise])
@@ -115,7 +135,8 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     setChoosedTab,
     handleAnswer,
     handleDone,
-    handleReset
+    handleReset,
+    borderHandler
   };
 
   return (
