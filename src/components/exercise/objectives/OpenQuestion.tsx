@@ -7,7 +7,7 @@ const OpenQuestion:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
     const [value, setValue] = useState('')
     
     return (
-        <th>
+        <th id={`${objective.id}`}>
             <Box sx={{padding:'20px'}}>
                 <ReachTextEditor value={value} setValue={setValue} placholder={objective.placeholder}/>
             </Box>

@@ -73,7 +73,7 @@ const ObjectiveInput: FC<IObjectiveModule>  = ({objective,tabIndex,taskIndex,row
     },[studentChoosed])
 
     return (
-        <th key={objectiveIndex}>
+        <th key={objectiveIndex} id={`${objective.id}`}>
           <InputBase 
             sx={{
                 background:'white', 

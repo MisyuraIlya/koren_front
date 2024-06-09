@@ -47,7 +47,7 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
     setValue(data)
   };
   return (
-    <th key={objectiveIndex}>
+    <th key={objectiveIndex} id={`${objective.id}`}>
       <InputBase
         sx={{
           background: 'white',

@@ -39,9 +39,8 @@ const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
 
     return (
         <>
-            <th className={`p-4 `} key={objectiveIndex}>
-       
-                <FormControl error={!isCorrect && exercise?.histories[0]?.isDone} >
+            <th className={`p-4 `} key={objectiveIndex} id={`${objective.id}`}>
+                <FormControl error={!isCorrect && exercise?.histories[0]?.isDone}>
                     <CustomSelect
                         placeholder={objective.placeholder}
                         value={answer}

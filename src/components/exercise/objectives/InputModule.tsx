@@ -32,6 +32,7 @@ const InputModule: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
         <>
             {/* {!isMerged && */}
                 <th 
+                id={`${objective.id}`}
                 key={objectiveIndex}
                 // className={`${checkIsThereImage ? '' : ''} ${(isTable || isClearTable)  ? 'tableModule ' : ''} relative `}
                 // style={{

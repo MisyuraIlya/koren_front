@@ -22,7 +22,7 @@ import { useExercise } from '@/provider/ExerciseProvider';
 const TeacherContent = () => {
     const {classChoosed, toDate, fromDate,  timeChoosed,sendType} = useTeacherWork()
     const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
-    const {exercise} = useExercise()
+    const {exercise, nextError, previousError} = useExercise()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [openFeedBack, setOpenFeedBack] = useState(false)
@@ -49,12 +49,12 @@ const TeacherContent = () => {
                 <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                     <Box sx={{position:'relative'}}>
                         <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}> 
-                            <Typography color={'error'} sx={{fontSize:'14px', fontWeight:700}}>{exercise?.histories?.[0]?.totalCorrect}</Typography>
+                            <Typography color={'error'} sx={{fontSize:'14px', fontWeight:700}}>{exercise?.histories?.[0]?.totalUncorrect}</Typography>
                             <Typography sx={{fontSize:'14px'}}>תשובות שגויות</Typography>
-                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', ml:'3px',height:'20px', width:'20px'}}>
+                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px', ml:'3px',height:'20px', width:'20px'}} onClick={() => nextError()}>
                                 <ArrowForwardIosIcon sx={{fontSize:'15px'}}/>
                             </IconButton>
-                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}}>
+                            <IconButton sx={{background:'#EDF2F9', borderRadius:'3px',height:'20px', width:'20px'}} onClick={() => previousError()}>
                                 <ArrowBackIosNewIcon sx={{fontSize:'15px'}}/>
                             </IconButton>
                         </Box>

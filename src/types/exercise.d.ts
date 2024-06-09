@@ -98,6 +98,8 @@ interface IHistory extends Idefinder, IDate {
     totalCorrect: number
     totalUncorrect: number
     openQuestions: number
+    errorIds: string[]
+    openQUestionIds: string[]
 }
 
 interface IStudentAnswer extends Idefinder, IDate {

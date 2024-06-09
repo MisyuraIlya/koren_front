@@ -1,6 +1,6 @@
 // Global
 "use client";
-import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent } from 'react';
+import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent, useRef, RefObject } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
 import { onAsk, onInfoAlert, onSuccessAlert } from '@/utils/sweetAlert';
@@ -21,6 +21,8 @@ interface AdminContextType {
     handleDone: () => void
     handleReset: () => void
     borderHandler: (objective: IObjective) => string
+    nextError: () => void
+    previousError: () => void
 }
 
 
@@ -47,6 +49,33 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [loading, setLoading] = useState(false)
   const {studentChoosed} = useTeacherWork()
+  const [errorIds, setErrorIds] = useState<string[]>([])
+  const [currentErrorId, setCurrentErrorId] = useState('')
+  
+  const scrollToError = (exerciseId: string) => {
+    const errorElement = document.getElementById(exerciseId);
+    if (errorElement) {
+      const offsetTop = errorElement.offsetTop;
+      window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+      });
+    } 
+  };
+
+  const nextError = () => {
+    const currentIndex = errorIds.indexOf(currentErrorId);
+    const nextIndex = (currentIndex + 1) % errorIds.length;
+    setCurrentErrorId(errorIds[nextIndex]);
+    scrollToError(errorIds[nextIndex])
+  }
+
+  const previousError = () => {
+    const currentIndex = errorIds.indexOf(currentErrorId);
+    const previousIndex = (currentIndex - 1 + errorIds.length) % errorIds.length;
+    setCurrentErrorId(errorIds[previousIndex]);
+    scrollToError(errorIds[previousIndex])
+  }
 
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
     `http://localhost:4001/exercise/${props.courseId}/${user?.role === 'teacher' && studentChoosed?.id  ? studentChoosed.id! :  user?.id!}`,
@@ -126,6 +155,12 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     handleCreateHistory()
   },[user,exercise])
 
+  useEffect(() => {
+    if(exercise?.histories?.[0]?.errorIds){
+      setErrorIds(exercise?.histories?.[0].errorIds)
+    }
+  },[exercise])
+
   const value: AdminContextType = {
     exercise,
     isLoading,
@@ -136,7 +171,9 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     handleAnswer,
     handleDone,
     handleReset,
-    borderHandler
+    borderHandler,
+    nextError,
+    previousError
   };
 
   return (
