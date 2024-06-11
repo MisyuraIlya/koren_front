@@ -1,6 +1,7 @@
 export const styleHandler = (task: ITask) => {
     let merged = false
     let scroll = 0
+    let explanation = null
     task.columns?.map((item) => {
         if(item.type === 'merged'){
             merged = true
@@ -13,6 +14,6 @@ export const styleHandler = (task: ITask) => {
 
     return {
         merged,
-        scroll
+        scroll,
     }
 }   

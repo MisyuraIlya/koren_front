@@ -4,6 +4,8 @@ import { themeColors } from '@/styles/mui';
 import Column from './Column';
 import Row from './Row';
 import { styleHandler } from '@/helpers/StyleHandler';
+import Exercise from '..';
+import ExerciseModule from '.';
 
 interface TaskProps {
     task: ITask

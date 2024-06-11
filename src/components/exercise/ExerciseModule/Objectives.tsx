@@ -52,6 +52,7 @@ import ObjectiveInput from '../objectives2/ObjectiveInput';
 import ObjectiveRootInput from '../objectives2/ObjectiveRootInput';
 import CheckBoxModule from '../objectives/CheckBoxModule';
 import BankModule from '../objectives/BankModule';
+import Explanation from '@/modules/admin/components/exercise/objectives/Explanation';
 // import PdfModule from '../objectives/PdfIframe';
 // import CopyModule from '../objectives/CopyModule';
 
@@ -84,15 +85,11 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
-        
+        {(objective?.moduleType === 'explanationSplited' || objective?.moduleType === 'explanation') && <Explanation objective={objective} {...objectiveIndexes} />}
         
         {/* {objective?.moduleType === 'secondHeadWhite' && <SecondHeadWhiteModule objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />} */}
-        {/* 
-        {objective?.moduleType === ('icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
-        
-        {objective?.moduleType === ('wordBold') && <WordModule objective={objective} {...objectiveIndexes} />}
-         */}
+     
         {/* {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'ordenBold' && <OrdenBoldModule objective={objective} {...objectiveIndexes} />}
@@ -100,7 +97,6 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'bank' && <BankModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'headline2' && <HeadLine2 objective={objective} {...objectiveIndexes} />} */}
 {/* 
-        {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'draft' && <Draft objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'storyHeadline' && <StoryHeadline objective={objective} {...objectiveIndexes} />}
@@ -116,17 +112,11 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
 
         {/* SPECIAL */}
         {/* {objective?.moduleType === 'mixDrag' && <MixDrag objective={objective} {...objectiveIndexes} />} */}
-        {/* {objective?.moduleType === 'explanation' && <Explanation objective={objective} {...objectiveIndexes} />} */}
+       
        
        
        
         {/* {objective?.moduleType === 'copy' && <CopyModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'splitedScreenRight' && <SplitedScreenRight objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'doneSplitedScreenRight' && <DoneSplitedScreenRight objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'splitedScreenLeft' && <SplitedScreenLeft objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'doneSplitedScreenLeft' && <DoneSplitedScreenLeft objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'imageRight' && <ImageFormRight objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'properties' && <Properties objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'pdf' && <PdfModule objective={objective} {...objectiveIndexes} />} */}
         {/* {objective?.moduleType === 'table' && <TableModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'tableClear' && <TableClearModule objective={objective} {...objectiveIndexes} />}
