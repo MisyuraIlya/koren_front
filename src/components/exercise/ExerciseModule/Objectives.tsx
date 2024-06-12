@@ -31,29 +31,35 @@ interface ObjectivesProps {
 const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
     return (
         <>
+        {/* VIEW ONLY */}
+
         {(objective?.moduleType === 'orden' || objective?.moduleType === 'ordenBold') && <OrdenModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'word' || objective?.moduleType === 'wordBold' || objective?.moduleType === 'wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'text' || objective?.moduleType === 'textModuled') && <TextModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
-        {(objective?.moduleType === 'inputCentered' || objective?.moduleType === 'input' || objective?.moduleType === 'typedInput') && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'rootInput' && <ObjectiveRootInput objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'imageRight' && <ImageFormRight objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instructionWhite' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
-        {(objective?.moduleType === 'openQuestion' || objective?.moduleType === 'openQuestionHamarot')  && <OpenQuestion objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'textCentered' || objective?.moduleType === 'textCopy') && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'explanationSplited' || objective?.moduleType === 'explanation') && <Explanation objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}
+
+        {/* HANDLERS */}
+        {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'inputCentered' || objective?.moduleType === 'input' || objective?.moduleType === 'typedInput') && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'rootInput' && <ObjectiveRootInput objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'openQuestion' || objective?.moduleType === 'openQuestionHamarot')  && <OpenQuestion objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
+        
+
 
         
         

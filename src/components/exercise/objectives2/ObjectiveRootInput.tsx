@@ -46,6 +46,7 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
     const data = deletHyphens.split('').join('-');
     setValue(data)
   };
+  
   return (
     <th key={objectiveIndex} id={`${objective.id}`}>
       <InputBase
