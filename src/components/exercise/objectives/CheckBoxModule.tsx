@@ -1,6 +1,6 @@
 import { useExercise } from '@/provider/ExerciseProvider';
 import { Box, Checkbox, FormControlLabel } from '@mui/material';
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, use } from 'react';
 
 const CheckBoxModule: FC<IObjectiveModule> = ({ objective }) => {
     const {handleAnswer,exercise} = useExercise()
@@ -27,8 +27,12 @@ const CheckBoxModule: FC<IObjectiveModule> = ({ objective }) => {
     }
 
     useEffect(() => {
-        handleAnswers()
+        
     }, [checkboxState]);
+    
+    useEffect(() => {
+        handleAnswers()
+    },[])
 
     const handleCheckboxChange = (id: number) => {
         const newState = checkboxState.map(item =>
@@ -44,7 +48,7 @@ const CheckBoxModule: FC<IObjectiveModule> = ({ objective }) => {
     };
 
     return (
-        <th className='disableTh' id={`${objective.id}`}>
+        <th className='disbleTh' id={`${objective.id}`}>
             <Box sx={{ padding: '0 20px' }}>
                 {checkboxState.map((item, index) => (
                     <Box key={index} sx={{ width: '100%' }}>

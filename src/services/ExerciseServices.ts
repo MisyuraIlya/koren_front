@@ -6,8 +6,8 @@ export const ExerciseServices = {
         return response.json()
     },
 
-    async handleAnswer(id: number ,studentId: number, historyId: number, value: string): Promise<IExercise>{
-        const response = await axios.post(`/student-answer/${id}/${studentId}/${historyId}`,{value})
+    async handleAnswer(id: number ,studentId: number, historyId: number, value: string,isCorrect?: boolean, moduleType?:string): Promise<IExercise>{
+        const response = await axios.post(`/student-answer/${id}/${studentId}/${historyId}`,{value,isCorrect,moduleType})
         return response.data
     },
 

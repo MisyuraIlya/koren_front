@@ -34,6 +34,9 @@ interface IColumnTask extends Idefinder {
     title: string
     orden: number
     type: ModuleType;
+
+    // for dragn and drop
+    answers: Array<string>
 }
 
 interface IRowTask extends Idefinder {
@@ -54,8 +57,12 @@ interface IObjective extends Idefinder {
 
 interface IAnswer extends Idefinder {
     value: string
-    objective: string
     answers: IStudentAnswer[]
+
+    objective: string
+
+    //FOR DRAG AND DROP
+    isCorrect: boolean
 
 }   
 

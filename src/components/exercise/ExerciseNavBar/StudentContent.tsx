@@ -7,7 +7,6 @@ import React from 'react';
 
 const StudentContent = () => {
     const {exercise} = useExercise()
-    console.log('exercise',exercise)
     return (
         <>
         <Grid item xs={2}>

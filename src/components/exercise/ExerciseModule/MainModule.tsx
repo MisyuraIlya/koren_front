@@ -14,7 +14,7 @@ interface MainModuleProps {
 const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
     const {choosedTab} = useExercise()
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
-    const {bankArr,task: TaskDrag, taskId} = DragAndDropExercise(item)
+    const {bankArr,task: TaskDrag, taskId, IdToAnswer, currentColumns} = DragAndDropExercise(item)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
             <Grid container spacing={1} >
@@ -35,7 +35,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                         <>
                         <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex}/>
                         {task.id == taskId && 
-                            <ExerciseModule.DragAndDropModule bankArr={bankArr} task={TaskDrag}/>
+                            <ExerciseModule.DragAndDropModule bankArr={bankArr} task={TaskDrag} IdToAnswer={IdToAnswer} currentColumns={currentColumns}/>
                         }
                         </>
                     </Box>

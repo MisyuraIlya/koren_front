@@ -106,9 +106,9 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     }
   );
 
-  const handleAnswer = (objective: IAnswer, answer: string) => {
+  const handleAnswer = (objective: IAnswer, answer: string, isCorrect?: boolean, moduleType?:string) => {
     try {
-      const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer)
+      const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer,isCorrect,moduleType)
     } catch(e) {
       onInfoAlert('אופס','שגיאה' + e)
     } 
