@@ -112,4 +112,6 @@ interface IHistory extends Idefinder, IDate {
 interface IStudentAnswer extends Idefinder, IDate {
     isCorrect: boolean
     value: string
+    grade: number
+    gradeToShow: number
 }

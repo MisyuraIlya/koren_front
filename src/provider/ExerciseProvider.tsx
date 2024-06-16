@@ -17,7 +17,7 @@ interface AdminContextType {
     setCloseHeaderExerise: (value: boolean) => void
     choosedTab: number
     setChoosedTab: (value: number) => void
-    handleAnswer: (objective: IAnswer, answer: string) => void
+    handleAnswer: (objective: IAnswer, answer: string, isCorrect?: boolean, moduleType?:string) => void
     handleDone: () => void
     handleReset: () => void
     borderHandler: (objective: IObjective) => string
@@ -25,6 +25,7 @@ interface AdminContextType {
     previousError: () => void
     nextOpenQuestion: () => void
     previousOpenQuestion: () => void
+    handleManualGrade: (grade:number, studentAnswerId:number) => void
 }
 
 
@@ -108,7 +109,14 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
 
   const handleAnswer = (objective: IAnswer, answer: string, isCorrect?: boolean, moduleType?:string) => {
     try {
-      const response = ExerciseServices.handleAnswer(objective?.id!,user?.id!, exercise?.histories[0]?.id!,answer,isCorrect,moduleType)
+      const response = ExerciseServices.handleAnswer(
+        objective?.id!,
+        user?.id!, 
+        exercise?.histories[0]?.id!,
+        answer,
+        isCorrect,
+        moduleType
+      )
     } catch(e) {
       onInfoAlert('אופס','שגיאה' + e)
     } 
@@ -172,6 +180,14 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     return '#ced4da';
   }
 
+  const handleManualGrade = async (grade: number, studentAnswerId: number) => {
+    try {
+      const response = await ExerciseServices.updateManualGrade(exercise?.histories[0]?.id!,exercise?.id!, studentAnswerId, grade)
+    } catch(e) {
+      console.log('[ERROR] handle manugal grade',e)
+    } 
+  }
+
   useEffect(() => {
     handleCreateHistory()
   },[user,exercise])
@@ -199,7 +215,8 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     nextError,
     previousError,
     nextOpenQuestion,
-    previousOpenQuestion
+    previousOpenQuestion,
+    handleManualGrade
   };
 
   return (

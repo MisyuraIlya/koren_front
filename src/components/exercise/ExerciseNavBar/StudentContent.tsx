@@ -45,7 +45,7 @@ const StudentContent = () => {
         <Grid item xs={1} sx={{display:'flex'}}>
             <Box>
                 <Typography variant='h6' fontWeight={600}>
-                    ציון זמני: {exercise?.histories?.[0]?.grade ?? 0}
+                    ציון זמני: {(exercise?.histories?.[0]?.grade ?? 0).toFixed(2)}
                 </Typography>
             </Box>
         </Grid>

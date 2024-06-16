@@ -42,7 +42,7 @@ const ExerciseFooter = () => {
                             <AddIcon sx={{color:'black'}}/>
                         </IconButton>
                         <Typography variant='body1'>
-                        {exercise?.histories?.[0]?.grade ?? 0}
+                        {(exercise?.histories?.[0]?.grade ?? 0).toFixed(2)}
                         </Typography>
                         <IconButton>
                             <RemoveIcon sx={{color:'black'}}/>
