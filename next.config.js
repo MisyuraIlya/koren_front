@@ -110,6 +110,10 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/feed-back-user/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/feed-back-user/:slug*`
+          },
+          {
+            source: '/mail/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/mail/:slug*`
           }
           
         ]
@@ -189,6 +193,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/feed-back-user/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/feed-back-user/:slug*`
+        },
+        {
+          source: '/mail/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/mail/:slug*`
         }
       ]
     }

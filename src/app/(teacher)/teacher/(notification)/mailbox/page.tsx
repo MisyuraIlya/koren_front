@@ -1,10 +1,15 @@
+import { Box } from '@mui/material';
 import React from 'react';
+import Mailer from '@/components/mailer';
 
 const page = () => {
     return (
-        <div>
-            mail box
-        </div>
+        <Box>
+            <Mailer.Filter/>
+            <Box sx={{paddingTop:'20px'}}>
+                <Mailer.List/>
+            </Box>
+        </Box>
     );
 };
 
