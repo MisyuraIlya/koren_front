@@ -10,6 +10,8 @@ const TeacherContent = () => {
     const { exercise } = useParams()
     return (
         <>
+
+        
             {
                 classChoosed && exercise && 
                 <Box sx={{width:'50%', display:'flex', gap:'20px', alignItems:'center'}}>

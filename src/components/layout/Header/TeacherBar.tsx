@@ -22,8 +22,11 @@ const TeacherBar = () => {
     }
 
     const handleStudentChoose = (studentChoosed:number) => {
+        console.log('studentChoosed',studentChoosed)
         const findClass = data?.find((item) => item.title === classChoosed?.title)
+        console.log('findClass',findClass)
         const findUser = findClass?.students.find((user) => user.id === studentChoosed)
+        console.log('findUser',findUser)
         if(findUser) {
             setStudentChoosed(findUser)
         }
