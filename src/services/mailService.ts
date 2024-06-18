@@ -1,6 +1,33 @@
 export const MailService = {
-    async GetMail(id:number) {
-        const response = await fetch(`/mail/${id}`, {
+    async GetMail(id: number, page: string = '1', search: string | null | undefined) {
+        let url = `/mail/${id}?page=${page}`;
+        if (search) {
+            url += `&search=${encodeURIComponent(search)}`;
+        }
+    
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    
+        return response.json();
+    },
+
+    async createMail(senderId:number, obj:DtoMail, type?:MailTypes){
+        const response = await fetch(`/mail/${senderId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({...obj,type})
+        });
+        return response.json() 
+    },
+
+    async GetChat(uuid: string){
+        const response = await fetch(`/mail-chat/${uuid}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -8,4 +35,15 @@ export const MailService = {
         });
         return response.json() 
     },
+
+    async createChatMessage(description:string, senderId:number, uuid: string) {
+        const response = await fetch(`/mail-chat/${senderId}/${uuid}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({description})
+        });
+        return response.json() 
+    }
 }

@@ -1,4 +1,7 @@
+import { useAuth } from '@/modules/auth/store/auth.store';
+import { useExercise } from '@/provider/ExerciseProvider';
 import { FeedBackService } from '@/services/feedBack.service';
+import { MailService } from '@/services/mailService';
 import { useFeedBack } from '@/store/feedBack.store';
 import { useTeacherWork } from '@/store/work.store';
 import { onSuccessAlert } from '@/utils/sweetAlert';
@@ -6,13 +9,23 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 
 const Process = () => {
+    const { user } = useAuth()
+    const {exercise} = useExercise()
     const {addFeedBack,setAddFeedBack} = useFeedBack()
     const {groupSelected,studentChoosed} = useTeacherWork()
 
     const sendFeedBack = async () => {
         try {
           if(studentChoosed && addFeedBack && groupSelected?.uuid) {
-            const response = await FeedBackService.createFeedBack(addFeedBack,studentChoosed,groupSelected?.uuid)
+            // const response = await FeedBackService.createFeedBack(addFeedBack,studentChoosed,groupSelected?.uuid)
+            const response = await MailService.createMail(user?.id!,{
+              sendTo:[studentChoosed?.id!],
+              title:`משוב מערכת עבור תרגיל ${exercise?.title}`,
+              description:addFeedBack,
+            },
+            'feedBack'
+          )
+
             if(response){
               onSuccessAlert('הודעה נשלחה בהצלחה','')
               setAddFeedBack('')
@@ -21,7 +34,7 @@ const Process = () => {
         } catch(e) {
           console.log('[ERROR]',e)
         } 
-      }
+    }
 
       
     return (

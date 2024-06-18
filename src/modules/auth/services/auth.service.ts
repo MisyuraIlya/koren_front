@@ -19,6 +19,16 @@ export const AuthService = {
             },
         });
         return response.json()
+    },
+
+    async getUsers(){
+        const response = await fetch(`/auth/mail`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json() 
     }
     
 }

@@ -1,15 +1,17 @@
 "use client"
 import { Box, Button, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import ModeIcon from '@mui/icons-material/Mode';
+import { useMailStore } from "@/store/mail.store";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const {setOpen,open} = useMailStore()
   return (
     <>
       <Box sx={{ flex: 1, marginTop:'150px' }}>
         <Grid container spacing={2} sx={{height: '100%' }}>
             <Grid item xs={3} sx={{ background: '#F6F8FC', height: '100%', display:'flex', justifyContent:'center'}}>
               <Box>
-                <Button sx={{background:'#1D99FF', borderRadius:'8px', display:'flex', gap:'10px', padding:'15px 10px'}}>
+                <Button sx={{background:'#1D99FF', borderRadius:'8px', display:'flex', gap:'10px', padding:'15px 10px'}} onClick={() => setOpen(!open)}>
                   <IconButton sx={{bgcolor:'#4B4C4F'}}>
                     <ModeIcon sx={{color:'white'}}/>
                   </IconButton>
