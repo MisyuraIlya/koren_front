@@ -324,6 +324,68 @@ const theme = createTheme({
         },
       },
     },
+    MuiTabs: {
+      styleOverrides: {
+          root: {
+              height: 40,
+              minHeight: 40,
+              overflow: "visible",
+              "@media (max-width: 600px)": {
+                  position: "relative",
+                  zIndex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+              },
+          },
+          scroller: {
+              paddingTop: 1,
+              "@media (max-width: 600px)": {
+                  position: "relative",
+                  zIndex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+              },
+          },
+          indicator: {
+              top: 0,
+              height: 38,
+              minHeight: 38,
+              borderRadius: 8,
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.08)",
+              background: "#3995F5",
+          },
+          scrollableX: {
+              overflow: "visible !important",
+          },
+      },
+    },
+    MuiTab: {
+        styleOverrides: {
+            root: {
+                padding: 0,
+                height: 38,
+                minHeight: 38,
+                borderRadius: 6,
+                transition: "color .2s",
+                textTransform: "capitalize",
+                fontSize:'18px',
+                "&.MuiButtonBase-root": {
+                    minWidth: "auto",
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    marginRight: 4,
+                },
+                "&.Mui-selected, &.Mui-selected:hover": {
+                    color: 'white',
+                    zIndex: 5,
+                    fontSize:'18px',
+                },
+                "&:hover": {
+                    color: colors.alpha.black[100],
+                },
+            },
+        },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {

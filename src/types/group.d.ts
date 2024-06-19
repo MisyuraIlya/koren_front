@@ -9,6 +9,15 @@ interface IGroup {
     title: string
 }
 
+interface IGroupStatistic {
+    totalStudent: number
+    totalStartWorking: number
+    totalWaitingCheck: number
+    totalCompleted: number
+    totalGrade: number
+    averageGrade: number
+}
+
 interface ITeacherGroup {
     uuid: string
     title: string

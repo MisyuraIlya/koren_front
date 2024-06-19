@@ -14,6 +14,15 @@ interface IExercise extends Idefinder{
     fullLink?: string
     group?: IConnectionGroup
     userGroup?: IExerciseUserConnection
+    pdfs: IPdf[]
+}
+
+interface IPdf {
+    id: number
+    name: string
+    pdf: string
+    orden: number
+
 }
 
 interface ITab extends Idefinder {

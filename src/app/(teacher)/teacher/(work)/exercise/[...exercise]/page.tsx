@@ -18,6 +18,7 @@ const page = async (page: ExercisePageProps) => {
             <Exercise.ExerciseNavBar.Wrapper>
                 <Exercise.ExerciseNavBar.TeacherContent/>
             </Exercise.ExerciseNavBar.Wrapper>  
+            <Exercise.ExerciseModule.Options/>
             <Exercise.ExerciseModule.Tabs/>
             <Exercise.ExerciseModule.Module/>
         </ExerciseProvider>

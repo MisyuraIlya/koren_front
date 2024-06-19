@@ -30,4 +30,16 @@ export const GroupService = {
         });
         return response.json()
     },
+
+    async getGroupStatistic(groupId: string, exerciseId: number):Promise<IGroupStatistic>{
+        const response = await fetch(`/group/groupStatistic/${groupId}/${exerciseId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()
+    }
+
+
 }
