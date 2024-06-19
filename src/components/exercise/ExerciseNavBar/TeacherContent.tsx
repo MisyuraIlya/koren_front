@@ -17,12 +17,12 @@ import ExerciseDrawer from '../TeacherExercise/ExerciseDrawer';
 import Exercise from '..';
 import FeedBack from '@/components/feedback';
 import { useExercise } from '@/provider/ExerciseProvider';
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const TeacherContent = () => {
     const {classChoosed, toDate, fromDate,  timeChoosed,sendType} = useTeacherWork()
     const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
-    const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion} = useExercise()
+    const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion, showOpenQuestions, setShowOpenQuestions} = useExercise()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [openFeedBack, setOpenFeedBack] = useState(false)
@@ -69,8 +69,12 @@ const TeacherContent = () => {
                             </IconButton>
                         </Box>
                         <Box sx={{display:'flex', gap:'10px', alignItems:'center',width:'100%', mt:'25px'}}> 
-                            <IconButton sx={{padding:'0'}}>
-                                <VisibilityOffIcon sx={{fontSize:'20px'}}/>
+                            <IconButton sx={{padding:'0'}} onClick={() => setShowOpenQuestions(!showOpenQuestions)}>
+                                {showOpenQuestions ?
+                                    <VisibilityOffIcon sx={{fontSize:'20px'}}/>
+                                :
+                                    <VisibilityIcon sx={{fontSize:'20px'}}/>
+                                }
                             </IconButton>
                             <Typography fontSize={'13px'}>הסתרת השאלות הפתוחות</Typography>
                         </Box>

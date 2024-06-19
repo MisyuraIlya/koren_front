@@ -26,6 +26,10 @@ interface AdminContextType {
     nextOpenQuestion: () => void
     previousOpenQuestion: () => void
     handleManualGrade: (grade:number, studentAnswerId:number) => void
+    showNavBar:boolean,
+    setShowNavBar: (value:boolean) => void
+    showOpenQuestions: boolean
+    setShowOpenQuestions: (value: boolean) => void
 }
 
 
@@ -56,11 +60,11 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   const [openQuestionIds, setOpenQuestionIds] = useState<string[]>([])
   const [currentErrorId, setCurrentErrorId] = useState('')
   const [currentQuestionId, setCurrentQuestionId] = useState<string>('')
+  const [showNavBar, setShowNavBar] = useState(true)
+  const [showOpenQuestions, setShowOpenQuestions] = useState(true)
   
   const scrollToError = (exerciseId: string) => {
-    console.log('exerciseId',exerciseId)
     const errorElement = document.getElementById(exerciseId);
-    console.log('errorElement',errorElement)
     if (errorElement) {
       const offsetTop = errorElement.offsetTop;
       window.scrollTo({
@@ -216,7 +220,11 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     previousError,
     nextOpenQuestion,
     previousOpenQuestion,
-    handleManualGrade
+    handleManualGrade,
+    showNavBar,
+    setShowNavBar,
+    showOpenQuestions,
+    setShowOpenQuestions
   };
 
   return (
