@@ -1,6 +1,6 @@
 import { useFeedBack } from '@/store/feedBack.store';
 import ReachTextEditor from '@/utils/ReachTextEditor';
-import { Box, Checkbox, FormControlLabel, FormGroup, MenuItem, Select, Typography } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, FormGroup, MenuItem, Select, TextField, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 
@@ -9,7 +9,15 @@ const Create = () => {
     return (
         <>
         <Box sx={{paddingTop:'20px'}}>
-            <ReachTextEditor value={addFeedBack} setValue={setAddFeedBack}/>
+            {/* <ReachTextEditor value={addFeedBack} setValue={setAddFeedBack}/> */}
+            <TextField 
+                fullWidth
+                label="משוב"
+                multiline 
+                rows={8} 
+                value={addFeedBack} 
+                onChange={(e) => setAddFeedBack(e.target.value)}
+            />
         </Box>
         <Box sx={{display:'flex', gap:'10px', alignItems:'center', bgcolor:"#E5F0FE", padding:"10px 20px", marginTop:'20px'}}>
             <Typography>

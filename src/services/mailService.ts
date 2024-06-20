@@ -45,5 +45,25 @@ export const MailService = {
             body: JSON.stringify({description})
         });
         return response.json() 
+    },
+
+    async getUnreadedMessages(userId: number): Promise<IMail[]>{
+        const response = await fetch(`/mail/undreaded/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json() 
+    },
+
+    async updateReadMail(uuid:string, userId: number): Promise<IMail> {
+        const response = await fetch(`/mail/${uuid}/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()  
     }
 }

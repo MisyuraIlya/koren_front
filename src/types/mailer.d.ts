@@ -6,6 +6,7 @@ interface IMail {
     createdAt: string
     userSend: IUser,
     userRecevie: IUser
+    type: MailTypes
 }
 
 type MailTypes = 'original' | 'system' | 'feedBack'

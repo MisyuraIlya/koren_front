@@ -1,15 +1,23 @@
 import { TeacherURLS } from '@/enums/urls';
 import useDataTeacherGroups from '@/hooks/useDataTeacherGroups';
+import useDataUnreadedMails from '@/hooks/useDataUnreadedMails';
 import { useTeacherWork } from '@/store/work.store';
-import { Badge, Box, IconButton, MenuItem, Select, Tooltip } from '@mui/material';
+import { Avatar, Badge, Box, Button, IconButton, List, ListItem, ListItemAvatar, ListItemText, Menu, MenuItem, Select, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import EmailIcon from '@mui/icons-material/Email';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import { useAuth } from '@/modules/auth/store/auth.store';
 const TeacherBar = () => {
+    const { user } = useAuth()
     const router = useRouter()
     const {setClassesChoosed, setStudentChoosed, studentChoosed, classChoosed, groupSelected, setSelectedGroup, setSendType} = useTeacherWork()
     const {data} = useDataTeacherGroups()
+    const {data: dataMail } = useDataUnreadedMails()
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
 
     const handleClassChoose = (uuid:string) => {
         const find = data?.find((item) => item.uuid === uuid)
@@ -32,11 +40,36 @@ const TeacherBar = () => {
         }
     }
 
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleLink = (uuid: string) => {
+        if(user?.role === 'student'){
+            router.push(`/student/mailbox/${uuid}`)
+        }
+
+        if(user?.role === 'teacher'){
+            router.push(`/teacher/mailbox/${uuid}`)
+        }
+    }
+
+    const handleToMail = () => {
+        if(user?.role === 'student'){
+            router.push(`/student/mailbox`)
+        }
+
+        if(user?.role === 'teacher'){
+            router.push(`/teacher/mailbox`)
+        }
+    }
+
     useEffect(() => {
         // this useffect needs to render the selectboxes when changed from diary 
     }, [classChoosed, studentChoosed]);
 
     return (
+        <>
         <Box sx={{display:'flex', alignItems:'center', height:'100%', justifyContent:'space-between'}}>
             <Box sx={{display:'flex', alignItems:'center'}}>
                 <Tooltip title="עמוד בית">
@@ -87,8 +120,8 @@ const TeacherBar = () => {
             </Box>
             <Box sx={{display:'flex', alignItems:'center'}}>
                 <Tooltip title="הודעות">
-                    <Badge badgeContent={4} color="secondary">
-                        <IconButton onClick={() => router.push('/teacher/mailbox')}>
+                    <Badge badgeContent={dataMail?.length} color="secondary">
+                        <IconButton onClick={handleClick} id="fade-button" >
                             <Image src={'/images/teacher/messages.svg'} alt='' width={30} height={30}/>
                         </IconButton>
                     </Badge>
@@ -99,9 +132,47 @@ const TeacherBar = () => {
                         <Image src={'/images/teacher/forum.svg'} alt='' width={30} height={30}/>
                     </IconButton>
                 </Tooltip>
-
             </Box>
-        </Box>
+        </Box> 
+        <Menu
+            id="fade-menu"
+            MenuListProps={{
+            'aria-labelledby': 'fade-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={() => setAnchorEl(null)}
+        >
+            <Box>
+                <Box sx={{padding:'5px 20px'}}>
+                    <Typography variant='h5'>
+                        הודעות חדשות
+                    </Typography>
+                </Box>
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                    {dataMail?.map((item) =>
+                        <MenuItem onClick={() => handleLink(item.uuid)}>
+                            <ListItemAvatar>
+                            <Avatar>
+                                {item?.type == 'original' && <EmailIcon/>}
+                                {item?.type == 'system' && <SettingsSuggestIcon/>}
+                                {item?.type == 'feedBack' && <FeedbackIcon/>}
+                            </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={item?.title} secondary={`שלח: ${item?.userSend?.firstName} ${item?.userSend?.lastName}`} />
+                        </MenuItem>
+                    )}
+                
+                </List>
+                <Box sx={{display:'flex', justifyContent:'center'}}>
+                    <Button variant='outlined' onClick={() => handleToMail()}>
+                        לכל המיילים
+                    </Button>
+                </Box>
+            </Box>
+        </Menu>
+        </>
+ 
     );
 };
 

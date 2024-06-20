@@ -60,12 +60,13 @@ const RichTextEditor: FC<Props> = ({ value, setValue, placeholder }) => {
   };
 
   return (
-    <Box sx={{ width: '100%', bgcolor: 'white', padding: '10px 20px' }}>
+    <Box sx={{ width: '100%', bgcolor: 'white', padding: '10px 20px', textAlign:'left' }}>
       <Editor
         editorState={editorState}
         onEditorStateChange={handleEditorChange}
         placeholder={placeholder}
         toolbar={toolbarOptions}
+      
       />
     </Box>
   );
