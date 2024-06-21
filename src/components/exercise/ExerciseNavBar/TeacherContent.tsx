@@ -18,6 +18,7 @@ import Exercise from '..';
 import FeedBack from '@/components/feedback';
 import { useExercise } from '@/provider/ExerciseProvider';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import useMailFeedBack from '@/hooks/useMailFeedBack';
 
 const TeacherContent = () => {
     const {classChoosed, toDate, fromDate,  timeChoosed,sendType} = useTeacherWork()
@@ -25,8 +26,9 @@ const TeacherContent = () => {
     const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion, showOpenQuestions, setShowOpenQuestions} = useExercise()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
+    const [open3,setOpen3] = useState(false)
     const [openFeedBack, setOpenFeedBack] = useState(false)
-
+    const { data: mailFeedBack} = useMailFeedBack()
     const handleDelete = async () => {
         const ask = await onAsk(`למחוק ${sendType}?`,'')
         if(ask){
@@ -98,12 +100,12 @@ const TeacherContent = () => {
                         </Box>
                         <Box sx={{display:'flex', justifyContent:'space-between',mt:'25px' , width:'100%', alignItems:'center'}}>
                             <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                                <Box sx={{background:'red', borderRadius:'50%', height:'10px', width:'10px'}}>
+                                <Box sx={{background:mailFeedBack?.id ? '#07FE4C' : '#ED4136', borderRadius:'50%', height:'10px', width:'10px'}}>
                                 </Box>
                                 <Typography>משוב</Typography>
                             </Box>
                             <Box>
-                                <IconButton>
+                                <IconButton onClick={() => setOpen3(true)}>
                                     <RemoveRedEyeIcon sx={{color:'black'}}/>
                                 </IconButton>
                                 <IconButton onClick={() => setOpenFeedBack(true)}>
@@ -160,6 +162,7 @@ const TeacherContent = () => {
         }
         <Exercise.TeacherExercise.ExerciseDrawer.Send open={open} setOpen={setOpen}/>
         <Exercise.TeacherExercise.ExerciseDrawer.Answer open={open2} setOpen={setOpen2}/>
+        <Exercise.TeacherExercise.ExerciseDrawer.FeedBack open={open3} setOpen={setOpen3}/>
         <FeedBack open={openFeedBack} setOpen={setOpenFeedBack}/>
         </>
     );

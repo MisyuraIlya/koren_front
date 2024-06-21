@@ -23,7 +23,8 @@ const Process = () => {
               title:`משוב מערכת עבור תרגיל ${exercise?.title}`,
               description:addFeedBack,
             },
-            'feedBack'
+            'feedBack',
+            exercise?.id
           )
 
             if(response){

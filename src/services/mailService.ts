@@ -15,13 +15,13 @@ export const MailService = {
         return response.json();
     },
 
-    async createMail(senderId:number, obj:DtoMail, type?:MailTypes){
+    async createMail(senderId:number, obj:DtoMail, type?:MailTypes, exerciseId?: number){
         const response = await fetch(`/mail/${senderId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify({...obj,type})
+            body:JSON.stringify({...obj,type,exerciseId})
         });
         return response.json() 
     },
@@ -60,6 +60,16 @@ export const MailService = {
     async updateReadMail(uuid:string, userId: number): Promise<IMail> {
         const response = await fetch(`/mail/${uuid}/${userId}`, {
             method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()  
+    },
+
+    async getFeedBack(userId:number, exerciseId:number):Promise<IMail> {
+        const response = await fetch(`/mail/feedback/${userId}/${exerciseId}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
