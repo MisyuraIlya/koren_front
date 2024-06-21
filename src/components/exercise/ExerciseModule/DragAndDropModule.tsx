@@ -1,9 +1,10 @@
 'use client';
+import { useAuth } from '@/modules/auth/store/auth.store';
 import { useExercise } from '@/provider/ExerciseProvider';
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-
+import InfoIcon from '@mui/icons-material/Info';
 
 type DragAndDropModuleProps = {
   bankArr: IValue[];
@@ -15,7 +16,8 @@ type DragAndDropModuleProps = {
 const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnswer,currentColumns }) => {
   const initialColumns = task?.columns.map(col => ({ ...col, items: [] })) ?? [];
   const [bankItems, setBankItems] = useState(bankArr);
-
+  const { exercise } = useExercise()
+  const { user } = useAuth()
   const handleState:any = () => {
 
     if(currentColumns) {
@@ -133,6 +135,18 @@ const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnsw
     handleAnswer({id:IdToAnswer},resultValue,isAllCorrect,'bank')
   };
 
+
+  const handleError = () => {
+    return (
+      <Tooltip title={`התשובות לא נכונות`}>
+        <IconButton>
+          <InfoIcon sx={{color:'red'}}/>
+        </IconButton>
+      </Tooltip>
+    );
+  };
+
+
   useEffect(() => {
     const deleteFroBank:string[] = []
     initialColumns?.map((item:any) => {
@@ -152,6 +166,7 @@ const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnsw
 
   return (
     <Box sx={{padding:'20px', minHeight:'450px'}}>
+      {handleError()}
       <DragDropContext onDragEnd={onDragEnd}>
         <Grid container sx={{ width: '100%' }} spacing={2}>
           <Droppable droppableId="bank">
@@ -227,18 +242,6 @@ const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnsw
 
         </Grid>
       </DragDropContext>
-
-      {/* {taskColumns?.map((item) => 
-        <div>
-          <h2 className="bg-[#BACEE9] fontSizeExercise py-2 px-4 text-center" dangerouslySetInnerHTML={{ __html: item.title ?? '' }} />
-          {item.items?.map((item2,index) => 
-            <div>
-              index: {index}
-              {item2}
-            </div>
-          )}
-        </div>
-      )} */}
     </Box>
   );
 };

@@ -1,9 +1,11 @@
 import { useExercise } from '@/provider/ExerciseProvider';
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import React, { FC, useState, useEffect, use } from 'react';
 
 const CheckBoxModule: FC<IObjectiveModule> = ({ objective }) => {
     const {handleAnswer,exercise} = useExercise()
+    const isCorrect = objective?.answers?.[0]?.answers?.[0]?.isCorrect ?? false;
+    const isDone = exercise?.histories[0]?.isDone ?? false;
 
     const [checkboxState, setCheckboxState] = useState(
         objective.values?.map(item => ({
@@ -49,6 +51,9 @@ const CheckBoxModule: FC<IObjectiveModule> = ({ objective }) => {
 
     return (
         <th className='disbleTh' id={`${objective.id}`}>
+            {isDone && !isCorrect &&  exercise?.histories[0]?.isDone &&
+                <FormHelperText sx={{color:'red', padding:'5px 15px'}}>התשובה לא נכונה</FormHelperText>
+            }
             <Box sx={{ padding: '0 20px' }}>
                 {checkboxState.map((item, index) => (
                     <Box key={index} sx={{ width: '100%' }}>
