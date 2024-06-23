@@ -30,6 +30,8 @@ interface AdminContextType {
     setShowNavBar: (value:boolean) => void
     showOpenQuestions: boolean
     setShowOpenQuestions: (value: boolean) => void
+    handleTeacherGrade: (value: number) => void
+    handleFinalGrade: () => void
 }
 
 
@@ -166,14 +168,6 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
   }
 
   const borderHandler = (objective: IObjective) => {
-    // if ((user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) &&
-    //     (objective?.answers[0]?.answers[0]?.isCorrect)) {
-    //   return 'green';
-    // } else if ((user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) &&
-    //            (!objective?.answers[0]?.answers[0]?.isCorrect)) {
-    //   return 'red';
-    // }
-    // return '#ced4da';
     if (exercise?.histories[0]?.isDone) {
       if (objective?.answers[0]?.answers[0]?.isCorrect) {
         return 'green';
@@ -190,6 +184,26 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     } catch(e) {
       console.log('[ERROR] handle manugal grade',e)
     } 
+  }
+
+  const handleTeacherGrade = async (grade:number) => {
+    try {
+      const response = await ExerciseServices.teacherGradeUpdate(exercise?.histories[0]?.id!,grade)
+      mutate()
+    } catch(e) {
+      console.log('[ERROR] handle teacherGrade grade',e)
+    } 
+  }
+
+  const handleFinalGrade = async () => {
+    const ask = await onAsk('בטוח זה הציון הסופי?','')
+    if(ask){
+      try {
+        const response = await ExerciseServices.teacherGradeUpdate(exercise?.histories[0]?.id!,exercise?.histories[0]?.grade!,true)
+      } catch(e) {
+        console.log('[ERROR] handle teacherGrade grade',e)
+      } 
+    }
   }
 
   useEffect(() => {
@@ -224,7 +238,9 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     showNavBar,
     setShowNavBar,
     showOpenQuestions,
-    setShowOpenQuestions
+    setShowOpenQuestions,
+    handleTeacherGrade,
+    handleFinalGrade
   };
 
   return (

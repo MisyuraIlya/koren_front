@@ -1,7 +1,7 @@
 'use client'
 import { useTeacherWork } from '@/store/work.store';
 import { Box, Button, Grid, IconButton, InputBase, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -23,12 +23,15 @@ import useMailFeedBack from '@/hooks/useMailFeedBack';
 const TeacherContent = () => {
     const {classChoosed, toDate, fromDate,  timeChoosed,sendType} = useTeacherWork()
     const {data, deletGroup, deletAnswerGroup} = useDataConnectionGroup()
-    const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion, showOpenQuestions, setShowOpenQuestions} = useExercise()
+    const {exercise, nextError, previousError, nextOpenQuestion, previousOpenQuestion, showOpenQuestions, setShowOpenQuestions, handleTeacherGrade} = useExercise()
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [open3,setOpen3] = useState(false)
     const [openFeedBack, setOpenFeedBack] = useState(false)
     const { data: mailFeedBack} = useMailFeedBack()
+
+    const [grade,setGrade] = useState(0)
+
     const handleDelete = async () => {
         const ask = await onAsk(`למחוק ${sendType}?`,'')
         if(ask){
@@ -42,6 +45,20 @@ const TeacherContent = () => {
             deletAnswerGroup(data?.id!)
         } 
     }
+
+    useEffect(() => {
+        if(exercise){
+            if(exercise?.histories?.[0]?.teacherGrade > 0) {
+                setGrade(exercise?.histories?.[0]?.teacherGrade)
+            } else {
+                setGrade(exercise?.histories?.[0]?.grade)
+            }
+        }
+    },[exercise])
+
+    useEffect(() => {
+        handleTeacherGrade(grade)
+    },[grade])
 
     return (
         <>
@@ -86,16 +103,26 @@ const TeacherContent = () => {
                     <Box sx={{position:'relative'}}>
                         <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
                             <Typography sx={{fontSize:'14px'}}>
-                            ציון זמני:
+                            {exercise?.histories[0]?.isFinalGrade ? 'ציון סופי': 'ציון זמני'}
                             </Typography>
                             <Box sx={{display:'flex', gap:'5px', border:'1px solid #BACEE9', borderRadius:'5px', justifyContent:'center', alignItems:'center'}}>
-                                <IconButton>
-                                    <AddIcon sx={{color:'black'}}/>
-                                </IconButton>
-                                <InputBase value={75} sx={{textAlign:'center', width:'10px',color:'black', fontWeight:700}}/>
-                                <IconButton>
-                                    <RemoveIcon sx={{color:'black'}}/>
-                                </IconButton>
+                                {!exercise?.histories[0]?.isFinalGrade &&  
+                                    <IconButton onClick={() => setGrade(e => e < 100 ? e + 1 : e)}>
+                                        <AddIcon sx={{color:'black'}}/>
+                                    </IconButton>
+                                }
+                                <InputBase 
+                                    value={grade} 
+                                    sx={{width:'50px',color:'black', '& input': {textAlign:'center'}}} 
+                                    onChange={(e) => setGrade(+e.target.value)}
+                                    disabled={exercise?.histories[0]?.isFinalGrade}
+                                />
+                                {!exercise?.histories[0]?.isFinalGrade &&  
+                                    <IconButton onClick={() => setGrade(e => e > 0 ? e - 1 : e)}>
+                                        <RemoveIcon sx={{color:'black'}}/>
+                                    </IconButton>
+                                }
+                            
                             </Box>
                         </Box>
                         <Box sx={{display:'flex', justifyContent:'space-between',mt:'25px' , width:'100%', alignItems:'center'}}>

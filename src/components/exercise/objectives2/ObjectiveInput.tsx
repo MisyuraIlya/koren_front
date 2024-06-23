@@ -41,6 +41,11 @@ const ObjectiveInput: FC<IObjectiveModule>  = ({objective,tabIndex,taskIndex,row
         if(objective?.answers[0]?.answers[0]?.isCorrect){
           return '1px solid green'
         } else if(!objective?.answers[0]?.answers[0]?.isCorrect){
+          if(objective?.answers[0]?.value === 'E'){
+            if(objective?.answers[0].answers.length === 0 || objective?.answers[0].answers[0]?.value == '') {
+              return '1px solid green'
+            }
+          }
           return '1px solid red'
         } else {
           return '1px solid #ced4da'

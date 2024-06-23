@@ -17,7 +17,15 @@ interface TaskProps {
 }
 const Task:FC<TaskProps> = ({task,tabIndex,taskIndex,storySticky,iconSticky}) => {
 
-
+    const isShowTable = () => {
+        if(!storySticky){
+            return true
+        }
+        const isStickyTable = task?.rows?.filter((item) => 
+            item.objectives?.some((item2) => item2.values[0]?.value === storySticky?.values[0]?.value)
+        );
+        return isStickyTable.length == 0
+    }
 
     const backgroundColor = () => {
         const isIcon = task.columns.some((item) => item.type === 'icon1')
@@ -44,6 +52,7 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex,storySticky,iconSticky}) =>
     
     return (
         <Box className='bg-secondBlue relative' sx={{background:backgroundColor()}} key={taskIndex}>
+            {isShowTable() &&
             <table className={`TaskStyles ${merged ? "disbleTh" : ""}`}>
                <tbody>
                    <tr className='w-full'>
@@ -54,7 +63,8 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex,storySticky,iconSticky}) =>
                                column?.type === 'word' ||
                                column?.type === 'wordRegular' ||
                                column?.type === 'overflow' || 
-                               column.type === 'text'
+                               column.type === 'text' || 
+                               column.type === 'ordenBold'
                            )
                            {
                                return (
@@ -76,6 +86,8 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex,storySticky,iconSticky}) =>
                    <div className='bg-white h-1 w-full z-1 absolute z-10'></div>
                </tbody>
            </table>
+            }
+         
         </Box>
     );
 };

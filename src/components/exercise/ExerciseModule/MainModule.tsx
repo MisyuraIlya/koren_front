@@ -18,7 +18,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
     const {bankArr,task: TaskDrag, taskId, IdToAnswer, currentColumns} = DragAndDropExercise(item)
     const {storyLeft,storyRegular,storyRight,iconLeft,iconRegular,iconRight} = storyInstucrionHandler(regular,left,right)
-    
+    console.log('storyRegular',storyRegular)
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
             <Grid container spacing={1}>

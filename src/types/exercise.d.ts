@@ -112,7 +112,9 @@ type ModuleType = "word" | "orden" | "instruction" | "subInstruction" | "text" |
 
 interface IHistory extends Idefinder, IDate {
     grade: number
+    teacherGrade: number
     isDone: boolean
+    isFinalGrade: boolean
     totalQuestions: number
     totalCorrect: number
     totalUncorrect: number

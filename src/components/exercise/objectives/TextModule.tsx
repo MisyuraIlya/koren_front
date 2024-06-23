@@ -5,7 +5,7 @@ import React, {FC, useEffect, useState} from 'react';
 const TextModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
 
     return (
-        <th key={objectiveIndex}>
+        <th key={objectiveIndex} className='disbleTh'>
             <Typography
                 variant='subtitle2'
                 sx={{textAlign:'justify', fontSize:'18px', padding:'20px 30px'}}

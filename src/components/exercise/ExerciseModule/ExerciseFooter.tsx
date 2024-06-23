@@ -1,16 +1,32 @@
 'use client'
-import React from 'react';
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Button, IconButton, InputBase, Typography } from '@mui/material';
 import { useExercise } from '@/provider/ExerciseProvider';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Image from 'next/image';
 import { useAuth } from '@/modules/auth/store/auth.store';
 const ExerciseFooter = () => {
-    const {handleDone,handleReset} = useExercise()
+    const {handleDone,handleReset, handleTeacherGrade,handleFinalGrade} = useExercise()
     const {exercise} = useExercise()
+    const [grade,setGrade] = useState(0)
     const {user} = useAuth()
     const isStudent = user?.role === 'student'
+
+    useEffect(() => {
+        if(exercise){
+            if(exercise?.histories?.[0]?.teacherGrade > 0) {
+                setGrade(exercise?.histories?.[0]?.teacherGrade)
+            } else {
+                setGrade(exercise?.histories?.[0]?.grade)
+            }
+        }
+    },[exercise])
+
+    useEffect(() => {
+        handleTeacherGrade(grade)
+    },[grade])
+
     return (
         <Box sx={{padding:'20px 10px', display:'flex',justifyContent:'space-between', bgcolor:'#E5F0FE'}}>
             {isStudent &&
@@ -36,23 +52,33 @@ const ExerciseFooter = () => {
                     </Button> 
                     <Box sx={{bgcolor:'white', alignItems:'center', display:'flex', justifyContent:'center', padding:'0 15px', borderRadius:'5px'}}>
                         <Typography variant='body1'>
-                        ציון זמני
+                        {exercise?.histories[0]?.isFinalGrade ? 'ציון סופי': 'ציון זמני'}
                         </Typography>
-                        <IconButton>
-                            <AddIcon sx={{color:'black'}}/>
-                        </IconButton>
-                        <Typography variant='body1'>
-                        {(exercise?.histories?.[0]?.grade ?? 0).toFixed(2)}
-                        </Typography>
-                        <IconButton>
-                            <RemoveIcon sx={{color:'black'}}/>
-                        </IconButton>
+                        {!exercise?.histories[0]?.isFinalGrade && 
+                            <IconButton onClick={() => setGrade(e => e < 100 ? e + 1 : e)}>
+                                <AddIcon sx={{color:'black'}}/>
+                            </IconButton>
+                        }
+                  
+                        <InputBase 
+                            value={grade} 
+                            sx={{width:'50px',color:'black', '& input': {textAlign:'center'}}} 
+                            onChange={(e) => setGrade(+e.target.value)}
+                            disabled={exercise?.histories[0]?.isFinalGrade}
+                        />
+                        {!exercise?.histories[0]?.isFinalGrade && 
+                            <IconButton onClick={() => setGrade(e => e > 0 ? e - 1 : e)}>
+                                <RemoveIcon sx={{color:'black'}}/>
+                            </IconButton>
+                        }
                     </Box>
-                    <Box sx={{bgcolor:'white', borderRadius:'6px'}}>
-                        <IconButton>
-                            <Image src={'/images/circle.svg'} alt='robo' width={30} height={30}/>
-                        </IconButton>
-                    </Box>
+                    {!exercise?.histories[0]?.isFinalGrade &&  
+                        <Box sx={{bgcolor:'white', borderRadius:'6px'}}>
+                            <IconButton onClick={() => handleFinalGrade()}>
+                                <Image src={'/images/circle.svg'} alt='robo' width={30} height={30}/>
+                            </IconButton>
+                        </Box>
+                    }
                 </Box>
             }
 
