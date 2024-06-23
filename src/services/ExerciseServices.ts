@@ -29,6 +29,11 @@ export const ExerciseServices = {
     async teacherGradeUpdate(historyid: number, teacherGrade: number, isFinalGrade?: boolean): Promise<{data: IHistory}> {
         const response = await axios.patch(`/student-history/teacherGrade/${historyid}`,{teacherGrade,isFinalGrade})
         return response.data
+    },
+
+    async deleteHistory(historyid:number){
+        const response = await axios.delete(`/student-history/${historyid}`)
+        return response.data 
     }
 
 }

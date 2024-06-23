@@ -7,7 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Image from 'next/image';
 import { useAuth } from '@/modules/auth/store/auth.store';
 const ExerciseFooter = () => {
-    const {handleDone,handleReset, handleTeacherGrade,handleFinalGrade} = useExercise()
+    const {handleDone,handleDeleteHistory, handleTeacherGrade,handleFinalGrade} = useExercise()
     const {exercise} = useExercise()
     const [grade,setGrade] = useState(0)
     const {user} = useAuth()
@@ -34,7 +34,7 @@ const ExerciseFooter = () => {
                     <Button variant='contained' sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDone()}>
                         בדיקה
                     </Button>
-                    <Button disabled variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
+                    <Button variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDeleteHistory()}>
                         ניקוי תשובות
                     </Button>
                     <Button disabled variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >

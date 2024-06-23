@@ -32,6 +32,7 @@ interface AdminContextType {
     setShowOpenQuestions: (value: boolean) => void
     handleTeacherGrade: (value: number) => void
     handleFinalGrade: () => void
+    handleDeleteHistory: () => void
 }
 
 
@@ -144,14 +145,14 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
 
   const handleReset = async () => {
     try {
-      const ask = await onAsk('להתחיל מחדש?','')
-      if(ask){
-        const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false, exercise?.id!)
-        mutate()
-      }
-  } catch(e) {
-    onInfoAlert('אופס','שגיאה' + e)
-  }
+        const ask = await onAsk('להתחיל מחדש?','')
+        if(ask){
+          const response = await ExerciseServices.updateHistory(exercise?.histories[0]?.id!, false, exercise?.id!)
+          mutate()
+        }
+    } catch(e) {
+      onInfoAlert('אופס','שגיאה' + e)
+    }
   }
 
   const handleCreateHistory = async () => {
@@ -206,6 +207,18 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     }
   }
 
+  const handleDeleteHistory = async () => {
+    const ask = await onAsk('בטוח תרצה להתחיל מחדש?','כל התשובות ימחקו')
+    if(ask){
+      try {
+        await ExerciseServices.deleteHistory(exercise?.histories[0]?.id!)
+        mutate(undefined); 
+      } catch(e) {
+        console.log('[ERROR] handle teacherGrade grade',e)
+      } 
+    }
+  }
+
   useEffect(() => {
     handleCreateHistory()
   },[user,exercise])
@@ -240,7 +253,8 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     showOpenQuestions,
     setShowOpenQuestions,
     handleTeacherGrade,
-    handleFinalGrade
+    handleFinalGrade,
+    handleDeleteHistory
   };
 
   return (
