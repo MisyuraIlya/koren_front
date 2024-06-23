@@ -26,9 +26,12 @@ import Explanation from '@/modules/admin/components/exercise/objectives/Explanat
 interface ObjectivesProps {
     objective: IObjective
     objectiveIndexes: IObjectiveIndexes
+
+    storySticky: IObjective | null
+    iconSticky: IObjective | null
 }
 
-const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
+const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky,iconSticky}) => {
     return (
         <>
         {/* VIEW ONLY */}
@@ -41,12 +44,12 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'imageRight' && <ImageFormRight objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instructionWhite' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
-        {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule storySticky={storySticky} iconSticky={iconSticky} objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'secondHead' && <SecondHead objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'origin' && <OriginModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'textCentered' || objective?.moduleType === 'textCopy') && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'storyInstruction' && <StoryInstruction storySticky={storySticky} iconSticky={iconSticky} objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'explanationSplited' || objective?.moduleType === 'explanation') && <Explanation objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}

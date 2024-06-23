@@ -21,7 +21,6 @@ const OpenQuestion:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
         handleManualGrade(grade,objective?.answers[0]?.answers[0]?.id!)
         setGrade(grade)
     }
-    console.log('objective',objective)
     useEffect(() => {
         if (debouncedValue) {
             handleAnswer(

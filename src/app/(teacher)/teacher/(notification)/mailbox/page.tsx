@@ -1,7 +1,7 @@
 'use client'
 import { Alert, Box, Snackbar } from '@mui/material';
 import React from 'react';
-import Mailer from '@/components/mailer';
+import Mailer from '../../../../../components/mailer';
 import { useMailStore } from '@/store/mail.store';
 
 const page = () => {

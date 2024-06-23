@@ -5,10 +5,13 @@ interface RowProps {
     tabIndex: number
     taskIndex: number
     rowIndex: number
+
+    storySticky: IObjective | null
+    iconSticky: IObjective | null
 }
 
 
-const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
+const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex, storySticky, iconSticky}) => {
     
     return (
         <tr>
@@ -17,7 +20,7 @@ const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
                 const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex};
                 return (
                     <React.Fragment key={key}>
-                        <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes}/>
+                        <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes} storySticky={storySticky} iconSticky={iconSticky}/>
                     </React.Fragment>
                 );
             })}

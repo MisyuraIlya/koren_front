@@ -79,7 +79,7 @@ const TeacherContent = () => {
                     </Box>
                     <Box sx={{display:'flex', gap:"10px"}}>
                         <Typography variant='body1' sx={{color:'black', whiteSpace:'nowrap'}}>ממוצע ציונים כיתתי:</Typography>
-                        <Typography variant='body1' sx={{color:'#0172E8', fontWeight:600}}>85%</Typography>
+                        <Typography variant='body1' sx={{color:'#0172E8', fontWeight:600}}>{data?.averageGrade}%</Typography>
                     </Box>
                 </Box>
             }  

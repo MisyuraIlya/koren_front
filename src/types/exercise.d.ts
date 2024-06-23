@@ -93,6 +93,9 @@ interface IObjectiveModule {
     taskIndex: number
     rowIndex: number
     objectiveIndex: number  
+
+    storySticky?: IObjective | null
+    iconSticky?: IObjective | null
 }
 
 interface TasksSplit {
