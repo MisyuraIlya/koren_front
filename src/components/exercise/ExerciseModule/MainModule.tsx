@@ -18,7 +18,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
     const { regular, left, leftScreen, right, rightScreen } = TaskSplitChecker(item.tasks)
     const {bankArr,task: TaskDrag, taskId, IdToAnswer, currentColumns} = DragAndDropExercise(item)
     const {storyLeft,storyRegular,storyRight,iconLeft,iconRegular,iconRight} = storyInstucrionHandler(regular,left,right)
-    console.log('storyRegular',storyRegular)
+    
     return (
         <Box style={{ display: choosedTab === tabIndex ? '' : 'none' }} key={tabIndex}>
             <Grid container spacing={1}>
@@ -42,9 +42,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                     <Box sx={{height: storyLeft ?'80vh':'auto', overflow:'auto'}}>
                         {storyLeft &&
                             <Box sx={{ position: 'sticky', top: '0px', zIndex: 200}}>
-                                <Typography>
-                                    <StoryIncsructionSticky objective={storyLeft} icon={iconLeft}/>
-                                </Typography>
+                                <StoryIncsructionSticky objective={storyLeft} icon={iconLeft}/>
                             </Box>
                         }
                         {left.map((task, taskIndex) => 
@@ -60,9 +58,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                 <Box sx={{height:storyRegular?'80vh':'auto', overflow:'auto'}}>
                     {storyRegular &&
                         <Box sx={{ position: 'sticky', top: '0px', zIndex: 200}}>
-                            <Typography>
-                                <StoryIncsructionSticky objective={storyRegular} icon={iconRegular}/>
-                            </Typography>
+                            <StoryIncsructionSticky objective={storyRegular} icon={iconRegular}/>
                         </Box>
                     }
                     {regular.map((task, taskIndex) => 
@@ -78,7 +74,6 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                 </Box>
             </Grid>
             }
-    
         </Box>
     );
 };

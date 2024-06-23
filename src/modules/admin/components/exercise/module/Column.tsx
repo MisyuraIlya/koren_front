@@ -22,7 +22,8 @@ const Column:FC<ColumnProps> = ({column,tabIndex,taskIndex,columnIndex}) => {
             <th key={columnIndex}>
                 <div
                     dangerouslySetInnerHTML={{ __html:column.title }}
-                    className={`min-h-[60px] ${column?.title && 'bg-mainBlue'}`}
+                    style={{padding:'0 20px', textAlign:'center', display:'flex', justifyContent:'center', alignItems:'center'}}
+                    className={`min-h-[${column?.title ? '60px': '' }] ${column?.title ? 'bg-mainBlue' : ''}`}
                 />
             </th>
         }

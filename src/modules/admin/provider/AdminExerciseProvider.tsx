@@ -2,7 +2,7 @@
 "use client";
 import React, { createContext, useContext, ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { useAdmin } from '../store/admin.store';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 import { useForm,UseFormRegister, UseFormHandleSubmit, UseFormSetValue, Control } from "react-hook-form";
 import { onAsk } from '@/utils/sweetAlert';
 import { AdminExerciseService } from '../services/adminExercise.service';
@@ -44,19 +44,20 @@ interface AdminExerciseProviderProps {
 };
 
 const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
+  const {type} = useParams()
   const [choosedTab, setChoosedTab] = useState<number>(0)
   const [fileChoosed, setFileChoosed] = useState<File | null>()
   const [loading, setLoading] = useState(false)
   const { register, handleSubmit, reset ,watch, formState: { errors } , setValue, control} = useForm<IExercise>();
   
   const { data: exercise, isLoading, error, mutate } = useSWR<IExercise>(
-    `http://localhost:4001/exercise/${props.courseId}`,
-    () => AdminExerciseService.GetExercise(props.courseId),
+    `http://localhost:4001/exercise/${type}`,
+    () => AdminExerciseService.GetExercise(type as string),
     {
       revalidateOnFocus: false,
     }
   );
-
+  
   const uploadXl = async () => {
     if(fileChoosed){
       const reponse = await AdminExerciseService.uploadExercise(fileChoosed)

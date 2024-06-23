@@ -52,23 +52,26 @@ import CopyModule from '../objectives/CopyModule';
 interface ObjectivesProps {
     objective: IObjective
     objectiveIndexes: IObjectiveIndexes
+
+    storySticky: IObjective | null
+    iconSticky: IObjective | null
 }
-const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
+const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky,iconSticky}) => {
 
     return (
         <>
         {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('orden' ) && <OrdenModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('numberBold') && <OrdenModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'numberBold' && <OrdenModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'word' && <WordModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('icon1') && <IconModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'icon1' && <IconModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'icon2' && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('instructionWhite' ) && <InstructionWhite objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('wordBold') && <WordModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === ('wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'instructionWhite' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'wordBold' && <WordModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'wordRegular' && <WordModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'input' && <InputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'inputCentered' && <InputCenteredModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
@@ -81,7 +84,6 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'openQuestionHamarot' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'openQuestion' && <OpenQuestion objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'headline2' && <HeadLine2 objective={objective} {...objectiveIndexes} />}
-
         {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'draft' && <Draft objective={objective} {...objectiveIndexes} />}
         {/* {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />} */}
@@ -95,7 +97,6 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes}) => {
         {objective?.moduleType === 'song' && <SongModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'explanationSplited' && <ExplanationSplited objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'clearText' && <ClearText objective={objective} {...objectiveIndexes} />}
-
 
 
         {/* SPECIAL */}

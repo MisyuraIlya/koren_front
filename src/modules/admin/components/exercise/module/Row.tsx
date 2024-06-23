@@ -7,11 +7,15 @@ interface RowProps {
     tabIndex: number
     taskIndex: number
     rowIndex: number
+
+    storySticky: IObjective | null
+    iconSticky: IObjective | null
+
 }
 
 
 
-const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
+const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex, storySticky, iconSticky}) => {
     const {setValue} = useAdminExercise()
 
     useEffect(() => {
@@ -25,12 +29,14 @@ const Row:FC<RowProps> = ({row,tabIndex,taskIndex,rowIndex}) => {
     return (
         <tr key={rowIndex}>
             {row?.objectives?.map((objective, objectiveIndex) => {
-                const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex}
+                const key = `${row.id}_${tabIndex}_${taskIndex}_${rowIndex}_${objectiveIndex}`;
+                const createObjectiveIndexes = {tabIndex,taskIndex,rowIndex,objectiveIndex};
                 return (
-                    <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes}/>
-                )
-                }
-            )}
+                    <React.Fragment key={key}>
+                        <Objectives objective={objective} objectiveIndexes={createObjectiveIndexes} storySticky={storySticky} iconSticky={iconSticky}/>
+                    </React.Fragment>
+                );
+            })}
         </tr>
     );
 };

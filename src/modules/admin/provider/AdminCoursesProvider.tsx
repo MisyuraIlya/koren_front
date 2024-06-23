@@ -7,6 +7,7 @@ import { onAsk, onErrorAlert, onSuccessAlert } from '@/utils/sweetAlert';
 import { AdminCourseService } from '../services/adminCourse.service';
 import useSWR from 'swr'
 import { MainService } from '../services/main.service';
+import { useAuth } from '@/modules/auth/store/auth.store';
 
 interface AdminContextType {
   courses: ICourse[] | undefined
@@ -43,13 +44,13 @@ interface AdminCoursesProviderProps {
 
 
 const AdminCoursesProvider: React.FC<AdminCoursesProviderProps> = (props) => {
-
-  const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, AdminCourseService.GetCourses,
+  const {user} = useAuth()
+  const { data: courses, isLoading ,error, mutate } = useSWR(`http://localhost:4001/course`, () => AdminCourseService.GetCourses(user?.id!),
     {
       revalidateOnFocus: false, 
     }
   );
-
+  console.log('courses',courses)
   const path = usePathname()
   const lvl1Id = path.split('/')?.[3]
   const lvl2Id = path.split('/')?.[4]

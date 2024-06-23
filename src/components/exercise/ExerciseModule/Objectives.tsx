@@ -53,7 +53,6 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky
         {(objective?.moduleType === 'explanationSplited' || objective?.moduleType === 'explanation') && <Explanation objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}
-
         {/* HANDLERS */}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'inputCentered' || objective?.moduleType === 'input' || objective?.moduleType === 'typedInput') && <ObjectiveInput objective={objective} {...objectiveIndexes} />}
@@ -61,13 +60,6 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky
         {objective?.moduleType === 'checkBox' && <CheckBoxModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'openQuestion' || objective?.moduleType === 'openQuestionHamarot')  && <OpenQuestion objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
-        
-
-
-        
-        
-
-
 
         {/* {objective?.moduleType === 'draft' && <Draft objective={objective} {...objectiveIndexes} />} */} 
         {/* {objective?.moduleType === 'draftBank' && <DraftBank objective={objective} {...objectiveIndexes} />}  */}

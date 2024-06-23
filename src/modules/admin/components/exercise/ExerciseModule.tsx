@@ -5,6 +5,7 @@ import { useAdminExercise } from '../../provider/AdminExerciseProvider';
 import { Box, CircularProgress } from '@mui/material';
 const ExerciseModule = () => {
     const {exercise, isLoading, loading} = useAdminExercise()
+    
     return (
         <div style={{boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.25)', marginLeft:'15px'}}>
             {(isLoading || loading) &&

@@ -6,10 +6,7 @@ const ExerciseOptions = () => {
     return (
         <Box sx={{margin:'20px'}}>
             <Grid container spacing={2}>
-                <Grid item md={3}>
-                    <Options.ChooseExercise/>
-                </Grid>
-                <Grid item md={9} style={{display:'flex', justifyContent:'left', gap:'50px', alignItems:'center'}}>
+                <Grid item md={12} style={{display:'flex', justifyContent:'left', gap:'50px', alignItems:'center'}}>
                     <Options.ButtonHandler/>
                     <Options.Utilities/>
                     <Options.SideBar/>
