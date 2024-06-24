@@ -27,7 +27,7 @@ const Header = ({ children, navbar }: { children: React.ReactNode, navbar: React
                 <Grid container spacing={0}>
                     <Grid item xs={2}>
                         <Box className="linear">
-                            <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer'}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name}</Typography>
+                            <Typography variant='h6' style={{minHeight:'32px', cursor:'pointer'}} onClick={() => router.push('/teacher/courses')}>{mainCourse?.name ?? 'לא נבחר עדיין קורס '}</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={1.5}>
@@ -36,7 +36,6 @@ const Header = ({ children, navbar }: { children: React.ReactNode, navbar: React
                                 <ListItem  sx={{ width: '100%', cursor:'pointer'}} onClick={handleMenu}>
                                     <ListItemAvatar>
                                         <Avatar sx={{width:'50px', height:'50px'}}>
-                                        {/* <Image src={'/images/avatar.png'} alt='' width={80} height={80} /> */}
                                     </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText 

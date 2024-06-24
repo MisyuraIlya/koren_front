@@ -20,15 +20,19 @@ const Options = () => {
     return (
         <>
         <Box sx={{display:'flex', justifyContent:'end', padding:'10px', gap:'5px', marginTop:!showNavBar ? '150px' : '0px'}}>
+            {exercise?.youtubeLink &&
             <IconButton onClick={() => setOpenModalLink(true)}>
                 <Image src={'/images/option_4.svg'} alt='robo' width={30} height={30}/>
             </IconButton>
+            }
             <IconButton onClick={() => setOpenPdf(true)}>
                 <Image src={'/images/option_3.svg'} alt='robo' width={25} height={25}/>
             </IconButton>
-            <IconButton onClick={() => setOpenModalPdf(true)}>
-                <Image src={'/images/option_2.svg'} alt='robo' width={40} height={40}/>
-            </IconButton>
+            {exercise?.pdf &&
+                <IconButton onClick={() => setOpenModalPdf(true)}>
+                    <Image src={'/images/option_2.svg'} alt='robo' width={40} height={40}/>
+                </IconButton>
+            }
             <IconButton onClick={() => setShowNavBar(!showNavBar)}>
                 <Image src={'/images/option_1.svg'} alt='robo' width={30} height={30}/>
             </IconButton>

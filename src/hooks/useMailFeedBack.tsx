@@ -13,13 +13,17 @@ const fetchData = async (
 }
 
 const useMailFeedBack = () => {
+  const {user} = useAuth()
   const { studentChoosed } = useTeacherWork()
   const { exercise } = useExercise()
 
   const { data, error, isLoading, mutate } = useSWR<IMail>(
-    `/api/mail/feedback/${studentChoosed?.id}/${exercise?.id!}`,
+    `/api/mail/feedback/${user?.role === 'teacher' ? studentChoosed?.id : user?.id}/${exercise?.id!}`,
     () =>
-      fetchData(studentChoosed?.id!,exercise?.id!)
+      fetchData(
+        user?.role === 'teacher' ? studentChoosed?.id! : user?.id!,
+        exercise?.id!
+      )
   )
 
   return {

@@ -19,9 +19,8 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
         {showNavBar &&
-            <Paper elevation={2} sx={{height:'160px', width:'100%', padding:'20px 30px', bgcolor:'white', marginTop:'130px'}}>
-                <Grid container>
-                    
+            <Paper elevation={2} sx={{width:'100%', bgcolor:'white', height:'160px', padding:'0 30px', marginTop:'130px', display:'flex', alignItems:'center'}}>
+                <Grid container sx={{height:'100%', alignItems:'center'}}>
                     <Grid item xs={2}>
                         <Typography variant='h5' fontWeight={900}>{exercise?.title}</Typography>
                         <Box sx={{display:'flex', gap:'20px', marginTop:'10px'}}>
@@ -33,7 +32,6 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
                             </Button>
                         </Box>
                     </Grid>
-    
                     <Grid item xs={2} sx={{display:'flex', justifyContent:'center'}}>
                         <Box sx={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                             <Box sx={{ display: 'flex', gap: '20px' }}>

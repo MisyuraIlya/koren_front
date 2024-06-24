@@ -4,6 +4,8 @@ interface IExerciseType {
     isDateable: boolean
     isTimeable: boolean
     ordern: number
+    isAvailableMultipleCheck: boolean
+    isAvailableReset: boolean
 }
 
 type IExerciseEnum = 'מבחן' | 'מבדק' | 'תרגיל' | 'הכל'

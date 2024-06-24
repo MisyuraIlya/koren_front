@@ -31,13 +31,13 @@ const ExerciseFooter = () => {
         <Box sx={{padding:'20px 10px', display:'flex',justifyContent:'space-between', bgcolor:'#E5F0FE'}}>
             {isStudent &&
                 <Box sx={{display:'flex', gap:'15px'}}>
-                    <Button variant='contained' sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDone()}>
+                    <Button disabled={!exercise?.group ? false : !exercise?.group?.exerciseType?.isAvailableMultipleCheck} variant='contained' sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDone()}>
                         בדיקה
                     </Button>
-                    <Button variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDeleteHistory()}>
+                    <Button disabled={!exercise?.group ? false : !exercise?.group?.exerciseType?.isAvailableReset} variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDeleteHistory()}>
                         ניקוי תשובות
                     </Button>
-                    <Button disabled variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
+                    <Button disabled={!exercise?.group} variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
                         שליחה למורה
                     </Button>
                 </Box>

@@ -142,7 +142,7 @@ export const colors = {
 const theme = createTheme({
   direction: "rtl",
   typography: {
-    fontFamily: "Ploni, Arial",
+    fontFamily: "Rubik, Arial",
   },
   palette: {
     background: {

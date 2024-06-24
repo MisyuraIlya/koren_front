@@ -35,9 +35,9 @@ const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
                 sx={{
                     minWidth: '370px',
                     padding: '30px 20px',
-                    bgcolor: '#002536',
+                    bgcolor: '#4b536c',
                     height: '100%',
-                    backdropFilter: 'blur(8px)', // Optional: Adds a blur effect behind the Box
+                    backdropFilter: 'blur(8px)', 
                 }}
             >
                 <Card sx={{ minHeight: '300px', backgroundColor: 'rgba(255, 255, 255, 1)' }}>
