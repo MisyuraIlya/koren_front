@@ -47,6 +47,7 @@ import DoneSplitedScreenLeft from '../objectives/DoneSplitedScreenLeft';
 import SongModule from '../objectives/SongModule';
 import TextAreaModule2 from '../objectives/TextAreaModule';
 import CopyModule from '../objectives/CopyModule';
+import RootInputModule from '../objectives/RootInputModule';
 
 interface ObjectivesProps {
     objective: IObjective
@@ -59,17 +60,16 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky
 
     return (
         <>
-        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'orden' && <OrdenModule objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'numberBold' && <OrdenModule objective={objective} {...objectiveIndexes} />}
+        {(objective?.moduleType === 'orden' || objective?.moduleType === 'ordenBold') && <OrdenModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'word' || objective?.moduleType === 'wordBold' || objective?.moduleType === 'wordRegular') && <WordModule objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'textArea' && <TextAreaModule2 objective={objective} {...objectiveIndexes} />}
+        {objective?.moduleType === 'numberBold' && <OrdenModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'text' && <TextModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'icon1' || objective?.moduleType === 'icon2') && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'icon2' && <IconModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instructionWhite' && <InstructionWhite objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'instruction' && <Instruction objective={objective} {...objectiveIndexes} />}
-        {objective?.moduleType === 'ordenBold' && <OrdenBoldModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'subInstruction' && <SubInstruction objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textModuled' && <TextModuled objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textCentered' && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
@@ -114,7 +114,7 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky
 
         {/* DELTE? */}
         {/* {objective?.moduleType === 'mix' && <MixModule objective={objective} {...objectiveIndexes} />} */}
-        {/* {objective?.moduleType === 'rootInput' && <RootInputModule objective={objective} {...objectiveIndexes} />} */}
+        {objective?.moduleType === 'rootInput' && <RootInputModule objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'textCopy' && <TextCopy objective={objective} {...objectiveIndexes} />}
         {/* {objective?.moduleType === 'typedInput' && <TypedInput objective={objective} {...objectiveIndexes} />} */}
 

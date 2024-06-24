@@ -55,8 +55,7 @@ const Task:FC<TaskProps> = ({task,tabIndex,taskIndex,storySticky,iconSticky}) =>
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].properties`, task.properties)
     },[])
     
-    const {merged,scroll} = styleHandler(task)
-
+    const {merged,scroll, isTable} = styleHandler(task)
     return (
     <Box className='bg-secondBlue relative' sx={{background:backgroundColor()}} key={taskIndex}>
         {isShowTable() &&

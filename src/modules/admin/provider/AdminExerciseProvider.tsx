@@ -168,7 +168,7 @@ const AdminExerciseProvider: React.FC<AdminExerciseProviderProps> = (props) => {
       setValue(`title`,exercise.title);
       setValue(`description1`,exercise.description1);
       setValue(`description2`, exercise.description2);
-      setValue('courseId', +props.courseId); 
+      setValue('courseId', +type ); 
       setValue(`module`, exercise.module);
       setValue(`youtubeLink`, exercise.youtubeLink);
       setValue(`isInTheBook`, exercise.isInTheBook);

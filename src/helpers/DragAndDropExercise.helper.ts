@@ -6,7 +6,7 @@ export const DragAndDropExercise = (tab: ITab) => {
     let currentColumns: any = [];
 
     tab.tasks?.map((item) => {
-        if(item.specialModuleType.includes('bank') || item.specialModuleType.includes('mixDrag')) {
+        if(item.specialModuleType?.includes('bank') || item.specialModuleType?.includes('mixDrag')) {
             item.rows?.map((item2) => {
                 item2.objectives?.map((item3) => {
                     if(item3.moduleType ==='bank'){

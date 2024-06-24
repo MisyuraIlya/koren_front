@@ -5,7 +5,7 @@ import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/
 import { useExercise } from '@/provider/ExerciseProvider';
 
 const CustomSelect = styled(Select)(({ borderColor }: { borderColor: string }) => ({
-    width: 400,
+    width: 250,
     height: 70,
     fontSize:'23px',
     '&.MuiOutlinedInput-root': {

@@ -18,7 +18,15 @@ const Column:FC<ColumnProps> = ({column,tabIndex,taskIndex,columnIndex}) => {
     },[])
     return (
         <>
-        {(column?.title || column?.type === 'orden')&&
+    {       (
+                (column?.title && column?.type !=='bank'  && column?.type !=='mixDrag') || 
+                column?.type === 'orden'  || 
+                column?.type === 'word' ||
+                column?.type === 'wordRegular' ||
+                column?.type === 'overflow' || 
+                column.type === 'text' || 
+                column.type === 'ordenBold'
+            ) &&
             <th key={columnIndex}>
                 <div
                     dangerouslySetInnerHTML={{ __html:column.title }}

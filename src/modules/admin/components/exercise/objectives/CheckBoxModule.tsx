@@ -1,4 +1,5 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Box, Checkbox, FormControlLabel } from '@mui/material';
 import React, {FC, useEffect} from 'react';
 
 const CheckBoxModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
@@ -13,37 +14,30 @@ const CheckBoxModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIn
     }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
 
 
-    // console.log('values',values)
-    // const answers = answer[0]?.value?.split(';').map(item => item.trim());
-    // const answers = answer.map((item) => { return item.value})
-    // console.log('answers',answers)
     return (
-        <th 
-        // style={{width:'100%',minWidth: isTable ? `${CustomTableWidth}px` : '',}}
-        // className={`${checkIsThereImage ? '' : 'specific-th'}`}
-        >
-            <div className='fontSizeExercise' style={{lineHeight:'30px',paddingRight:'20px'}}> 
+        <th className='disbleTh' id={`${objective.id}`}>
+            <Box sx={{ padding: '0 20px' }}>
                 {objective.values?.map((item,index) =>  {
                     setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values.${index}.value`, item.value)
-                    // const isLastItem = index === values.length - 1
                     if(item.value){
                         return (
-                            <div style={{width:'100%'}} key={index}>
-                                <div className=''>
-                                    <span className='flex gap-2'>
-                                        <input type='checkbox'  className='w-5' 
-                                        // checked={isTheAnswer}
+                            <Box key={index} sx={{ width: '100%' }}>
+                                <FormControlLabel
+                                    sx={{ width: '100%' }}
+                                    control={
+                                        <Checkbox
+                                            checked={item.value === objective?.answers?.[0]?.value}
                                         />
-                                        {item.value}
-                                    </span>
-                                </div>    
-                            </div>
+                                    }
+                                    label={item.value}
+                                />
+                            </Box>
                         )
                     }
                 }
 
                 )}
-            </div>
+            </Box>
         </th>
     );
 };

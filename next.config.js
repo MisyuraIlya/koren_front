@@ -118,6 +118,10 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/mail-chat/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/mail-chat/:slug*`
+          },
+          {
+            source: '/engine/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/engine/:slug*`
           }
           
         ]
@@ -205,6 +209,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/mail/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/mail-chat/:slug*`
+        },
+        {
+          source: '/engine/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/engine/:slug*`
         }
       ]
     }

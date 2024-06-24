@@ -12,7 +12,7 @@ const ObjectiveRootInput: FC<IObjectiveModule> = ({ objective, tabIndex, taskInd
   const { handleAnswer, exercise, borderHandler } = useExercise();
   const { studentChoosed } = useTeacherWork();
   const { user } = useAuth();
-  const length = objective?.answers[0].value.split('-').length;
+  const length = objective?.answers[0]?.value.split('-').length;
 
   const handleError = () => {
     if (user?.role === 'teacher' || (exercise?.userGroup?.isOpenAnswer && exercise?.userGroup?.isDone)) {

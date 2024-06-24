@@ -10,7 +10,6 @@ interface StoryIncsructionStickyProps {
 }
 
 const StoryIncsructionSticky:FC<StoryIncsructionStickyProps> = ({objective,icon}) => {
-    console.log('objective',objective)
 
     useEffect(() => {
 
