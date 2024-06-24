@@ -15,12 +15,7 @@ const MainHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
 
     
     return (
-        <th 
-            className={`text-[23px] leading-10`} 
-            // style={{
-            //     minWidth: isTable ? `${CustomTableWidth}px` : '',
-            // }}
-            >
+        <th className={`text-[23px] leading-10`} >
             <div  className='text-right px-4 py-4'>
                 <h1 className='text-[40px] font-bold'>{objective.values[0]?.value}</h1>
             </div>

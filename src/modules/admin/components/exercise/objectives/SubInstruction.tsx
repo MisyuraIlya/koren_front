@@ -15,17 +15,9 @@ const SubInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIn
     }, []);
 
     return (
-        <th 
-        // className={`${checkIsThereImage ? 'm-1 px-4 py-4 ' : 'm-1 px-4 py-4'} text-[23px] leading-10`}   
-        >
-        
-            <div className='text-right' >
-                {/* {!isOnlineXml &&
-                    <BoldChanger html={htmlTag} handleUpdateHtml={handleUpdateHtml}/>
-                } */}
-
+        <th className='disbleTh' key={objectiveIndex}>
+            <div className='text-right px-4 py-4' >
                 <div
-                    // onInput={handleInputChange}
                     dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
                     className="fontSizeExercise"
                 />

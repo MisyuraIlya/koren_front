@@ -21,7 +21,6 @@ import TextAreaModule2 from '../objectives/TextAreaModule';
 import ObjectiveInput from '../objectives2/ObjectiveInput';
 import ObjectiveRootInput from '../objectives2/ObjectiveRootInput';
 import CheckBoxModule from '../objectives/CheckBoxModule';
-import Explanation from '@/modules/admin/components/exercise/objectives/Explanation';
 
 interface ObjectivesProps {
     objective: IObjective
@@ -50,9 +49,9 @@ const Objectives:FC<ObjectivesProps> = ({objective, objectiveIndexes,storySticky
         {objective?.moduleType === 'video' && <VideoForm objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'textCentered' || objective?.moduleType === 'textCopy') && <TextModuleCentered objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'storyInstruction' && <StoryInstruction storySticky={storySticky} iconSticky={iconSticky} objective={objective} {...objectiveIndexes} />}
-        {(objective?.moduleType === 'explanationSplited' || objective?.moduleType === 'explanation') && <Explanation objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'heightSpace' && <HeightSpace objective={objective} {...objectiveIndexes} />}
         {objective?.moduleType === 'mainHead' && <MainHead objective={objective} {...objectiveIndexes} />}
+        
         {/* HANDLERS */}
         {objective?.moduleType === 'selectbox' && <SelectModule objective={objective} {...objectiveIndexes} />}
         {(objective?.moduleType === 'inputCentered' || objective?.moduleType === 'input' || objective?.moduleType === 'typedInput') && <ObjectiveInput objective={objective} {...objectiveIndexes} />}

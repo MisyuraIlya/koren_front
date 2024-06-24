@@ -1,8 +1,10 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Typography } from '@mui/material';
 import Image from 'next/image';
 import React, {FC, useEffect} from 'react';
 
-const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex,storySticky}) => {
+    const hidden = storySticky?.values[0]?.value == objective?.values[0]?.value
     const {setValue} = useAdminExercise()
     useEffect(() => {
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].isFullText`, objective?.isFullText)
@@ -14,13 +16,15 @@ const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
     }, []);
 
     return (
-        <th className='text-right text-white py-4 disbleTh'>
-            <div className='flex items-center mr-5 justify-center '>
-                <h4
-                style={{ fontSize: '30px', fontWeight: '600', paddingTop: '10px' }}
+        <th className='disbleTh'>
+            {!hidden &&
+            <Typography
+                variant='h5'
+                fontWeight={700}
+                sx={{color:'white'}}
                 dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
-                />
-            </div>
+            />
+            }
         </th>
     );
 };

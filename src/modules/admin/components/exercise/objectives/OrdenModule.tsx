@@ -1,7 +1,7 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
 import React, {FC, useEffect} from 'react';
 import { themeColors } from '@/styles/mui';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
     const {setValue} = useAdminExercise()
     useEffect(() => {
@@ -14,23 +14,17 @@ const OrdenModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
     }, []);
 
     return (
-        <th  
+        <th
+        key={objectiveIndex}
             style={{
-                minWidth:'70px', 
-                maxWidth:'70px',
-                verticalAlign: 'top', 
-                textAlign: 'right', 
-                paddingTop:'25px',
-            }} 
-            >
-            <div className='text-center flex justify-center items-center py-1'>
-                {/* <p className='' style={{background:themeColors.primary, color:'white'}}>
-                    {objective.values?.[0]?.value}
-                </p> */}
-                <Typography variant='h6' sx={{background:themeColors.primary, color:'white', paddingRight:'9px', paddingLeft:'9px', borderRadius:'5px'}}>
+                minWidth:'70px'
+            }}
+        >
+            <Box className='text-center flex justify-center items-center py-1'>
+                <Typography variant='h6' sx={{background:objective.values?.[0]?.value ? themeColors.primary: null, color:'white', height:'35px', width:'35px' , borderRadius:'5px',  margin:'10px 20px'}}>
                     {objective.values?.[0]?.value}
                 </Typography>
-            </div>
+            </Box>
         </th>
     );
 };

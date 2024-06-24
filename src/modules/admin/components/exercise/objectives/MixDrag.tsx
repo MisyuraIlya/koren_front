@@ -16,7 +16,6 @@ const MixDrag:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,obj
 
     return (
         <>
-        MixDrag
         {/* <th className={`${checkIsThereImage ? '' : ''} ${isTable ? 'tableModule' : ''}`}>
             <div className='py-4 px-4 w-48 bg-white' >
                 <div className=''>

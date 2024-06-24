@@ -1,8 +1,9 @@
 import React, {FC, useEffect} from 'react';
 import Image from 'next/image';
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Box } from '@mui/material';
 
-const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
+const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex,iconSticky}) => {
 
     const {setValue} = useAdminExercise()
 
@@ -15,7 +16,7 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective?.answers)
     }, []);
 
-    // const isDisabledTh = collectionsCols.some((item) => item.orden === col + 1 && item.title == 'h')
+    const hidden = iconSticky?.values[0]?.value == objective?.values[0]?.value
     const handleIcon = () => {
         if(objective?.values?.[0]?.value == 'דיון') {
             return 'conversation.svg'
@@ -33,19 +34,12 @@ const IconModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
     }
 
     return (
-        <th 
-        // className={`
-        // pt-2
-        // ${isDisabledTh && 'disbleTh'}
-        // ${checkIsThereImage ? '' : ''}
-        // ${(firstIdTextModule === value && !isClearTable)  ? 'specific-th ' : ''}
-        
-        // `}
-        className='disbleTh px-4'
-        >
-            <div>
-                <Image src={'/images/' + handleIcon()} width={50} height={50} alt='image' />
-            </div>
+        <th className='disbleTh'>
+            {!hidden &&
+            <Box sx={{display:'flex', gap:'20px', padding:'20px 30px'}}>
+                <Image src={'/images/' + handleIcon()} width={25} height={25} alt='image' />
+            </Box>
+            }
         </th>
     );
 };

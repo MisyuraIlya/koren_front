@@ -43,8 +43,6 @@ const Draft:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objec
                           borderRadius: '5px',
                           paddingTop:'27px'
             }}>
-                drafts
-            {/* <TextAnnotation draftBankCollectionValues={draftBankCollectionValues} text={value} row={row} col={col} exerciseId={exerciseId} dataObjectId={dataObjectId}/> */}
 
             </div>
         </th>

@@ -13,7 +13,6 @@ const StoryInstruction:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,row
                 dangerouslySetInnerHTML={{ __html: objective?.values[0]?.value }}
             />
             }
-   
         </th>
     );
 };

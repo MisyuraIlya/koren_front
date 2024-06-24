@@ -1,4 +1,5 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Typography } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 
 const SecondHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
@@ -14,10 +15,9 @@ const SecondHead: FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
     }, [tabIndex,taskIndex,rowIndex,objectiveIndex,objective]);
 
-    
     return (
-        <th className={`disbleTh text-[23px] px-4`}>
-            <h3 className='text-[26px] font-semibold'>{objective?.values[0]?.value}</h3>
+        <th className={`disbleTh`}>
+            <Typography variant='h5' sx={{padding:'20px 30px'}} fontWeight={700}>{objective?.values[0]?.value}</Typography>
         </th>
     );
 };

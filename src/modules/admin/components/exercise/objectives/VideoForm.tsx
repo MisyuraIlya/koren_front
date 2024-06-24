@@ -1,4 +1,5 @@
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
+import { Box } from '@mui/material';
 import React, {FC, useEffect} from 'react';
 
 const VideoForm:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,objectiveIndex}) => {
@@ -17,7 +18,7 @@ const VideoForm:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,o
 
     return (
         <>
-            
+           <Box sx={{padding:'20px 100px'}} dangerouslySetInnerHTML={{ __html: objective.values[0]?.value }}/> 
         </>
     );
 };

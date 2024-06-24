@@ -1,6 +1,6 @@
 "use client"
 import { useAdminExercise } from '@/modules/admin/provider/AdminExerciseProvider';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs as MuiTabs } from '@mui/material';
 import React from 'react';
 
 const ExerciseTabs = () => {
@@ -12,11 +12,17 @@ const ExerciseTabs = () => {
 
     return (
         <Box>
-            <Tabs value={choosedTab} onChange={handleChange} centered>
-                {exercise?.tabs?.map((item,index) => 
-                    <Tab label={item.title} key={index}/>
-                )}
-            </Tabs>
+            {exercise && exercise?.tabs?.length > 1 &&
+                <Box sx={{padding:'20px',bgcolor:'white'}}>
+                    {exercise && exercise?.tabs?.length > 1 &&
+                        <MuiTabs value={choosedTab} onChange={handleChange} sx={{bgcolor:'white'}}>
+                            {exercise?.tabs?.map((item, index) =>
+                                <Tab label={item.title} key={index} />
+                            )}
+                        </MuiTabs>
+                    }
+                </Box>
+            }
         </Box>
     );
 };

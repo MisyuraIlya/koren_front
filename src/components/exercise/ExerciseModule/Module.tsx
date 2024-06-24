@@ -17,7 +17,7 @@ const Module = () => {
                 {exercise && exercise?.tabs?.map((item, tabIndex) => (
                     <MainModule key={tabIndex} item={item} tabIndex={tabIndex} />
                 ))}
-                <ExerciseFooter/>
+                {/* <ExerciseFooter/> */}
             </>
         </div>
     );

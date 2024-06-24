@@ -17,23 +17,7 @@ const DraftBank:FC <IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex,
 
     return (
         <>
-        DraftBank
-        {/* 
-        <th>
-            <div className={`${checkIsThereImage ? 'grid grid-cols-12 px-4' : 'grid grid-cols-12 px-4'} ${isTable ? 'tableModule' : ''}`} >
-                {values?.map((item,index) => {
-                setValue(`exercises.${exerciseId}.data[${dataObjectId}].collectionsRows[${col}].collectionRow[${row}].collectionValues.${index}.value`, item.value);
-                    return (
-                        <div className='col-span-3 px-2 py-2' key={index}>
-                            <div className='bg-white rounded-md px-2 py-2 cursor-pointer'>
-                                {item.value}
-                            </div>    
-                        </div>    
-                    )
-                })}
-            </div>
-        </th> 
-        */}
+
         </>
 
     );

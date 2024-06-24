@@ -33,7 +33,6 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                             <StoryIncsructionSticky objective={storyRight} icon={iconRight}/>
                         </Box>
                         }
-                       
                     {right.map((task, taskIndex) => 
                         <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex} storySticky={storyRight} iconSticky={iconRight}/>
                     )}
