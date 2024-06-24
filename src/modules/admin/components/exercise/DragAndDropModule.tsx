@@ -16,7 +16,7 @@ type DragAndDropModuleProps = {
 const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnswer,currentColumns }) => {
   const initialColumns = task?.columns.map(col => ({ ...col, items: [] })) ?? [];
   const [bankItems, setBankItems] = useState(bankArr);
-  const { user } = useAuth()
+
   const handleState:any = () => {
 
     if(currentColumns) {
@@ -39,8 +39,6 @@ const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnsw
   }
 
   const [taskColumns, setTaskColumns] = useState(handleState());
-  const {handleAnswer} = useExercise()
-  
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
@@ -131,41 +129,13 @@ const DragAndDropModule: FC<DragAndDropModuleProps> = ({ bankArr, task, IdToAnsw
     // @ts-ignore
     const isAllCorrect = newTaskColumns.every(item => item.isCorrect);
     // @ts-ignore
-    handleAnswer({id:IdToAnswer},resultValue,isAllCorrect,'bank')
   };
 
 
-  const handleError = () => {
-    return (
-      <Tooltip title={`התשובות לא נכונות`}>
-        <IconButton>
-          <InfoIcon sx={{color:'red'}}/>
-        </IconButton>
-      </Tooltip>
-    );
-  };
-
-
-  useEffect(() => {
-    const deleteFroBank:string[] = []
-    initialColumns?.map((item:any) => {
-      currentColumns?.map((item2:any) => {
-        if(item.title == item2.table){
-          item.items = item2.values
-          item2.values?.map((item3:any) => {
-            deleteFroBank.push(item3.value)
-          })
-        }
-      }) 
-    })
-      const filteredItems = bankItems.filter(item => !deleteFroBank.includes(item.value));
-      setBankItems(filteredItems)
-  },[])
 
 
   return (
     <Box sx={{padding:'20px', minHeight:'450px'}}>
-      {handleError()}
       <DragDropContext onDragEnd={onDragEnd}>
         <Grid container sx={{ width: '100%' }} spacing={2}>
           <Droppable droppableId="bank">

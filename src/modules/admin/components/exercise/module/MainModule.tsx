@@ -8,6 +8,7 @@ import { DragAndDropExercise } from '@/helpers/DragAndDropExercise.helper';
 import { storyInstucrionHandler } from '@/helpers/StoryInstructionHandler';
 import StoryIncsructionSticky from '@/components/exercise/ExerciseModule/StoryIncsructionSticky';
 import ExerciseModule from '@/components/exercise/ExerciseModule';
+import DragAndDropModule from '../DragAndDropModule';
 interface MainModuleProps {
     item: ITab
     tabIndex: number
@@ -68,7 +69,7 @@ const MainModule:FC<MainModuleProps> = ({item,tabIndex}) => {
                             <>
                             <Task task={task} tabIndex={tabIndex} taskIndex={taskIndex} storySticky={storyRegular} iconSticky={iconRegular}/>
                             {task.id == taskId && 
-                                <ExerciseModule.DragAndDropModule bankArr={bankArr} task={TaskDrag} IdToAnswer={IdToAnswer} currentColumns={currentColumns}/>
+                                <DragAndDropModule bankArr={bankArr} task={TaskDrag} IdToAnswer={IdToAnswer} currentColumns={currentColumns}/>
                             }
                             </>
                         </Box>

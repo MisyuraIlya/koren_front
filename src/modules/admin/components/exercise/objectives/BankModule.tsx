@@ -13,25 +13,12 @@ const BankModule:FC <IObjectiveModule> = ({objective,tabIndex,taskIndex,rowIndex
         setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].answers`, objective.answers)
     }, []);
 
+    objective?.values?.map((item,index) => {
+        setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values.${index}.value`, item.value)
+    })
+
     return (
         <>
-        
-        <th>
-            <div 
-            // className={`${checkIsThereImage ? 'grid grid-cols-12 px-4' : 'grid grid-cols-12 px-4'} ${isTable ? 'tableModule' : ''}`} 
-            >
-                {objective?.values?.map((item,index) => {
-                 setValue(`tabs[${tabIndex}].tasks[${taskIndex}].rows[${rowIndex}].objectives[${objectiveIndex}].values.${index}.value`, item.value)
-                    return (
-                        <div className='col-span-3 px-2 py-2' key={index}>
-                            <div className='bg-white rounded-md px-2 py-2 cursor-pointer'>
-                                {item.value}
-                            </div>    
-                        </div>    
-                    )
-                })}
-            </div>
-        </th> 
        
         </>
 

@@ -25,6 +25,11 @@ export const AdminExerciseService = {
         formData.append('file', file); 
         const response = await axios.post(`/engine`, formData);
         return response.data;
+    },
+    
+    async updateObjective(id:number, media:string){
+        const response = await axios.post(`/objective/${id}`,{media})
+        return response.data
     }
 
 }

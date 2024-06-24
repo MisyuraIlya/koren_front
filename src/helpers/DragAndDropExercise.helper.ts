@@ -12,7 +12,7 @@ export const DragAndDropExercise = (tab: ITab) => {
                     if(item3.moduleType ==='bank'){
                         bankArr = item3.values
                         IdToAnswer = item3.id!
-                        const current = item3.answers[0]?.answers[0].value.split('@')?.map((cur) => {
+                        const current = item3.answers[0]?.answers?.[0].value.split('@')?.map((cur) => {
                             const split = cur.split(':')
                             const obj = {
                                 table: split[0].trim(),
@@ -39,7 +39,7 @@ export const DragAndDropExercise = (tab: ITab) => {
         (task as ITask)?.rows?.forEach((item2: any) => {
             item2?.objectives?.forEach((item3: any) => {
                 if (item3?.answers[0]?.value !== undefined) {
-                    allAnswers.push(item3?.answers[0]?.value);
+                    allAnswers.push(item3?.answers?.[0]?.value);
                 }
             });
         });
