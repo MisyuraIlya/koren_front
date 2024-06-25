@@ -84,6 +84,12 @@ const TeacherBar = () => {
                     </IconButton>
                 </Tooltip>
 
+                <Tooltip title="גיליון ציונים">
+                    <IconButton onClick={() => router.push('/teacher/classes')}>
+                        <Image src={'/images/teacher/giul.svg'} alt='' width={30} height={30}/>
+                    </IconButton>
+                </Tooltip> 
+
                 <Tooltip title="קבוצות למידה">
                     <IconButton onClick={() => router.push('/teacher/classes')}>
                         <Image src={'/images/teacher/look.svg'} alt='' width={40} height={40}/>

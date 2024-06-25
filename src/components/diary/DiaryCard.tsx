@@ -66,7 +66,7 @@ const DiaryCard:FC<DiaryCardProps> = ({item}) => {
                         <Typography>
                             {item?.exercise?.fullPath}
                         </Typography>
-                        <IconButton onClick={handleClick} id="basic-button" sx={{width:'50px'}}>
+                        <IconButton onClick={handleClick} id="basic-button" sx={{width:'50px', height:'50px'}}>
                             <MoreVertIcon sx={{color:'black'}}/>
                         </IconButton>
                     </Box>

@@ -1,8 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import ReactSelect from 'react-select'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FormControl, FormHelperText, InputLabel, MenuItem, styled } from '@mui/material';
+import { FormControl, FormHelperText, IconButton, InputLabel, MenuItem, styled, Tooltip } from '@mui/material';
 import { useExercise } from '@/provider/ExerciseProvider';
+import { useAuth } from '@/modules/auth/store/auth.store';
+import InfoIcon from '@mui/icons-material/Info';
 
 const CustomSelect = styled(Select)(({ borderColor }: { borderColor: string }) => ({
     width: 250,
@@ -27,19 +29,30 @@ const SelectModule:FC<IObjectiveModule> = ({objective,tabIndex,taskIndex,rowInde
     const {exercise,handleAnswer, borderHandler} = useExercise()
     const isCorrect = objective?.answers?.[0]?.answers?.[0]?.isCorrect ?? false;
     const isDone = exercise?.histories[0]?.isDone ?? false;
-    const StudentAnswer = objective?.answers?.[0]?.answers[0]?.value ?? ''
-
-
-    const [answer, setAnswer] = React.useState(StudentAnswer);
+    const {user} = useAuth()
+    const [answer, setAnswer] = React.useState('');
     
     const handleChange = (event: SelectChangeEvent<unknown>) => {
         setAnswer(event.target.value as string);
         handleAnswer(objective.answers[0],event.target.value as string)
     };
 
+    useEffect(() => {
+        const StudentAnswer = objective?.answers?.[0]?.answers[0]?.value 
+        setAnswer(StudentAnswer)
+    },[exercise])
+
     return (
         <>
             <th className={`p-4 `} key={objectiveIndex} id={`${objective.id}`}>
+                {(user?.role === 'teacher' || exercise?.group?.students[0]?.isOpenAnswer) &&
+                <Tooltip title={`תשובה: ${objective?.answers[0]?.value}`} sx={{mt:'20px'}}>
+                    <IconButton>
+                        <InfoIcon color='info'/>
+                    </IconButton>
+                </Tooltip>
+
+                }
                 <FormControl error={!isCorrect && exercise?.histories[0]?.isDone}>
                     <CustomSelect
                         placeholder={objective.placeholder}

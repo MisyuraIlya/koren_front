@@ -60,6 +60,8 @@ const TeacherContent = () => {
         handleTeacherGrade(grade)
     },[grade])
 
+    console.log(exercise?.histories.length === 0)
+
     return (
         <>
         {
@@ -101,30 +103,33 @@ const TeacherContent = () => {
                 </Grid>
                 <Grid item xs={1.5} sx={{display:'flex', justifyContent:'center', position:'relative'}}>
                     <Box sx={{position:'relative'}}>
-                        <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
-                            <Typography sx={{fontSize:'14px'}}>
-                            {exercise?.histories[0]?.isFinalGrade ? 'ציון סופי': 'ציון זמני'}
-                            </Typography>
-                            <Box sx={{display:'flex', gap:'5px', border:'1px solid #BACEE9', borderRadius:'5px', justifyContent:'center', alignItems:'center'}}>
-                                {!exercise?.histories[0]?.isFinalGrade &&  
-                                    <IconButton onClick={() => setGrade(e => e < 100 ? e + 1 : e)}>
-                                        <AddIcon sx={{color:'black'}}/>
-                                    </IconButton>
-                                }
-                                <InputBase 
-                                    value={grade} 
-                                    sx={{width:'50px',color:'black', '& input': {textAlign:'center'}}} 
-                                    onChange={(e) => setGrade(+e.target.value)}
-                                    disabled={exercise?.histories[0]?.isFinalGrade}
-                                />
-                                {!exercise?.histories[0]?.isFinalGrade &&  
-                                    <IconButton onClick={() => setGrade(e => e > 0 ? e - 1 : e)}>
-                                        <RemoveIcon sx={{color:'black'}}/>
-                                    </IconButton>
-                                }
-                            
+                        {exercise?.histories.length !== 0  &&
+                            <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
+                                <Typography sx={{fontSize:'14px'}}>
+                                {exercise?.histories[0]?.isFinalGrade ? 'ציון סופי': 'ציון זמני'}
+                                </Typography>
+                                <Box sx={{display:'flex', gap:'5px', border:'1px solid #BACEE9', borderRadius:'5px', justifyContent:'center', alignItems:'center'}}>
+                                    {!exercise?.histories[0]?.isFinalGrade &&  
+                                        <IconButton onClick={() => setGrade(e => e < 100 ? e + 1 : e)}>
+                                            <AddIcon sx={{color:'black'}}/>
+                                        </IconButton>
+                                    }
+                                    <InputBase 
+                                        value={grade} 
+                                        sx={{width:'80px',color:'black', '& input': {textAlign:'center'}}} 
+                                        onChange={(e) => setGrade(+e.target.value)}
+                                        disabled={exercise?.histories[0]?.isFinalGrade  }
+                                    />
+                                    {!exercise?.histories[0]?.isFinalGrade &&  
+                                        <IconButton onClick={() => setGrade(e => e > 0 ? e - 1 : e)}>
+                                            <RemoveIcon sx={{color:'black'}}/>
+                                        </IconButton>
+                                    }
+                                
+                                </Box>
                             </Box>
-                        </Box>
+                        }
+                        
                         <Box sx={{display:'flex', justifyContent:'space-between',mt:'25px' , width:'100%', alignItems:'center'}}>
                             <Box sx={{display:'flex', gap:'10px', alignItems:'center'}}>
                                 <Box sx={{background:mailFeedBack?.id ? '#07FE4C' : '#ED4136', borderRadius:'50%', height:'10px', width:'10px'}}>

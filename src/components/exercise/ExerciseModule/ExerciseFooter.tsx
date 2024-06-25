@@ -31,10 +31,20 @@ const ExerciseFooter = () => {
         <Box sx={{padding:'20px 10px', display:'flex',justifyContent:'space-between', bgcolor:'#E5F0FE'}}>
             {isStudent &&
                 <Box sx={{display:'flex', gap:'15px'}}>
-                    <Button disabled={!exercise?.group ? false : !exercise?.group?.exerciseType?.isAvailableMultipleCheck} variant='contained' sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDone()}>
+                    <Button 
+                        disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
+                        variant='contained' 
+                        sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
+                        onClick={() => handleDone()}
+                    >
                         בדיקה
                     </Button>
-                    <Button disabled={!exercise?.group ? false : !exercise?.group?.exerciseType?.isAvailableReset} variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} onClick={() => handleDeleteHistory()}>
+                    <Button 
+                        disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
+                        variant='contained' 
+                        sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
+                        onClick={() => handleDeleteHistory()}
+                    >
                         ניקוי תשובות
                     </Button>
                     <Button disabled={!exercise?.group} variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
@@ -50,6 +60,7 @@ const ExerciseFooter = () => {
                     <Button variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
                     החזרה לתיקון
                     </Button> 
+                    {exercise?.histories.length !== 0 && 
                     <Box sx={{bgcolor:'white', alignItems:'center', display:'flex', justifyContent:'center', padding:'0 15px', borderRadius:'5px'}}>
                         <Typography variant='body1'>
                         {exercise?.histories[0]?.isFinalGrade ? 'ציון סופי': 'ציון זמני'}
@@ -59,12 +70,12 @@ const ExerciseFooter = () => {
                                 <AddIcon sx={{color:'black'}}/>
                             </IconButton>
                         }
-                  
+                    
                         <InputBase 
                             value={grade} 
                             sx={{width:'50px',color:'black', '& input': {textAlign:'center'}}} 
                             onChange={(e) => setGrade(+e.target.value)}
-                            disabled={exercise?.histories[0]?.isFinalGrade}
+                            disabled={exercise?.histories[0]?.isFinalGrade} 
                         />
                         {!exercise?.histories[0]?.isFinalGrade && 
                             <IconButton onClick={() => setGrade(e => e > 0 ? e - 1 : e)}>
@@ -72,6 +83,9 @@ const ExerciseFooter = () => {
                             </IconButton>
                         }
                     </Box>
+                    
+                    }
+                  
                     {!exercise?.histories[0]?.isFinalGrade &&  
                         <Box sx={{bgcolor:'white', borderRadius:'6px'}}>
                             <IconButton onClick={() => handleFinalGrade()}>
