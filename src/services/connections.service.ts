@@ -57,4 +57,14 @@ export const connectionServices = {
         });
         return response.json()
     },
+
+    async resendExercise(id:number){
+        const response = await fetch(`/exercise-user-connection/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.json()
+    }
 }

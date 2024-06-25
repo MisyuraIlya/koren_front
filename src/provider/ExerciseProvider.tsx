@@ -9,6 +9,8 @@ import { AdminExerciseService } from '@/modules/admin/services/adminExercise.ser
 import { ExerciseServices } from '@/services/ExerciseServices';
 import { useAuth } from '@/modules/auth/store/auth.store';
 import { useTeacherWork } from '@/store/work.store';
+import { ExerciseEnum } from '@/enums/exerciseType';
+import { connectionServices } from '@/services/connections.service';
 
 interface AdminContextType {
     exercise: IExercise | undefined
@@ -33,6 +35,7 @@ interface AdminContextType {
     handleTeacherGrade: (value: number) => void
     handleFinalGrade: () => void
     handleDeleteHistory: () => void
+    handleResend: () => void
 }
 
 
@@ -219,6 +222,11 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     }
   }
 
+  const handleResend = async () => {
+    await connectionServices.resendExercise(exercise?.userGroup?.id!)
+
+  }
+
   useEffect(() => {
     handleCreateHistory()
   },[user,exercise])
@@ -254,7 +262,8 @@ const ExerciseProvider: React.FC<ExerciseProviderProps> = (props) => {
     setShowOpenQuestions,
     handleTeacherGrade,
     handleFinalGrade,
-    handleDeleteHistory
+    handleDeleteHistory,
+    handleResend
   };
 
   return (

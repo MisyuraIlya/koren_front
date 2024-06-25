@@ -6,13 +6,18 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Image from 'next/image';
 import { useAuth } from '@/modules/auth/store/auth.store';
+import { ExerciseEnum } from '@/enums/exerciseType';
+import Exercise from '..';
+import FeedBack from '@/components/feedback';
 const ExerciseFooter = () => {
-    const {handleDone,handleDeleteHistory, handleTeacherGrade,handleFinalGrade} = useExercise()
+    const {handleDone,handleDeleteHistory, handleTeacherGrade,handleFinalGrade,handleResend} = useExercise()
+    const [open3,setOpen3] = useState(false)
     const {exercise} = useExercise()
     const [grade,setGrade] = useState(0)
     const {user} = useAuth()
     const isStudent = user?.role === 'student'
-
+    const isSend = (!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)) && !exercise?.userGroup?.isResend 
+    
     useEffect(() => {
         if(exercise){
             if(exercise?.histories?.[0]?.teacherGrade > 0) {
@@ -28,36 +33,58 @@ const ExerciseFooter = () => {
     },[grade])
 
     return (
-        <Box sx={{padding:'20px 10px', display:'flex',justifyContent:'space-between', bgcolor:'#E5F0FE'}}>
+        <>
+         <Box sx={{padding:'20px 10px', display:'flex',justifyContent:'space-between', bgcolor:'#E5F0FE'}}>
             {isStudent &&
                 <Box sx={{display:'flex', gap:'15px'}}>
+                    {
+                        !exercise?.group &&
+                        <>
+                            <Button 
+                                disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
+                                variant='contained' 
+                                sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
+                                onClick={() => handleDone()}
+                            >
+                                בדיקה
+                            </Button>
+                            <Button 
+                                disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
+                                variant='contained' 
+                                sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
+                                onClick={() => handleDeleteHistory()}
+                            >
+                                ניקוי תשובות
+                            </Button>
+                        </>
+                    }
+                    {exercise?.group &&
                     <Button 
-                        disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
-                        variant='contained' 
-                        sx={{bgcolor:'#0172E8', fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
-                        onClick={() => handleDone()}
-                    >
-                        בדיקה
-                    </Button>
-                    <Button 
-                        disabled={!exercise?.group ? false : (!exercise?.group?.exerciseType?.isAvailableMultipleCheck && exercise?.histories[0]?.isDone)} 
+                        disabled={isSend} 
                         variant='contained' 
                         sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
-                        onClick={() => handleDeleteHistory()}
+                        onClick={() => handleDone()}
                     >
-                        ניקוי תשובות
-                    </Button>
-                    <Button disabled={!exercise?.group} variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
                         שליחה למורה
                     </Button>
+                    }
+       
                 </Box>
             }
             {!isStudent &&
                 <Box sx={{display:'flex', gap:'15px'}}>
-                    <Button variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
-                    שליחת משוב  
+                    <Button 
+                        variant='contained' 
+                        sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}}
+                        onClick={() => setOpen3(true)}
+                    >
+                     שליחת משוב  
                     </Button>
-                    <Button variant='contained' sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} >
+                    <Button 
+                        variant='contained' 
+                        sx={{bgcolor:'#0172E8',fontSize:'20px', borderRadius:'24px', minWidth:'200px'}} 
+                        onClick={() => handleResend()}
+                    >
                     החזרה לתיקון
                     </Button> 
                     {exercise?.histories.length !== 0 && 
@@ -97,6 +124,9 @@ const ExerciseFooter = () => {
             }
 
         </Box>
+        <FeedBack open={open3} setOpen={setOpen3}/>
+        </>
+       
     );
 };
 

@@ -126,6 +126,10 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/objective/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/objective/:slug*`
+          },
+          {
+            source: '/exercise-user-connection/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/exercise-user-connection/:slug*`
           }
           
         ]
@@ -221,6 +225,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/objective/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/objective/:slug*`
+        },
+        {
+          source: '/exercise-user-connection/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise-user-connection/:slug*`
         }
       ]
     }
