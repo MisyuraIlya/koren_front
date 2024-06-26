@@ -42,7 +42,7 @@ const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: '0 10%',
+                bgcolor:'#F6F8FC',
                 justifyContent: choosedMode ? 'space-between' : 'flex-start'
             }}>
                 <Box sx={{padding:'10px 0'}}>
@@ -62,7 +62,7 @@ const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
                     </Box>
                 }
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'0 20px' }}>
                     <SelectMode />
                 </Box>
                 
@@ -74,7 +74,7 @@ const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
                         {choosedMode == 'choose' &&
                             <Bank />
                         }
-                        <Box sx={{ marginTop: 'auto', marginBottom:'160px' }}>
+                        <Box sx={{ marginTop: 'auto', marginBottom:'160px', padding:'0 20px' }}>
                             <Process />
                         </Box>
                     </>

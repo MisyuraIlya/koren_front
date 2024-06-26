@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import BankCard from './BankCard';
 import { useFeedBack } from '@/store/feedBack.store';
 import useDataFeedBack from '@/hooks/useDataFeedBack';
+import { Padding } from '@mui/icons-material';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -62,7 +63,7 @@ const Bank = () => {
     return (
         <>
         { !addFeedBack ?
-          <>
+          <Box sx={{bgcolor:'white',padding:'10px 5px', margin:'20px'}}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="משובים חיוביים"/>
               <Tab label="משובים לשיפור הלמידה"/>
@@ -93,9 +94,9 @@ const Bank = () => {
                     })}
                 </List> 
             </CustomTabPanel>
-          </> 
+          </Box> 
         :
-          <Box>
+          <Box sx={{padding:'20px'}}>
               <Typography>
               בחרת במשוב הבא:
               </Typography>

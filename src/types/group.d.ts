@@ -26,3 +26,8 @@ interface ITeacherGroup {
     teachers: IUser[]
     connection: IConnectionGroup
 }
+
+interface IStatistic {
+    column: string[]
+    rows: IUser[]
+}

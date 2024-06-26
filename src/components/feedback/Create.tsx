@@ -8,7 +8,7 @@ const Create = () => {
     const {positive, negative, positiveChoosed, negativeChoosed, setPositiveChoosed, setNegativeChoosed, isSavedBank, setAddFeedBack, addFeedBack} = useFeedBack()
     return (
         <>
-        <Box sx={{paddingTop:'20px'}}>
+        <Box sx={{padding:'20px 20px'}}>
             {/* <ReachTextEditor value={addFeedBack} setValue={setAddFeedBack}/> */}
             <TextField 
                 fullWidth
