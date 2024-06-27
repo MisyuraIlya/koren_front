@@ -41,8 +41,8 @@ export const GroupService = {
         return response.json()
     },
 
-    async getStatistic(uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number,lvl5:number):Promise<IStatistic>{
-        const response = await fetch(`/student-history/statistic/${uuid}/${lvl1}/${lvl2}/${lvl3}/${lvl4}/${lvl5}`, {
+    async getStatistic(uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number):Promise<IStatistic>{
+        const response = await fetch(`/student-history/statistic/${uuid}/${lvl1}/${lvl2}/${lvl3}/${lvl4}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

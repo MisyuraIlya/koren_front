@@ -29,5 +29,13 @@ interface ITeacherGroup {
 
 interface IStatistic {
     column: string[]
-    rows: IUser[]
+    rows: {result:IRowStatistic[]}[]
+}
+
+interface IRowStatistic {
+    value: string
+    grade: number
+    teacherGrade: number
+    link: string
+    isExercise: boolean
 }

@@ -4,7 +4,7 @@ import { persist, createJSONStorage, PersistOptions } from 'zustand/middleware'
 
 interface useStatisticState {
     loading: boolean
-    getStatistic: (uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number,lvl5:number) => void
+    getStatistic: (uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number) => void
     data: IStatistic | null
 }
 
@@ -12,7 +12,7 @@ export const useStatistic = create(
   persist(
     (set, get) => ({
         loading: false,
-        getStatistic: async (uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number,lvl5:number) => {
+        getStatistic: async (uuid: string,lvl1:number,lvl2:number,lvl3:number,lvl4:number) => {
             try {
                 set({loading:true})
                 const response = await GroupService.getStatistic(
@@ -21,7 +21,6 @@ export const useStatistic = create(
                   lvl2,
                   lvl3,
                   lvl4,
-                  lvl5,
                 )
                 set({data:response})
             } catch(e) {

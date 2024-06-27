@@ -4,7 +4,6 @@ import React from 'react';
 const GradeTabs = () => {
     return (
         <Box>
-            as
         </Box>
     );
 };
