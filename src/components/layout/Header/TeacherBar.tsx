@@ -10,6 +10,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import { useAuth } from '@/modules/auth/store/auth.store';
+import { useGlobalCourses } from '@/store/globalCourses';
 const TeacherBar = () => {
     const { user } = useAuth()
     const router = useRouter()
@@ -18,6 +19,7 @@ const TeacherBar = () => {
     const {data: dataMail } = useDataUnreadedMails()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const {mainCourse} = useGlobalCourses()
 
     const handleClassChoose = (uuid:string) => {
         const find = data?.find((item) => item.uuid === uuid)
@@ -85,7 +87,7 @@ const TeacherBar = () => {
                 </Tooltip>
 
                 <Tooltip title="גיליון ציונים">
-                    <IconButton onClick={() => router.push('/teacher/classes')}>
+                    <IconButton onClick={() => router.push(`/teacher/grades/${mainCourse?.id}/0/0/0/0`)}>
                         <Image src={'/images/teacher/giul.svg'} alt='' width={30} height={30}/>
                     </IconButton>
                 </Tooltip> 
