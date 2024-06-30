@@ -130,6 +130,10 @@ module.exports = (phase, { defaultConfig }) => {
           {
             source: '/exercise-user-connection/:slug*',
             destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/exercise-user-connection/:slug*`
+          },
+          {
+            source: '/feed-back-item/:slug*',
+            destination: `http://localhost:${BACKEND_ENDPOINT_PORT}/feed-back-item/:slug*`
           }
           
         ]
@@ -229,6 +233,10 @@ module.exports = (phase, { defaultConfig }) => {
         {
           source: '/exercise-user-connection/:slug*',
           destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/exercise-user-connection/:slug*`
+        },
+        {
+          source: '/feed-back-item/:slug*',
+          destination: `http://3.74.228.194:${BACKEND_ENDPOINT_PORT}/feed-back-item/:slug*`
         }
       ]
     }

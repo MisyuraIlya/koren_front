@@ -15,6 +15,9 @@ const Card:FC<CardProps> = ({item}) => {
                     <Typography>
                         {`${item?.user?.firstName} ${item?.user?.lastName}`}
                     </Typography>
+                    <Typography sx={{color:'#737C95'}} fontSize={'13px'}>
+                        {`${item?.user?.email}`}
+                    </Typography>
                 </Box>
                 <Box>
                     <Typography>
@@ -22,9 +25,9 @@ const Card:FC<CardProps> = ({item}) => {
                     </Typography>
                 </Box>
             </Box>
-            <Box sx={{padding:'30px 10px 10px 10px'}}>
+            <Box sx={{padding:'20px', bgcolor:'#F2F6FC', margin:'20px 0'}}>
                 <Typography>
-                {item?.description}
+                    {item?.description}
                 </Typography>
             </Box>
         </Box>

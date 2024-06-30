@@ -1,10 +1,14 @@
 export const MailService = {
-    async GetMail(id: number, page: string = '1', search: string | null | undefined) {
+    async GetMail(id: number, page: string = '1', type: string, search: string | null | undefined) {
         let url = `/mail/${id}?page=${page}`;
         if (search) {
             url += `&search=${encodeURIComponent(search)}`;
         }
-    
+
+        if(type){
+            url +=`&type=${type}`
+        }
+        console.log('url',url)
         const response = await fetch(url, {
             method: 'GET',
             headers: {

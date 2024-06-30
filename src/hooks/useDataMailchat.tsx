@@ -6,14 +6,14 @@ import { useSearchParams,useParams } from 'next/navigation'
 import { useMailStore } from '@/store/mail.store'
 const fetchData = async (
     uuid: string
-): Promise<IMailChat[]> => {
+): Promise<IMailResponse> => {
   return await MailService.GetChat(uuid)
 }
 
 const useDataMailChat = () => {
   const { user } = useAuth()
   const {id} = useParams()
-  const { data, error, isLoading, mutate } = useSWR<IMailChat[]>(
+  const { data, error, isLoading, mutate } = useSWR<IMailResponse>(
     `/api/mail-chat/${id}`,
     () =>
       fetchData(id! as string)

@@ -12,17 +12,9 @@ interface ICard {
 const Card:FC<ICard> = ({item}) => {
     const router = useRouter()
     const pathname = usePathname()
-    console.log('',pathname)
     return (
         <Box sx={{display:'flex', justifyContent:'space-between', bgcolor:'#F2F6FC', padding:'10px 30px', alignItems:'center', cursor:'pointer'}} onClick={() => router.push(`${pathname}/${item.uuid}`)}>
-            <Box sx={{ gap:'25px', display:'flex', alignItems:'center'}}>
-                <Box>
-                    <Checkbox/>
-                    <Checkbox
-                        icon={<StarIcon />}
-                        checkedIcon={<StarBorderIcon />}
-                    />
-                </Box>
+            <Box sx={{ gap:'25px', display:'flex', alignItems:'center', padding:'5px 0'}}>
                 <Typography>
                     {`${item?.userSend?.firstName} ${item?.userSend?.lastName}`}
                 </Typography>

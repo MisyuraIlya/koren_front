@@ -7,22 +7,22 @@ import { useMailStore } from '@/store/mail.store'
 const fetchData = async (
     userId: number,
     page: string = '1',
+    type: string = '',
     search?: string | null
 ): Promise<IMailList> => {
-  return await MailService.GetMail(userId,page,search)
+  return await MailService.GetMail(userId,page,type,search)
 }
 
 const useDataMail = () => {
   const { user } = useAuth()
-  const {search: searchValue} = useMailStore()
   const searchParams  = useSearchParams()
   const search = searchParams.get('search')
   const page = searchParams.get('page') ?? '1'
-
+  const type = searchParams.get('type') ?? ''
   const { data, error, isLoading, mutate } = useSWR<IMailList>(
-    `/api/mail/${user?.id}?page=${page}&${search}=${searchValue}`,
+    `/api/mail/${user?.id}?page=${page}&${search}=${search}&type=${type}`,
     () =>
-      fetchData(user?.id!,page,search)
+      fetchData(user?.id!,page,type,search)
   )
 
   return {

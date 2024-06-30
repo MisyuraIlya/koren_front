@@ -35,7 +35,7 @@ const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
                 sx={{
                     minWidth: '370px',
                     padding: '30px 20px',
-                    bgcolor: '#4b536c',
+                    bgcolor: '#002536D9',
                     height: '100%',
                     backdropFilter: 'blur(8px)', 
                 }}

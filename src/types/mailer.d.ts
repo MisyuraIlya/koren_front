@@ -15,6 +15,10 @@ interface IMailList {
     mails: IMail[]
     total: number
     totalPages: number
+    totalFeedBacks: number
+    totalSystem: number
+    totalRegular: number
+    totalMessages: number
 }
 
 interface DtoMail {
@@ -30,4 +34,9 @@ interface IMailChat {
     uuid: string
     createdAt: string
     user: IUser
+}
+
+interface IMailResponse {
+    mail: IMail,
+    chat: IMailChat[]
 }

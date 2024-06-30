@@ -7,7 +7,7 @@ import Process from './Process';
 import Alert from './Alert';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
-import { useFeedBack } from '@/store/feedBack.store';
+import { useFeedBackStore } from '@/store/feedBack.store';
 
 interface FeedBackProps {
     open: boolean
@@ -16,7 +16,7 @@ interface FeedBackProps {
 
 const FeedBack: FC<FeedBackProps> = ({ open, setOpen }) => {
 
-    const { choosedMode } = useFeedBack()
+    const { choosedMode } = useFeedBackStore()
     return (
         <Drawer
             open={open}

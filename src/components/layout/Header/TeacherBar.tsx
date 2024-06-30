@@ -129,7 +129,7 @@ const TeacherBar = () => {
             <Box sx={{display:'flex', alignItems:'center'}}>
                 <Tooltip title="הודעות">
                     <Badge badgeContent={dataMail?.length} color="secondary">
-                        <IconButton onClick={handleClick} id="fade-button" >
+                        <IconButton onClick={() => handleToMail()} id="fade-button" >
                             <Image src={'/images/teacher/messages.svg'} alt='' width={30} height={30}/>
                         </IconButton>
                     </Badge>
@@ -142,43 +142,6 @@ const TeacherBar = () => {
                 </Tooltip>
             </Box>
         </Box> 
-        <Menu
-            id="fade-menu"
-            MenuListProps={{
-            'aria-labelledby': 'fade-button',
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={() => setAnchorEl(null)}
-        >
-            <Box>
-                <Box sx={{padding:'5px 20px'}}>
-                    <Typography variant='h5'>
-                        הודעות חדשות
-                    </Typography>
-                </Box>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                    {dataMail?.map((item) =>
-                        <MenuItem onClick={() => handleLink(item.uuid)}>
-                            <ListItemAvatar>
-                            <Avatar>
-                                {item?.type == 'original' && <EmailIcon/>}
-                                {item?.type == 'system' && <SettingsSuggestIcon/>}
-                                {item?.type == 'feedBack' && <FeedbackIcon/>}
-                            </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={item?.title} secondary={`שלח: ${item?.userSend?.firstName} ${item?.userSend?.lastName}`} />
-                        </MenuItem>
-                    )}
-                
-                </List>
-                <Box sx={{display:'flex', justifyContent:'center'}}>
-                    <Button variant='outlined' onClick={() => handleToMail()}>
-                        לכל המיילים
-                    </Button>
-                </Box>
-            </Box>
-        </Menu>
         </>
  
     );

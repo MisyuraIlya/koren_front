@@ -1,12 +1,25 @@
 'use client'
-import { Box, IconButton, Tooltip } from '@mui/material';
+import useDataUnreadedMails from '@/hooks/useDataUnreadedMails';
+import { useAuth } from '@/modules/auth/store/auth.store';
+import { Badge, Box, IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const StudentBar = () => {
-
+    const {user} = useAuth()
     const router = useRouter()
+    const {data: dataMail } = useDataUnreadedMails()
+
+    const handleToMail = () => {
+        if(user?.role === 'student'){
+            router.push(`/student/mailbox`)
+        }
+
+        if(user?.role === 'teacher'){
+            router.push(`/teacher/mailbox`)
+        }
+    }
 
     return (
         <Box sx={{display:'flex', justifyContent:'end', alignItems:'center', height:'100%'}}>
@@ -26,10 +39,13 @@ const StudentBar = () => {
                 </IconButton>
             </Tooltip>
             <Tooltip title="הודעות">
-                <IconButton onClick={() => router.push('/teacher/mailbox')}>
-                    <Image src={'/images/bill.svg'} alt='' width={25} height={25}/>
-                </IconButton>
+                <Badge badgeContent={dataMail?.length} color="secondary">
+                    <IconButton onClick={() => handleToMail()} id="fade-button" >
+                        <Image src={'/images/teacher/messages.svg'} alt='' width={30} height={30}/>
+                    </IconButton>
+                </Badge>
             </Tooltip>
+
         </Box>
     );
 };

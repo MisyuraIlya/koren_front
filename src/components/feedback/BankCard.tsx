@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import { Button, Collapse, Divider, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { useFeedBack } from '@/store/feedBack.store';
+import { useFeedBackStore } from '@/store/feedBack.store';
 
 interface BankCardProps {
     item: IFeedBack
@@ -10,7 +10,7 @@ interface BankCardProps {
 
 const BankCard:FC<BankCardProps> = ({item}) => {
     const [open,setOpen] = useState(false)
-    const { setChoosedFeedBack, choosedFeedBack, addFeedBack, setAddFeedBack } = useFeedBack()
+    const { setChoosedFeedBack, choosedFeedBack, addFeedBack, setAddFeedBack } = useFeedBackStore()
     return (
         <>
         <ListItemButton onClick={() => setOpen(!open)}>

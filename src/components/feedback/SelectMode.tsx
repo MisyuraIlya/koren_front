@@ -1,10 +1,10 @@
-import { useFeedBack } from '@/store/feedBack.store';
+import { useFeedBackStore } from '@/store/feedBack.store';
 import { MenuItem, Select } from '@mui/material';
 import React from 'react';
 
 const SelectMode = () => {
 
-    const {mode,choosedMode,setChoosedMode} = useFeedBack()
+    const {mode,choosedMode,setChoosedMode} = useFeedBackStore()
     return (
         <>
         <Select

@@ -1,7 +1,7 @@
 import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Tab, Tabs, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import BankCard from './BankCard';
-import { useFeedBack } from '@/store/feedBack.store';
+import { useFeedBackStore } from '@/store/feedBack.store';
 import useDataFeedBack from '@/hooks/useDataFeedBack';
 import { Padding } from '@mui/icons-material';
 
@@ -10,29 +10,7 @@ interface TabPanelProps {
     dir?: string;
     index: number;
     value: number;
-  }
-
-const test = [
-    {
-        id:1,
-        title:"test",
-        items: [
-            {id:1,title:"value 1"},
-            {id:2,title:"value 2"},
-            {id:3,title:"value 3"},
-        ]
-    },
-    {
-        id:2,
-        title:"test 2",
-        items: [
-            {id:1,title:"value 1"},
-            {id:2,title:"value 2"},
-            {id:3,title:"value 3"},
-        ]
-    }
-]
-
+}
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -52,7 +30,7 @@ function CustomTabPanel(props: TabPanelProps) {
 const Bank = () => {
     const [value, setValue] = useState(0);
     const {data} = useDataFeedBack()
-    const {addFeedBack,setAddFeedBack} = useFeedBack()
+    const {addFeedBack,setAddFeedBack} = useFeedBackStore()
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
@@ -63,7 +41,7 @@ const Bank = () => {
     return (
         <>
         { !addFeedBack ?
-          <Box sx={{bgcolor:'white',padding:'10px 5px', margin:'20px'}}>
+          <Box sx={{bgcolor:'white',padding:'10px 5px', margin:'20px', maxHeight:'430px', overflow:'auto'}}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="משובים חיוביים"/>
               <Tab label="משובים לשיפור הלמידה"/>
@@ -105,9 +83,6 @@ const Bank = () => {
                   {addFeedBack}
                   </Typography>
                   <Box sx={{display:'flex', gap:'10px', justifyContent:'center', alignItems:'center', paddingTop:'30px'}}>
-                      <Button variant='contained' sx={{bgcolor:'#0172E8',borderRadius:'24px', padding:'6px 44px', fontSize:'16px', fontWeight:600}}>
-                      אישור
-                      </Button>
                       <Button variant='contained' sx={{bgcolor:'#0172E8',borderRadius:'24px', padding:'6px 44px', fontSize:'16px', fontWeight:600}} onClick={() => setAddFeedBack('')}>
                       ביטול
                       </Button>
